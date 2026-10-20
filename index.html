@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>事務のAIレシピ（無料のプロンプト8本）</title>
+<meta name="description" content="小さな会社の事務の担当者、自治会・PTAの役員のための、生成AIで使えるプロンプト8本。会社の仕事で使うときの注意、入れてはいけない情報、答えの確かめ方つき。">
+<style>
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #22252a;
+  --muted: #5a606b;
+  --line: #dcd8cf;
+  --accent: #2f6b4f;
+  --accent-soft: #e6f0ea;
+  --warn: #8a3b12;
+  --warn-soft: #fbeee4;
+  --code-bg: #f3f1ec;
+  --focus: #1f5fbf;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17191c;
+    --surface: #1f2226;
+    --text: #e8e6e1;
+    --muted: #a7abb2;
+    --line: #3a3e44;
+    --accent: #7cc7a0;
+    --accent-soft: #1f3329;
+    --warn: #f0a77a;
+    --warn-soft: #3a261b;
+    --code-bg: #26292e;
+    --focus: #8ab4f8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17191c;
+  --surface: #1f2226;
+  --text: #e8e6e1;
+  --muted: #a7abb2;
+  --line: #3a3e44;
+  --accent: #7cc7a0;
+  --accent-soft: #1f3329;
+  --warn: #f0a77a;
+  --warn-soft: #3a261b;
+  --code-bg: #26292e;
+  --focus: #8ab4f8;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+header.site { padding: 32px 0 8px; }
+header.site .brand { color: var(--muted); font-size: 14px; margin: 0; }
+h1 { font-size: 1.6rem; line-height: 1.4; margin: 4px 0 12px; }
+h2 { font-size: 1.3rem; line-height: 1.5; margin: 0 0 8px; }
+h3 { font-size: 1.05rem; margin: 20px 0 6px; }
+p { margin: 0 0 12px; }
+a { color: var(--accent); overflow-wrap: anywhere; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.lead { color: var(--muted); }
+
+nav.toc {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 16px 0 24px;
+}
+nav.toc ol { margin: 0; padding-left: 1.6em; }
+nav.toc li { margin: 2px 0; }
+
+section.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 16px;
+  margin: 0 0 24px;
+}
+.tag {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 2px 10px;
+  margin-bottom: 6px;
+}
+.what { font-weight: 700; }
+ul, ol { padding-left: 1.4em; margin: 0 0 12px; }
+li { margin: 2px 0; }
+
+.prompt-box { position: relative; margin: 8px 0 16px; }
+.prompt-box pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 12px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, "BIZ UDGothic", "MS Gothic", monospace;
+  font-size: 15px;
+  line-height: 1.7;
+  max-height: 420px;
+  overflow: auto;
+}
+.copy-row { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; flex-wrap: wrap; }
+button.copy {
+  appearance: none;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.copy-msg { font-size: 14px; color: var(--muted); }
+
+.caution {
+  background: var(--warn-soft);
+  border-left: 4px solid var(--warn);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 8px 0 12px;
+}
+.caution h3 { color: var(--warn); margin-top: 0; }
+.check h3 { margin-top: 12px; }
+
+footer.site {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+  padding: 20px 0 40px;
+  margin-top: 8px;
+}
+.books li { margin-bottom: 6px; }
+.small { font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <p class="brand">ラクワーク工房</p>
+  <h1>事務のAIレシピ</h1>
+  <p class="brand">無料のプロンプト8本</p>
+  <p class="lead">小さな会社の事務の担当者、自治会・PTAの役員の方へ。ChatGPT・Claude・Gemini などの生成AIで使えるプロンプトを8本まとめました。無料版でも動く書き方にしていますが、会社の仕事で使うときは、会社が認めたサービスとアカウントで使ってください（下の「使う前に」の1）。どのレシピにも「入れてはいけない情報」と「出てきた答えの確かめ方」を付けています。このページを読むのに登録も料金もいりません。</p>
+</header>
+<main>
+
+<nav class="toc" aria-label="レシピの一覧">
+  <ol>
+    <li><a href="#before">使う前に（全部のレシピで共通）</a></li>
+    <li><a href="#r1">会議メモを「決まった・宿題・持ち越し」に分ける</a></li>
+    <li><a href="#r2">手順書を1ページの型で作る（先に質問してもらう）</a></li>
+    <li><a href="#r3">名簿を貼らずにExcelの式を聞く</a></li>
+    <li><a href="#r4">お知らせ文を読みやすく書き直す</a></li>
+    <li><a href="#r5">問い合わせへの返事の下書きを作る</a></li>
+    <li><a href="#r6">GASのエラーの原因を絞る</a></li>
+    <li><a href="#r7">アンケートの自由記述をまとめる</a></li>
+    <li><a href="#r8">前の担当者が作った式を読み解く</a></li>
+    <li><a href="#more">もっと詳しく知りたい方へ</a></li>
+  </ol>
+</nav>
+
+<section class="card" id="before">
+  <h2>使う前に（全部のレシピで共通）</h2>
+  <ol>
+    <li>使う場面で、使ってよいアカウントが変わります。
+      <ul>
+        <li><strong>会社の仕事で使うとき</strong>：会社が使ってよいと認めたサービスに、会社として用意したアカウントで入って使います。自分で作った個人のアカウント（無料版も有料版も）には、会社の仕事の内容を入れないでください。会社に決まりがない、または認められたサービスがないときは、使い始める前に上司や担当の人に「どのサービスを、どのアカウントで使ってよいか」を決めてもらいます。決まるまでは、会社の情報を含まない使い方（作り話の値だけで式を聞く レシピ3、一般的な書き方を聞く など）にとどめます。</li>
+        <li><strong>自治会・PTA・個人の用事で使うとき</strong>：会に決まりがあれば、そちらが先です。決まりがなく個人のアカウント（無料版を含む）を使うときは、下の3の一覧のものをかならず消してから貼ります。</li>
+      </ul>
+    </li>
+    <li>使うサービスの設定に、入力した内容をサービスの改善（学習）に使うかどうかを選ぶ項目があるかを確かめてください。項目の名前や場所はサービスと時期で変わるので、各サービスのヘルプで確かめるのが確実です。</li>
+    <li>どのレシピでも、次のものは貼らないでください。
+      <ul>
+        <li>人の名前・住所・電話番号・メールアドレス（だれのことか分かるもの）</li>
+        <li>マイナンバー</li>
+        <li>パスワード・暗証番号・APIキー・トークン（ログインや連携に使う文字列）</li>
+        <li>口座番号・カード番号</li>
+        <li>病気・けが・障害・家庭の事情など、人に知られたくない事情</li>
+        <li>写真や画面の画像（名前・顔・名簿が写り込みます）</li>
+        <li>お客様や取引先から預かった秘密、ファイルやフォルダのURL・ID</li>
+        <li>会社のまだ外に出していない情報（人事・給与・評価、取引の条件や見積もり、売上や利益の数字、発表前の計画や新しい商品の話）</li>
+        <li>鍵の置き場所、金庫や暗証番号のメモの場所、留守になる曜日・時間など、防犯にかかわること</li>
+      </ul>
+      <p class="small">名前は、文の中だけでなく、式やコードの中に直接書かれたもの（=IF(C2="佐藤",…) のような書き方）、シートの名前、コードのコメントにも出てきます。そこも置き換えます。</p>
+    </li>
+    <li>名前は「Aさん」「会計担当」のように置き換えます。だれをどう置き換えたかの対応は、手元のメモに残し、AIには貼りません。名前を消しても「〇丁目の角の家」のような細かい事情で人が分かることがあるので、そこもぼかします。</li>
+    <li>AIの答えは下書きです。数字・日にち・名前は、かならず元の資料と見比べてから使ってください。</li>
+  </ol>
+  <p class="small">記号の意味は2つです。〔 〕の部分は、ご自分の内容に書き換えて使います（〔例 …〕は書き方の例なので、消して置き換えてください）。《 》の部分（《鍵》《ID》《問い合わせ先》や、AIが書く《聞く：〜》など）は、本物の値を入れずに、そのまま残す目印です。このページのプロンプトは、作る側で架空の入力を当てはめ、答えの形が組み立てられるかを考えて確かめたものです。ChatGPT・Claude・Gemini の実際の画面で、毎回同じ答えが出ることまでは確かめていません。答えはサービスや時期によって変わります。</p>
+</section>
+
+<!-- レシピ1 -->
+<section class="card" id="r1">
+  <span class="tag">レシピ 1</span>
+  <h2>会議メモを「決まった・宿題・持ち越し」に分ける</h2>
+  <p class="what">走り書きの会議メモを、決まったこと・宿題・持ち越しに分け、どの行から取ったかの番号を付けてもらいます。</p>
+  <h3>使う場面</h3>
+  <p>役員会や小さな打ち合わせで、録音はなく手元のメモだけがあるとき。あとで「それ、決まったんだっけ？」とならないように、配る前に整理したいとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p1">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p1">これから会議のメモを貼ります。
+
+やってほしいこと：
+メモの各行に番号が付いていなければ、まず1から番号を振ったメモを表示してください。
+そのうえで、メモの行を次の4つの箱に分けてください。
+［決まった］その場で決まったこと
+［宿題］だれかがあとでやること（だれが・何を・いつまでに）
+［持ち越し］話したけれど決まらなかったこと
+［その他］報告や感想など、上の3つに入らないもの
+
+守ってほしいこと：
+・どの箱の項目にも、元の行の番号を（3行目）のように付けてください
+・メモに書かれていない担当者や締め切りを考えて入れないでください。書かれていなければ「担当：空欄」「締め切り：空欄」としてください
+・「来週まで」「次回」のような書き方は、日付に直さず、メモのとおりに書いてください
+・1つの行に決まったことと宿題の両方が入っているときは、その行を両方の箱に入れ、両方に同じ行の番号を付けてください
+・決まったのか決まっていないのか読み取れない行は［持ち越し］に入れ、「決まったか読み取れない」と添えてください
+・終わりに、メモの書き手へ問い合わせたほうがよい点を3つまで並べてください
+
+会議の日付：〔例 10月20日（火）〕
+
+メモ：
+〔ここにメモを1行ずつ貼る〕</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>出席者・欠席者の名前 → 「会長」「Aさん」のように役や記号に</li>
+      <li>欠席の理由、体調、家庭の事情（メモに書いてあっても、その行ごと消す）</li>
+      <li>苦情や相談の相手の名前・住所・部屋番号</li>
+      <li>口座番号、集金した金額の内訳と人の名前の組み合わせ</li>
+      <li>人事の話（だれの異動・評価・給与か）や、取引の条件・見積もりの金額、発表前の計画（会社の会議のメモでは特に。その行ごと消す）</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>各項目の行番号を見て、元のメモのその行に本当にそう書いてあるかを見比べます。</li>
+      <li>［宿題］の担当者が、会議で本当にその人に決まったかを確かめます。AIが名前の近くにあった人を担当にしていないかに気をつけます。</li>
+      <li>メモの行が、どの箱にも入らずに消えていないかを確かめます。比べるのは、AIが最初に番号を振って表示したメモ（貼る前に消した行は入っていません）です。その番号が1つ残らずどこかの箱に出ているかを見ます。2つの箱に出てくる番号があってもかまいません。</li>
+      <li>日付と曜日はカレンダーで確かめます。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ2 -->
+<section class="card" id="r2">
+  <span class="tag">レシピ 2</span>
+  <h2>手順書を1ページの型で作る（先に質問してもらう）</h2>
+  <p class="what">いきなり書かせず、足りないことをAIに先に質問してもらってから、1ページの手順書にまとめます。</p>
+  <h3>使う場面</h3>
+  <p>年に1〜2回しかやらない作業や、次の担当者に渡す作業を、紙1枚にしておきたいとき。手元には前任者の走り書きや口で聞いた話しかないとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p2">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p2">初めてこの作業をする人のために、1ページの手順書をいっしょに作ってください。
+
+作業の名前：〔例 回覧の原稿を印刷して班長さんに渡す〕
+読む人：〔例 今年はじめて役員になった人〕
+
+進め方：
+1. まず、下の「わかっていること」を読んで、1ページの手順書を書くのに足りないことを、質問の形で5つまで聞いてください。この時点では、まだ手順書を書かないでください。
+2. 私が答えたら、次の5つの枠で手順書を書いてください。
+　［この作業は］いつ・だれが・何分くらいかかるか（1〜2行）
+　［始める前に］そろえる物と、開くファイルや場所
+　［手順］番号つきで10個まで。1つの番号に動きは1つ
+　［こうなったら］つまずきやすい場面と、その場で取る動き
+　［終わったら］できたかを確かめる方法
+3. 私が答えなかった所や、わかっていることに書かれていない所は、一般的なやり方で埋めずに「《聞く：〜》」と残してください。
+4. 初めての人がつまずきそうな手順には、行の終わりに★を付けてください。
+
+わかっていること：
+〔ここに、やり方のメモや前任者から聞いた話を貼る〕</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>パスワード・暗証番号（共有のパソコン、コピー機、会のアカウントなど） → 「〔会計担当が知っている〕」のように、だれに聞けばよいかだけ書く</li>
+      <li>共有フォルダやファイルのURL → 「会のドライブの『回覧』フォルダ」のように場所の名前で</li>
+      <li>担当者の個人の携帯番号・メールアドレス → 「〔会長の連絡先〕」</li>
+      <li>口座番号、取引先の担当者の名前</li>
+      <li>鍵の置き場所、金庫や暗証番号のメモの場所、留守になる曜日・時間 → 「〔鍵の置き場所〕」「〔会計担当に聞く〕」のように</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>「《聞く：〜》」が残った所を、前任者や作業を知っている人に聞いて埋めます。</li>
+      <li>手順書に出てくるメニューやボタンの呼び名は、本物の画面と照らし合わせます。AIは、ありがちな呼び名を当てはめて書くことがあります。</li>
+      <li>わかっていることに書かなかった手順が足されていないかを見ます。足されていたら、本当にやる作業かを確かめてから残します。</li>
+      <li>仕上げは、作業をしたことのない人に紙1枚だけ渡して試してもらうことです。手が止まった場所に、書き足りないことがあります。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ3 -->
+<section class="card" id="r3">
+  <span class="tag">レシピ 3</span>
+  <h2>名簿を貼らずにExcelの式を聞く</h2>
+  <p class="what">本物の名簿は貼らず、列の名前と作り話の3行だけで、集計の式を教えてもらいます。</p>
+  <h3>使う場面</h3>
+  <p>会員名簿・顧客名簿・会費の表などで、「班ごとの未納の数」「月ごとの合計」のような式を作りたいとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p3">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p3">表計算の式を教えてください。本物の名簿は貼れないので、列の名前と、作り話の3行だけを書きます。
+
+ソフトとその版：〔例 Microsoft 365 の Excel、Googleスプレッドシート など〕
+シートの名前：〔例 名簿〕
+1行目は見出しで、データは2行目から〔例 200〕行くらいあります。
+
+列の名前：
+〔例 A 班　B 世帯番号　C 会費を納めた日　D 備考〕
+
+作り話の3行（本物ではありません）：
+〔例
+1班, 901, 2026/5/10,
+1班, 902, , 6月に納める予定
+2班, 903, 2026/5/12,
+〕
+
+やりたいこと：
+〔例 班ごとに、会費をまだ納めていない世帯の数を出したい。結果は「集計」シートのA列に班の名前、B列に数を出す〕
+
+答えてほしいこと：
+1. 入れる式と、どのセルに入れるか
+2. 作り話の3行に当てはめると、結果がどうなるか
+3. 本物の名簿で結果がずれやすい原因（空白が入っている、全角と半角がまざっている、日付が文字で入っている、空の行がある など）と、その見つけ方
+4. 上のソフトと版に入っていない関数が式にまざっていないか</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>名簿の中身はひとつも貼らない（名前・住所・電話番号・会費の実際の記録）</li>
+      <li>作り話の値は、本物の一部を変えたものにしない。世帯番号・会員番号も本物を使わない</li>
+      <li>名簿の画面の画像（スクリーンショット）は貼らない。列の名前を文字で書く</li>
+      <li>ファイルの共有URL</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>作り話の3行を、新しいシートに実際に入れて式を試します。式はシートの名前（例なら「名簿」「集計」）を前提にしているので、試すシートの名前も同じにします。答えが「2.」で示された結果と、自分で数えた数の両方と合うかを見ます（例なら1班が1、2班が0）。</li>
+      <li>本物の名簿では、まずファイルのコピーで試します。</li>
+      <li>フィルターで「納めた日が空」の行を絞り込み、手で数えた数と式の結果が合うかを1つの班で確かめます。</li>
+      <li>「3.」で挙がった原因（空白・全角半角・文字の日付）が本物の名簿にないかを確かめます。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ4 -->
+<section class="card" id="r4">
+  <span class="tag">レシピ 4</span>
+  <h2>お知らせ文を読みやすく書き直す</h2>
+  <p class="what">回覧や総会の案内を、短い文と箇条書きの読みやすい文に直し、日にちや数字が変わっていないかの対照表も付けてもらいます。</p>
+  <h3>使う場面</h3>
+  <p>総会・行事・清掃の案内、社内のお知らせなどを、お年寄りや日本語を学んでいる人、スマホで読む人にも分かる形にしたいとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p4">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p4">下のお知らせ文を、だれにでも読みやすい文に書き直してください。読む人には、お年寄り、日本語を学んでいる人、スマホの小さい画面で読む人がいます。
+
+書き直すときの決まり：
+・いちばん上に「何のお知らせか」を1行で書く
+・日にち、時間、場所、持ち物、しめきり、問い合わせ先は、文の中に埋めずに、1つずつ行を分けて並べる
+・1つの文は短く（40字くらいまで）。1つの文で言うことは1つ
+・「〜につき」「ご参集」「ご査収」のような硬い言葉は、ふだんの言葉にする
+・元の文にない日にち・時間・場所・金額・決まりを加えない
+・〔 〕でかこんだ所（《問い合わせ先》など）は、書き換えずにそのまま残す
+・元の文で、日にちと曜日が合わないなど、おかしい所があっても勝手に直さず、最後に「元の文で気になった所」として書き出す
+
+書き直した文のあとに、次の表も付けてください：
+｜元の文にあった数字・日にち・場所の名前｜書き直した文での書き方｜
+（日にち・曜日・時間・金額・人数・場所の名前を、全部1行ずつ）
+
+元のお知らせ文：
+〔ここに貼る〕</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>問い合わせ先の個人の電話番号・自宅の住所 → 「《問い合わせ先》」にしておき、仕上がってから自分で戻す</li>
+      <li>欠席した人、会費を納めていない人、当番の人など、個人の名前が並んだ部分（その部分はAIに通さず、自分で書く）</li>
+      <li>お知らせに付ける写真やチラシの画像</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>付いてきた表で、日にち・時間・金額・場所を元の文と1つずつ見比べます。表に出てこない数字がないかも見ます。</li>
+      <li>曜日はカレンダーで確かめます。</li>
+      <li>「元の文で気になった所」が出ていたら、元の文のほうを直すかを役員の中で決めます。</li>
+      <li>声に出して読んでみて、つかえる所を直します。できれば、ふだんお知らせを読む側の人に一度見てもらいます。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ5 -->
+<section class="card" id="r5">
+  <span class="tag">レシピ 5</span>
+  <h2>問い合わせへの返事の下書きを作る</h2>
+  <p class="what">「答えてよい事実」と「まだ答えられないこと」を先に渡して、その範囲だけで返事の下書きを作ってもらいます。</p>
+  <h3>使う場面</h3>
+  <p>会員や住民、お客様からのメール・手紙・LINEの問い合わせに返すとき。言い方に迷う問い合わせや、まだ決まっていないことを聞かれたとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p5">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p5">会（または会社）に届いた問い合わせに返す文の下書きを作ってください。相手の名前や連絡先は、先に消して「〇〇様」にしてあります。
+
+届いた問い合わせ：
+〔ここに貼る。名前などは消しておく〕
+
+こちらが答えてよい事実（返事には、これ以外の事実を使わないでください）：
+・〔例 ごみ当番の表は、毎年4月の回覧で配っています〕
+・〔例 当番の日の交代は、班長に申し出てもらえれば調整します〕
+
+今は返事できないこと（会で決めていないことも含む）：
+・〔例 来年度から当番のやり方を変えるかどうかは、まだ決まっていません〕
+
+書き方：
+・〔メール／手紙／LINEなどの短いメッセージ〕で、〔ていねい／ふつう〕の言葉
+・最初に問い合わせへのお礼、次に答え、最後に連絡先の案内。連絡先はあとで私が入れるので「（連絡先）」と書く
+・まだ決まっていないことは、決まっていないとそのまま書き、いつごろ決まるかを書かない（決まる時期が上に書いてある場合だけ書く）
+・おわびを入れるべきか分からないときは、おわびの文を入れずに、最後に「おわびを入れるか考える所」として書き出す
+
+下書きのあとに、次の2つを付けてください：
+1. 下書きの文のうち、上の「答えてよい事実」から来ていない文（なければ「なし」）
+2. 相手がこのあと聞いてきそうなこと（3つまで）</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>相手の名前・住所・電話番号・メールアドレス・部屋番号・会員番号</li>
+      <li>問い合わせの中に出てくる、ほかの人の名前（「お隣の〇〇さんが…」） → 「近くの方」</li>
+      <li>相手の家庭の事情や体調が書かれていたら、その部分（返事に必要なら「ご事情」とだけ）</li>
+      <li>名前を消しても人が分かる細かい事情（何丁目の角の家、何年何組 など）</li>
+      <li>会社への問い合わせなら、契約の中身・見積もりや値引きの金額・社内で決めている対応の方針など、外に出していない情報</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>付いてきた「1.」の一覧を見ます。「なし」でなければ、その文を消すか、事実かどうかを確かめてから残します。</li>
+      <li>「〜します」「〜いたします」と約束している文を探し、会として本当にできることかを確かめます。</li>
+      <li>「〇〇様」を本当の名前に戻すとき、別の人の名前を入れていないかを見ます。</li>
+      <li>苦情や込み入った問い合わせは、送る前に役員や上司にもう一人見てもらいます。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ6 -->
+<section class="card" id="r6">
+  <span class="tag">レシピ 6</span>
+  <h2>GASのエラーの原因を絞る</h2>
+  <p class="what">Google Apps Script のエラーの文を貼り、すぐに直させずに「意味→原因の候補→確かめ方→直し方」の順で答えてもらいます。</p>
+  <h3>使う場面</h3>
+  <p>前任者が作ったスクリプトや、AIに書いてもらったスクリプトが、ある日エラーで止まったとき。決まった時刻やフォームの送信で動くスクリプト（トリガーで動くもの）は、エラーが画面に出ません。Apps Script の画面の左側のメニューにある実行の記録の一覧（Google のヘルプ「ロギング」では［実行］と書かれています）で、失敗した実行を開くか、届いたエラーの通知メールから、エラーの文を写します。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p6">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p6">Google Apps Script を動かしたら、エラーが出ました。直したコードをすぐに書く前に、原因をいっしょに絞りたいです。
+
+エラーの文（画面に出たものをそのまま）：
+〔ここに貼る〕
+
+エラーが出た行：〔例 12行目〕
+スクリプトの役目：〔例 申込みフォームに届いた答えを、集計用のシートへ移す〕
+最近変えたこと：〔例 シートの名前を変えた／何も変えていない〕
+
+コード（ID・URL・メールアドレス・鍵は、《ID》《URL》〔メール〕《鍵》に置き換えてあります）：
+〔ここにコードを貼る〕
+
+次の順番で答えてください：
+1. エラーの文の意味を、プログラミングを知らない人向けに2〜3行で
+2. 考えられる原因を、ありそうな順に3つまで。それぞれ「なぜそう考えたか」を1行
+3. それぞれの原因を確かめる方法（どこを見ればよいか。Logger.log を1行足すなら、どこに何を書くか）
+4. 原因ごとの直し方。直す行だけでなく、直したあとの関数をまるごと書く
+・《ID》などの置き換えた所は、そのまま《ID》と書いておいてください。本物の値を貼るようには求めないでください</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>スプレッドシート・フォルダ・フォーム・カレンダーのID（URLの中の長い英数字の部分も） → 《ID》</li>
+      <li>ファイルやWebアプリのURL、通知に使うWebhookのURL → 《URL》</li>
+      <li>メールアドレス（送り先・送り主） → 〔メール〕</li>
+      <li>APIキー・トークン・パスワード（コードに直接書いてあるものも、スクリプトのプロパティに入れた値も） → 《鍵》</li>
+      <li>実行ログに出た名簿の中身（名前・住所など）。エラーの文の中に人の名前が出ていたら、そこも置き換える</li>
+      <li>コードの中に直接書いてある人の名前・住所・宛先の一覧、テスト用に書いた名簿の行、コメントの中の名前、人の名前のシート名 → 「Aさん」「シートA」など</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>「3.」の確かめ方を先にやり、どの原因だったかを決めてから直します。原因が分からないまま直したコードを貼り替えないでください。</li>
+      <li>直したコードを試すのは、ファイルを複製した練習用の側です。メールが出るスクリプトなら、宛先をいったん自分だけにしてから動かします。</li>
+      <li>知らない命令（関数の名前）が出てきたら、Google の Apps Script の公式リファレンスでその名前を検索し、本当にあるかを確かめます。</li>
+      <li>実行の前に出る承認の画面で、頼んだ内容に比べて多すぎる権限（メール送信やドライブ全体など）が求められていないかを読みます。</li>
+      <li>《ID》などを本物の値に戻す所を、戻し忘れや入れ間違いがないか見直します。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ7 -->
+<section class="card" id="r7">
+  <span class="tag">レシピ 7</span>
+  <h2>アンケートの自由記述をまとめる</h2>
+  <p class="what">「ご自由にお書きください」の答えに番号を振ってもらい、似た意見のグループごとに番号と件数を出してもらいます。件数は番号で自分で数え直せます。</p>
+  <h3>使う場面</h3>
+  <p>行事のふりかえり、PTAの保護者アンケート、社内アンケートなどで、自由記述が何十件もあり、役員会や会議で話せる形にしたいとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p7">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p7">アンケートの「ご自由にお書きください」の答えを、会議で話せる形にまとめてください。答えは1行に1件で貼ります。名前などは消してあります。
+
+アンケートの題：〔例 夏祭りのふりかえり〕
+答えの数：〔例 42件〕
+
+まとめ方：
+1. まず、貼った答えに上から1、2、3…と番号を振って、全部を元の言葉のまま表示する
+2. 似た意見をまとめて、5〜8個のグループに分ける。グループには短い名前を付け、そのグループに入れた答えの番号を全部並べ（例：3, 7, 12）、件数を書く
+3. 各グループに、代表的な答えを元の言葉のまま2つまで、番号つきで載せる（言葉を言い換えない）
+4. どのグループにも入らない答えは「その他」として、番号と件数を書く
+5. 1件を2つのグループに入れたときは、両方のグループにその番号を並べ、最後に「2つのグループに入れた答え」として番号を書き出す
+6. 多いか少ないかは件数で言い、「多くの人が」のような件数のない言い方をしない
+
+答え：
+〔ここに貼る〕</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>回答した人の名前・班・部屋番号・メールアドレス（フォームの集計表から写すときは、その列を貼らない）</li>
+      <li>子どもの名前・学年とクラス（PTAのアンケートでは特に）</li>
+      <li>答えの中の、特定の人への苦情（「〇〇さんが…」） → 「ある人」</li>
+      <li>病気・障害・家庭の事情が書かれた答えは、その答えごと貼らずに、自分で読んで扱いを決める</li>
+      <li>答えの数が少ないと、書きぶりでだれか分かることがあります。会議の資料に載せる前にも見直します</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>AIが番号を振って表示した答えの数が、貼った答えの件数（表計算なら行の数）と同じかを見ます。途中が抜けたり、2つの答えが1つにまとめられたりしていないか、最後の番号と件数で確かめます。</li>
+      <li>グループごとに、並んだ番号の数を自分で数え、AIが書いた件数と合うかを見ます。AIは数え間違えても「合っています」と書くことがあるので、件数ではなく番号の並びのほうを信じます。</li>
+      <li>どのグループにも「その他」にも出てこない番号がないかを見ます（番号を順に追うか、表計算に番号を貼って並べ替えると見つけやすくなります）。2つのグループに出てくる番号は、「2つのグループに入れた答え」に書き出されているかを見ます。</li>
+      <li>代表例の答えを、元の答えの中で検索（Ctrl＋F など）し、本当にその言葉で書かれているかを確かめます。</li>
+      <li>グループを2つほど選び、中に入れられた答えを元の答えと見比べて、分け方がおかしくないかを見ます。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- レシピ8 -->
+<section class="card" id="r8">
+  <span class="tag">レシピ 8</span>
+  <h2>前の担当者が作った式を読み解く</h2>
+  <p class="what">意味の分からない長い式を、内側から部品に分けて説明してもらい、まちがった答えを黙って出しそうな場面も挙げてもらいます。</p>
+  <h3>使う場面</h3>
+  <p>引き継いだ表に長い式があり、何をしているのか分からないまま触れずにいるとき。列を足したいけれど、式が壊れないか心配なとき。</p>
+  <h3>プロンプト</h3>
+  <div class="prompt-box">
+    <div class="copy-row"><button class="copy" type="button" data-target="p8">コピーする</button><span class="copy-msg" aria-live="polite"></span></div>
+<pre id="p8">前の担当者が作った表計算の式の意味がわかりません。部品に分けて説明してください。
+
+ソフト：〔例 Excel、Googleスプレッドシート〕
+式（そのまま貼ります）：
+〔例 =IFERROR(VLOOKUP(B2,会員!$A:$D,4,FALSE),"")〕
+この式が入っているセル：〔例 集計シートのE2〕
+式が見ているシートの列の名前：〔例 会員シート　A 会員番号　B 班　C 名前　D 会費〕
+
+説明してほしいこと：
+1. 式を内側から順に部品に分け、表にする（｜部品｜していること｜）
+2. 全体として何をしている式か、1〜2文で
+3. 作り話の値を1つ使って、途中の値がどう変わって答えになるか
+4. この式が、まちがった答えを黙って出しそうな場面（見つからないときに空になって気づかない、など）と、その場面に気づく方法
+5. 列を1つ足す・シートの名前を変える・行を増やす、をしたときに、この式の答えが変わってしまうかどうか</pre>
+  </div>
+  <div class="caution">
+    <h3>貼る前に消すもの</h3>
+    <ul>
+      <li>式だけを貼り、セルの中身（名前・会費・金額の実際の値）は貼らない</li>
+      <li>シート名が「佐々木さん分」「〇〇商事」のように人や取引先を表していたら、「シートA」などに変えて貼る</li>
+      <li>式の中のファイルのURLやID（IMPORTRANGE などで別のファイルを見ている式） → 《ID》</li>
+      <li>式の中に直接書いてある名前・取引先・金額（=IF(C2="佐藤",…) や =B2*〔実際の単価〕 など） → 「"Aさん"」「1000」のような作り話の値に</li>
+    </ul>
+  </div>
+  <div class="check">
+    <h3>答えの確かめ方</h3>
+    <ol>
+      <li>新しいシートに作り話の値を数行入れ、同じ式を入れて、「3.」の説明どおりの答えになるかを見ます。</li>
+      <li>デスクトップ版の Excel（Windows・Mac の Microsoft 365、Excel 2024、Excel 2021）なら、式の入ったセルを選んで、［数式］タブにある［数式の検証］を押すと、「数式の検証」の画面が開き、［検証］を押すたびに式を1段ずつ計算して見られます。Microsoft のヘルプ「ネストした数式を 1 レベルずつ検証する」では、このボタンは［ワークシート分析］グループの［数式の評価］と書かれています（別のヘルプでは［数式の監査］グループの［数式を評価する］）。ヘルプの訳と画面の表示が違うことがあり、どちらのヘルプでも、開く画面の名前は「数式の検証」と書かれています（このページを作る側では、実際の Excel の画面でボタンの名前を確かめてはいません）。見つからないときは、［数式］タブの中で「検証」「評価」と付いたボタンを探してください。AIの説明と途中の値が合うかを見比べます。Web 版の Excel は、このヘルプの対象に入っていません。Googleスプレッドシートには同じ働きのボタンがないので、1 の方法（作り話の値で試す）で確かめます。</li>
+      <li>「4.」で挙がった場面を、作り話の値でわざと作って（見つからない会員番号を入れる など）、本当にそうなるかを確かめます。</li>
+      <li>説明を読んでも分からない部分が残ったら、その式は触らずに、分かる人に聞きます。</li>
+    </ol>
+  </div>
+</section>
+
+<section class="card" id="more">
+  <h2>もっと詳しく知りたい方へ</h2>
+  <p>同じ著者（相楽 圭／ラクワーク工房）の Kindle 本です。Amazon で書名を検索すると見つかります。</p>
+  <ul class="books">
+    <li>『毎月の集計を『ボタン1つ』にする』（Excel・スプレッドシートの自動化）</li>
+    <li>『議事録は「録音＋生成AI」で仕上げる』</li>
+    <li>『業務マニュアルは「生成AI＋ひな形」で作る』</li>
+    <li>英語版：Stop Doing It By Hand</li>
+    <li>『スプレッドシートの手作業は「GAS」で消す』（近日発売）</li>
+    <li>『生成AIを仕事で使う会社のセキュリティ入門』（近日発売。会社で生成AIを使うときのルールの作り方）</li>
+    <li>『自治会・PTAの事務は「Googleフォーム＋スプレッドシート」で軽くなる』（近日発売）</li>
+  </ul>
+  <h3>ほかの場所</h3>
+  <ul>
+    <li>ココナラ（Excel・スプレッドシート・事務の自動化のご相談）：<a href="https://coconala.com/users/6350583">https://coconala.com/users/6350583</a></li>
+    <li>Zenn（技術の記事）：<a href="https://zenn.dev/rakuwork_kobo">https://zenn.dev/rakuwork_kobo</a></li>
+    <li>note（ITが得意でない方向けの記事）：<a href="https://note.com/rakuwork_kobo">https://note.com/rakuwork_kobo</a></li>
+  </ul>
+</section>
+
+<section class="card" id="ref">
+  <h2>参考</h2>
+  <ul>
+    <li>Microsoft サポート「ネストした数式を 1 レベルずつ検証する」（Excel のヘルプ。対象は Excel for Microsoft 365・Excel 2024・Excel 2021 とそれぞれの Mac 版。2026年10月に確認）<br><a href="https://support.microsoft.com/ja-jp/excel/evaluate-a-nested-formula-one-step-at-a-time">https://support.microsoft.com/ja-jp/excel/evaluate-a-nested-formula-one-step-at-a-time</a></li>
+    <li>Microsoft サポート「Excel で数式エラーを検出する」（Excel のヘルプ。2026年10月に確認）<br><a href="https://support.microsoft.com/ja-jp/office/excel-%E3%81%A7%E6%95%B0%E5%BC%8F%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E6%A4%9C%E5%87%BA%E3%81%99%E3%82%8B-3a8acca5-1d61-4702-80e0-99a36a2822c1">https://support.microsoft.com/ja-jp/office/excel-で数式エラーを検出する-3a8acca5-1d61-4702-80e0-99a36a2822c1</a></li>
+    <li>Google for Developers「ロギング」（Apps Script のガイド。2026年10月に確認）<br><a href="https://developers.google.com/apps-script/guides/logging?hl=ja">https://developers.google.com/apps-script/guides/logging?hl=ja</a></li>
+  </ul>
+</section>
+</main>
+
+<footer class="site">
+  <p>このページは生成AIを使って作成し、内容を確認したうえで公開しています。</p>
+  <p>プロンプトは自由に使ってかまいません。生成AIの答えは誤ることがあるので、使う前にかならず確かめてください。</p>
+  <p>ラクワーク工房</p>
+</footer>
+
+</div>
+<script>
+(function () {
+  function selectText(el) {
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      return true;
+    } catch (e) { return false; }
+  }
+  function show(msgEl, text) {
+    msgEl.textContent = text;
+    clearTimeout(msgEl._t);
+    msgEl._t = setTimeout(function () { msgEl.textContent = ''; }, 6000);
+  }
+  var buttons = document.querySelectorAll('button.copy');
+  Array.prototype.forEach.call(buttons, function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = document.getElementById(btn.getAttribute('data-target'));
+      var msg = btn.parentNode.querySelector('.copy-msg');
+      var text = pre.textContent;
+      var fallback = function () {
+        if (selectText(pre)) {
+          show(msg, '選択しました。Ctrl＋C（スマホは長押しして「コピー」）でコピーしてください。');
+        } else {
+          show(msg, 'コピーできませんでした。枠の中の文を指でなぞって選んでください。');
+        }
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () {
+          show(msg, 'コピーしました。');
+        }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
