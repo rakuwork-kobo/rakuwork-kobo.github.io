@@ -1,0 +1,76 @@
+/* ラクワーク工房 ホームページの見本の一覧 */
+:root{--bg:#faf8f4;--white:#fff;--ink:#1f2328;--sub:#555b63;--line:#e5e0d6;--acc:#2f5d8a;--acc-d:#234867;--warm:#c4561a}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;font-size:16px;line-height:1.85;letter-spacing:.02em}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--acc)}
+a:focus-visible{outline:3px solid #f0b35a;outline-offset:3px}
+h1,h2,h3{margin:0;line-height:1.4}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px}
+
+.top{padding:72px 0 48px}
+.brand{font-weight:700;font-size:15px;color:var(--acc);letter-spacing:.08em}
+.brand span{font-weight:400;color:var(--sub);margin-left:10px;font-size:13px}
+.top h1{font-size:44px;margin:10px 0 16px}
+.lead{color:var(--sub);font-size:17px;max-width:36em}
+
+.samples{display:grid;gap:56px;padding-bottom:80px}
+.sample{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+.sample:nth-child(even) .shots{order:2}
+.shots{position:relative;display:block;padding:0 44px 36px 0}
+.shots .pc{border-radius:10px;border:1px solid var(--line);box-shadow:0 18px 40px rgba(31,35,40,.12);transition:transform .25s}
+.shots:hover .pc{transform:translateY(-3px)}
+.shots .sp{position:absolute;right:0;bottom:0;width:150px;border-radius:18px;border:6px solid #1f2328;box-shadow:0 14px 30px rgba(31,35,40,.25)}
+.kind{display:inline-block;font-size:13px;font-weight:700;color:var(--acc-d);background:#e6eef6;padding:2px 12px;border-radius:999px;margin-bottom:10px}
+.sample-body h2{font-size:28px;margin-bottom:10px}
+.sample-body p{color:var(--sub)}
+.open{display:inline-flex;align-items:center;min-height:50px;margin-top:20px;padding:0 24px;background:transparent;color:var(--acc-d);border:1.5px solid var(--acc);text-decoration:none;font-weight:700;border-radius:8px}
+.open::after{content:"→";margin-left:10px}
+.open:hover{background:#e6eef6}
+
+.band{background:#1f2a36;color:#e8edf3;padding:64px 0}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.points h3{font-size:19px;color:#fff;margin-bottom:8px;padding-top:14px;border-top:3px solid var(--warm)}
+.points p{color:#c4ced9;font-size:15px}
+
+.price,.flow{padding-top:72px}
+.price h2,.flow h2{font-size:30px;margin-bottom:22px}
+.price table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line)}
+.price th,.price td{padding:18px 22px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.price th{width:38%;font-weight:700}
+.price td b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+.price td span{display:block;font-size:14px;color:var(--sub)}
+.note{list-style:none;margin:16px 0 0;padding:0;font-size:14px;color:var(--sub)}
+.note li{display:grid;grid-template-columns:6.5em 1fr;gap:10px;padding:6px 0}
+.note b{color:var(--ink)}
+@media (max-width:820px){.note li{grid-template-columns:1fr;gap:0}}
+.flow ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:f}
+.flow li{counter-increment:f;background:var(--white);border-top:3px solid var(--acc);padding:22px;color:var(--sub);font-size:15px}
+.flow li b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
+.flow li b::before{content:counter(f) ". ";color:var(--acc)}
+
+.contact{margin-top:80px;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0;text-align:center}
+.contact h2{font-size:28px;margin-bottom:8px}
+.contact p{color:var(--sub)}
+.mail{display:inline-flex;align-items:center;min-height:54px;margin-top:20px;padding:0 30px;background:var(--warm);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;font-size:17px;letter-spacing:.03em}
+.foot{padding:32px 0 40px;font-size:12.5px;color:var(--sub)}
+.foot p+p{margin-top:6px}
+
+@media (max-width:820px){
+  .top{padding:44px 0 32px}
+  .top h1{font-size:32px}
+  .lead{font-size:15.5px}
+  .sample{grid-template-columns:1fr;gap:20px}
+  .sample:nth-child(even) .shots{order:0}
+  .shots{padding:0 30px 30px 0}
+  .shots .sp{width:104px;border-width:4px;border-radius:14px}
+  .sample-body h2{font-size:24px}
+  .open{width:100%;justify-content:center}
+  .points,.flow ol{grid-template-columns:1fr;gap:24px}
+  .price th,.price td{display:block;width:auto;padding:12px 16px}
+  .price th{border-bottom:0;padding-bottom:0}
+  .price h2,.flow h2,.contact h2{font-size:24px}
+  .mail{font-size:15px;padding:0 18px}
+}

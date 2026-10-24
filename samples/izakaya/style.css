@@ -1,0 +1,200 @@
+/* 炭火やきとり 見本亭  色は炭の黒、和紙の生成り、炭火の朱 */
+:root{
+  --char:#17120f; --char2:#221a15; --char3:#2e241e;
+  --paper:#f7f1e7; --paper2:#efe6d6; --white:#fffdf9;
+  --ink:#231a14; --sub:#5e5045; --line:#e2d6c3;
+  --fire:#d9481f; --gold:#e2b45a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--white);color:var(--ink);font-family:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;font-size:16px;line-height:1.85;letter-spacing:.02em}
+img,svg{display:block;max-width:100%}
+a{color:var(--fire)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,h3{margin:0;line-height:1.35;font-weight:700}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:24px;padding-right:24px}
+.sample{margin:0;background:#3a2f2a;color:#f6efe6;font-size:12.5px;text-align:center;padding:6px 16px;line-height:1.5}
+.mincho,.hero h1,.section-head h2,.story-text h2,.party h2,.access h2,.dish h3,.menu-col h3,.party-name{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","BIZ UDPMincho","Noto Serif JP",serif}
+
+/* ヘッダー */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(23,18,15,.96);color:#fff;border-bottom:1px solid #2f251f}
+.header-in{display:flex;align-items:center;gap:22px;min-height:70px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;flex-shrink:0}
+.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--fire);color:#fff;font-weight:700;font-size:20px;border-radius:4px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif}
+.brand-name{font-weight:700;font-size:18px;line-height:1.25}
+.brand-name small{display:block;font-size:12px;font-weight:400;color:#cdbfae;letter-spacing:.06em}
+.gnav{display:flex;gap:2px;margin-left:auto}
+.gnav a{color:#efe6d6;text-decoration:none;font-size:14.5px;padding:8px 12px;border-radius:4px}
+.gnav a:hover{background:#2e241e;color:#fff}
+.header-tel{white-space:nowrap;color:#fff;text-decoration:none;font-weight:700;font-size:20px;line-height:1.2;text-align:right;letter-spacing:.04em}
+.header-tel small{display:block;font-size:11px;font-weight:400;color:var(--gold);letter-spacing:.04em}
+
+/* ヒーロー：写真を大きく */
+.hero{position:relative;min-height:min(86vh,760px);display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--char);overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,18,15,.88) 0%,rgba(23,18,15,.55) 42%,rgba(23,18,15,.05) 75%),linear-gradient(0deg,rgba(23,18,15,.9) 0%,rgba(23,18,15,0) 38%)}
+.hero-in{position:relative;padding-top:120px;padding-bottom:56px;width:100%}
+.eyebrow{display:inline-block;font-size:13.5px;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;margin-bottom:20px;letter-spacing:.1em}
+.hero h1{font-size:76px;line-height:1.18;letter-spacing:.04em;text-shadow:0 2px 24px rgba(0,0,0,.4)}
+.lead{font-size:18px;color:#f1e7d8;margin-top:22px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:4px;font-weight:700;text-decoration:none;font-size:16px}
+.btn-fire{background:var(--fire);color:#fff;box-shadow:0 8px 22px rgba(217,72,31,.35)}
+.btn-fire:hover{background:#c23d17}
+.btn-glass{color:#fff;border:1.5px solid rgba(255,255,255,.6);background:rgba(23,18,15,.35)}
+.btn-glass:hover{border-color:#fff}
+.hero-bar{position:relative;background:rgba(23,18,15,.92);border-top:1px solid #3a2e26}
+.hero-bar-in{display:grid;grid-template-columns:repeat(3,1fr)}
+.hero-bar p{padding:18px 0 18px 22px;border-left:1px solid #3a2e26;font-size:13px;color:#cdbfae;line-height:1.5}
+.hero-bar p:first-child{border-left:0;padding-left:0}
+.hero-bar b{display:block;font-size:20px;color:#fff;letter-spacing:.04em;white-space:nowrap}
+
+/* 見出し */
+.section{padding:96px 0;scroll-margin-top:70px}
+.section-paper{background:var(--paper)}
+.section-dark{background:var(--char);color:#f1e7d8}
+.section-head{margin-bottom:40px}
+.section-head h2{font-size:38px;letter-spacing:.04em}
+.section-lead{color:var(--sub);margin-top:14px}
+
+/* おすすめ三品 */
+.dishes{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:22px;align-items:stretch}
+.dish{background:var(--white);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+.dish img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .4s}
+.dish:hover img{transform:scale(1.03)}
+.dish-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.dish-tag{display:inline-block;align-self:flex-start;background:var(--fire);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;margin-bottom:10px;letter-spacing:.06em}
+.dish h3{font-size:23px;margin-bottom:8px}
+.dish p{font-size:15px;color:var(--sub)}
+.dish .price{margin-top:auto;padding-top:14px;font-size:30px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.dish .price small{font-size:14px;color:var(--sub);margin-left:3px}
+.dish-main img{aspect-ratio:4/3.2;object-position:50% 50%}
+.dish .dish-tag{color:#fff;font-size:12px}
+.dish-main h3{font-size:26px}
+
+/* 炭火の話 */
+.story{background:var(--char2);color:#f1e7d8}
+.story-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
+.story-photo{margin:0 0 0 -24px;height:100%}
+.story-photo img{width:100%;height:100%;min-height:440px;object-fit:cover}
+.story-text{padding:72px 0 72px 64px}
+.story-text h2{font-size:34px;color:#fff;margin-bottom:22px;letter-spacing:.04em}
+.story-text p{color:#d9cdbd;margin-top:14px;max-width:28em}
+
+/* お品書き */
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.menu-col h3{font-size:22px;padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:6px;letter-spacing:.06em}
+.menu-col h3 small{font-size:13px;color:var(--sub);font-family:inherit;margin-left:6px;letter-spacing:0}
+.menu-col h3+.menu-list+h3{margin-top:30px}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:15.5px}
+.menu-list i{flex:1;border-bottom:1px dotted #b9a68e;transform:translateY(-4px)}
+.menu-list b{font-variant-numeric:tabular-nums;font-size:16px}
+.menu-list b::after{content:"円";font-weight:400;font-size:12px;color:var(--sub);margin-left:2px}
+.menu-note{font-size:13px;color:var(--sub);margin-top:16px;padding:10px 12px;background:var(--paper2)}
+
+/* 宴会 */
+.party{background:var(--white)}
+.party-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.party h2{font-size:38px;letter-spacing:.04em;margin-bottom:18px}
+.party-text p{color:var(--sub);max-width:28em}
+.party-card{background:var(--char);color:#f1e7d8;padding:36px;border-top:4px solid var(--fire)}
+.party-name{font-size:20px;color:#fff}
+.party-price{font-size:52px;font-weight:700;color:var(--gold);line-height:1.2;margin:8px 0 16px;font-variant-numeric:tabular-nums}
+.party-price small{font-size:14px;color:#cdbfae;margin-left:6px;font-weight:400}
+.party-card ul{margin:0 0 24px;padding-left:1.2em;font-size:14.5px;color:#d9cdbd}
+.party-card li{margin-bottom:4px}
+
+/* 営業案内 */
+.info-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.info{margin:0}
+.info div{display:grid;grid-template-columns:6.5em 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.info dt{color:var(--sub);font-size:14px}
+.info dd{margin:0}
+.info small{display:block;font-size:12px;color:var(--sub)}
+.tel-big{font-size:26px;font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:.04em}
+.faq-title{font-size:20px;margin:6px 0 14px}
+.faq{border-bottom:1px solid var(--line)}
+.faq:first-of-type{border-top:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:17px 40px 17px 2px;font-weight:700;position:relative;min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:10px;top:50%;width:9px;height:9px;border-right:2.5px solid var(--fire);border-bottom:2.5px solid var(--fire);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq p{padding:0 2px 18px;color:var(--sub);font-size:15px}
+
+/* アクセス */
+.access{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.access h2{font-size:34px;color:#fff;margin-bottom:22px;letter-spacing:.04em}
+.info-dark div{border-bottom-color:#3a2e26}
+.info-dark dt{color:#a99887}
+.map{margin:0}
+.map svg{width:100%;height:auto}
+figcaption{font-size:12.5px;color:#a99887;margin-top:10px}
+.maplink{display:inline-flex;align-items:center;min-height:44px;margin:8px 0 0;padding:0 20px;border:1.5px dashed #6b5949;color:#cdbfae;font-weight:700;font-size:14px;border-radius:4px;cursor:default}
+.maplink-note{display:block;font-size:12px;margin-top:6px}
+
+/* フッター */
+.site-footer{background:#0f0b09;color:#cdbfae;padding:44px 0 40px;font-size:14px}
+.footer-in{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end}
+.footer-name{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.footer-name small{font-weight:400;font-size:13px;color:#a99887}
+.footer-note{font-size:12px;color:#a99887;line-height:1.8}
+.footer-note p+p{margin-top:8px}
+.footer-offer{color:#efe6d6;font-size:13px}
+.actionbar{display:none}
+
+/* タブレット */
+@media (max-width:1040px){
+  .gnav{display:none}
+  .header-tel{margin-left:auto}
+  .hero h1{font-size:60px}
+  .dishes{grid-template-columns:1fr 1fr}
+  .dish-main{grid-column:1 / -1;flex-direction:row}
+  .dish-main img{width:55%;aspect-ratio:auto;min-height:300px}
+  .menu{grid-template-columns:1fr 1fr}
+  .story-in,.party-in,.info-grid,.access{grid-template-columns:1fr;gap:36px}
+  .story-photo{margin:0 -24px}
+  .story-photo img{min-height:0;aspect-ratio:16/10}
+  .story-text{padding:8px 0 64px}
+}
+/* スマホ */
+@media (max-width:680px){
+  body{font-size:15.5px;padding-bottom:70px}
+  .wrap{padding-left:18px;padding-right:18px}
+  .header-in{min-height:58px;gap:10px}
+  .brand-mark{width:34px;height:34px;font-size:17px}
+  .brand-name{font-size:16px}
+  .header-tel{font-size:14px;letter-spacing:0}
+  .header-tel small{display:none}
+  .hero{min-height:0}
+  .hero-shade{background:linear-gradient(0deg,rgba(23,18,15,.95) 0%,rgba(23,18,15,.55) 50%,rgba(23,18,15,.15) 100%)}
+  .hero-in{padding-top:200px;padding-bottom:30px}
+  .hero h1{font-size:46px}
+  .lead{font-size:15.5px}
+  .hero-actions .btn{flex:1 1 100%}
+  .hero-bar-in{grid-template-columns:1fr 1fr 1fr}
+  .hero-bar p{padding:12px 0 12px 10px;font-size:12px}
+  .hero-bar b{font-size:14px;letter-spacing:0}
+  .hero-bar span{display:none}
+  .section{padding:60px 0;scroll-margin-top:58px}
+  .section-head{margin-bottom:26px}
+  .section-head h2,.party h2{font-size:28px}
+  .dishes{grid-template-columns:1fr;gap:16px}
+  .dish-main{flex-direction:column}
+  .dish-main img{width:100%;aspect-ratio:4/3;min-height:0}
+  .dish h3,.dish-main h3{font-size:21px}
+  .dish .price{font-size:26px}
+  .story-photo{margin:0 -18px}
+  .story-text h2,.access h2{font-size:26px}
+  .menu{grid-template-columns:1fr;gap:34px}
+  .party-card{padding:26px 22px}
+  .party-price{font-size:42px}
+  .info div{grid-template-columns:5.5em 1fr}
+  .footer-in{grid-template-columns:1fr}
+  .actionbar{display:grid;grid-template-columns:1.4fr 1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--char);border-top:1px solid #3a2e26;padding-bottom:env(safe-area-inset-bottom)}
+  .actionbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;text-decoration:none;color:#efe6d6;font-size:12.5px;font-weight:700}
+  .actionbar .actionbar-main{background:var(--fire);color:#fff;flex-direction:row;gap:8px;font-size:15px}
+  .actionbar svg{width:22px;height:22px}
+}
