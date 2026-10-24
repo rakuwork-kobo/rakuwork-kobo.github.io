@@ -1,0 +1,61 @@
+/* 作業手順書の見本　ウェブ用の上書き　ラクワーク工房 */
+body.web{background:#e9e5dd;font-size:16px}
+a{color:#1f4f7a}
+a:focus-visible{outline:3px solid #f0b35a;outline-offset:3px}
+.intro{background:#fff;border-bottom:1px solid #d8d2c6}
+.intro-in{max-width:820px;margin:0 auto;padding:48px 24px 40px;line-height:1.85}
+.brand{font-weight:700;font-size:15px;letter-spacing:.08em}
+.brand span{font-weight:400;color:#56524b;margin-left:10px;font-size:13px}
+.intro h1{font-size:34px;line-height:1.35;margin:10px 0 14px}
+.lead-w{color:#3d3a35;font-size:17px}
+.pdf{margin-top:20px}
+.pdf a{display:inline-flex;align-items:center;min-height:50px;padding:0 24px;background:#22201d;color:#fff;text-decoration:none;font-weight:700;border-radius:6px}
+.pdf a:hover{background:#3d3a35}
+.offer{display:grid;grid-template-columns:auto 1fr;margin:28px 0 0;border-top:1px solid #d8d2c6}
+.offer div{display:contents}
+.offer dt,.offer dd{padding:10px 0;border-bottom:1px solid #d8d2c6}
+.offer dt{color:#56524b;font-size:14px;padding-right:24px}
+.offer dd b{font-size:24px;font-variant-numeric:tabular-nums}
+.how{margin-top:24px;color:#3d3a35;font-size:15.5px}
+.how p+p{margin-top:10px}
+.web .pages{padding:32px 0 8px}
+.page{box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.next{max-width:820px;margin:16px auto 0;padding:32px 24px;background:#fff;border-top:3px solid #22201d}
+.next h2{border:0;padding:0;margin:0 0 10px;font-size:24px}
+.next p{line-height:1.85;color:#3d3a35}
+.mailp{margin-top:16px}
+.mail{display:inline-flex;align-items:center;min-height:50px;padding:0 22px;border:1.5px solid #22201d;border-radius:6px;font-weight:700;text-decoration:none;color:#22201d;word-break:break-all}
+.mail:hover{background:#f3efe6}
+.wfoot{max-width:820px;margin:0 auto;padding:16px 24px 48px;font-size:13px;color:#3d3a35}
+.wfoot p+p{margin-top:6px}
+.wfoot a{display:inline-block;padding:8px 0;margin-right:16px}
+
+/* 画面が A4 より狭いとき：ページの高さを外し、文字の流れで読む */
+@media (max-width:860px){
+  .page{width:auto;height:auto;margin:0 12px 16px;padding:22px 18px 16px;overflow:visible}
+  .pfoot{left:18px;right:18px;bottom:14px;font-size:11px}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(3){border-left:0}
+  .facts div:nth-child(n+3){border-top:.75pt solid var(--line)}
+  .tools{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr;gap:6px}
+  .flow li{text-align:left;display:flex;gap:10px;align-items:baseline}
+  .flow li::before{display:inline}
+  .flow li+li::after{display:none}
+  .step.has-fig{grid-template-columns:1fr}
+  .shot{margin-top:10px;max-width:420px}
+  .psteps li{grid-template-columns:52px 1fr;gap:12px}
+  .psteps .ill{grid-column:1/-1;max-width:260px}
+  .pnum{width:48px;height:48px;font-size:24px}
+  .psteps p{font-size:21px}
+  .ptitle{font-size:32px}
+  .psub,.pstop{font-size:18px}
+  .sign{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .intro h1{font-size:26px}
+  .intro-in{padding:32px 16px 28px}
+  .pfoot{position:static;margin-top:18px;flex-direction:column;gap:2px}
+  .poster .pmeta{position:static;margin-top:12px;border-top:0}
+  .shot figcaption,.small,.tag,.facts dt,.flow span,.pfoot,.pmeta,.revs,.revs caption,.who,.samplebar,.ptag,.psteps p small{font-size:13px}
+  .rule,.notice,.point,.tip,.pair,.sign{font-size:14.5px}
+}
