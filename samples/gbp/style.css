@@ -1,0 +1,165 @@
+/* ラクワーク工房 地図アプリの店舗情報の整え 見本
+   色は工房の一覧と同じ。前は朱（直す所）、後は藍（直した所）の2色だけを意味に使う */
+:root{
+  --bg:#faf8f4; --white:#fff; --ink:#1f2328; --sub:#4f5660; --line:#e5e0d6;
+  --acc:#2f5d8a; --acc-d:#234867; --acc-soft:#e8eef5;
+  --bad:#b34a14; --bad-soft:#fbeee6;
+  --card-line:#d9d3c7; --muted:#6b6f75;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;font-size:16px;line-height:1.85;letter-spacing:.02em}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--acc)}
+a:focus-visible{outline:3px solid #f0b35a;outline-offset:3px}
+h1,h2,h3{margin:0;line-height:1.4}
+.nb{display:inline-block}
+p,ol,ul,dl,dd,figure{margin:0}
+ol,ul{padding:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px}
+
+.sample-bar{background:#33373d;color:#f2f0ec;font-size:12.5px;text-align:center;padding:6px 16px;line-height:1.5}
+
+/* 上の帯 */
+.top{border-bottom:1px solid var(--line);background:var(--bg)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.brand{font-weight:700;font-size:15px;color:var(--acc);letter-spacing:.08em}
+.brand span{font-weight:400;color:var(--sub);margin-left:10px;font-size:13px}
+.back{font-size:14px;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+
+/* はじめ */
+.intro{padding:64px 0 48px}
+.kind{font-size:14px;color:var(--sub);letter-spacing:.06em}
+.intro h1{font-size:42px;margin:10px 0 20px;letter-spacing:.03em}
+.lead{font-size:17px;color:var(--ink);max-width:40em}
+.price-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;margin-top:28px}
+.price-line b{font-size:40px;letter-spacing:.02em;line-height:1.2}
+.price-line b small{font-size:16px;font-weight:400;margin-left:2px}
+.price-line span{color:var(--sub);font-size:15px}
+.applies{margin-top:10px;font-size:14px;color:var(--sub)}
+
+/* 見出し */
+.sec-h{font-size:28px;letter-spacing:.03em}
+.sec-lead{color:var(--sub);margin-top:10px;max-width:40em}
+
+/* 前と後 */
+.compare{padding:56px 0 64px;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px;align-items:start}
+.mock-label{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-bottom:12px}
+.mock-label b{font-size:20px}
+.mock-before .mock-label b{color:var(--bad)}
+.mock-after .mock-label b{color:var(--acc)}
+.mock-label span{font-size:13px;color:var(--muted)}
+
+.card{border:1px solid var(--card-line);border-radius:10px;background:var(--white);overflow:hidden;max-width:420px}
+.mock-before .card{background:#fcfbf9}
+
+.photos{position:relative;display:grid;gap:3px;background:#ddd8cf}
+.photos img{width:100%;height:100%;object-fit:cover}
+.photos-before{grid-template-columns:1fr 1fr;height:150px}
+.photos-before img.dark{filter:brightness(.32) saturate(.6) blur(.6px)}
+.photos-after{grid-template-columns:2fr 1fr 1fr;grid-template-rows:90px 90px;height:183px}
+.photos-after .ph-main{grid-row:1 / 3}
+.photos-after .more{position:relative;display:block;overflow:hidden}
+.photos-after .more img{filter:brightness(.5)}
+.photos-after .more span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
+.photos-after > img:nth-of-type(2){grid-column:2 / 4}
+.photos > .n{position:absolute;left:10px;top:10px;z-index:2}
+
+.card-body{padding:16px 18px 18px}
+.shop{font-size:19px;font-weight:700;line-height:1.4;margin-bottom:10px}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #eeeae3;font-size:15px;line-height:1.6}
+.row-top{align-items:flex-start}
+.row-plain{padding-left:34px}
+.n{flex:none;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;line-height:1}
+.n-bad{background:var(--bad)}
+.n-good{background:var(--acc)}
+.n-side{margin-left:auto}
+.cat{font-weight:700}
+.cat small{font-weight:400;font-size:14px;color:var(--sub)}
+.empty{color:var(--muted)}
+.desc{font-size:14.5px}
+.tel{font-weight:700;letter-spacing:.04em}
+.addr{font-size:14px;color:var(--sub)}
+
+.hours{display:grid;gap:2px;font-size:15px}
+.hours div{display:grid;grid-template-columns:4em auto;gap:8px}
+.hours dt{color:var(--sub)}
+.hours .wrong{text-decoration:line-through;text-decoration-color:var(--bad);text-decoration-thickness:2px}
+.hours .closed{color:var(--acc-d);font-weight:700}
+.hours-note{font-size:13px;color:var(--sub);padding:0 0 8px 34px;margin-top:-4px}
+
+.menu{list-style:none;flex:1;font-size:14.5px}
+.menu li{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.menu b{font-weight:700;white-space:nowrap}
+
+/* 変えた所 */
+.changes{padding:72px 0}
+.change-list{list-style:none;counter-reset:c;margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}
+.change-list li{counter-increment:c;position:relative;padding:18px 0 18px 46px;border-top:1px solid var(--line)}
+.change-list li::before{content:counter(c);position:absolute;left:0;top:20px;width:30px;height:30px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+.change-list h3{font-size:18px;margin-bottom:6px}
+.what{color:var(--ink)}
+.why{color:var(--sub);margin-top:6px;font-size:15px}
+.why::before{content:"お客さんには　";font-weight:700;color:var(--acc-d)}
+.aside{margin-top:36px;padding:18px 22px;background:var(--acc-soft);border-radius:8px;max-width:46em;font-size:15px}
+
+/* 分担 */
+.roles{padding:72px 0;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.role{border:1px solid var(--line);border-radius:8px;padding:22px 24px;background:var(--bg)}
+.role-studio{border-color:#c9d6e4}
+.role h3{font-size:19px;margin-bottom:10px}
+.role ol{padding-left:1.4em}
+.role li{padding:3px 0}
+.note{margin-top:24px;color:var(--sub);font-size:14.5px;max-width:52em}
+
+/* 値段 */
+.plans{padding:72px 0}
+.plan-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;margin-top:28px;align-items:start}
+.plan{border:1px solid var(--line);border-radius:8px;padding:24px 26px;background:var(--white)}
+.plan-main{border:2px solid var(--acc)}
+.plan-name{font-weight:700;font-size:16px}
+.plan-price{font-size:40px;font-weight:700;line-height:1.25;margin-top:6px}
+.plan-price small{font-size:16px;font-weight:400;margin-left:2px}
+.plan-price-sub{font-size:28px}
+.plan-days{color:var(--sub);font-size:14.5px;margin:2px 0 12px}
+.plan p:last-child{font-size:15px}
+
+/* 相談 */
+.contact{padding:56px 0;background:#2b3138;color:#f2f0ec}
+.contact-in{display:flex;align-items:center;justify-content:space-between;gap:24px 40px}
+.contact h2{font-size:26px;margin-bottom:10px}
+.contact p{max-width:38em;color:#dcdad5}
+.btn{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 30px;border-radius:6px;background:#fff;color:var(--acc-d);font-weight:700;text-decoration:none}
+.btn:hover{background:#e8eef5}
+
+.foot{padding:32px 0 48px;font-size:13px;color:var(--sub)}
+.foot p+p{margin-top:10px}
+
+/* スマホ */
+@media (max-width:860px){
+  .pair{grid-template-columns:1fr;gap:36px}
+  .card{max-width:none}
+  .change-list{grid-template-columns:1fr;gap:0}
+  .role-grid,.plan-grid{grid-template-columns:1fr}
+  .contact-in{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:600px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .pc{display:none}
+  .intro{padding:40px 0 36px}
+  .intro h1{font-size:28px}
+  .lead{font-size:16px}
+  .price-line b{font-size:34px}
+  .sec-h{font-size:23px}
+  .compare,.changes,.roles,.plans{padding:48px 0}
+  .card-body{padding:14px 14px 16px}
+  .photos-before{height:120px}
+  .photos-after{grid-template-rows:72px 72px;height:147px}
+  .role,.plan{padding:20px}
+  .plan-price{font-size:34px}
+  .plan-price-sub{font-size:26px}
+  .contact h2{font-size:22px}
+  .btn{width:100%}
+}
