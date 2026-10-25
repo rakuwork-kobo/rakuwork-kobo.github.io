@@ -1,9 +1,14 @@
-/* 炭火やきとり 見本亭  色は炭の黒、和紙の生成り、炭火の朱 */
+/* 炭火やきとり 見本亭
+   色：炭の黒、和紙の生成り、提灯の朱、暖簾の紺、木札の白木、黒板の緑 */
 :root{
   --char:#17120f; --char2:#221a15; --char3:#2e241e;
-  --paper:#f7f1e7; --paper2:#efe6d6; --white:#fffdf9;
-  --ink:#231a14; --sub:#5e5045; --line:#e2d6c3;
-  --fire:#d9481f; --gold:#e2b45a;
+  --paper:#f4ecdf; --paper2:#eadfcb; --white:#fbf7f0;
+  --ink:#231a14; --sub:#5a4c41; --line:#ddcfb8;
+  --fire:#d2391b; --gold:#e2b45a; --kon:#1d2742;
+  --wood:#e3c597; --wood-dark:#4a3020; --slate:#26352e;
+  --chalk:#f1eee4; --chalk-y:#f3d681;
+  --mincho:"Yu Mincho","YuMincho","Hiragino Mincho ProN","BIZ UDPMincho","Noto Serif JP",serif;
+  --hand:"UD Digi Kyokasho NK","UD Digi Kyokasho N","UD デジタル 教科書体 NK","UD Digi Kyokasho NK-R","UD デジタル 教科書体 NK-R","UD Digi Kyokasho N-R","UD デジタル 教科書体 N-R","Klee","YuKyokasho","Yu Mincho","Hiragino Mincho ProN",serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -16,79 +21,115 @@ h1,h2,h3{margin:0;line-height:1.35;font-weight:700}
 p{margin:0}
 .wrap{max-width:1160px;margin:0 auto;padding-left:24px;padding-right:24px}
 .sample{margin:0;background:#3a2f2a;color:#f6efe6;font-size:12.5px;text-align:center;padding:6px 16px;line-height:1.5}
-.mincho,.hero h1,.section-head h2,.story-text h2,.party h2,.access h2,.dish h3,.menu-col h3,.party-name{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","BIZ UDPMincho","Noto Serif JP",serif}
+.hero h1,.section-head h2,.story-text h2,.party h2,.access h2,.dish h3,.menu-col h3,.party-name,.fuda,.fuda-title,.brand-name,.footer-name,.sign{font-family:var(--mincho)}
 
-/* ヘッダー */
-.site-header{position:sticky;top:0;z-index:20;background:rgba(23,18,15,.96);color:#fff;border-bottom:1px solid #2f251f}
+/* ヘッダー：小さな赤提灯が店の印 */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(23,18,15,.97);color:#fff;border-bottom:1px solid #2f251f}
 .header-in{display:flex;align-items:center;gap:22px;min-height:70px}
 .brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;flex-shrink:0}
-.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--fire);color:#fff;font-weight:700;font-size:20px;border-radius:4px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif}
-.brand-name{font-weight:700;font-size:18px;line-height:1.25}
-.brand-name small{display:block;font-size:12px;font-weight:400;color:#cdbfae;letter-spacing:.06em}
+.brand-mark{width:30px;height:44px;flex-shrink:0}
+.brand-name{font-weight:700;font-size:19px;line-height:1.25;letter-spacing:.06em}
+.brand-name small{display:block;font-size:12px;font-weight:400;color:#cdbfae;letter-spacing:.08em;font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",sans-serif}
 .gnav{display:flex;gap:2px;margin-left:auto}
-.gnav a{color:#efe6d6;text-decoration:none;font-size:14.5px;padding:8px 12px;border-radius:4px}
+.gnav a{color:#efe6d6;text-decoration:none;font-size:14.5px;padding:8px 12px;border-radius:2px}
 .gnav a:hover{background:#2e241e;color:#fff}
 .header-tel{white-space:nowrap;color:#fff;text-decoration:none;font-weight:700;font-size:20px;line-height:1.2;text-align:right;letter-spacing:.04em}
 .header-tel small{display:block;font-size:11px;font-weight:400;color:var(--gold);letter-spacing:.04em}
 
-/* ヒーロー：写真を大きく */
-.hero{position:relative;min-height:min(86vh,760px);display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--char);overflow:hidden}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,18,15,.88) 0%,rgba(23,18,15,.55) 42%,rgba(23,18,15,.05) 75%),linear-gradient(0deg,rgba(23,18,15,.9) 0%,rgba(23,18,15,0) 38%)}
-.hero-in{position:relative;padding-top:120px;padding-bottom:56px;width:100%}
-.eyebrow{display:inline-block;font-size:13.5px;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;margin-bottom:20px;letter-spacing:.1em}
-.hero h1{font-size:76px;line-height:1.18;letter-spacing:.04em;text-shadow:0 2px 24px rgba(0,0,0,.4)}
-.lead{font-size:18px;color:#f1e7d8;margin-top:22px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:4px;font-weight:700;text-decoration:none;font-size:16px}
-.btn-fire{background:var(--fire);color:#fff;box-shadow:0 8px 22px rgba(217,72,31,.35)}
-.btn-fire:hover{background:#c23d17}
-.btn-glass{color:#fff;border:1.5px solid rgba(255,255,255,.6);background:rgba(23,18,15,.35)}
-.btn-glass:hover{border-color:#fff}
-.hero-bar{position:relative;background:rgba(23,18,15,.92);border-top:1px solid #3a2e26}
+/* ヒーロー：暖簾をくぐると、炭火の串 */
+.hero{position:relative;min-height:min(90vh,800px);display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--char);overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,18,15,.9) 0%,rgba(23,18,15,.6) 40%,rgba(23,18,15,.08) 75%),linear-gradient(0deg,rgba(23,18,15,.92) 0%,rgba(23,18,15,0) 40%)}
+
+/* 暖簾：竿に下がった紺の布。一枚に一文字 */
+.noren{position:absolute;top:0;left:0;right:0;margin:0 auto;width:min(100%,900px);height:136px;display:flex;gap:4px;padding-top:12px;z-index:2}
+.noren::before{content:"";position:absolute;top:0;left:-14px;right:-14px;height:12px;background:#6b4a2f;border-bottom:2px solid #3b281a}
+.noren span{flex:1;display:flex;align-items:center;justify-content:center;background:var(--kon);color:#f3ece0;font-family:var(--mincho);font-weight:700;font-size:46px;line-height:1;border-bottom:5px solid #141b2f;transform-origin:50% 0}
+.hero-lantern{position:absolute;top:0;right:max(28px,calc(50% - 600px));width:92px;height:auto;z-index:2;display:none;transform-origin:50% 0}
+
+.hero-in{position:relative;z-index:1;padding-top:190px;padding-bottom:52px;width:100%;display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;column-gap:52px;align-items:end}
+.hero h1{grid-row:1 / 3;writing-mode:vertical-rl;font-size:74px;line-height:1.3;letter-spacing:.08em;text-shadow:0 2px 24px rgba(0,0,0,.55);white-space:nowrap}
+.hero-copy{grid-column:2}
+.eyebrow{display:inline-block;font-size:14px;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;margin-bottom:18px;letter-spacing:.1em}
+.lead{font-size:18px;color:#f3eadc;text-shadow:0 1px 12px rgba(0,0,0,.6);line-height:1.9}
+.hero-actions{grid-column:2;display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:3px;font-weight:700;text-decoration:none;font-size:16px}
+.btn-fire{background:var(--fire);color:#fff}
+.btn-fire:hover{background:#b53014}
+.btn-ghost{color:#fff;border:1.5px solid rgba(255,255,255,.7);background:rgba(23,18,15,.45)}
+.btn-ghost:hover{border-color:#fff}
+.hero-note{grid-column:2;margin-top:12px;font-size:14px;color:#efe3d0;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero-bar{position:relative;z-index:1;background:rgba(23,18,15,.94);border-top:1px solid #3a2e26}
 .hero-bar-in{display:grid;grid-template-columns:repeat(3,1fr)}
 .hero-bar p{padding:18px 0 18px 22px;border-left:1px solid #3a2e26;font-size:13px;color:#cdbfae;line-height:1.5}
 .hero-bar p:first-child{border-left:0;padding-left:0}
 .hero-bar b{display:block;font-size:20px;color:#fff;letter-spacing:.04em;white-space:nowrap}
 
-/* 見出し */
+/* 見出し：明朝に、朱の短い串 */
 .section{padding:96px 0;scroll-margin-top:70px}
 .section-paper{background:var(--paper)}
 .section-dark{background:var(--char);color:#f1e7d8}
 .section-head{margin-bottom:40px}
-.section-head h2{font-size:38px;letter-spacing:.04em}
+.section-head h2{font-size:38px;letter-spacing:.06em;display:flex;align-items:center;gap:14px}
+.section-head h2::before{content:"";width:6px;height:1.1em;background:var(--fire);flex-shrink:0}
 .section-lead{color:var(--sub);margin-top:14px}
 
 /* おすすめ三品 */
-.dishes{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:22px;align-items:stretch}
-.dish{background:var(--white);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+.dishes{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:22px;align-items:start}
+.dish{background:#fffdf8;border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
 .dish img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .dish-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
-.dish-tag{display:inline-block;align-self:flex-start;background:var(--fire);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;margin-bottom:10px;letter-spacing:.06em}
+.dish-tag{display:inline-block;align-self:flex-start;background:var(--fire);color:#fff;font-size:12.5px;font-weight:700;padding:2px 12px;margin-bottom:10px;letter-spacing:.12em;font-family:var(--mincho)}
 .dish h3{font-size:23px;margin-bottom:8px}
 .dish p{font-size:15px;color:var(--sub)}
 .dish .price{margin-top:auto;padding-top:14px;font-size:30px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em}
 .dish .price small{font-size:14px;color:var(--sub);margin-left:3px}
-.dish-main img{aspect-ratio:4/3.2;object-position:50% 50%}
-.dish .dish-tag{color:#fff;font-size:12px}
+.dish-main img{aspect-ratio:4/3.2}
+.dish .dish-tag{color:#fff}
 .dish-main h3{font-size:26px}
 
-/* 炭火の話 */
+/* 店主の話：見出しは縦書き */
 .story{background:var(--char2);color:#f1e7d8}
-.story-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
-.story-photo{margin:0 0 0 -24px;height:100%}
-.story-photo img{width:100%;height:100%;min-height:440px;object-fit:cover}
-.story-text{padding:72px 0 72px 64px}
-.story-text h2{font-size:34px;color:#fff;margin-bottom:22px;letter-spacing:.04em}
-.story-text p{color:#d9cdbd;margin-top:14px;max-width:28em}
+.story-in{display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.story-photo{margin:0 0 0 calc(-24px - max(0px,(100vw - 1160px)/2));height:100%}
+.story-photo img{width:100%;height:100%;min-height:460px;object-fit:cover}
+.story-text{padding:64px 0 64px 60px;display:flex;gap:40px;align-items:flex-start}
+.story-text h2{writing-mode:vertical-rl;font-size:34px;color:#fff;letter-spacing:.14em;line-height:1.5;white-space:nowrap;padding-left:22px;border-left:1px solid #4a3b31}
+.story-body p{color:#ddd1c1;margin-top:14px;max-width:24em}
+.story-body p:first-child{margin-top:0}
+.story-body .sign{margin-top:22px;color:#fff;font-size:17px;letter-spacing:.3em;text-align:right}
 
-/* お品書き */
-.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
-.menu-col h3{font-size:22px;padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:6px;letter-spacing:.06em}
-.menu-col h3 small{font-size:13px;color:var(--sub);font-family:inherit;margin-left:6px;letter-spacing:0}
-.menu-col h3+.menu-list+h3{margin-top:30px}
+/* お品書き：木札の壁 */
+.fuda-board{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:stretch;padding:22px 26px 26px;background:var(--wood-dark);background-image:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 38px,rgba(0,0,0,.12) 38px 40px,rgba(255,255,255,.03) 40px 41px);border-top:8px solid #2e1d12}
+.fuda-title{writing-mode:vertical-rl;color:#fff;font-size:30px;letter-spacing:.2em;border-right:1px solid rgba(255,255,255,.18);padding:10px 18px 0 0;margin-right:4px}
+.fuda-title small{display:block;font-size:13px;letter-spacing:.1em;color:#e6d3b6;margin-right:8px;font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",sans-serif;font-weight:400}
+.fuda{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(8,1fr);gap:12px}
+.fuda li{writing-mode:vertical-rl;display:flex;justify-content:space-between;align-items:center;height:236px;padding:20px 6px 14px;background:var(--wood);background-image:linear-gradient(90deg,rgba(120,80,40,.10),rgba(120,80,40,0) 30%,rgba(120,80,40,0) 70%,rgba(120,80,40,.12));color:#1f140c;clip-path:polygon(0 10px,50% 0,100% 10px,100% 100%,0 100%);border-bottom:3px solid #b68f5c}
+.fuda li span{font-size:22px;font-weight:700;letter-spacing:.12em;line-height:1.25}
+.fuda li span small{display:block;font-size:13.5px;font-weight:400;letter-spacing:.06em;margin-right:4px;color:#3d2a1a}
+.fuda li b{writing-mode:horizontal-tb;font-size:18px;font-variant-numeric:tabular-nums;font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",sans-serif;line-height:1.2;padding-top:10px;border-top:1px solid rgba(70,45,25,.35)}
+.fuda li b::after{content:"円";font-size:11.5px;font-weight:400;margin-left:1px}
+
+.menu-lower{display:grid;grid-template-columns:1fr 1.25fr;gap:40px;margin-top:40px;align-items:start}
+
+/* 黒板：手書きの本日のおすすめ */
+.kokuban{background:var(--slate);background-image:radial-gradient(ellipse at 25% 20%,rgba(255,255,255,.06),rgba(255,255,255,0) 55%),radial-gradient(ellipse at 80% 85%,rgba(255,255,255,.05),rgba(255,255,255,0) 50%);color:var(--chalk);border:12px solid #6a4528;outline:1px solid #3f2816;padding:26px 26px 22px;font-family:var(--hand)}
+.kokuban h3{transform:rotate(-1deg);transform-origin:0 50%;font-size:26px;font-weight:700;letter-spacing:.14em;color:#fff;padding-bottom:10px;margin-bottom:6px;border-bottom:2px dashed rgba(241,238,228,.45);font-family:var(--hand)}
+.kokuban ul{list-style:none;margin:0;padding:0}
+.kokuban li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(241,238,228,.06)}
+.kokuban li span{font-size:19px;line-height:1.4}
+.kokuban li small{display:block;font-size:13.5px;color:#cfd8d0}
+.kokuban li b{font-size:22px;color:var(--chalk-y);white-space:nowrap;font-variant-numeric:tabular-nums;padding-bottom:1px;border-bottom:2px solid rgba(243,214,129,.32)}
+.kokuban li b::after{content:"円";font-size:14px;margin-left:2px}
+.kokuban-note{margin-top:14px;font-size:16px;color:#f4b9ae}
+.kokuban-sample{margin-top:6px;font-size:13.5px;color:#b9c7bd;font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",sans-serif}
+
+/* 一品・〆・飲み物：和紙のお品書き */
+.oshinagaki{display:grid;grid-template-columns:1fr 1fr;gap:36px;background:#fbf6ec;border:1px solid var(--line);padding:26px 28px 28px}
+.menu-col h3{font-size:21px;padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:4px;letter-spacing:.12em}
+.menu-col h3+.menu-list+h3{margin-top:28px}
 .menu-list{list-style:none;margin:0;padding:0}
-.menu-list li{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:15.5px}
+.menu-list li{display:flex;align-items:baseline;gap:8px;padding:8px 0;font-size:15.5px}
 .menu-list i{flex:1;border-bottom:1px dotted #b9a68e;transform:translateY(-4px)}
 .menu-list b{font-variant-numeric:tabular-nums;font-size:16px}
 .menu-list b::after{content:"円";font-weight:400;font-size:12px;color:var(--sub);margin-left:2px}
@@ -97,10 +138,12 @@ p{margin:0}
 /* 宴会 */
 .party{background:var(--white)}
 .party-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.party h2{font-size:38px;letter-spacing:.04em;margin-bottom:18px}
+.party h2{font-size:38px;letter-spacing:.06em;margin-bottom:18px}
 .party-text p{color:var(--sub);max-width:28em}
+.party-text .party-tel{margin-top:18px}
+.party-tel a{font-weight:700;color:#b02e12;text-underline-offset:4px}
 .party-card{background:var(--char);color:#f1e7d8;padding:36px;border-top:4px solid var(--fire)}
-.party-name{font-size:20px;color:#fff}
+.party-name{font-size:20px;color:#fff;letter-spacing:.06em}
 .party-price{font-size:52px;font-weight:700;color:var(--gold);line-height:1.2;margin:8px 0 16px;font-variant-numeric:tabular-nums}
 .party-price small{font-size:14px;color:#cdbfae;margin-left:6px;font-weight:400}
 .party-card ul{margin:0 0 24px;padding-left:1.2em;font-size:14.5px;color:#d9cdbd}
@@ -114,7 +157,7 @@ p{margin:0}
 .info dd{margin:0}
 .info small{display:block;font-size:12px;color:var(--sub)}
 .tel-big{font-size:26px;font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:.04em}
-.faq-title{font-size:20px;margin:6px 0 14px}
+.faq-title{font-size:20px;margin:6px 0 14px;font-family:var(--mincho);letter-spacing:.06em}
 .faq{border-bottom:1px solid var(--line)}
 .faq:first-of-type{border-top:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;padding:17px 40px 17px 2px;font-weight:700;position:relative;min-height:44px}
@@ -125,34 +168,41 @@ p{margin:0}
 
 /* アクセス */
 .access{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
-.access h2{font-size:34px;color:#fff;margin-bottom:22px;letter-spacing:.04em}
+.access h2{font-size:34px;color:#fff;margin-bottom:22px;letter-spacing:.06em}
 .info-dark div{border-bottom-color:#3a2e26}
-.info-dark dt{color:#a99887}
+.info-dark dt{color:#b3a391}
 .map{margin:0}
 .map svg{width:100%;height:auto}
-figcaption{font-size:12.5px;color:#a99887;margin-top:10px}
-.maplink{display:inline-flex;align-items:center;min-height:44px;margin:8px 0 0;padding:0 20px;border:1.5px dashed #6b5949;color:#cdbfae;font-weight:700;font-size:14px;border-radius:4px;cursor:default}
+figcaption{font-size:12.5px;color:#b3a391;margin-top:10px}
+.maplink{display:inline-flex;align-items:center;min-height:44px;margin:8px 0 0;padding:0 20px;border:1.5px dashed #6b5949;color:#cdbfae;font-weight:700;font-size:14px;border-radius:3px;cursor:default}
 .maplink-note{display:block;font-size:12px;margin-top:6px}
 
 /* フッター */
 .site-footer{background:#0f0b09;color:#cdbfae;padding:44px 0 40px;font-size:14px}
 .footer-in{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end}
-.footer-name{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.footer-name{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:.06em}
 .footer-name small{font-weight:400;font-size:13px;color:#a99887}
+.footer-tel{color:#efe6d6;white-space:nowrap}
 .footer-note{font-size:12px;color:#a99887;line-height:1.8}
-.footer-note p+p{margin-top:8px}
-.footer-offer{color:#efe6d6;font-size:13px}
 .actionbar{display:none}
+
+/* 広い画面だけ、暖簾の脇に赤提灯 */
+@media (min-width:1120px){
+  .hero-lantern{display:block}
+}
 
 /* タブレット */
 @media (max-width:1040px){
   .gnav{display:none}
   .header-tel{margin-left:auto}
-  .hero h1{font-size:60px}
+  .hero h1{font-size:62px}
+  .noren span{font-size:38px}
   .dishes{grid-template-columns:1fr 1fr}
   .dish-main{grid-column:1 / -1;flex-direction:row}
   .dish-main img{width:55%;aspect-ratio:auto;min-height:300px}
-  .menu{grid-template-columns:1fr 1fr}
+  .fuda{grid-template-columns:repeat(4,1fr)}
+  .fuda li{height:200px}
+  .menu-lower{grid-template-columns:1fr}
   .story-in,.party-in,.info-grid,.access{grid-template-columns:1fr;gap:36px}
   .story-photo{margin:0 -24px}
   .story-photo img{min-height:0;aspect-ratio:16/10}
@@ -163,15 +213,26 @@ figcaption{font-size:12.5px;color:#a99887;margin-top:10px}
   body{font-size:15.5px;padding-bottom:70px}
   .wrap{padding-left:18px;padding-right:18px}
   .header-in{min-height:58px;gap:10px}
-  .brand-mark{width:34px;height:34px;font-size:17px}
-  .brand-name{font-size:16px}
+  .brand{gap:9px}
+  .brand-mark{width:24px;height:36px}
+  .brand-name{font-size:16px;letter-spacing:.02em}
   .header-tel{font-size:14px;letter-spacing:0}
   .header-tel small{display:none}
   .hero{min-height:0}
-  .hero-shade{background:linear-gradient(0deg,rgba(23,18,15,.95) 0%,rgba(23,18,15,.55) 50%,rgba(23,18,15,.15) 100%)}
-  .hero-in{padding-top:200px;padding-bottom:30px}
-  .hero h1{font-size:46px}
-  .lead{font-size:15.5px}
+  .hero-shade{background:linear-gradient(0deg,rgba(23,18,15,.95) 0%,rgba(23,18,15,.8) 38%,rgba(23,18,15,.45) 62%,rgba(23,18,15,.1) 100%)}
+  .hero-lantern{display:block;width:44px;top:94px;right:14px}
+  .hero-note{grid-column:1 / -1;font-size:13.5px;text-align:center}
+  .map svg text{font-size:19px}
+  .noren{height:88px;gap:3px;padding-top:9px}
+  .noren::before{height:9px;left:0;right:0}
+  .noren span{font-size:28px;border-bottom-width:4px}
+  .hero-in{padding-top:128px;padding-bottom:26px;column-gap:20px;grid-template-rows:auto auto}
+  .hero h1{grid-row:1;font-size:40px;letter-spacing:.06em}
+  .hero-copy{grid-column:2;align-self:end}
+  .eyebrow{font-size:12.5px;letter-spacing:.04em;margin-bottom:12px}
+  .lead{font-size:14.5px;line-height:1.85}
+  .lead br{display:none}
+  .hero-actions{grid-column:1 / -1;margin-top:22px;gap:10px}
   .hero-actions .btn{flex:1 1 100%}
   .hero-bar-in{grid-template-columns:1fr 1fr 1fr}
   .hero-bar p{padding:12px 0 12px 10px;font-size:12px}
@@ -180,14 +241,29 @@ figcaption{font-size:12.5px;color:#a99887;margin-top:10px}
   .section{padding:60px 0;scroll-margin-top:58px}
   .section-head{margin-bottom:26px}
   .section-head h2,.party h2{font-size:28px}
+  .section-head h2{gap:12px}
   .dishes{grid-template-columns:1fr;gap:16px}
   .dish-main{flex-direction:column}
   .dish-main img{width:100%;aspect-ratio:4/3;min-height:0}
   .dish h3,.dish-main h3{font-size:21px}
   .dish .price{font-size:26px}
   .story-photo{margin:0 -18px}
-  .story-text h2,.access h2{font-size:26px}
-  .menu{grid-template-columns:1fr;gap:34px}
+  .story-text{gap:20px;padding-bottom:56px}
+  .story-text h2{font-size:25px;padding-left:16px;letter-spacing:.1em}
+  .access h2{font-size:26px}
+  .fuda-board{grid-template-columns:1fr;gap:14px;padding:16px 14px 18px}
+  .fuda-title{writing-mode:horizontal-tb;font-size:24px;letter-spacing:.12em;padding:0 0 10px;margin:0;border-right:0;border-bottom:1px solid rgba(255,255,255,.18);display:flex;align-items:baseline;gap:10px}
+  .fuda-title small{margin:0}
+  .fuda{gap:8px}
+  .fuda li{height:184px;padding:16px 4px 12px}
+  .fuda li span{font-size:19px;letter-spacing:.08em}
+  .fuda li b{font-size:16px}
+  .menu-lower{gap:28px;margin-top:28px}
+  .kokuban{border-width:9px;padding:20px 18px 18px}
+  .kokuban h3{font-size:23px}
+  .kokuban li span{font-size:17.5px}
+  .kokuban li b{font-size:20px}
+  .oshinagaki{grid-template-columns:1fr;gap:28px;padding:22px 18px 22px}
   .party-card{padding:26px 22px}
   .party-price{font-size:42px}
   .info div{grid-template-columns:5.5em 1fr}
@@ -201,24 +277,26 @@ figcaption{font-size:12.5px;color:#a99887;margin-top:10px}
 /* 動き（CSSだけ）
    ・「動きを減らす」設定の人には何も動かさない。
    ・スクロールに合わせた出方は、対応しているブラウザだけ。未対応なら最初から全部見える。
-   ・動かすのは位置と透明度だけ。電話・営業時間（写真の下の帯）・お品書きの値段・下の操作バーは動かさない。 */
+   ・動かすのは位置と透明度だけ。電話・営業時間（写真の下の帯）・お品書き（木札・黒板）の値段・下の操作バーは動かさない。 */
 @media (prefers-reduced-motion:no-preference){
   @keyframes iz-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   @keyframes iz-settle{from{transform:scale(1.03)}to{transform:none}}
   @keyframes iz-open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  /* 暖簾と提灯：開店のときの風で一度だけ揺れて、止まる */
+  @keyframes iz-sway{0%{transform:rotate(2.2deg)}35%{transform:rotate(-1.4deg)}65%{transform:rotate(.6deg)}100%{transform:none}}
 
-  /* 最初の画面：写真がゆっくり落ち着き、文字は順に浮かぶ（0.85秒で出そろう） */
   .hero-img{animation:iz-settle 1.4s cubic-bezier(.2,.6,.25,1) both}
-  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions{animation:iz-rise .65s cubic-bezier(.2,.7,.25,1) both}
-  .hero h1{animation-delay:.08s}
-  .hero .lead{animation-delay:.14s}
+  .noren span{animation:iz-sway 1.8s ease-out both}
+  .noren span:nth-child(2n){animation-delay:.08s}
+  .noren span:nth-child(3n){animation-delay:.15s}
+  .hero-lantern{animation:iz-sway 2.4s ease-out .1s both}
+  .hero h1,.hero-copy,.hero-actions{animation:iz-rise .65s cubic-bezier(.2,.7,.25,1) both}
+  .hero-copy{animation-delay:.12s}
   .hero-actions{animation-delay:.18s}
 
-  /* よくある質問：開いたとき、答えがふわっと出る */
   .faq[open] p{animation:iz-open .3s ease-out}
   .faq summary::after{transition:transform .2s}
 
-  /* マウスのある画面だけ：料理の札が少し持ち上がる */
   @media (hover:hover){
     .dish{transition:translate .25s ease-out}
     .dish img{transition:transform .5s ease-out}
@@ -228,13 +306,14 @@ figcaption{font-size:12.5px;color:#a99887;margin-top:10px}
     .btn:hover{translate:0 -1px}
   }
 
-  /* スクロールに合わせて出る（対応ブラウザだけ）。画面の下4分の1に入るころには出そろう */
   @supports (animation-timeline:view()){
     @keyframes iz-reveal{from{opacity:0;transform:translateY(20px)}70%{opacity:1}to{opacity:1;transform:none}}
-    .section-head,.dish,.story-text,.party-text{animation:iz-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
-    .dish:nth-child(2){animation-range:entry 6% cover 28%}
-    .dish:nth-child(3){animation-range:entry 12% cover 31%}
-    /* 焼き台の写真：枠の中で、ほんの少し寄りから引きへ */
+    .section-head,.story-text,.party-text{animation:iz-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+    /* 料理の札は写真だけがふわっと出る（名前と値段は最初から見える） */
+    @keyframes iz-fade{from{opacity:0}75%{opacity:1}to{opacity:1}}
+    .dish>img{animation:iz-fade linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+    .dish:nth-child(2)>img{animation-range:entry 6% cover 28%}
+    .dish:nth-child(3)>img{animation-range:entry 12% cover 31%}
     .story-photo{overflow:clip}
     @keyframes iz-photo{from{transform:scale(1.05)}to{transform:none}}
     .story-photo img{animation:iz-photo linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
