@@ -294,7 +294,7 @@ figcaption{font-size:12.5px;color:var(--sub);margin-top:8px}
 
 /* 動き（CSSだけ・きびきびと）
    ・「動きを減らす」設定の人には何も動かさない。
-   ・スクロールに合わせた出方は、対応しているブラウザだけ。未対応なら最初から全部見える。
+   ・スクロールに合わせた出方は、対応しているブラウザのマウス操作だけ（スマホ・タブレットは指を離したあとの惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
    ・文字と札は位置と透明度だけ。図面の線だけは、線を引くように描く（最初の一回だけ）。
    ・目安の数字、材料と設備の表、検査成績書の数値、電話、フォーム、下の操作バーは動かさない。 */
 @media (prefers-reduced-motion:no-preference){
@@ -325,11 +325,11 @@ figcaption{font-size:12.5px;color:var(--sub);margin-top:8px}
   }
 
   /* スクロールに合わせて出る（対応ブラウザだけ）。短い距離で、画面の下5分の1で出そろう */
-  @supports (animation-timeline:view()){
+  @media (pointer:fine){@supports (animation-timeline:view()){
     @keyframes fc-reveal{from{opacity:0;transform:translateY(16px)}60%{opacity:1}to{opacity:1;transform:none}}
     .section .section-head,.work,.case,.factory-art,.crew,.recruit,.words{animation:fc-reveal cubic-bezier(.2,.8,.2,1) both;animation-timeline:view();animation-range:entry 0% cover 20%}
     .work:nth-child(2),.case:nth-child(2){animation-range:entry 4% cover 22%}
     .work:nth-child(3),.case:nth-child(3){animation-range:entry 8% cover 24%}
     .record-stamp{animation:fc-stamp cubic-bezier(.3,1.4,.5,1) both;animation-timeline:view();animation-range:entry 30% cover 35%}
-  }
+  }}
 }

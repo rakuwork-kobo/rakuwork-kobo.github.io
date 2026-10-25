@@ -323,7 +323,7 @@ figure{margin:0}
 
 /* 動き（CSSだけ・やわらかく）
    ・「動きを減らす」設定の人には何も動かさない。
-   ・スクロールに合わせた出方は、対応しているブラウザだけ。未対応なら最初から全部見える。
+   ・スクロールに合わせた出方は、対応しているブラウザのマウス操作だけ（スマホ・タブレットは指を離したあとの惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
    ・動かすのは位置と透明度だけ。営業時間の帯と表・料金・空き状況・電話・下の操作バーは動かさない。 */
 @media (prefers-reduced-motion:no-preference){
   @keyframes sl-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -350,12 +350,12 @@ figure{margin:0}
   }
 
   /* スクロールに合わせて出る（対応ブラウザだけ）。画面の下4分の1に入るころには出そろう */
-  @supports (animation-timeline:view()){
+  @media (pointer:fine){@supports (animation-timeline:view()){
     @keyframes sl-reveal{from{opacity:0;transform:translateY(18px)}70%{opacity:1}to{opacity:1;transform:none}}
     .section-head,.story-title,.story-text,.story-plan,.styles li,.steps li,.staff-photo,.staff-text,.journal-head,.note,.reserve-text>h2,.reserve-text>p{animation:sl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
     .styles li:nth-child(2),.steps li:nth-child(2),.note:nth-child(2){animation-range:entry 6% cover 28%}
     .styles li:nth-child(3),.steps li:nth-child(3),.note:nth-child(3){animation-range:entry 12% cover 31%}
     .styles li:nth-child(4),.steps li:nth-child(4){animation-range:entry 18% cover 34%}
-  }
+  }}
 }
 .cap-note{display:block;font-size:12px;color:var(--sub, #6b5e55);margin-top:2px}
