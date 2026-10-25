@@ -45,10 +45,17 @@ p{margin:0}
 .noren{position:absolute;top:0;left:0;right:0;margin:0 auto;width:min(100%,900px);height:136px;display:flex;gap:4px;padding-top:12px;z-index:2}
 .noren::before{content:"";position:absolute;top:0;left:-14px;right:-14px;height:12px;background:#6b4a2f;border-bottom:2px solid #3b281a}
 .noren span{flex:1;display:flex;align-items:center;justify-content:center;background:var(--kon);color:#f3ece0;font-family:var(--mincho);font-weight:700;font-size:46px;line-height:1;border-bottom:5px solid #141b2f;transform-origin:50% 0}
-.hero-lantern{position:absolute;top:0;right:max(28px,calc(50% - 600px));width:92px;height:auto;z-index:2;display:none;transform-origin:50% 0}
+.hero-lantern{position:absolute;top:0;right:max(28px,calc(50% - 600px));width:92px;height:auto;z-index:2;display:none;transform-origin:50% 0;overflow:visible}
+.lantern-light{opacity:.8}
+/* 炭火の煙と火の粉（飾り）。動きを減らす設定では出さない */
+.hero-smoke,.story-smoke{display:none;position:absolute;inset:0;width:100%;height:100%;max-width:none;pointer-events:none}
+.hero-smoke{z-index:1}
 
 .hero-in{position:relative;z-index:1;padding-top:190px;padding-bottom:52px;width:100%;display:grid;grid-template-columns:auto 1fr;grid-template-rows:1fr auto;column-gap:52px;align-items:end}
-.hero h1{grid-row:1 / 3;writing-mode:vertical-rl;font-size:74px;line-height:1.3;letter-spacing:.08em;text-shadow:0 2px 24px rgba(0,0,0,.55);white-space:nowrap}
+.hero h1{grid-row:1 / 3;writing-mode:vertical-rl;font-size:74px;line-height:1.3;letter-spacing:.08em;text-shadow:0 2px 24px rgba(0,0,0,.55);white-space:nowrap;position:relative}
+.h1-l1,.h1-l2{display:inline-block;padding:28px;margin:-28px}
+/* 見出しの下に押す朱の印（飾り） */
+.h1-seal{position:absolute;right:1.65em;bottom:.4em;font-size:.26em;line-height:1.1;letter-spacing:.1em;padding:.35em .3em;background:#c8321a;color:#fbeee2;border-radius:3px;text-shadow:none;box-shadow:0 2px 10px rgba(0,0,0,.35);transform:rotate(-4deg)}
 .hero-copy{grid-column:2}
 .eyebrow{display:inline-block;font-size:14px;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;margin-bottom:18px;letter-spacing:.1em}
 .lead{font-size:18px;color:#f3eadc;text-shadow:0 1px 12px rgba(0,0,0,.6);line-height:1.9}
@@ -91,7 +98,7 @@ p{margin:0}
 /* 店主の話：見出しは縦書き */
 .story{background:var(--char2);color:#f1e7d8}
 .story-in{display:grid;grid-template-columns:1fr 1fr;align-items:center}
-.story-photo{margin:0 0 0 calc(-24px - max(0px,(100vw - 1160px)/2));height:100%}
+.story-photo{margin:0 0 0 calc(-24px - max(0px,(100vw - 1160px)/2));height:100%;position:relative;overflow:hidden}
 .story-photo img{width:100%;height:100%;min-height:460px;object-fit:cover}
 .story-text{padding:64px 0 64px 60px;display:flex;gap:40px;align-items:flex-start}
 .story-text h2{writing-mode:vertical-rl;font-size:34px;color:#fff;letter-spacing:.14em;line-height:1.5;white-space:nowrap;padding-left:22px;border-left:1px solid #4a3b31}
@@ -221,6 +228,7 @@ figcaption{font-size:12.5px;color:#b3a391;margin-top:10px}
   .hero{min-height:0}
   .hero-shade{background:linear-gradient(0deg,rgba(23,18,15,.95) 0%,rgba(23,18,15,.8) 38%,rgba(23,18,15,.45) 62%,rgba(23,18,15,.1) 100%)}
   .hero-lantern{display:block;width:44px;top:94px;right:14px}
+  .hero-smoke{top:-30%}
   .hero-note{grid-column:1 / -1;font-size:13.5px;text-align:center}
   .map svg text{font-size:19px}
   .noren{height:88px;gap:3px;padding-top:9px}
@@ -275,47 +283,114 @@ figcaption{font-size:12.5px;color:#b3a391;margin-top:10px}
 }
 
 /* 動き（CSSだけ）
-   ・「動きを減らす」設定の人には何も動かさない。
+   ・「動きを減らす」設定の人には何も動かさない（煙・火の粉も出さない）。
+   ・開いたとき：店の明かりがつく → 暖簾が下りて風に揺れる → 赤提灯に火が入る → 見出しが筆で書かれ、朱の印が押される。
+   ・ずっと動くのは飾りだけ：炭火の煙と火の粉、提灯の明かりのゆらぎ、暖簾と提灯のゆっくりした揺れ、写真のゆっくりした寄り。
    ・スクロールに合わせた出方は、対応しているブラウザのマウス操作だけ（スマホ・タブレットは指を離したあとの惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
-   ・動かすのは位置と透明度だけ。電話・営業時間（写真の下の帯）・お品書き（木札・黒板）の値段・下の操作バーは動かさない。 */
+   ・動かすのは位置・大きさ・透明度だけ。電話番号・営業時間（写真の下の帯）・値段（料理の札・木札・黒板・宴会）・下の操作バーは動かさない。 */
 @media (prefers-reduced-motion:no-preference){
-  @keyframes iz-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  @keyframes iz-settle{from{transform:scale(1.03)}to{transform:none}}
+  @keyframes iz-rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
   @keyframes iz-open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-  /* 暖簾と提灯：開店のときの風で一度だけ揺れて、止まる */
-  @keyframes iz-sway{0%{transform:rotate(2.2deg)}35%{transform:rotate(-1.4deg)}65%{transform:rotate(.6deg)}100%{transform:none}}
 
-  .hero-img{animation:iz-settle 1.4s cubic-bezier(.2,.6,.25,1) both}
-  .noren span{animation:iz-sway 1.8s ease-out both}
-  .noren span:nth-child(2n){animation-delay:.08s}
-  .noren span:nth-child(3n){animation-delay:.15s}
-  .hero-lantern{animation:iz-sway 2.4s ease-out .1s both}
-  .hero h1,.hero-copy,.hero-actions{animation:iz-rise .65s cubic-bezier(.2,.7,.25,1) both}
-  .hero-copy{animation-delay:.12s}
-  .hero-actions{animation-delay:.18s}
+  /* 写真：暗い店に明かりがつき、引きの位置へ。そのあとは、ゆっくり寄ったり戻ったり */
+  @keyframes iz-lights{from{opacity:.12}to{opacity:1}}
+  @keyframes iz-pull{from{scale:1.22}to{scale:1.03}}
+  @keyframes iz-kenburns{from{transform:none}to{transform:scale(1.08) translate(-1.5%,-1%)}}
+  .hero-img{animation:iz-lights 1.2s ease-out both,iz-pull 3.4s cubic-bezier(.2,.6,.2,1) both,iz-kenburns 16s ease-in-out 3.4s infinite alternate}
+
+  /* 暖簾：上から下りてきて、そのあとは風でゆっくり揺れ続ける（一枚ずつ少しずらす） */
+  @keyframes iz-noren-drop{0%{translate:0 -112%}62%{translate:0 5%}82%{translate:0 -2%}100%{translate:0 0}}
+  @keyframes iz-noren-wind{0%{transform:rotate(-2deg) skewX(1deg)}100%{transform:rotate(2.2deg) skewX(-1.5deg)}}
+  .noren span{--i:0;animation:iz-noren-drop .95s cubic-bezier(.3,.7,.3,1) calc(var(--i)*.07s) both,iz-noren-wind 3.4s ease-in-out calc(var(--i)*-.55s) infinite alternate}
+  .noren span:nth-child(2){--i:1}
+  .noren span:nth-child(3){--i:2}
+  .noren span:nth-child(4){--i:3}
+  .noren span:nth-child(5){--i:4}
+  .noren span:nth-child(6){--i:5}
+
+  /* 赤提灯：下りてきて揺れ、少し遅れて火が入る。明かりはずっと、ろうそくのようにゆらぐ */
+  @keyframes iz-lantern-drop{0%{translate:0 -105%}65%{translate:0 4%}100%{translate:0 0}}
+  @keyframes iz-lantern-sway{0%{transform:rotate(-3.5deg)}100%{transform:rotate(3.5deg)}}
+  .hero-lantern{animation:iz-lantern-drop 1.1s cubic-bezier(.3,.7,.3,1) .25s both,iz-lantern-sway 4.2s ease-in-out -2.1s infinite alternate}
+  @keyframes iz-light-on{0%{opacity:0}18%{opacity:.85}26%{opacity:.15}42%{opacity:.95}52%{opacity:.45}100%{opacity:.88}}
+  @keyframes iz-flicker{0%,100%{opacity:.88}12%{opacity:.7}16%{opacity:.96}38%{opacity:.78}52%{opacity:.92}66%{opacity:.62}70%{opacity:.9}86%{opacity:.8}}
+  @keyframes iz-halo{0%,100%{transform:scale(.9);opacity:.75}50%{transform:scale(1.1);opacity:1}}
+  .lantern-light,.lantern-halo{transform-box:fill-box;transform-origin:center}
+  .lantern-light{animation:iz-light-on 1.4s ease-out .9s both,iz-flicker 2.8s linear 2.3s infinite}
+  .lantern-halo{animation:iz-light-on 1.4s ease-out .9s both,iz-halo 2.8s ease-in-out 2.3s infinite}
+
+  /* 見出し：筆で上から下へ書くように、一行ずつ。書き終わりに朱の印 */
+  @keyframes iz-brush{from{-webkit-mask-position:0 100%;mask-position:0 100%}to{-webkit-mask-position:0 0;mask-position:0 0}}
+  .h1-l1,.h1-l2{-webkit-mask-image:linear-gradient(180deg,#000 0 42%,transparent 58% 100%);mask-image:linear-gradient(180deg,#000 0 42%,transparent 58% 100%);-webkit-mask-size:100% 240%;mask-size:100% 240%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:iz-brush 1s cubic-bezier(.5,.1,.45,1) .45s both}
+  .h1-l2{animation-delay:1.3s}
+  @keyframes iz-stamp{0%{opacity:0;transform:scale(1.9) rotate(-14deg)}55%{opacity:1;transform:scale(.9) rotate(-3deg)}100%{opacity:1;transform:rotate(-4deg)}}
+  .h1-seal{animation:iz-stamp .45s cubic-bezier(.3,.6,.4,1) 2.3s both}
+
+  .hero-copy,.hero-actions,.hero-note{animation:iz-rise .8s cubic-bezier(.2,.7,.25,1) .7s both}
+  .hero-actions,.hero-note{animation-delay:.9s}
+
+  /* 煙と火の粉：炭火から立ちのぼって、消える */
+  .hero-smoke,.story-smoke{display:block}
+  @keyframes iz-fadein{from{opacity:0}to{opacity:1}}
+  .hero-smoke{animation:iz-fadein 1.2s ease-out .3s both}
+  .wisp,.ember{transform-box:fill-box;transform-origin:center;opacity:0}
+  @keyframes iz-smoke{0%{opacity:0;transform:translate(0,0) scale(.5,.6)}16%{opacity:1}55%{opacity:.75}100%{opacity:0;transform:translate(130px,-680px) scale(2.1,1.7)}}
+  .hero-smoke .wisp{animation:iz-smoke 10s linear infinite}
+  .hero-smoke .w1{animation-delay:-1.2s}
+  .hero-smoke .w2{animation-delay:-4.6s;animation-duration:11.5s}
+  .hero-smoke .w3{animation-delay:.2s;animation-duration:9s}
+  .hero-smoke .w4{animation-delay:-7.2s;animation-duration:12s}
+  .hero-smoke .w5{animation-delay:1.6s}
+  .hero-smoke .w6{animation-delay:-2.8s;animation-duration:9.5s}
+  .hero-smoke .w7{animation-delay:-5.9s;animation-duration:10.5s}
+  @keyframes iz-ember{0%{opacity:0;transform:translate(0,0)}8%{opacity:1}45%{transform:translate(34px,-250px)}70%{opacity:.9}100%{opacity:0;transform:translate(-26px,-540px)}}
+  .ember{animation:iz-ember 5.5s ease-out infinite}
+  .e1{animation-delay:.4s;animation-duration:5.2s}
+  .e2{animation-delay:-1.8s;animation-duration:6.4s}
+  .e3{animation-delay:1.3s;animation-duration:4.8s}
+  .e4{animation-delay:-3.4s;animation-duration:6s}
+  .e5{animation-delay:2.2s;animation-duration:5.6s}
+  .e6{animation-delay:-.9s;animation-duration:7s}
+  .e7{animation-delay:3.1s;animation-duration:5s}
+
+  /* 店主の話の写真：焼き台の炎が明るくなったり落ち着いたりし、火の粉が上がり続ける */
+  .spark,.fire-glow{transform-box:fill-box;transform-origin:center}
+  .spark{opacity:0}
+  @keyframes iz-fire{0%,100%{opacity:.55;transform:scale(.95)}20%{opacity:.9;transform:scale(1.06)}33%{opacity:.6}58%{opacity:1;transform:scale(1.1)}72%{opacity:.65;transform:scale(.98)}}
+  .fire-glow{animation:iz-fire 2.6s ease-in-out infinite}
+  @keyframes iz-spark{0%{opacity:0;transform:translate(0,0)}10%{opacity:1}60%{opacity:.9}100%{opacity:0;transform:translate(26px,-200px)}}
+  .spark{animation:iz-spark 2.8s ease-out infinite}
+  .k2{animation-delay:-.7s;animation-duration:3.2s}
+  .k3{animation-delay:-1.4s;animation-duration:2.5s}
+  .k4{animation-delay:-2s;animation-duration:3.6s}
+  .k5{animation-delay:-1s;animation-duration:3s}
 
   .faq[open] p{animation:iz-open .3s ease-out}
   .faq summary::after{transition:transform .2s}
 
   @media (hover:hover){
-    .dish{transition:translate .25s ease-out}
-    .dish img{transition:transform .5s ease-out}
-    .dish:hover{translate:0 -3px}
-    .dish:hover img{transform:scale(1.03)}
+    .dish{transition:translate .25s ease-out,box-shadow .25s ease-out}
+    .dish img{transition:transform .6s ease-out}
+    .dish:hover{translate:0 -3px;box-shadow:0 14px 28px rgba(35,26,20,.16)}
+    .dish:hover img{transform:scale(1.05)}
     .btn{transition:background-color .2s,border-color .2s,translate .2s ease-out}
-    .btn:hover{translate:0 -1px}
+    .btn:hover{translate:0 -2px}
   }
 
+  /* PC（マウス）だけ：スクロールに合わせて出てくる */
   @media (pointer:fine){@supports (animation-timeline:view()){
-    @keyframes iz-reveal{from{opacity:0;transform:translateY(20px)}70%{opacity:1}to{opacity:1;transform:none}}
-    .section-head,.story-text,.party-text{animation:iz-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
-    /* 料理の札は写真だけがふわっと出る（名前と値段は最初から見える） */
-    @keyframes iz-fade{from{opacity:0}75%{opacity:1}to{opacity:1}}
-    .dish>img{animation:iz-fade linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
-    .dish:nth-child(2)>img{animation-range:entry 6% cover 28%}
-    .dish:nth-child(3)>img{animation-range:entry 12% cover 31%}
-    .story-photo{overflow:clip}
-    @keyframes iz-photo{from{transform:scale(1.05)}to{transform:none}}
-    .story-photo img{animation:iz-photo linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
+    @keyframes iz-reveal{from{opacity:0;transform:translateY(44px)}70%{opacity:1}to{opacity:1;transform:none}}
+    .section-head,.story-text,.party-text h2,.party-text p:not(.party-tel),.faq-wrap{animation:iz-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
+    /* 見出しの朱の串が、下へ伸びる */
+    @keyframes iz-bar{from{transform:scaleY(0)}to{transform:none}}
+    .section-head h2::before{transform-origin:50% 0;animation:iz-bar linear both;animation-timeline:view();animation-range:entry 20% cover 35%}
+    /* 料理の写真は寄った位置から引いて出る（名前と値段は最初から見える） */
+    @keyframes iz-dish{from{opacity:0;scale:1.2}70%{opacity:1}to{opacity:1;scale:1}}
+    .dish>img{animation:iz-dish linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+    .dish:nth-child(2)>img{animation-range:entry 8% cover 40%}
+    .dish:nth-child(3)>img{animation-range:entry 16% cover 45%}
+    /* 焼き台の写真：大きく寄った位置から、スクロールに合わせて引きながら流れる */
+    @keyframes iz-photo{from{transform:scale(1.32) translateY(-5%)}to{transform:scale(1.1) translateY(4%)}}
+    .story-photo img,.story-smoke{animation:iz-photo linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
   }}
 }

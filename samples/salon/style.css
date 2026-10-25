@@ -321,23 +321,88 @@ figure{margin:0}
   .actionbar svg{width:22px;height:22px}
 }
 
-/* 動き（CSSだけ・やわらかく）
-   ・「動きを減らす」設定の人には何も動かさない。
-   ・スクロールに合わせた出方は、対応しているブラウザのマウス操作だけ（スマホ・タブレットは指を離したあとの惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
-   ・動かすのは位置と透明度だけ。営業時間の帯と表・料金・空き状況・電話・下の操作バーは動かさない。 */
+/* 動き（CSSだけ・見本として分かる強さで、でも静かに）
+   ・「動きを減らす」設定の人には何も動かさない（ここから下はすべて no-preference の中）。
+   ・開いたとき：窓の光が差し込み、店内の絵が線から描き出され、見出しが一文字ずつ出る。スマホでも見える。
+   ・ずっと動くのは飾りだけ（壁の光・葉・ドライフラワー・鏡のきらめき・光の中のほこり）。ゆっくり、小さな幅で。
+   ・スクロールに合わせた出方は、マウス操作の画面だけ（スマホは惰性スクロールが引っかかるので出さない）。
+   ・料金・営業時間・電話・予約ボタン・空き状況・下の操作バーは動かさない。 */
 @media (prefers-reduced-motion:no-preference){
-  @keyframes sl-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  @keyframes sl-visual{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
-  @keyframes sl-light{from{opacity:0}to{opacity:1}}
+  @keyframes sl-fade{from{opacity:0}to{opacity:1}}
+  @keyframes sl-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes sl-char{from{opacity:0;transform:translateY(.5em)}to{opacity:1;transform:none}}
+  @keyframes sl-line-x{from{transform:scaleX(0)}to{transform:none}}
+  @keyframes sl-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
   @keyframes sl-open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 
-  /* 最初の画面：文字がゆっくり順に浮かび、店内の絵が出たあと、窓の光がそっと差す */
-  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions{animation:sl-rise .6s cubic-bezier(.25,.6,.3,1) both}
-  .hero h1{animation-delay:.06s}
-  .hero .lead{animation-delay:.14s}
-  .hero-actions{animation-delay:.2s}
-  .hero-visual svg{transform-origin:50% 100%;animation:sl-visual .8s ease .08s both}
-  .hv-light{animation:sl-light 1.2s ease .3s both}
+  /* 最初の画面の壁に、窓からの斜めの光。差し込んでから、ゆっくり移ろう */
+  .hero{position:relative;overflow:hidden;isolation:isolate}
+  .hero::before{content:"";position:absolute;top:0;bottom:0;left:-30%;width:160%;z-index:-1;pointer-events:none;
+    background:linear-gradient(112deg,transparent 16%,rgba(255,252,245,.95) 25%,rgba(255,252,245,.35) 33%,transparent 38%,transparent 43%,rgba(255,252,245,.8) 49%,transparent 55%,transparent 59%,rgba(255,252,245,.6) 63%,transparent 68%);
+    animation:sl-sun-in 2.6s cubic-bezier(.3,.6,.3,1) .1s both,sl-sun 16s ease-in-out 2.7s infinite}
+  @keyframes sl-sun-in{from{opacity:0;transform:translateX(-14%)}to{opacity:1;transform:none}}
+  @keyframes sl-sun{0%,100%{opacity:1;transform:none}50%{opacity:.45;transform:translateX(8%)}}
+
+  /* 文字：見出しは一文字ずつ。読む文は少し後から。予約のボタンは最初から出しておく */
+  .hero .eyebrow{animation:sl-fade .9s ease .1s both}
+  .eyebrow::before{transform-origin:left;animation:sl-line-x 1s cubic-bezier(.3,.6,.3,1) .1s both}
+  .h1-anim .c{display:inline-block;animation:sl-char .9s cubic-bezier(.2,.7,.3,1) both}
+  .l1 .c:nth-child(1){animation-delay:.30s}
+  .l1 .c:nth-child(2){animation-delay:.39s}
+  .l1 .c:nth-child(3){animation-delay:.48s}
+  .l1 .c:nth-child(4){animation-delay:.57s}
+  .l1 .c:nth-child(5){animation-delay:.66s}
+  .l1 .c:nth-child(6){animation-delay:.75s}
+  .l2 .c:nth-child(1){animation-delay:.92s}
+  .l2 .c:nth-child(2){animation-delay:1.01s}
+  .l2 .c:nth-child(3){animation-delay:1.10s}
+  .l2 .c:nth-child(4){animation-delay:1.19s}
+  .l2 .c:nth-child(5){animation-delay:1.28s}
+  .l2 .c:nth-child(6){animation-delay:1.37s}
+  .l2 .c:nth-child(7){animation-delay:1.46s}
+  .l2 .c:nth-child(8){animation-delay:1.55s}
+  .l2 .c:nth-child(9){animation-delay:1.64s}
+  .hero .lead{animation:sl-rise 1s cubic-bezier(.25,.6,.3,1) 1.3s both}
+  .hero-visual figcaption{animation:sl-fade 1.2s ease 2.4s both}
+
+  /* 店の印：アーチが線で描かれる */
+  .bm-draw{stroke-dasharray:1;animation:sl-draw 1.4s cubic-bezier(.5,0,.3,1) .1s both}
+  .bm-draw2{animation-delay:.5s}
+
+  /* 店内の絵：窓の線 → 鏡 → 椅子とお客さま → 鉢植え → 光が差し込む → ドライフラワーが揺れる */
+  :where(.hero-visual svg *){transform-box:view-box}
+  .hv-draw{stroke-dasharray:1;animation:sl-draw 1.5s cubic-bezier(.5,0,.3,1) .15s both}
+  .hv-draw2{animation-delay:.55s}
+  .hv-fill{animation:sl-fade 1s ease .7s both}
+  .hv-mirror{animation:sl-rise 1s cubic-bezier(.25,.6,.3,1) .45s both}
+  .hv-chair{animation:sl-rise 1s cubic-bezier(.25,.6,.3,1) .75s both}
+  .hv-plant{transform-origin:96px 470px;animation:sl-grow 1.3s cubic-bezier(.25,1.25,.4,1) .95s both}
+  @keyframes sl-grow{from{opacity:0;transform:scale(.3)}30%{opacity:1}to{opacity:1;transform:none}}
+  .hv-light{transform-origin:180px 225px;animation:sl-beam-in 2.2s cubic-bezier(.3,.6,.25,1) 1.1s both}
+  @keyframes sl-beam-in{from{opacity:0;transform:scaleX(.08)}to{opacity:1;transform:none}}
+  .hv-flower{transform-origin:214px 96px;animation:sl-drop 1s cubic-bezier(.25,.6,.3,1) 1.2s both,sl-sway 7s ease-in-out 1.2s infinite}
+  @keyframes sl-drop{from{opacity:0;translate:0 -22px}to{opacity:1;translate:0 0}}
+
+  /* ずっと動く飾り（ゆっくり・小さく） */
+  @keyframes sl-sway{0%,100%{rotate:0deg}25%{rotate:3deg}75%{rotate:-3deg}}
+  @keyframes sl-sway-s{0%,100%{rotate:0deg}25%{rotate:2.5deg}75%{rotate:-2deg}}
+  .hv-light-b{transform-origin:180px 225px;animation:sl-beam 11s ease-in-out 3.3s infinite}
+  @keyframes sl-beam{0%,100%{opacity:1;transform:none}50%{opacity:.62;transform:skewY(2.5deg) translateX(10px)}}
+  .hv-leaf{transform-origin:96px 424px;animation:sl-sway-s 5.4s ease-in-out infinite}
+  .hv-leaf2{animation-duration:6.6s;animation-delay:-1.8s}
+  .hv-leaf3{animation:sl-sway 4.8s ease-in-out -.9s infinite}
+  .hv-mote{opacity:0;transform-box:fill-box;animation:sl-mote 8s linear 2.4s infinite}
+  .hv-mote:nth-of-type(2){animation-duration:10s;animation-delay:3.4s}
+  .hv-mote:nth-of-type(3){animation-duration:9s;animation-delay:4.6s}
+  .hv-mote:nth-of-type(4){animation-duration:11s;animation-delay:2.9s}
+  .hv-mote:nth-of-type(5){animation-duration:7.5s;animation-delay:5.2s}
+  @keyframes sl-mote{0%{opacity:0;transform:none}20%{opacity:.95}75%{opacity:.6}100%{opacity:0;transform:translate(46px,-54px)}}
+  .hv-glint{animation:sl-glint 7s cubic-bezier(.45,0,.3,1) 2.3s infinite both}
+  @keyframes sl-glint{0%{transform:none}20%,100%{transform:translateX(360px)}}
+  .hv-spark{opacity:0;transform-box:fill-box;transform-origin:center;animation:sl-spark 7s ease-in-out 3.1s infinite both}
+  .hv-spark2{animation-duration:9s;animation-delay:2.6s}
+  .hv-spark3{animation-duration:8s;animation-delay:4.4s}
+  @keyframes sl-spark{0%,100%{opacity:0;transform:scale(0) rotate(0deg)}6%{opacity:1;transform:scale(1.15) rotate(45deg)}13%,99%{opacity:0;transform:scale(0) rotate(90deg)}}
 
   /* よくある質問：開いたとき、答えがふわっと出る */
   .faq[open] p{animation:sl-open .35s ease-out}
@@ -346,16 +411,36 @@ figure{margin:0}
   /* マウスのある画面だけ：ボタンが少し持ち上がる */
   @media (hover:hover){
     .btn{transition:background-color .2s,transform .2s ease-out}
-    .btn:hover{transform:translateY(-1px)}
+    .btn:hover{transform:translateY(-2px)}
   }
 
-  /* スクロールに合わせて出る（対応ブラウザだけ）。画面の下4分の1に入るころには出そろう */
+  /* スクロールに合わせて出る（マウス操作の画面・対応ブラウザだけ）。画面の下3分の1に入るころには出そろう */
   @media (pointer:fine){@supports (animation-timeline:view()){
-    @keyframes sl-reveal{from{opacity:0;transform:translateY(18px)}70%{opacity:1}to{opacity:1;transform:none}}
-    .section-head,.story-title,.story-text,.story-plan,.styles li,.steps li,.staff-photo,.staff-text,.journal-head,.note,.reserve-text>h2,.reserve-text>p{animation:sl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
-    .styles li:nth-child(2),.steps li:nth-child(2),.note:nth-child(2){animation-range:entry 6% cover 28%}
-    .styles li:nth-child(3),.steps li:nth-child(3),.note:nth-child(3){animation-range:entry 12% cover 31%}
-    .styles li:nth-child(4),.steps li:nth-child(4){animation-range:entry 18% cover 34%}
+    @keyframes sl-reveal{from{opacity:0;transform:translateY(46px)}60%{opacity:1}to{opacity:1;transform:none}}
+    @keyframes sl-card{from{opacity:0;transform:translateY(70px) scale(.94)}60%{opacity:1}to{opacity:1;transform:none}}
+    @keyframes sl-from-left{from{opacity:0;transform:translateX(-60px) rotate(-2deg)}60%{opacity:1}to{opacity:1;transform:none}}
+    @keyframes sl-from-right{from{opacity:0;transform:translateX(60px)}60%{opacity:1}to{opacity:1;transform:none}}
+    @keyframes sl-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+    @keyframes sl-para{from{transform:none}to{transform:translateY(90px)}}
+    .section-head,.story-text,.staff-text,.journal-head,.note,.reserve-text>h2,.reserve-text>p,.steps li{animation:sl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+    .styles li{animation:sl-card linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+    .story-plan{animation:sl-from-right linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
+    .staff-photo{animation:sl-from-left linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
+    .step-no{animation:sl-pop linear both;animation-timeline:view();animation-range:entry 20% cover 32%}
+    .styles li:nth-child(2),.steps li:nth-child(2),.note:nth-child(2){animation-range:entry 8% cover 34%}
+    .styles li:nth-child(3),.steps li:nth-child(3),.note:nth-child(3){animation-range:entry 16% cover 38%}
+    .styles li:nth-child(4),.steps li:nth-child(4){animation-range:entry 24% cover 42%}
+    /* 見出しの上の細い線が、左から引かれる */
+    .section-head h2,.journal-head h2,.reserve-text h2{view-timeline:--sl-h2}
+    .section-head h2::before,.journal-head h2::before,.reserve-text h2::before{transform-origin:left;animation:sl-line-x linear both;animation-timeline:--sl-h2;animation-range:entry 30% cover 40%}
+    /* 縦書きの見出しは、右の行から筆で書くように現れる */
+    @media (min-width:681px){
+      @keyframes sl-brush{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+      .story-title{animation:sl-brush linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
+    }
+    @media (max-width:680px){.story-title{animation:sl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 30%}}
+    /* 最初の絵は、下へ送るとゆっくり遅れてついてくる */
+    .hero-visual{animation:sl-para linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
   }}
 }
 .cap-note{display:block;font-size:12px;color:var(--sub, #6b5e55);margin-top:2px}

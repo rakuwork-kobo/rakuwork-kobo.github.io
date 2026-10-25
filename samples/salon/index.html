@@ -16,7 +16,7 @@
 <header class="site-header">
   <div class="wrap header-in">
     <a class="brand" href="#top" aria-label="ヘアサロン 見本 トップへ">
-      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 34V17a12 12 0 0 1 24 0v17" fill="none" stroke="#3d4f45" stroke-width="2"/><path d="M14 34V18.5a6 6 0 0 1 12 0V34" fill="none" stroke="#a26d62" stroke-width="1.6"/><path d="M4 34h32" stroke="#3d4f45" stroke-width="2"/></svg>
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path class="bm-draw" pathLength="1" d="M8 34V17a12 12 0 0 1 24 0v17" fill="none" stroke="#3d4f45" stroke-width="2"/><path class="bm-draw bm-draw2" pathLength="1" d="M14 34V18.5a6 6 0 0 1 12 0V34" fill="none" stroke="#a26d62" stroke-width="1.6"/><path d="M4 34h32" stroke="#3d4f45" stroke-width="2"/></svg>
       <span class="brand-name">ヘアサロン 見本<small>静岡市葵区・二席の美容室</small></span>
     </a>
     <nav class="gnav" aria-label="ページ内の案内">
@@ -31,7 +31,7 @@
     <div class="wrap hero-in">
       <div class="hero-text">
         <p class="eyebrow">静岡市葵区 見本町　バス停から歩いて2分</p>
-        <h1>二席だけの、<br>小さな美容室です。</h1>
+        <h1><span class="visually-hidden">二席だけの、小さな美容室です。</span><span class="h1-anim" aria-hidden="true"><span class="l1"><span class="c">二</span><span class="c">席</span><span class="c">だ</span><span class="c">け</span><span class="c">の</span><span class="c">、</span></span><br><span class="l2"><span class="c">小</span><span class="c">さ</span><span class="c">な</span><span class="c">美</span><span class="c">容</span><span class="c">室</span><span class="c">で</span><span class="c">す</span><span class="c">。</span></span></span></h1>
         <p class="lead">ご相談からお会計まで、同じスタイリストが担当します。<br>鏡の前で、ゆっくり話してから切りはじめます。</p>
         <div class="hero-actions">
           <a class="btn btn-main" href="tel:0540000000">電話で予約する</a>
@@ -45,44 +45,70 @@
               <stop offset="0" stop-color="#fffaf1" stop-opacity=".95"/>
               <stop offset="1" stop-color="#fffaf1" stop-opacity="0"/>
             </linearGradient>
+            <linearGradient id="hv-glint-g" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#ffffff" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+            <clipPath id="hv-glass"><path d="M294 392V180a76 76 0 0 1 152 0v212z"/></clipPath>
           </defs>
           <rect width="520" height="560" fill="#efe6da"/>
           <rect y="470" width="520" height="90" fill="#e6dacb"/>
           <path d="M0 470h520" stroke="#cdbca7" stroke-width="2"/>
-          <path d="M44 330V146a68 68 0 0 1 136 0v184z" fill="#fbf7f0" stroke="#d6c6b1" stroke-width="6"/>
-          <path d="M112 80v250M44 232h136" stroke="#d6c6b1" stroke-width="4"/>
-          <path d="M60 182c10-30 30-48 52-52" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-          <g class="hv-light">
+          <g class="hv-window">
+            <path class="hv-fill" d="M44 330V146a68 68 0 0 1 136 0v184z" fill="#fbf7f0"/>
+            <path class="hv-draw" pathLength="1" d="M44 330V146a68 68 0 0 1 136 0v184z" fill="none" stroke="#d6c6b1" stroke-width="6"/>
+            <path class="hv-draw hv-draw2" pathLength="1" d="M112 80v250M44 232h136" stroke="#d6c6b1" stroke-width="4"/>
+            <path class="hv-fill" d="M60 182c10-30 30-48 52-52" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <g class="hv-light"><g class="hv-light-b">
             <path d="M180 120 520 330V470L180 330z" fill="url(#hv-light)"/>
             <path d="M44 470h136l210 90H150z" fill="#fffaf1" fill-opacity=".7"/>
+            <circle class="hv-mote" cx="238" cy="196" r="2.4" fill="#ffffff"/>
+            <circle class="hv-mote" cx="300" cy="262" r="1.8" fill="#ffffff"/>
+            <circle class="hv-mote" cx="250" cy="300" r="2.8" fill="#ffffff"/>
+            <circle class="hv-mote" cx="470" cy="340" r="2" fill="#ffffff"/>
+            <circle class="hv-mote" cx="212" cy="250" r="1.6" fill="#ffffff"/>
+          </g></g>
+          <g class="hv-flower">
+            <path d="M214 96v34" stroke="#9a8571" stroke-width="1.5"/>
+            <path d="M214 130c-8 18-12 40-10 62M214 130c0 22 0 44 2 66M214 130c8 18 12 38 12 58" fill="none" stroke="#8a7a66" stroke-width="2" stroke-linecap="round"/>
+            <path d="M204 192c-6-4-8-10-6-16 6 2 8 8 6 16zM216 196c-6-4-8-10-5-16 6 3 7 9 5 16zM226 188c-5-5-6-11-3-16 5 4 6 10 3 16z" fill="#c79a8f"/>
+            <path d="M209 160c-6-2-10-6-10-12 6 1 10 6 10 12zM219 170c6-2 10-6 10-12-6 1-10 6-10 12z" fill="#8a9a88"/>
+            <path d="M206 132h16" stroke="#a26d62" stroke-width="3" stroke-linecap="round"/>
           </g>
-          <path d="M214 96v34" stroke="#9a8571" stroke-width="1.5"/>
-          <path d="M214 130c-8 18-12 40-10 62M214 130c0 22 0 44 2 66M214 130c8 18 12 38 12 58" fill="none" stroke="#8a7a66" stroke-width="2" stroke-linecap="round"/>
-          <path d="M204 192c-6-4-8-10-6-16 6 2 8 8 6 16zM216 196c-6-4-8-10-5-16 6 3 7 9 5 16zM226 188c-5-5-6-11-3-16 5 4 6 10 3 16z" fill="#c79a8f"/>
-          <path d="M209 160c-6-2-10-6-10-12 6 1 10 6 10 12zM219 170c6-2 10-6 10-12-6 1-10 6-10 12z" fill="#8a9a88"/>
-          <path d="M206 132h16" stroke="#a26d62" stroke-width="3" stroke-linecap="round"/>
-          <path d="M282 392V178a88 88 0 0 1 176 0v214z" fill="#c9b49c"/>
-          <path d="M294 392V180a76 76 0 0 1 152 0v212z" fill="#e3e7e2"/>
-          <path d="M318 150 340 136 300 248v-30zM366 112l12 3-58 150h-12z" fill="#f4f6f3"/>
-          <rect x="268" y="388" width="204" height="9" fill="#9a8571"/>
-          <rect x="278" y="364" width="12" height="24" rx="2" fill="#a26d62"/>
-          <rect x="294" y="370" width="10" height="18" rx="2" fill="#d8c8b4"/>
-          <circle cx="436" cy="381" r="3.6" fill="none" stroke="#6f6358" stroke-width="1.8"/>
-          <path d="M440 381l24-4M440 383l24 3" stroke="#6f6358" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M318 384c4-36 26-54 52-54s48 18 52 54z" fill="#d9cfc1"/>
-          <path d="M330 384c4-24 20-38 40-40" fill="none" stroke="#c9bdad" stroke-width="2"/>
-          <rect x="361" y="304" width="18" height="30" fill="#e2ccb6"/>
-          <path d="M332 296c-4-42 12-68 38-68s42 26 38 68c-1 10-4 18-8 22-10-3-20-4-30-4s-20 1-30 4c-4-4-7-12-8-22z" fill="#4b3e35"/>
-          <path d="M350 246c-6 14-8 34-6 62M370 236c-2 20-2 46 0 78M390 246c6 14 8 34 6 62" fill="none" stroke="#66564a" stroke-width="2" stroke-linecap="round"/>
-          <rect x="316" y="380" width="108" height="94" rx="14" fill="#3d4f45"/>
-          <rect x="300" y="420" width="20" height="10" rx="5" fill="#9a8571"/>
-          <rect x="420" y="420" width="20" height="10" rx="5" fill="#9a8571"/>
-          <rect x="364" y="474" width="12" height="40" fill="#8a8076"/>
-          <ellipse cx="370" cy="518" rx="54" ry="7" fill="#8a8076"/>
-          <path d="M66 470l6-46h48l6 46z" fill="#b88a7c"/>
-          <path d="M96 424c-20-34-22-70-8-104 14 32 16 70 8 104z" fill="#3d4f45"/>
-          <path d="M96 424c4-40 22-68 50-82-4 36-22 64-50 82z" fill="#56695d"/>
-          <path d="M96 424c-18-20-42-28-68-26 14 22 38 30 68 26z" fill="#728676"/>
+          <g class="hv-mirror">
+            <path d="M282 392V178a88 88 0 0 1 176 0v214z" fill="#c9b49c"/>
+            <path d="M294 392V180a76 76 0 0 1 152 0v212z" fill="#e3e7e2"/>
+            <path d="M318 150 340 136 300 248v-30zM366 112l12 3-58 150h-12z" fill="#f4f6f3"/>
+            <g clip-path="url(#hv-glass)"><g transform="skewX(-18)"><rect class="hv-glint" x="180" y="80" width="56" height="340" fill="url(#hv-glint-g)"/></g></g>
+            <rect x="268" y="388" width="204" height="9" fill="#9a8571"/>
+            <rect x="278" y="364" width="12" height="24" rx="2" fill="#a26d62"/>
+            <rect x="294" y="370" width="10" height="18" rx="2" fill="#d8c8b4"/>
+            <circle cx="436" cy="381" r="3.6" fill="none" stroke="#6f6358" stroke-width="1.8"/>
+            <path d="M440 381l24-4M440 383l24 3" stroke="#6f6358" stroke-width="1.8" stroke-linecap="round"/>
+          </g>
+          <g class="hv-chair">
+            <path d="M318 384c4-36 26-54 52-54s48 18 52 54z" fill="#d9cfc1"/>
+            <path d="M330 384c4-24 20-38 40-40" fill="none" stroke="#c9bdad" stroke-width="2"/>
+            <rect x="361" y="304" width="18" height="30" fill="#e2ccb6"/>
+            <path d="M332 296c-4-42 12-68 38-68s42 26 38 68c-1 10-4 18-8 22-10-3-20-4-30-4s-20 1-30 4c-4-4-7-12-8-22z" fill="#4b3e35"/>
+            <path d="M350 246c-6 14-8 34-6 62M370 236c-2 20-2 46 0 78M390 246c6 14 8 34 6 62" fill="none" stroke="#66564a" stroke-width="2" stroke-linecap="round"/>
+            <rect x="316" y="380" width="108" height="94" rx="14" fill="#3d4f45"/>
+            <rect x="300" y="420" width="20" height="10" rx="5" fill="#9a8571"/>
+            <rect x="420" y="420" width="20" height="10" rx="5" fill="#9a8571"/>
+            <rect x="364" y="474" width="12" height="40" fill="#8a8076"/>
+            <ellipse cx="370" cy="518" rx="54" ry="7" fill="#8a8076"/>
+          </g>
+          <g class="hv-plant">
+            <path d="M66 470l6-46h48l6 46z" fill="#b88a7c"/>
+            <path class="hv-leaf hv-leaf1" d="M96 424c-20-34-22-70-8-104 14 32 16 70 8 104z" fill="#3d4f45"/>
+            <path class="hv-leaf hv-leaf2" d="M96 424c4-40 22-68 50-82-4 36-22 64-50 82z" fill="#56695d"/>
+            <path class="hv-leaf hv-leaf3" d="M96 424c-18-20-42-28-68-26 14 22 38 30 68 26z" fill="#728676"/>
+          </g>
+          <path class="hv-spark hv-spark1" d="M452 360l2.6 9.4 9.4 2.6-9.4 2.6-2.6 9.4-2.6-9.4-9.4-2.6 9.4-2.6z" fill="#ffffff"/>
+          <path class="hv-spark hv-spark2" d="M326 152l3 11 11 3-11 3-3 11-3-11-11-3 11-3z" fill="#ffffff"/>
+          <path class="hv-spark hv-spark3" d="M150 112l2.4 8.6 8.6 2.4-8.6 2.4-2.4 8.6-2.4-8.6-8.6-2.4 8.6-2.4z" fill="#ffffff"/>
         </svg>
         <figcaption>午前中は、東の窓から光が入ります。</figcaption>
       </figure>

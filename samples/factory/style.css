@@ -44,7 +44,8 @@ table{border-collapse:collapse;width:100%}
 .hero-in{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
 .eyebrow{display:inline-block;font-size:13px;color:var(--ink);border:1px solid var(--ink);background:var(--sheet);padding:3px 12px;margin-bottom:22px;letter-spacing:.08em}
 .hero h1{font-size:52px;line-height:1.3;letter-spacing:.02em}
-.hero h1 em{font-style:normal;color:var(--shu);border-bottom:3px solid var(--shu)}
+.hero h1 em{font-style:normal;color:var(--shu);position:relative;display:inline-block}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:3px;background:var(--shu)}
 .lead{color:#2c3644;font-size:17px;margin-top:24px;max-width:32em}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 26px;border-radius:2px;font-weight:700;text-decoration:none;font-size:16px}
@@ -235,7 +236,8 @@ figcaption{font-size:12.5px;color:var(--sub);margin-top:8px}
   .brand-name{font-size:16px}
   .header-tel{display:none}
   .header-cta{margin-left:auto;padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:14px}
-  .hero{padding:34px 0 44px}
+  .hero{padding:26px 0 44px}
+  .hero-in{gap:30px}
   .hero h1{font-size:32px}
   .lead{font-size:15.5px}
   .hero-actions .btn{flex:1 1 100%}
@@ -292,44 +294,126 @@ figcaption{font-size:12.5px;color:var(--sub);margin-top:8px}
   .actionbar svg{width:22px;height:22px}
 }
 
-/* 動き（CSSだけ・きびきびと）
-   ・「動きを減らす」設定の人には何も動かさない。
-   ・スクロールに合わせた出方は、対応しているブラウザのマウス操作だけ（スマホ・タブレットは指を離したあとの惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
-   ・文字と札は位置と透明度だけ。図面の線だけは、線を引くように描く（最初の一回だけ）。
+/* 図面の下の旋盤（飾り）と、目印の歯車 */
+.hero-drawing .lathe{margin-top:18px}
+.eyebrow .eb-gear{display:inline-block;width:15px;height:15px;vertical-align:-2px;margin-right:8px}
+/* 飾りの動きを止めるスイッチ（動きのある設定のときだけ出す） */
+.motion-ctl{display:none;align-items:center;gap:8px;min-height:44px;margin-top:4px;font-size:13px;color:var(--sub);cursor:pointer}
+.motion-ctl input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
+
+/* 動き（CSSだけ）
+   ・「動きを減らす」設定の人には何も動かさない（このブロックの外には動きを書かない）。
+   ・開いたとき：図面を製図する流れ（外形→段→端面→寸法線→寸法の文字）、ノギスが外径を測って止まり「47.99 合格」、検図と承認の印が押される。4秒ほどで出そろう。
+   ・ずっと動くのは飾りだけ：図面の下の旋盤（歯車・チャック・刃物の送り・切りくず）と、見出し上の小さな歯車。
+   ・スクロールに合わせた出方は、対応しているブラウザのマウス操作だけ（スマホ・タブレットは惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
    ・目安の数字、材料と設備の表、検査成績書の数値、電話、フォーム、下の操作バーは動かさない。 */
 @media (prefers-reduced-motion:no-preference){
-  @keyframes fc-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes fc-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
   @keyframes fc-fade{from{opacity:0}to{opacity:1}}
+  @keyframes fc-fade-up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   @keyframes fc-draw{from{stroke-dasharray:1;stroke-dashoffset:1}to{stroke-dasharray:1;stroke-dashoffset:0}}
-  @keyframes fc-stamp{from{opacity:0;transform:scale(1.25)}to{opacity:1;transform:none}}
+  /* 白く塗った外形は、線を引き終わるころに面が付く（先に白い形だけが出ないように） */
+  @keyframes fc-draw-fill{0%{stroke-dasharray:1;stroke-dashoffset:1;fill-opacity:0}70%{fill-opacity:0}100%{stroke-dasharray:1;stroke-dashoffset:0;fill-opacity:1}}
+  @keyframes fc-sheet{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes fc-spin-once{from{transform:rotate(-360deg)}to{transform:none}}
+  @keyframes fc-spin{to{transform:rotate(360deg)}}
+  @keyframes fc-spin-r{to{transform:rotate(-360deg)}}
+  @keyframes fc-cal-in{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+  @keyframes fc-cal-slide{from{transform:translateX(52px)}to{transform:none}}
+  @keyframes fc-read{0%{opacity:0}25%{opacity:1}45%{opacity:.25}65%,100%{opacity:1}}
+  @keyframes fc-pop{0%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:none}}
+  @keyframes fc-stamp{0%{opacity:0;transform:scale(2.6) rotate(-14deg)}55%{opacity:1;transform:scale(.9) rotate(0)}78%{transform:scale(1.05)}100%{opacity:1;transform:none}}
+  @keyframes fc-ring{0%{opacity:.8;transform:none}100%{opacity:0;transform:scale(2.1)}}
 
-  /* 最初の画面：文字は短く浮かぶ（0.7秒で出そろう） */
-  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions,.hero-sub{animation:fc-rise .5s cubic-bezier(.2,.8,.2,1) both}
-  .hero h1{animation-delay:.05s}
-  .hero .lead{animation-delay:.12s}
-  .hero-actions{animation-delay:.18s}
-  .hero-sub{animation-delay:.24s}
+  /* 最初の画面の文字：はっきり浮かぶが、0.9秒で読める状態にそろう */
+  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions,.hero-sub{animation:fc-rise .6s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1{animation-delay:.08s}
+  .hero .lead{animation-delay:.16s}
+  .hero-actions{animation-delay:.24s}
+  .hero-sub{animation-delay:.32s}
+  /* 「1個でも」の下線は、寸法線を引くように左から */
+  @keyframes fc-underline{from{transform:scaleX(0)}to{transform:none}}
+  .hero h1 em::after{transform-origin:left center;animation:fc-underline .6s cubic-bezier(.45,0,.25,1) .55s both}
+  /* 社名の印は、開いたときに一回だけ主軸のように回って止まる */
+  .brand-mark .bm-spin{transform-box:view-box;transform-origin:20px 20px;animation:fc-spin-once 1.4s cubic-bezier(.15,.7,.2,1) .1s both}
 
-  /* 図面：外形と段の線を引き、寸法と公差があとから入り、最後に検印 */
-  .hero-drawing .ln{animation:fc-draw .7s cubic-bezier(.45,0,.2,1) .15s backwards}
-  .hero-drawing .ln-2{animation-delay:.35s}
-  .hero-drawing .ln-3{animation-delay:.45s}
-  .hero-drawing .dim{animation:fc-fade .4s ease-out .6s both}
-  .hero-drawing .dim-txt{animation:fc-fade .4s ease-out .7s both}
-  .hero-drawing .stamp{transform-box:fill-box;transform-origin:center;animation:fc-stamp .25s cubic-bezier(.3,1.4,.5,1) 1.05s both}
+  /* 図面：紙を置く→中心線→外形を引く→段と端面→寸法線→寸法の文字 */
+  .hero-drawing .sheet{animation:fc-sheet .55s cubic-bezier(.2,.8,.2,1) both}
+  .hero-drawing .lathe{animation:fc-sheet .55s cubic-bezier(.2,.8,.2,1) .15s both}
+  .hero-drawing .cl{animation:fc-fade .3s ease-out .35s both}
+  .hero-drawing .ln{animation:fc-draw-fill 1s cubic-bezier(.45,0,.25,1) .45s backwards}
+  .hero-drawing .ln-2{animation-duration:.4s;animation-delay:1.25s}
+  .hero-drawing .ln-3{animation-duration:.6s;animation-delay:1.05s}
+  .hero-drawing .ln-c{animation:fc-fade .2s ease-out 1.55s both}
+  .hero-drawing .dl path{animation:fc-draw .55s cubic-bezier(.45,0,.25,1) 1.45s backwards}
+  .hero-drawing .dl path:nth-child(2){animation-delay:1.6s}
+  .hero-drawing .dl path:nth-child(3){animation-delay:1.75s}
+  .hero-drawing .dl path:nth-child(4){animation-delay:1.8s}
+  .hero-drawing .dim{animation:fc-fade .3s ease-out 1.9s both}
+  .hero-drawing .dim-txt{animation:fc-fade-up .4s ease-out 2s both}
+
+  /* ノギス：図面の上に置き、スライダーを寄せて外径を挟み、値が出て合格 */
+  .hero-drawing .cal{animation:fc-cal-in .35s cubic-bezier(.2,.8,.2,1) 2.1s both}
+  .hero-drawing .cal-slide{animation:fc-cal-slide .8s cubic-bezier(.3,.55,.25,1) 2.3s both}
+  .hero-drawing .cal-read{animation:fc-read .5s linear 3.05s both}
+  .hero-drawing .cal-ok{transform-box:fill-box;transform-origin:center;animation:fc-pop .3s cubic-bezier(.3,1.4,.5,1) 3.2s both}
+
+  /* 検印：上から強めに押して、朱がにじむ輪が一度だけ広がる */
+  .hero-drawing .stamp{transform-box:fill-box;transform-origin:center;animation:fc-stamp .42s cubic-bezier(.3,.9,.4,1) 3.35s both}
+  .hero-drawing .stamp-2{animation-delay:3.6s}
+  .hero-drawing .stamp-ring{transform-box:fill-box;transform-origin:center;animation:fc-ring .6s ease-out 3.55s forwards}
+  .hero-drawing .stamp-ring-2{animation-delay:3.8s}
+
+  /* ずっと動く飾り（幅は控えめ・ゆっくり） */
+  @keyframes fc-lines{to{transform:translateY(8px)}}
+  @keyframes fc-feed{0%,4%{transform:translateX(226px)}74%{transform:none}80%{transform:translateY(14px)}93%{transform:translate(226px,14px)}100%{transform:translateX(226px)}}
+  @keyframes fc-stock{0%,4%{opacity:1;transform:none}74%{opacity:1;transform:scaleX(0)}80%{opacity:0;transform:scaleX(0)}81%{opacity:0;transform:none}96%,100%{opacity:1;transform:none}}
+  @keyframes fc-chips-on{0%,5%{opacity:0}7%,72%{opacity:1}74%,100%{opacity:0}}
+  @keyframes fc-chip{0%{opacity:1;transform:scale(.5)}100%{opacity:0;transform:translate(15px,15px) rotate(150deg) scale(1)}}
+  @keyframes fc-spark{0%,100%{opacity:0;transform:scale(.4)}20%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(1.3)}}
+  .eyebrow .eb-gear{transform-box:fill-box;transform-origin:center;animation:fc-spin 10s linear infinite}
+  .lathe .gear-a{transform-box:fill-box;transform-origin:center;animation:fc-spin 12s linear infinite}
+  .lathe .gear-b{transform-box:fill-box;transform-origin:center;animation:fc-spin-r 8s linear infinite}
+  .lathe .spin-lines{animation:fc-lines .5s linear infinite}
+  .lathe .tool{animation:fc-feed 8s linear infinite}
+  .lathe .stock{transform-box:fill-box;transform-origin:left center;animation:fc-stock 8s linear infinite}
+  .lathe .chips{animation:fc-chips-on 8s linear infinite}
+  .lathe .chip{transform-box:fill-box;transform-origin:left top;animation:fc-chip .9s ease-out infinite}
+  .lathe .chip-2{animation-delay:.3s}
+  .lathe .chip-3{animation-delay:.6s}
+  .lathe .spark{transform-box:fill-box;transform-origin:left center;animation:fc-spark .7s ease-out infinite}
+  .motion-ctl{display:inline-flex}
+  body:has(#motion-stop:checked) .lathe *,body:has(#motion-stop:checked) .eb-gear{animation-play-state:paused}
 
   /* マウスのある画面だけ：ボタンが少し持ち上がる */
   @media (hover:hover){
     .btn,.header-cta{transition:background-color .15s,border-color .15s,translate .15s ease-out}
-    .btn:hover,.header-cta:hover{translate:0 -1px}
+    .btn:hover,.header-cta:hover{translate:0 -2px}
   }
 
-  /* スクロールに合わせて出る（対応ブラウザだけ）。短い距離で、画面の下5分の1で出そろう */
+  /* スクロールに合わせて出る（マウス操作・対応ブラウザだけ） */
   @media (pointer:fine){@supports (animation-timeline:view()){
-    @keyframes fc-reveal{from{opacity:0;transform:translateY(16px)}60%{opacity:1}to{opacity:1;transform:none}}
-    .section .section-head,.work,.case,.factory-art,.crew,.recruit,.words{animation:fc-reveal cubic-bezier(.2,.8,.2,1) both;animation-timeline:view();animation-range:entry 0% cover 20%}
-    .work:nth-child(2),.case:nth-child(2){animation-range:entry 4% cover 22%}
-    .work:nth-child(3),.case:nth-child(3){animation-range:entry 8% cover 24%}
-    .record-stamp{animation:fc-stamp cubic-bezier(.3,1.4,.5,1) both;animation-timeline:view();animation-range:entry 30% cover 35%}
+    @keyframes fc-reveal{from{opacity:0;transform:translateY(44px)}60%{opacity:1}to{opacity:1;transform:none}}
+    @keyframes fc-from-left{from{opacity:0;transform:translateX(-40px)}60%{opacity:1}to{opacity:1;transform:none}}
+    @keyframes fc-dimline{from{transform:scaleX(0)}to{transform:none}}
+    @keyframes fc-press{0%{opacity:0;transform:scale(2.6) rotate(-16deg)}60%{opacity:1;transform:scale(.9)}80%{transform:scale(1.05)}100%{opacity:1;transform:none}}
+    .section .section-head,.work,.case,.factory-art,.crew,.recruit,.words{animation:fc-reveal cubic-bezier(.2,.8,.2,1) both;animation-timeline:view();animation-range:entry 0% cover 28%}
+    .work:nth-child(2),.case:nth-child(2){animation-range:entry 6% cover 32%}
+    .work:nth-child(3),.case:nth-child(3){animation-range:entry 12% cover 36%}
+    /* 見出しの下の寸法線が、真ん中から両端へ引かれる */
+    .section-head{view-timeline-name:--fc-head}
+    .section-head::after{transform-origin:center;animation:fc-dimline linear both;animation-timeline:--fc-head;animation-range:entry 30% cover 40%}
+    /* 加工の図面：外形の線を引く */
+    .work{view-timeline-name:--fc-work}
+    .work .wl{animation:fc-draw-fill linear both;animation-timeline:--fc-work;animation-range:entry 20% cover 45%}
+    /* 工程表：工程10から順に左から入る */
+    .flow{view-timeline-name:--fc-flow}
+    .flow li{animation:fc-from-left cubic-bezier(.2,.8,.2,1) both;animation-timeline:--fc-flow;animation-range:cover 2% cover 20%}
+    .flow li:nth-child(2){animation-range:cover 5% cover 23%}
+    .flow li:nth-child(3){animation-range:cover 8% cover 26%}
+    .flow li:nth-child(4){animation-range:cover 11% cover 29%}
+    .flow li:nth-child(5){animation-range:cover 14% cover 32%}
+    /* 検査成績書の日付印：強めに押す */
+    .record-stamp{animation:fc-press linear both;animation-timeline:view();animation-range:entry 40% cover 42%}
   }}
 }
