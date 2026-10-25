@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex,nofollow">
+<title>このホームページの安全の作り｜ラクワーク工房（静岡）</title>
+<meta name="description" content="ラクワーク工房のホームページの見本を、どう守っているかの説明です。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="brand">ラクワーク工房<span>静岡</span></p>
+    <h1>このホームページの<br class="br-sp">安全の作り</h1>
+    <p class="lead">見本のホームページを、どう守っているかを書いておきます。少し長いのですが、ホームページを頼んだあとで「先に聞いておけばよかった」となりやすい所なので、お時間のあるときに読んでいただけたらうれしいです。</p>
+  </div>
+</header>
+
+<main>
+  <section class="wrap now" aria-labelledby="now-h">
+    <h2 id="now-h">弱いサイトを探す手間が、<br class="br-pc">AIで減ってきています</h2>
+    <p>穴のあるサイトを機械で自動的に探して回る攻撃は、ずっと前からあります。そこに生成AIが加わって、攻撃の準備にかかる手間が小さくなってきました。</p>
+    <p>IPA（情報処理推進機構）が2026年1月に出した「情報セキュリティ10大脅威 2026」の組織向けの一覧では、「AIの利用をめぐるサイバーリスク」が初めて入り、3位でした。説明には、AIの悪用で攻撃がしやすくなり、手口も巧妙になることが挙げられています。同じ一覧の4位は「システムの脆弱性を悪用した攻撃」です。脆弱性は、ソフトの欠陥でできた穴のことです。</p>
+    <p>機械で探す側は、お店の大きさではなく、穴があるかどうかを見ています。小さなお店だから大丈夫、とは言いにくくなりました。</p>
+  </section>
+
+  <section class="pairs-sec" aria-labelledby="pairs-h">
+    <div class="wrap">
+      <h2 id="pairs-h">よくある狙われ方と、見本の作り</h2>
+      <p class="pairs-lead">見本は、文字と絵だけでできたページです。開くたびにサーバーの上で何かを動かす仕組みを持たないので、入口になりやすい所を、はじめから置いていません。よくある狙われ方と並べると、こうなります。</p>
+      <div class="pairs">
+        <div class="pair">
+          <div class="risk"><p class="tag">よくある狙われ方</p><h3>古いWordPressや、プラグインの穴</h3><p>ブログ型の仕組み（WordPressなど）は便利ですが、本体や追加の部品（プラグイン）の更新が遅れると、知られた穴から入られます。穴が知れ渡ると、それを探して回る動きがすぐに始まります。</p></div>
+          <div class="ours"><p class="tag">この見本では</p><p>WordPressもプラグインも使っていません。サーバーの上で動く仕組みがないので、更新を忘れて穴になる部品がありません。</p></div>
+        </div>
+        <div class="pair">
+          <div class="risk"><p class="tag">よくある狙われ方</p><h3>問い合わせフォームの悪用</h3><p>入力欄に細工した文字を送り込んでお客さんの情報を抜き出したり、迷惑メールを送る中継に使ったりします。</p></div>
+          <div class="ours"><p class="tag">この見本では</p><p>送れる入力欄も、情報をためる場所（データベース）もありません。ご予約や問い合わせは、電話やLINEのボタンで受ける形です。工場の見本にある見積もりの欄は見た目の見本で、送れないように作ってあります。</p></div>
+        </div>
+        <div class="pair">
+          <div class="risk"><p class="tag">よくある狙われ方</p><h3>よそから読み込む部品の乗っ取り</h3><p>アクセス解析や広告、地図、文字の形（フォント）などを、よそのサーバーから読み込んでいるページはたくさんあります。読み込み元が乗っ取られると、悪いプログラムがお店のページに混ざります。</p></div>
+          <div class="ours"><p class="tag">この見本では</p><p>よそからは何も読み込んでいません。そのうえで「このサイトの見た目の指定と画像のほかは読み込まない。プログラムは一切動かさない」という決まりをページ自体に書いてあります（CSPという仕組みです）。万一、ページに悪いプログラムが紛れ込んでも、ブラウザが動かさずに止めます（ファイルそのものを書き換えられたときは止められません。そこはアカウントの守りの出番で、下に書きます）。</p></div>
+        </div>
+        <div class="pair">
+          <div class="risk"><p class="tag">よくある狙われ方</p><h3>管理画面のパスワード破り</h3><p>ホームページの管理用のログイン画面に、よく使われるパスワードを次々に試して入り込みます。</p></div>
+          <div class="ours"><p class="tag">この見本では</p><p>ページの中にログイン画面がありません。書き換えは、手元でファイルを直して置き直す形です。入り込める所は、ページを置いている場所とドメインのアカウントに絞られます。そこは二段階認証で守っていただきます（下に書きます）。</p></div>
+        </div>
+        <div class="pair">
+          <div class="risk"><p class="tag">よくある狙われ方</p><h3>通信のすり替えや、よそのページへの埋め込み</h3><p>鍵のない通信（http）の途中で中身を書き換えたり、お店のページをよそのページに透明に重ねて押し間違いを誘ったりする手口です。</p></div>
+          <div class="ours"><p class="tag">この見本では</p><p>お渡しするときは、置き場所（Cloudflare Pagesなど）の設定で「必ず鍵つきの通信（https）で開く」「よそのページに埋め込ませない」という決まりを付けます。いま見本を置いている所はこの設定を付けられないため、見本では埋め込みを止める決まりが効いていません。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap honest" aria-labelledby="honest-h">
+    <h2 id="honest-h">それでも「絶対に安全」とは言えません</h2>
+    <p>ここまで書いたのは、入口を減らす作りです。攻撃そのものをなくす作りではありません。残る入口でいちばん大きいのは、ページよりも、ページを置いている場所とお店のアカウントです。ここはお店の方にしかできない守りなので、次の3つをお願いしています。</p>
+    <ol class="asks">
+      <li><b>ドメインと置き場所は、お店の名義で</b>ドメインは、ネットの上のお店の住所にあたる名前です。置き場所と一緒にお店の名義で持っていただき、二段階認証（パスワードに加えて、スマホでの確認を求める設定）を付けます。ドメインには、勝手によそへ移されないための「移管ロック」もかけておきます。</li>
+      <li><b>お店のメールとLINEのアカウントも</b>ページが無事でも、メールやLINEが乗っ取られると、お客さんに偽の連絡が届いてしまいます。こちらにも二段階認証などの、ログインの確認を強くする設定をおすすめします。</li>
+      <li><b>パスワードは預かりません</b>お手伝いが要るときは、お店のアカウントに私を招いていただき、終わったら外してもらいます。お店のパスワードを私が知らないまま進められる形にしています。</li>
+    </ol>
+  </section>
+
+  <section class="wrap outside" aria-labelledby="outside-h">
+    <h2 id="outside-h">ネット予約やカード払いは、専門のサービスに</h2>
+    <p>ネット予約やカード払いの画面を、このページの中に自前で作ることはしません。お客さんの名前やカードの番号を預かる所は、それを守ることを仕事にしている会社のサービスに任せる方が安全だと考えています。</p>
+    <p>すでにお使いの予約サービスやネットショップがあれば、そこへ進むボタンを置きます。お客さんが入れた情報は、このページを通らずに、そのサービスへ直接届きます。</p>
+  </section>
+
+  <section class="wrap check" aria-labelledby="check-h">
+    <h2 id="check-h">確かめていること</h2>
+    <p>見本を直すたびに、ブラウザの開発者用の画面で、決まりに反した読み込みが1件も出ていないことを確かめています。お渡しするときは、公開したあとに外の点検サービスでも、設定がきちんと届いているかを見ます。</p>
+    <details class="pro">
+      <summary>専門の方へ（設定の中身）</summary>
+      <dl>
+        <dt>ページの中（meta）のCSP</dt>
+        <dd><code>default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests</code></dd>
+        <dt>お渡しのとき、置き場所で付けるヘッダー</dt>
+        <dd>上のCSPに <code>frame-ancestors 'none'</code> を加えたもの、<code>Strict-Transport-Security</code>、<code>X-Content-Type-Options: nosniff</code>、<code>X-Frame-Options: DENY</code>、<code>Referrer-Policy</code>、<code>Permissions-Policy</code>（カメラ・マイク・位置情報などを止める）、<code>Cross-Origin-Opener-Policy</code>、<code>Cross-Origin-Resource-Policy</code>。HSTSの <code>includeSubDomains</code> は、お店のドメインの下で動いているほかのサービスを確かめてから足します。</dd>
+        <dt>そのほか</dt>
+        <dd>JavaScriptなし。<code>style</code> 属性やインラインのスクリプトもないため、<code>unsafe-inline</code> を許していません。絵はページの中に書いたSVGで、写真は載せる前に撮影場所の情報（Exif）を消します。</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section class="see" aria-labelledby="see-h">
+    <div class="wrap">
+      <h2 id="see-h">見本を開いてみてください</h2>
+      <p>どの見本も、ここに書いた作りでできています。</p>
+      <ul class="see-list">
+        <li><a href="../izakaya/">炭火やきとりの店</a></li>
+        <li><a href="../salon/">美容室</a></li>
+        <li><a href="../clinic/">内科クリニック</a></li>
+        <li><a href="../factory/">町工場</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>出典：IPA（独立行政法人 情報処理推進機構）「情報セキュリティ10大脅威 2026」（2026年1月29日公表）。IPAが選んだ候補を、研究者や企業の実務担当者など約250名の選考会が審議と投票で順位づけした一覧です。</p>
+    <p>2026年10月の時点の内容です。見本に出てくる店・医院・会社・人物・連絡先は、すべて架空です。</p>
+    <p>© ラクワーク工房</p>
+  </div>
+</footer>
+</body>
+</html>

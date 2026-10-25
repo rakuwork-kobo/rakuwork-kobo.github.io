@@ -86,3 +86,4 @@ p{margin:0}
 .other-card+.other-card{margin-top:24px}
 .other-shots-one{grid-template-columns:1fr}
 .lead-sub{font-size:14px;color:var(--sub);margin-top:12px}
+.points .more{display:inline-block;margin-top:8px;color:#fff;font-weight:700}
