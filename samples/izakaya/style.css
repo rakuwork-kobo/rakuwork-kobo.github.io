@@ -44,7 +44,14 @@ p{margin:0}
 /* 暖簾：竿に下がった紺の布。一枚に一文字 */
 .noren{position:absolute;top:0;left:0;right:0;margin:0 auto;width:min(100%,900px);height:136px;display:flex;gap:4px;padding-top:12px;z-index:2}
 .noren::before{content:"";position:absolute;top:0;left:-14px;right:-14px;height:12px;background:#6b4a2f;border-bottom:2px solid #3b281a}
-.noren span{flex:1;display:flex;align-items:center;justify-content:center;background:var(--kon);color:#f3ece0;font-family:var(--mincho);font-weight:700;font-size:46px;line-height:1;border-bottom:5px solid #141b2f;transform-origin:50% 0}
+.noren span{flex:1;position:relative;color:#f3ece0;font-family:var(--mincho);font-weight:700;font-size:46px;line-height:1;transform-origin:50% 0}
+/* 布は4段つなぎ（つなぎ目は重ねて隙間を隠す）。下の段ほど遅れて大きく振れるので、厚紙ではなく布がしなって見える */
+.noren b{position:absolute;left:0;right:0;top:0;height:27%;transform-origin:50% 0;
+  background-color:var(--kon);
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 2px),repeating-linear-gradient(90deg,rgba(0,0,0,.04) 0 1px,transparent 1px 2px),linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.05) 22%,rgba(0,0,0,.08) 48%,rgba(255,255,255,.07) 74%,rgba(0,0,0,.3))}
+.noren b b{top:calc(100% - 10px);height:calc(100% + 10px)}
+.noren b b b b{border-bottom:5px solid #141b2f;border-radius:0 0 2px 2px}
+.noren em{position:absolute;left:0;right:0;top:0;text-align:center;font-style:normal}
 .hero-lantern{position:absolute;top:0;right:max(28px,calc(50% - 600px));width:92px;height:auto;z-index:2;display:none;transform-origin:50% 0;overflow:visible}
 .lantern-light{opacity:.8}
 .lantern-burst{opacity:0}
@@ -236,7 +243,8 @@ figcaption{font-size:12.5px;color:#b3a391;margin-top:10px}
   .map svg text{font-size:19px}
   .noren{height:88px;gap:3px;padding-top:9px}
   .noren::before{height:9px;left:0;right:0}
-  .noren span{font-size:28px;border-bottom-width:4px}
+  .noren span{font-size:28px}
+  .noren b b b b{border-bottom-width:4px}
   .hero-in{padding-top:128px;padding-bottom:26px;column-gap:20px;grid-template-rows:auto auto}
   .hero h1{grid-row:1;font-size:40px;letter-spacing:.06em}
   .hero-copy{grid-column:2;align-self:end}
@@ -304,9 +312,14 @@ figcaption{font-size:12.5px;color:#b3a391;margin-top:10px}
   /* 暖簾：上から下りてきて、すぐ人がくぐったように真ん中から左右へ大きく割れて揺れ戻る（10秒ごとにくり返す）。
      ふだんは風で小さく揺れる。割れる揺れは rotate、風は transform と分けて重ねる */
   @keyframes iz-noren-drop{0%{translate:0 -112%}62%{translate:0 5%}82%{translate:0 -2%}100%{translate:0 0}}
-  @keyframes iz-noren-wind{0%{transform:rotate(-2.5deg) skewX(1.5deg)}100%{transform:rotate(2.5deg) skewX(-1.5deg)}}
-  @keyframes iz-part{0%,22%,100%{rotate:0deg}3%{rotate:calc(var(--a)*1deg)}7%{rotate:calc(var(--a)*-.5deg)}11%{rotate:calc(var(--a)*.28deg)}15%{rotate:calc(var(--a)*-.12deg)}19%{rotate:calc(var(--a)*.04deg)}}
-  .noren span{--i:0;--a:8;animation:iz-noren-drop .95s cubic-bezier(.3,.7,.3,1) calc(var(--i)*.07s) both,iz-noren-wind 2.8s ease-in-out calc(var(--i)*-.55s) infinite alternate,iz-part 10s cubic-bezier(.3,.6,.4,1) calc(1.35s + var(--d,0s)) infinite}
+  @keyframes iz-noren-wind{0%{transform:rotate(calc(var(--k)*-4deg))}100%{transform:rotate(calc(var(--k)*4deg))}}
+  @keyframes iz-part{0%,24%,100%{rotate:0deg}3%{rotate:calc(var(--a)*var(--k)*1deg)}7.5%{rotate:calc(var(--a)*var(--k)*-.55deg)}12%{rotate:calc(var(--a)*var(--k)*.3deg)}16.5%{rotate:calc(var(--a)*var(--k)*-.14deg)}21%{rotate:calc(var(--a)*var(--k)*.05deg)}}
+  .noren span{--i:0;--a:8;animation:iz-noren-drop .95s cubic-bezier(.3,.7,.3,1) calc(var(--i)*.07s) both}
+  /* 段ごとに振れ幅（--k）と遅れ（--lag）を変えて、上から下へ波が伝わるようにする */
+  .noren b{--k:.3;--lag:0s;animation:iz-noren-wind 2.8s ease-in-out calc(var(--i)*-.55s - var(--lag)*4) infinite alternate,iz-part 10s cubic-bezier(.3,.6,.4,1) calc(1.35s + var(--d,0s) + var(--lag)) infinite}
+  .noren b b{--k:.3;--lag:.06s}
+  .noren b b b{--k:.3;--lag:.12s}
+  .noren b b b b{--k:.32;--lag:.18s}
   .noren span:nth-child(2){--i:1;--a:15;--d:.05s}
   .noren span:nth-child(3){--i:2;--a:28}
   .noren span:nth-child(4){--i:3;--a:-28}
