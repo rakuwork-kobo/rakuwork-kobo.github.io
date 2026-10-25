@@ -1,7 +1,7 @@
 shop_name: 炭火やきとり 見本亭
 catch: |-
   炭火で、
-  一本ずつ。
+  一本ずつ。 
 hours:
   - label: 営業時間
     time: 17:00〜23:00
