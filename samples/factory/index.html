@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<p class="sample">ホームページの見本です。会社名・住所・電話番号・設備・人・数字はすべて架空です。</p>
+<p class="sample">ホームページの見本です。会社名・住所・電話番号・設備・人・数字はすべて架空で、写真はイメージです。</p>
 
 <header class="site-header">
   <div class="wrap header-in">
@@ -29,6 +29,11 @@
 
 <main id="top">
   <section class="hero">
+    <div class="hero-photo">
+      <img class="hero-img" src="img/factory_hero.jpg" srcset="img/factory_hero_s.jpg 800w, img/factory_hero.jpg 1600w" sizes="(max-width:1060px) 100vw, 160vw" width="1600" height="1067" alt="旋盤にくわえた金属の軸を、刃物で削っているところのアップ" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <p class="ph-tag hero-tag"><span>写真</span>CNC旋盤・軸の外径を削る<small>イメージ</small></p>
+    </div>
     <div class="wrap hero-in">
       <div class="hero-text">
         <p class="eyebrow"><svg class="eb-gear" viewBox="-9 -9 18 18" aria-hidden="true"><path d="M5.4 0.0L7.0 0.8L6.7 2.2L4.9 2.2L4.4 3.2L5.2 4.7L4.1 5.7L2.7 4.7L1.7 5.1L1.4 6.9L0.0 7.0L-0.6 5.4L-1.7 5.1L-2.9 6.4L-4.1 5.7L-3.6 4.0L-4.4 3.2L-6.1 3.4L-6.7 2.2L-5.3 1.1L-5.4 0.0L-7.0 -0.8L-6.7 -2.2L-4.9 -2.2L-4.4 -3.2L-5.2 -4.7L-4.1 -5.7L-2.7 -4.7L-1.7 -5.1L-1.4 -6.9L-0.0 -7.0L0.6 -5.4L1.7 -5.1L2.9 -6.4L4.1 -5.7L3.6 -4.0L4.4 -3.2L6.1 -3.4L6.7 -2.2L5.3 -1.1Z" fill="#18212d"/><circle r="2.2" fill="#fcfbf7"/></svg>静岡市駿河区・創業1978年の町工場</p>
@@ -188,6 +193,7 @@
       <div class="section-head"><p class="kicker">1</p><h2>できる加工</h2><p class="section-lead">機械の部品、治具、装置の修理部品などを、1個ずつ図面に合わせて削ります。</p></div>
       <div class="works">
         <article class="work">
+          <figure class="work-photo"><img src="img/factory_parts_s.jpg" srcset="img/factory_parts_s.jpg 800w, img/factory_parts.jpg 1600w" sizes="(max-width:680px) 100vw, (max-width:1060px) 50vw, 370px" width="1600" height="1067" alt="同じ形に削りそろえた段付きのピンが、何列にも並んでいる" loading="lazy"><figcaption class="ph-tag"><span>写真</span>削りそろえたピン<small>イメージ</small></figcaption></figure>
           <svg viewBox="0 0 300 170" role="img" aria-label="シャフトの図面の線画">
             <rect width="300" height="170" fill="#fcfbf7"/><rect x="6" y="6" width="288" height="158" fill="none" stroke="#18212d" stroke-width="1"/>
             <path d="M28 75H274" stroke="#3b6a9a" stroke-width=".9" stroke-dasharray="10 3 2 3"/>
@@ -207,6 +213,7 @@
           </div>
         </article>
         <article class="work">
+          <figure class="work-photo"><img src="img/factory_mc_s.jpg" srcset="img/factory_mc_s.jpg 800w, img/factory_mc.jpg 1600w" sizes="(max-width:680px) 100vw, (max-width:1060px) 50vw, 370px" width="1600" height="1068" alt="マシニングセンタの刃物がアルミのブロックを削り、削り油と切りくずが飛んでいる" loading="lazy"><figcaption class="ph-tag"><span>写真</span>マシニング・アルミを削る<small>イメージ</small></figcaption></figure>
           <svg viewBox="0 0 300 170" role="img" aria-label="ブラケットの図面の線画">
             <rect width="300" height="170" fill="#fcfbf7"/><rect x="6" y="6" width="288" height="158" fill="none" stroke="#18212d" stroke-width="1"/>
             <path class="wl" pathLength="1" d="M60 40H230V66H120V128H60Z" fill="#ffffff" stroke="#18212d" stroke-width="1.8"/>
@@ -226,6 +233,7 @@
           </div>
         </article>
         <article class="work">
+          <figure class="work-photo"><img src="img/factory_caliper_s.jpg" srcset="img/factory_caliper_s.jpg 800w, img/factory_caliper.jpg 1600w" sizes="(max-width:680px) 100vw, (max-width:1060px) 50vw, 370px" width="1600" height="899" alt="真鍮のフランジ部品の外径を、外側マイクロメータで測っている手元" loading="lazy"><figcaption class="ph-tag"><span>写真</span>現物の寸法を測る<small>イメージ</small></figcaption></figure>
           <svg viewBox="0 0 300 170" role="img" aria-label="欠けた現物のブッシュを測り、断面の図面に起こす線画">
             <defs><pattern id="wk-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="#18212d" stroke-width=".9"/></pattern></defs>
             <rect width="300" height="170" fill="#fcfbf7"/><rect x="6" y="6" width="288" height="158" fill="none" stroke="#18212d" stroke-width="1"/>
@@ -285,6 +293,7 @@
         <p>削った部品は、図面に公差の指示がある所をすべて測ります。最初の1個は特に念入りに、寸法がそろっているかを確かめてから残りを削ります。</p>
         <p>測定室はエアコンで20℃前後に保ち、ノギス・マイクロメータなどの測定具は年に1回校正しています。ご希望があれば、例のような検査成績書を付けてお納めします。</p>
         <p class="small">書式のご指定があれば、それに合わせて記入します。</p>
+        <figure class="insp-photo"><img src="img/factory_gauge_c_s.jpg" srcset="img/factory_gauge_c_s.jpg 800w, img/factory_gauge_c.jpg 1600w" sizes="(max-width:1060px) 100vw, 520px" width="1600" height="900" alt="機械の主軸に付けたダイヤル式の測定具の針を、削った丸い部品の上面に当てている" loading="lazy"><figcaption class="ph-tag"><span>写真</span>外す前に、機械の上で測る<small>イメージ</small></figcaption></figure>
       </div>
       <figure class="record">
         <div class="record-sheet">
@@ -313,7 +322,18 @@
 
   <section id="equipment" class="section section-tint">
     <div class="wrap">
-      <div class="section-head"><p class="kicker">4</p><h2>設備</h2><p class="section-lead">主な機械と測定機です（2026年10月現在）。</p></div>
+      <div class="equip-top">
+        <div class="equip-intro">
+        <div class="section-head"><p class="kicker">4</p><h2>設備</h2><p class="section-lead">主な機械と測定機です（2026年10月現在）。</p></div>
+        <dl class="equip-sum">
+          <div><dt>旋盤</dt><dd>4<small>台</small></dd></div>
+          <div><dt>マシニング</dt><dd>2<small>台</small></dd></div>
+          <div><dt>フライス盤</dt><dd>1<small>台</small></dd></div>
+          <div><dt>測定機</dt><dd>2<small>台</small></dd></div>
+        </dl>
+        </div>
+        <figure class="equip-photo"><img src="img/factory_shop_c_s.jpg" srcset="img/factory_shop_c_s.jpg 600w, img/factory_shop_c.jpg 960w" sizes="(max-width:1060px) 100vw, 560px" width="960" height="704" alt="白い工作機械が何台も並ぶ工場の中。手前の台に、削った小さな部品と工具箱" loading="lazy"><figcaption class="ph-tag"><span>写真</span>機械が並ぶ工場の中<small>イメージ</small></figcaption></figure>
+      </div>
       <table class="equip">
         <caption class="visually-hidden">主な設備</caption>
         <thead><tr><th scope="col">機械</th><th scope="col">台数</th><th scope="col">大きさ（mm）</th><th scope="col" class="maker">メーカー・型式</th></tr></thead>
@@ -334,11 +354,11 @@
     <div class="wrap">
       <div class="section-head"><p class="kicker">5</p><h2>ご依頼の流れ</h2><p class="section-lead">工場の工程表と同じように、順番どおりに進めます。初めての会社さまも同じ流れです。</p></div>
       <ol class="flow">
-        <li><span class="flow-no">工程 1</span><h3>図面を送る</h3><p>下のフォームから。PDF・DXF・写真でも構いません。</p></li>
-        <li><span class="flow-no">工程 2</span><h3>見積もり</h3><p>2営業日を目安に、金額と納期をお返しします。</p></li>
-        <li><span class="flow-no">工程 3</span><h3>ご注文</h3><p>注文書をいただいてから、材料を手配します。</p></li>
-        <li><span class="flow-no">工程 4</span><h3>加工・検査</h3><p>図面の指示どおりに削り、測って確かめます。</p></li>
-        <li><span class="flow-no">工程 5</span><h3>納品</h3><p>ご希望があれば、検査成績書を付けます。</p></li>
+        <li><span class="flow-no">工程 10</span><h3>図面を送る</h3><p>下のフォームから。PDF・DXF・写真でも構いません。</p></li>
+        <li><span class="flow-no">工程 20</span><h3>見積もり</h3><p>2営業日を目安に、金額と納期をお返しします。</p></li>
+        <li><span class="flow-no">工程 30</span><h3>ご注文</h3><p>注文書をいただいてから、材料を手配します。</p></li>
+        <li><span class="flow-no">工程 40</span><h3>加工・検査</h3><p>図面の指示どおりに削り、測って確かめます。</p></li>
+        <li><span class="flow-no">工程 50</span><h3>納品</h3><p>ご希望があれば、検査成績書を付けます。</p></li>
       </ol>
       <p class="small">納期は数量と形によります。急ぎのときは、見積もりのご依頼のときにお書きください。図面の扱いについて秘密保持の契約が必要な場合は、先にお知らせください。</p>
     </div>
@@ -435,7 +455,7 @@
       <p class="footer-name">有限会社 見本精工<small>（架空）</small></p>
       <p>静岡県静岡市駿河区○○町4-5-6　TEL 054-000-0000</p>
     </div>
-    <div class="footer-note"><p>このページはラクワーク工房が作ったホームページの見本です。掲載している会社・人物・連絡先・設備は実在しません。</p></div>
+    <div class="footer-note"><p>このページはラクワーク工房が作ったホームページの見本です。掲載している会社・人物・連絡先・設備は実在しません。写真は Unsplash の写真で、実在の工場や設備ではありません。</p></div>
   </div></div>
 </footer>
 

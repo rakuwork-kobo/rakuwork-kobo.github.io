@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<p class="sample">ホームページの見本です。医院名・住所・電話番号・人物はすべて架空です。</p>
+<p class="sample">ホームページの見本です。医院名・住所・電話番号・人物はすべて架空で、写真はイメージです。</p>
 
 <header class="site-header">
   <div class="wrap header-in">
@@ -28,6 +28,10 @@
 
 <main id="top">
   <section class="hero">
+    <div class="hero-photo">
+      <img src="img/clinic_hero.jpg" srcset="img/clinic_hero_s.jpg 800w, img/clinic_hero.jpg 1600w" sizes="100vw" width="1600" height="1068" alt="木の壁と、植物が透けて見えるすりガラスのある、低いソファの待合スペース" fetchpriority="high">
+      <p class="ph-tag hero-tag">写真はイメージです</p>
+    </div>
     <div class="wrap hero-in">
       <div class="hero-text">
         <p class="eyebrow">静岡市葵区・見本町バス停から歩いて3分</p>
@@ -38,62 +42,21 @@
           <a class="btn btn-ghost hide-sp" href="#first">初めての方へ</a>
         </div>
       </div>
-
-      <div class="hero-side">
-        <section class="today" aria-labelledby="today-t">
-          <div class="today-head">
-            <h2 id="today-t">曜日で見る診療時間</h2>
-            <p>予約なしで受診できます</p>
-            <p class="today-off">休診：木・土の午後／日・祝</p>
-          </div>
-          <dl class="week">
-            <div class="w-full"><dt>月・火・水・金</dt><dd><span>午前 9:00〜12:00</span><span>午後 15:00〜18:00</span></dd></div>
-            <div class="w-half"><dt>木・土</dt><dd><span>午前 9:00〜12:00</span><span class="w-tag">午後は休み</span></dd></div>
-            <div class="w-closed"><dt>日・祝</dt><dd><span class="w-off">休診</span></dd></div>
-          </dl>
-          <p class="today-foot">受付は、終わりの15分前まで（午前11:45・午後17:45）</p>
-        </section>
-        <svg class="hero-art" viewBox="0 0 480 300" role="img" aria-label="医院の外観のイラスト。入口は段差のないスロープです">
-          <rect width="480" height="300" rx="16" fill="#e4eee8"/>
-          <circle class="ha-glow" cx="404" cy="62" r="46" fill="#f4e6c6"/>
-          <circle class="ha-sun" cx="404" cy="62" r="26" fill="#f1dcb2"/>
-          <g class="ha-cloud ha-cloud1" fill="#f7faf7"><ellipse cx="70" cy="66" rx="36" ry="10"/><circle cx="60" cy="58" r="12"/><circle cx="80" cy="55" r="15"/></g>
-          <g class="ha-cloud ha-cloud2" fill="#f7faf7"><ellipse cx="330" cy="38" rx="24" ry="7"/><circle cx="324" cy="33" r="8"/><circle cx="337" cy="31" r="10"/></g>
-          <g class="ha-hills">
-            <path d="M0 150 C70 120 130 112 200 130 C260 106 330 100 400 118 C430 110 460 112 480 116 V240 H0Z" fill="#cfe0d5"/>
-            <path d="M0 236 C120 214 270 230 480 206 V300 H0Z" fill="#d2e3d8"/>
-          </g>
-          <g class="ha-rows" fill="none" stroke="#a9c8b4" stroke-width="7" stroke-linecap="round"><path pathLength="1" d="M10 262 C120 246 300 254 470 236"/><path pathLength="1" d="M10 280 C130 264 300 272 470 254"/><path pathLength="1" d="M30 296 C140 284 300 290 460 274"/></g>
-          <g class="ha-fill">
-            <rect x="112" y="98" width="240" height="140" rx="4" fill="#fdfbf6"/>
-            <rect x="100" y="84" width="264" height="20" rx="4" fill="#1f6b5c"/>
-            <rect x="138" y="126" width="54" height="42" rx="3" fill="#cfe0e8"/>
-            <rect x="272" y="126" width="54" height="42" rx="3" fill="#cfe0e8"/>
-            <rect x="206" y="160" width="52" height="78" rx="3" fill="#1f6b5c"/>
-            <rect x="214" y="170" width="36" height="40" rx="2" fill="#cfe0e8"/>
-          </g>
-          <g class="ha-lamp" fill="#fbfdfc"><rect x="138" y="126" width="54" height="42" rx="3"/><rect x="272" y="126" width="54" height="42" rx="3"/><rect x="214" y="170" width="36" height="40" rx="2"/></g>
-          <path class="ha-frame" d="M138 147h54M165 126v42M272 147h54M299 126v42" stroke="#fdfbf6" stroke-width="3"/>
-          <g class="ha-line" fill="none" stroke="#1f6b5c" stroke-width="2" stroke-linejoin="round"><path pathLength="1" d="M112 238V104H100V84H364V104H352V238"/><path pathLength="1" d="M138 126h54v42h-54z"/><path pathLength="1" d="M272 126h54v42h-54z"/><path pathLength="1" d="M206 238V160h52v78"/></g>
-          <g class="ha-ramp">
-            <path d="M258 238 L318 238 L318 230 Z" fill="#c9d8ce"/>
-            <path d="M262 226 L318 220" stroke="#8a6a48" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g class="ha-sign">
-            <rect x="170" y="56" width="124" height="28" rx="4" fill="#fdfbf6" stroke="#1f6b5c" stroke-width="2"/>
-            <text x="232" y="75" text-anchor="middle" font-size="13" fill="#1f6b5c" font-weight="700">見本内科</text>
-          </g>
-          <g class="ha-tree ha-tree1"><g class="ha-sway">
-            <rect x="60" y="164" width="9" height="78" fill="#8a6a48"/>
-            <circle cx="64" cy="146" r="34" fill="#7fb08f"/><circle cx="44" cy="170" r="22" fill="#6aa17d"/><circle cx="86" cy="168" r="20" fill="#8fbd9d"/>
-          </g></g>
-          <g class="ha-tree ha-tree2"><g class="ha-sway">
-            <rect x="404" y="188" width="7" height="54" fill="#8a6a48"/>
-            <circle cx="407" cy="176" r="22" fill="#7fb08f"/>
-          </g></g>
-          <g class="ha-bench"><rect x="358" y="214" width="34" height="5" rx="2" fill="#8a6a48"/><path d="M362 219v14M388 219v14" stroke="#8a6a48" stroke-width="3"/></g>
-        </svg>
-      </div>
+    </div>
+    <div class="wrap hero-bar">
+      <section class="today" aria-labelledby="today-t">
+        <div class="today-head">
+          <h2 id="today-t">曜日で見る診療時間</h2>
+          <p>予約なしで受診できます</p>
+          <p class="today-off">休診：木・土の午後／日・祝</p>
+        </div>
+        <dl class="week">
+          <div class="w-full"><dt>月・火・水・金</dt><dd><span>午前 9:00〜12:00</span><span>午後 15:00〜18:00</span></dd></div>
+          <div class="w-half"><dt>木・土</dt><dd><span>午前 9:00〜12:00</span><span class="w-tag">午後は休み</span></dd></div>
+          <div class="w-closed"><dt>日・祝</dt><dd><span class="w-off">休診</span></dd></div>
+        </dl>
+        <p class="today-foot">受付は、終わりの15分前まで（午前11:45・午後17:45）</p>
+      </section>
     </div>
   </section>
 
@@ -151,7 +114,8 @@
         <li><span class="step-no">4</span><h3>お会計</h3><p>お会計のあと、処方箋をお渡しします（院外処方）。</p></li>
       </ol>
       <div class="first-bottom">
-        <div class="panel bring">
+        <div class="panel bring panel-ph">
+          <figure class="ph ph-panel"><img src="img/clinic_reception_s.jpg" srcset="img/clinic_reception_s.jpg 800w, img/clinic_reception.jpg 1600w" sizes="(max-width:680px) 100vw, 600px" width="1600" height="970" alt="木の縦格子の受付カウンターと、そばに置かれた鉢植えの木" loading="lazy"><figcaption class="ph-tag">受付・イメージ写真</figcaption></figure>
           <h3>お持ちいただくもの</h3>
           <ul class="checks">
             <li>マイナ保険証、または資格確認書</li>
@@ -159,21 +123,9 @@
             <li>紹介状・健診の結果（お持ちの方）</li>
           </ul>
         </div>
-        <div class="panel ease">
+        <div class="panel ease panel-ph">
+          <figure class="ph ph-panel"><img src="img/clinic_wait_s.jpg" srcset="img/clinic_wait_s.jpg 800w, img/clinic_wait.jpg 1600w" sizes="(max-width:680px) 100vw, 600px" width="1600" height="1067" alt="白い椅子が並び、観葉植物が置かれた明るい待合室" loading="lazy"><figcaption class="ph-tag">待合・イメージ写真</figcaption></figure>
           <h3>院内のこと</h3>
-          <svg class="room" viewBox="0 0 480 150" role="img" aria-label="待合室のイラスト。窓ぎわに長いすと観葉植物があります">
-            <rect width="480" height="150" rx="8" fill="#f1ece2"/>
-            <rect x="0" y="118" width="480" height="32" fill="#e4dccd"/>
-            <rect x="40" y="18" width="150" height="74" rx="4" fill="#d6e6ec"/>
-            <rect class="rm-sun" x="40" y="18" width="150" height="74" rx="4" fill="#fbf3dc"/>
-            <path d="M115 18v74M40 55h150" stroke="#f1ece2" stroke-width="5"/>
-            <path class="rm-beam" d="M40 92h150l60 26H70z" fill="#f8f1df"/>
-            <rect x="230" y="70" width="170" height="14" rx="7" fill="#1f6b5c"/><rect x="230" y="82" width="170" height="26" rx="6" fill="#2c7f6e"/>
-            <path d="M242 108v14M388 108v14" stroke="#6d5a45" stroke-width="6"/>
-            <rect x="420" y="88" width="22" height="32" rx="3" fill="#b59d7c"/>
-            <g class="rm-plant"><circle cx="431" cy="74" r="20" fill="#7fb08f"/><circle cx="418" cy="84" r="11" fill="#6aa17d"/><path d="M431 88v-8" stroke="#6aa17d" stroke-width="3"/></g>
-            <rect x="214" y="22" width="40" height="40" rx="20" fill="#fdfbf6" stroke="#c9b79c" stroke-width="3"/><path d="M234 42l7 5" stroke="#6d5a45" stroke-width="3" fill="none" stroke-linecap="round"/><path class="rm-hand" d="M234 42V29" stroke="#6d5a45" stroke-width="3" fill="none" stroke-linecap="round"/>
-          </svg>
           <ul class="ease-list">
             <li><b>入口</b>段差のないスロープです。車いすのまま診察室まで入れます。</li>
             <li><b>受付</b>筆談用のボードと老眼鏡を置いています。</li>
@@ -188,6 +140,9 @@
   <section id="medical" class="section">
     <div class="wrap">
       <div class="section-head"><h2>診療内容</h2><p class="section-lead">中学生以上の方を診ています。どこにかかればよいか分からないときも、まずはご相談ください。</p></div>
+      <figure class="ph med-photo"><img src="img/clinic_exam_s.jpg" srcset="img/clinic_exam_s.jpg 800w, img/clinic_exam.jpg 1600w" sizes="(max-width:1120px) 100vw, 1072px" width="1600" height="900" alt="白衣の人が、机の上の用紙にペンで書き込んでいる手元" loading="lazy">
+        <figcaption><span class="ph-tag">診察・イメージ写真</span><span class="med-cap">いまの様子や、ふだんの暮らしのことを伺ってから、検査やお薬を一緒に決めていきます。</span></figcaption>
+      </figure>
       <div class="cards">
         <article class="card card-big"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#ffffff"/><path d="M24 13v14" stroke="#1f6b5c" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="31" r="5" fill="none" stroke="#1f6b5c" stroke-width="3"/></svg><h3>一般内科</h3><p>風邪、発熱、せき、のどの痛み、腹痛、下痢、頭痛など。</p></article>
         <article class="card card-big"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#ffffff"/><path d="M11 26h7l3-7 5 13 3-6h8" fill="none" stroke="#1f6b5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>生活習慣病</h3><p>高血圧、脂質異常症、糖尿病、高尿酸血症の検査と、続けての治療。</p></article>
@@ -225,6 +180,14 @@
     </div>
   </section>
 
+  <div class="window">
+    <img src="img/clinic_plant_s.jpg" srcset="img/clinic_plant_s.jpg 800w, img/clinic_plant.jpg 1600w" sizes="100vw" width="1600" height="1067" alt="窓辺に並んだ、白い鉢と素焼きの鉢の観葉植物" loading="lazy">
+    <div class="wrap window-in">
+      <p class="window-copy">体のことも、暮らしのことも。<span>「ちょっと聞きたい」から、どうぞ。</span></p>
+    </div>
+    <p class="ph-tag window-tag">イメージ写真</p>
+  </div>
+
   <section id="faq" class="section">
     <div class="wrap narrow">
       <div class="section-head"><h2>よくあるご質問</h2></div>
@@ -248,6 +211,49 @@
           <div><dt>目印</dt><dd>県道○○号線沿い、緑の看板の白い建物です</dd></div>
           <div><dt>休診日</dt><dd>木曜午後・土曜午後・日曜・祝日</dd></div>
         </dl>
+        <figure class="ext">
+          <svg class="ext-art" viewBox="0 0 480 300" role="img" aria-label="医院の外観のイラスト。緑の看板の白い建物で、入口は段差のないスロープです">
+            <rect width="480" height="300" rx="16" fill="#e4eee8"/>
+            <circle class="ha-glow" cx="404" cy="62" r="46" fill="#f4e6c6"/>
+            <circle class="ha-sun" cx="404" cy="62" r="26" fill="#f1dcb2"/>
+            <g class="ha-cloud ha-cloud1" fill="#f7faf7"><ellipse cx="70" cy="66" rx="36" ry="10"/><circle cx="60" cy="58" r="12"/><circle cx="80" cy="55" r="15"/></g>
+            <g class="ha-cloud ha-cloud2" fill="#f7faf7"><ellipse cx="330" cy="38" rx="24" ry="7"/><circle cx="324" cy="33" r="8"/><circle cx="337" cy="31" r="10"/></g>
+            <g class="ha-hills">
+              <path d="M0 150 C70 120 130 112 200 130 C260 106 330 100 400 118 C430 110 460 112 480 116 V240 H0Z" fill="#cfe0d5"/>
+              <path d="M0 236 C120 214 270 230 480 206 V300 H0Z" fill="#d2e3d8"/>
+            </g>
+            <g class="ha-rows" fill="none" stroke="#a9c8b4" stroke-width="7" stroke-linecap="round"><path pathLength="1" d="M10 262 C120 246 300 254 470 236"/><path pathLength="1" d="M10 280 C130 264 300 272 470 254"/><path pathLength="1" d="M30 296 C140 284 300 290 460 274"/></g>
+            <g class="ha-fill">
+              <rect x="112" y="98" width="240" height="140" rx="4" fill="#fdfbf6"/>
+              <rect x="100" y="84" width="264" height="20" rx="4" fill="#1f6b5c"/>
+              <rect x="138" y="126" width="54" height="42" rx="3" fill="#cfe0e8"/>
+              <rect x="272" y="126" width="54" height="42" rx="3" fill="#cfe0e8"/>
+              <rect x="206" y="160" width="52" height="78" rx="3" fill="#1f6b5c"/>
+              <rect x="214" y="170" width="36" height="40" rx="2" fill="#cfe0e8"/>
+            </g>
+            <g class="ha-lamp" fill="#fbfdfc"><rect x="138" y="126" width="54" height="42" rx="3"/><rect x="272" y="126" width="54" height="42" rx="3"/><rect x="214" y="170" width="36" height="40" rx="2"/></g>
+            <path class="ha-frame" d="M138 147h54M165 126v42M272 147h54M299 126v42" stroke="#fdfbf6" stroke-width="3"/>
+            <g class="ha-line" fill="none" stroke="#1f6b5c" stroke-width="2" stroke-linejoin="round"><path pathLength="1" d="M112 238V104H100V84H364V104H352V238"/><path pathLength="1" d="M138 126h54v42h-54z"/><path pathLength="1" d="M272 126h54v42h-54z"/><path pathLength="1" d="M206 238V160h52v78"/></g>
+            <g class="ha-ramp">
+              <path d="M258 238 L318 238 L318 230 Z" fill="#c9d8ce"/>
+              <path d="M262 226 L318 220" stroke="#8a6a48" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <g class="ha-sign">
+              <rect x="170" y="56" width="124" height="28" rx="4" fill="#fdfbf6" stroke="#1f6b5c" stroke-width="2"/>
+              <text x="232" y="75" text-anchor="middle" font-size="13" fill="#1f6b5c" font-weight="700">見本内科</text>
+            </g>
+            <g class="ha-tree ha-tree1"><g class="ha-sway">
+              <rect x="60" y="164" width="9" height="78" fill="#8a6a48"/>
+              <circle cx="64" cy="146" r="34" fill="#7fb08f"/><circle cx="44" cy="170" r="22" fill="#6aa17d"/><circle cx="86" cy="168" r="20" fill="#8fbd9d"/>
+            </g></g>
+            <g class="ha-tree ha-tree2"><g class="ha-sway">
+              <rect x="404" y="188" width="7" height="54" fill="#8a6a48"/>
+              <circle cx="407" cy="176" r="22" fill="#7fb08f"/>
+            </g></g>
+            <g class="ha-bench"><rect x="358" y="214" width="34" height="5" rx="2" fill="#8a6a48"/><path d="M362 219v14M388 219v14" stroke="#8a6a48" stroke-width="3"/></g>
+          </svg>
+          <figcaption>外観のイラストです。緑の看板の白い建物が目印です。</figcaption>
+        </figure>
       </div>
       <figure class="map">
         <svg viewBox="0 0 480 340" role="img" aria-label="医院のまわりの略図。見本町バス停から県道を渡ってすぐです">
@@ -285,7 +291,7 @@
       <p>静岡県静岡市葵区見本町1-2-3　TEL 054-000-0000</p>
       <p>診療科目：内科・アレルギー科　休診日：木曜午後・土曜午後・日曜・祝日</p>
     </div>
-    <div class="footer-note"><p>このページはラクワーク工房が作ったホームページの見本です。掲載している医院・人物・連絡先は実在しません。</p></div>
+    <div class="footer-note"><p>このページはラクワーク工房が作ったホームページの見本です。掲載している医院・人物・連絡先は実在しません。写真は Unsplash の写真で、実在の医院の院内ではありません。</p></div>
   </div>
 </footer>
 

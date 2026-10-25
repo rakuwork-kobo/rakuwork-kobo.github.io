@@ -37,21 +37,27 @@ p{margin:0}
 .header-tel svg{width:19px;height:19px}
 
 /* 最初の画面 */
-.hero{padding:56px 0 24px;position:relative;overflow:hidden}
+/* 写真：大きな待合の写真の左を、洗いたての布のような白でやわらかく覆い、その上に文字をのせる。
+   写真の上のほう（天井）は、写真の箱を1.18倍の高さにして下にそろえ、いつも切り落とす。 */
+.hero{position:relative;overflow:hidden;padding:0 0 4px}
+.hero-photo{position:absolute;left:0;right:0;top:0;bottom:96px;overflow:hidden;z-index:0;background:#dcd8cc}
+.hero-photo img{position:absolute;left:0;bottom:0;width:100%;height:118%;max-width:none;object-fit:cover;object-position:56% 34%;filter:saturate(.95) contrast(1.02);transform-origin:60% 60%}
+.hero-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(251,250,246,.97) 0%,rgba(251,250,246,.92) 38%,rgba(251,250,246,.45) 53%,rgba(251,250,246,0) 68%),linear-gradient(0deg,rgba(251,250,246,1) 0%,rgba(251,250,246,0) 30%),linear-gradient(rgba(244,232,206,.14),rgba(244,232,206,.14))}
+.ph-tag{display:inline-block;margin:0;background:rgba(255,255,255,.94);color:var(--green-d);font-size:13px;font-weight:700;letter-spacing:.08em;line-height:1.6;padding:3px 12px;border-radius:999px;border:1px solid #c4d9cd}
+.hero-tag{position:absolute;right:max(24px,calc(50% - 536px));top:18px;z-index:2}
 /* 朝の窓辺のような、やわらかな光（飾り） */
-.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0;opacity:.7}
-.hero::before{left:-18%;top:-200px;width:min(820px,130vw);aspect-ratio:1;background:radial-gradient(closest-side,rgba(246,222,168,.95),rgba(246,222,168,.4) 55%,rgba(246,222,168,0))}
-.hero::after{right:-14%;bottom:-260px;width:min(720px,110vw);aspect-ratio:1;background:radial-gradient(closest-side,rgba(170,208,186,.6),rgba(170,208,186,0))}
-.hero-in{display:grid;grid-template-columns:1.08fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:1;opacity:.7}
+.hero::before{left:-24%;top:-260px;width:min(820px,130vw);aspect-ratio:1;background:radial-gradient(closest-side,rgba(246,222,168,.95),rgba(246,222,168,.4) 55%,rgba(246,222,168,0))}
+.hero::after{right:-14%;bottom:-300px;width:min(720px,110vw);aspect-ratio:1;background:radial-gradient(closest-side,rgba(170,208,186,.45),rgba(170,208,186,0))}
+.hero-in{position:relative;z-index:2;padding-top:76px;padding-bottom:52px}
+.hero-text{max-width:600px}
 .eyebrow{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--green-d);font-weight:700;margin-bottom:20px}
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--green);flex-shrink:0}
-.hero h1{font-size:42px;letter-spacing:.02em;line-height:1.5}
+.hero h1{font-size:42px;letter-spacing:.02em;line-height:1.5;text-shadow:0 0 18px rgba(251,250,246,.9)}
 .hero h1 .ln{display:block}
 .hero h1 .ln-g{display:inline-block;position:relative;color:var(--green)}
 .hero h1 .ln-g::after{content:"";position:absolute;left:-.1em;right:-.1em;bottom:.14em;height:.3em;background:#d8e9df;border-radius:3px;z-index:-1}
 .ha-lamp{opacity:.25}
-.rm-sun{opacity:.4}
-.rm-beam{opacity:.6}
 .lead{color:var(--sub);font-size:18px;margin-top:22px;max-width:29em}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;font-weight:700;text-decoration:none;font-size:17.5px}
@@ -62,8 +68,8 @@ p{margin:0}
 .btn-ghost:hover{border-color:var(--green)}
 
 /* 曜日で見る診療時間（診察券のような札） */
-.hero-side{display:flex;flex-direction:column;gap:18px}
-.today{background:var(--white);border:1.5px solid var(--green);border-radius:var(--r);overflow:hidden}
+.hero-bar{position:relative;z-index:2}
+.today{background:var(--white);border:1.5px solid var(--green);border-radius:var(--r);overflow:hidden;box-shadow:0 16px 40px rgba(26,39,37,.13)}
 .today-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;background:var(--green);color:#fff;padding:12px 22px}
 .today-head h2{font-size:18px;letter-spacing:.08em}
 .today-head p{font-size:14.5px;color:#e4f0eb}
@@ -77,10 +83,18 @@ p{margin:0}
 .week .w-tag{display:inline-block;background:#f3eee5;color:#5b4a38;font-size:15px;padding:0 10px;border-radius:4px;align-self:center;line-height:1.8}
 .week .w-closed dt{color:#6b5a48}
 .today-foot{font-size:15.5px;color:var(--sub);background:#f6f3ec;padding:10px 22px;border-top:1px solid var(--line-l)}
-.hero-art{width:100%;height:auto;border-radius:var(--r)}
+@media (min-width:1001px){
+  .today{display:grid;grid-template-columns:250px 1fr}
+  .today-head{grid-row:1 / 3;flex-direction:column;align-items:flex-start;justify-content:center;padding:20px 24px;gap:6px}
+  .today-head .today-off{flex-basis:auto}
+  .week{display:grid;grid-template-columns:1.3fr 1fr .62fr;padding:0}
+  .week div{grid-template-columns:1fr;gap:2px;border-bottom:0;border-left:1px solid var(--line-l);padding:16px 22px}
+  .week div:first-child{border-left:0}
+  .today-foot{grid-column:2}
+}
 
 /* 入口のボタン */
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;margin-bottom:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:36px;margin-bottom:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .quick a{display:flex;align-items:center;gap:14px;padding:20px 18px;text-decoration:none;color:var(--ink);font-weight:700;font-size:17.5px;transition:background-color .15s}
 .quick a+a{border-left:1px solid var(--line)}
 .quick a:hover{background:var(--green-l)}
@@ -139,7 +153,27 @@ p{margin:0}
 .checks li::before{content:"";position:absolute;left:4px;top:19px;width:16px;height:9px;border-left:3px solid var(--green);border-bottom:3px solid var(--green);transform:rotate(-45deg)}
 .ease-list li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);line-height:1.75}
 .ease-list b{color:var(--green-d)}
-.ease .room{width:100%;height:auto;margin:4px 0 8px;border-radius:6px}
+/* 写真の枠：色調のばらつきを、うすい生成り色の重ねでそろえる。札はいつも「イメージ写真」 */
+.ph{position:relative;margin:0;overflow:hidden;background:#e4e0d4}
+.ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.88) contrast(.97)}
+.ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(160deg,rgba(248,232,196,.16),rgba(31,107,92,.06))}
+.ph .ph-tag{position:absolute;left:14px;bottom:14px;z-index:1}
+.panel-ph{overflow:hidden}
+.ph-panel{margin:-28px -28px 22px;aspect-ratio:16/9}
+.ph-panel img{object-position:50% 60%}
+.bring .ph-panel img{object-position:40% 70%}
+@media (min-width:681px){.bring .ph-panel{aspect-ratio:16/11}}
+.med-photo{border-radius:var(--r);margin-bottom:26px;aspect-ratio:1072/400}
+.med-photo img{object-position:50% 46%}
+.med-photo figcaption{position:absolute;left:22px;bottom:22px;z-index:1;margin:0;max-width:27em;background:rgba(255,255,255,.95);border-radius:var(--panel);padding:16px 20px;color:var(--ink);font-size:16.5px;line-height:1.8}
+.med-photo figcaption .ph-tag{position:static;display:table;margin-bottom:6px;background:var(--green-l)}
+.window{position:relative;overflow:hidden;min-height:320px;display:flex;align-items:center;background:#e4e0d4}
+.window img{position:absolute;left:0;top:-8%;width:100%;height:116%;max-width:none;object-fit:cover;object-position:50% 55%;filter:saturate(.85) contrast(.96)}
+.window::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(251,250,246,.55) 0%,rgba(251,250,246,0) 55%),linear-gradient(rgba(244,232,206,.16),rgba(244,232,206,.16))}
+.window-in{position:relative;z-index:1;width:100%}
+.window-copy{display:inline-block;background:rgba(251,250,246,.94);border-left:5px solid var(--green);border-radius:0 var(--panel) var(--panel) 0;padding:18px 26px;font-size:24px;font-weight:700;line-height:1.6;color:var(--ink)}
+.window-copy span{display:block;font-size:17px;font-weight:400;color:var(--sub)}
+.window-tag{position:absolute;right:max(24px,calc(50% - 536px));bottom:16px;z-index:1}
 
 /* 診療内容 */
 .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
@@ -187,6 +221,8 @@ p{margin:0}
 .info small{display:block;font-size:13.5px;color:var(--sub)}
 .tel-big{font-size:28px;font-weight:700;text-decoration:none;letter-spacing:.05em;font-variant-numeric:tabular-nums}
 .map{margin:0}
+.ext{margin:28px 0 0}
+.ext-art{width:100%;height:auto;border-radius:var(--r)}
 .map svg{width:100%;height:auto;border-radius:var(--r)}
 figcaption{font-size:14px;color:var(--sub);margin-top:8px}
 
@@ -213,7 +249,10 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
 }
 /* タブレット */
 @media (max-width:1000px){
-  .hero-in{grid-template-columns:1fr;gap:36px}
+  .hero-photo{position:relative;bottom:auto;height:clamp(230px,50vw,440px)}
+  .hero-photo::after{background:linear-gradient(0deg,rgba(251,250,246,1) 0%,rgba(251,250,246,.86) 18%,rgba(251,250,246,0) 50%),linear-gradient(rgba(244,232,206,.14),rgba(244,232,206,.14))}
+  .hero-tag{top:12px;right:12px}
+  .hero-in{padding-top:0;margin-top:-64px;padding-bottom:30px}
   .quick{grid-template-columns:repeat(2,1fr)}
   .quick a:nth-child(3){border-left:0}
   .quick a:nth-child(n+3){border-top:1px solid var(--line)}
@@ -229,14 +268,22 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
   .brand-name{font-size:17px}
   .header-tel{padding:0;width:48px;height:48px;justify-content:center}
   .header-tel .tel-num{display:none}
-  .hero{padding:24px 0 16px}
-  .eyebrow{font-size:14px;margin-bottom:14px}
-  .hero h1{font-size:27px;line-height:1.55}
-  .lead{font-size:17px;margin-top:14px}
-  .hero-actions{margin-top:20px}
+  /* スマホ：写真を画面の6割ほどにして、見出しと電話ボタンを写真の下側に重ねる。説明文は写真のすぐ下 */
+  .hero{padding:0 0 4px;display:grid;grid-template-columns:100%}
+  .hero-photo{grid-area:1 / 1;height:58vh;height:58svh;min-height:400px;max-height:560px}
+  .hero-photo::after{background:linear-gradient(0deg,rgba(251,250,246,.97) 0%,rgba(251,250,246,.9) 30%,rgba(251,250,246,.62) 44%,rgba(251,250,246,0) 62%),linear-gradient(rgba(244,232,206,.12),rgba(244,232,206,.12))}
+  .hero-in,.hero-text{display:contents}
+  .hero .eyebrow{grid-area:1 / 1;align-self:start;justify-self:start;position:relative;z-index:2;margin:12px 0 0 12px;background:rgba(255,255,255,.93);border-radius:999px;padding:3px 12px;font-size:13px;gap:0}
+  .hero .eyebrow::before{display:none}
+  .hero-tag{top:50px;right:12px}
+  .hero h1{grid-area:1 / 1;align-self:end;position:relative;z-index:2;margin:0 16px 100px;font-size:26px}
+  .hero-actions{grid-area:1 / 1;align-self:end;position:relative;z-index:2;margin:0 16px 22px}
+  .hero .lead{grid-area:2 / 1;margin:14px 16px 0;font-size:16.5px}
+  .hero-bar{grid-area:3 / 1;margin-top:18px}
+  .hero::before{opacity:.35}
+  .ph-tag{font-size:12.5px;padding:2px 10px}
   .hero-actions .btn{flex:1 1 100%}
   .hide-sp{display:none}
-  .hero-in{gap:24px}
   .today-head{padding:11px 16px}
   .week{padding:4px 16px}
   .week div{grid-template-columns:1fr;padding:11px 0}
@@ -270,6 +317,15 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
   .step-no{grid-row:span 2;margin:0}
   .ease-list li{grid-template-columns:4.6em 1fr;gap:8px}
   .doctor{gap:20px}
+  .ph-panel{margin:-20px -18px 18px}
+  .med-photo{aspect-ratio:auto;border-radius:0;background:transparent}
+  .med-photo::after{display:none}
+  .med-photo img{border-radius:10px;aspect-ratio:16/10;height:auto}
+  .med-photo figcaption{position:static;max-width:none;padding:12px 2px 0;background:transparent;font-size:16px}
+  .window{min-height:260px;align-items:flex-end;padding-bottom:22px}
+  .window-copy{font-size:20px;padding:14px 18px}
+  .window-copy span{font-size:15.5px}
+  .window-tag{top:12px;right:12px;bottom:auto}
   .doctor-photo{max-width:180px}
   .letter{padding:22px 20px}
   .letter p{font-size:17px;line-height:2}
@@ -283,8 +339,9 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
 
 /* 動き（CSSだけ・見本として分かる強さに。ただし医院らしく、やわらかく静かに）
    ・「動きを減らす」設定の人には何も動かさない（このかたまりの外には動きを書かない）。
-   ・開いたとき：見出しが一行ずつふわっと並び、外観の絵は線から描き出されて色がのる（3秒ほどで出そろう）。
-   ・ずっと続く飾り：光の呼吸・雲・木のそよぎ・窓の灯り・待合の窓の日ざし・時計の針・地図の道順。どれもゆっくり小さく、点滅はさせない。
+   ・開いたとき：待合の写真が少し引きながら明るく現れ、見出しが一行ずつふわっと並ぶ（3秒ほどで出そろう）。
+   ・ずっと続く飾り：写真のごくゆっくりした寄り・光の呼吸・写真に差す日ざし・雲・木のそよぎ・窓の灯り・地図の道順。どれもゆっくり小さく、点滅はさせない。
+   ・外観の絵（アクセス）は、マウス操作の対応ブラウザでは、見えてきたところで線から描き出されて色がのる。それ以外は最初から描き上がった姿。
    ・スクロールに合わせた出方は、対応ブラウザのマウス操作だけ（スマホ・タブレットは指を離したあとの惰性スクロールが引っかかるので出さない）。未対応なら最初から全部見える。
    ・診療時間（曜日の札と表）・お知らせ・発熱の案内・電話・受付の時刻・アクセスの文字・下の操作バーは動かさず、最初からそのまま見せる。 */
 @media (prefers-reduced-motion:no-preference){
@@ -323,33 +380,25 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
   .hero h1 .ln-g::after{transform-origin:left;animation:cl-grow-x 1.1s cubic-bezier(.4,0,.2,1) 1.45s both}
   .hero .lead{animation:cl-rise .95s cubic-bezier(.22,.7,.3,1) 1s both}
 
-  /* 外観の絵：丘が上がり、建物が線で描かれてから色がのり、木が育つ。そのあと木と雲と日ざしがゆっくり動き続ける */
-  .hero-art{animation:cl-fade .8s ease-out .1s both}
-  .hero-art g,.hero-art circle,.hero-art path,.hero-art rect{transform-box:fill-box}
-  .ha-hills{animation:cl-up 1.2s cubic-bezier(.22,.7,.3,1) .2s both}
-  .ha-rows path{stroke-dasharray:1;animation:cl-draw 1.6s ease-in-out both}
-  .ha-rows path:nth-child(1){animation-delay:.5s}
-  .ha-rows path:nth-child(2){animation-delay:.7s}
-  .ha-rows path:nth-child(3){animation-delay:.9s}
-  .ha-line path{stroke-dasharray:1;animation:cl-draw 1.4s cubic-bezier(.45,.1,.35,1) .4s both}
-  .ha-line path:nth-child(2){animation-delay:1s;animation-duration:.8s}
-  .ha-line path:nth-child(3){animation-delay:1.2s;animation-duration:.8s}
-  .ha-line path:nth-child(4){animation-delay:1.35s;animation-duration:.9s}
-  .ha-fill,.ha-frame{animation:cl-fade 1s ease-out 1.6s both}
-  .ha-ramp{animation:cl-fade .9s ease-out 2.3s both}
-  .ha-sign{animation:cl-up 1s cubic-bezier(.22,.7,.3,1) 2.1s both}
-  .ha-lamp{animation:cl-lamp 6s ease-in-out 2.4s infinite alternate backwards}
+  /* 最初の写真：少し寄った所から、ゆっくり引いて明るく現れる。そのあとは、ほとんど分からない速さで寄ったり戻ったり */
+  @keyframes cl-photo-in{from{opacity:0;transform:scale(1.07)}to{opacity:1;transform:none}}
+  @keyframes cl-photo-drift{from{transform:none}to{transform:scale(1.04) translateX(-1%)}}
+  .hero-photo img{animation:cl-photo-in 2.6s cubic-bezier(.2,.6,.2,1) both,cl-photo-drift 26s ease-in-out 2.6s infinite alternate}
+  .hero-tag{animation:cl-fade 1s ease-out 1.6s both}
+
+  /* 写真に差す日ざし：生成り色の重ねが、呼吸するように明るさを行き来する */
+  @keyframes cl-sunlight{from{opacity:.55}to{opacity:1}}
+  .ph::after,.window::after{animation:cl-sunlight 10s ease-in-out infinite alternate}
+
+  /* 外観の絵：木と雲と日ざしと窓の灯りが、ゆっくり動き続ける */
+  .ext-art g,.ext-art circle,.ext-art path,.ext-art rect{transform-box:fill-box}
+  .ha-lamp{animation:cl-lamp 6s ease-in-out infinite alternate}
   .ha-tree,.ha-sway{transform-origin:50% 100%}
-  .ha-tree{animation:cl-grow 1.3s cubic-bezier(.25,.7,.3,1) both}
-  .ha-tree1{animation-delay:1.2s}
-  .ha-tree2{animation-delay:1.6s}
-  .ha-tree1 .ha-sway{animation:cl-sway 5.5s ease-in-out 2.5s infinite alternate}
-  .ha-tree2 .ha-sway{animation:cl-sway 7s ease-in-out 2.9s infinite alternate-reverse}
-  .ha-bench{animation:cl-fade .9s ease-out 2.6s both}
-  .ha-sun{animation:cl-fade 1.2s ease-out .3s both}
-  .ha-glow{transform-origin:50% 50%;animation:cl-glow-in 1.2s ease-out .3s both,cl-glow 7s ease-in-out 1.5s infinite alternate}
-  .ha-cloud1{animation:cl-fade 1.2s ease-out .6s both,cl-drift 18s ease-in-out infinite alternate}
-  .ha-cloud2{animation:cl-fade 1.2s ease-out .9s both,cl-drift 23s ease-in-out infinite alternate-reverse}
+  .ha-tree1 .ha-sway{animation:cl-sway 5.5s ease-in-out infinite alternate}
+  .ha-tree2 .ha-sway{animation:cl-sway 7s ease-in-out infinite alternate-reverse}
+  .ha-glow{transform-origin:50% 50%;animation:cl-glow 7s ease-in-out infinite alternate}
+  .ha-cloud1{animation:cl-drift 18s ease-in-out infinite alternate}
+  .ha-cloud2{animation:cl-drift 23s ease-in-out infinite alternate-reverse}
 
   /* 入口のボタン：順に並ぶ（文字はすぐ読める速さ） */
   .quick a{animation:cl-up .8s cubic-bezier(.22,.7,.3,1) both}
@@ -357,11 +406,6 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
   .quick a:nth-child(2){animation-delay:1.25s}
   .quick a:nth-child(3){animation-delay:1.4s}
   .quick a:nth-child(4){animation-delay:1.55s}
-
-  /* 待合室の絵：窓の日ざしがゆっくり明るくなり、植物がそよぎ、時計の長い針が回る */
-  .room .rm-sun,.room .rm-beam{animation:cl-sun 8s ease-in-out infinite alternate}
-  .room .rm-plant{transform-box:fill-box;transform-origin:50% 100%;animation:cl-sway 6s ease-in-out infinite alternate}
-  .room .rm-hand{transform-box:view-box;transform-origin:234px 42px;animation:cl-spin 90s linear infinite}
 
   /* 地図：バス停から医院への道順が、ゆっくり流れる */
   .map-route{animation:cl-flow 4s linear infinite}
@@ -378,7 +422,7 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
     @keyframes cl-line{from{transform:scaleX(0)}to{transform:none}}
     @keyframes cl-pop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
     #first .section-head,#medical .section-head,#faq .section-head,#doctor .doctor-photo,#doctor .doctor-text,
-    .steps li,.bring,.ease,.faq,.map{animation:cl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
+    .steps li,.bring,.ease,.faq,.map,.ext{animation:cl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
     .card{animation:cl-reveal-s linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
     .section-head h2::before,.doctor-text h2::before{transform-origin:50% 100%;animation:cl-bar linear both;animation-timeline:view();animation-range:entry 20% cover 30%}
     .steps li{position:relative;border-top-color:var(--line)}
@@ -391,6 +435,27 @@ figcaption{font-size:14px;color:var(--sub);margin-top:8px}
     .steps li:nth-child(2)::before{animation-range:entry 16% cover 40%}
     .steps li:nth-child(3)::before{animation-range:entry 22% cover 46%}
     .steps li:nth-child(4)::before{animation-range:entry 28% cover 52%}
+
+    /* 写真：見えてくるにつれて、少し寄った所から引いていく。窓辺の写真は、ゆっくり奥へずれる */
+    @keyframes cl-ph-zoom{from{transform:scale(1.12)}to{transform:none}}
+    @keyframes cl-parallax{from{transform:translateY(-6%)}to{transform:translateY(6%)}}
+    .ph img{animation:cl-ph-zoom linear both;animation-timeline:view();animation-range:entry 0% cover 55%}
+    .med-photo{animation:cl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+    .window img{animation:cl-parallax linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+    .window-copy{animation:cl-reveal linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+
+    /* 外観の絵：見えてきたところで、丘が上がり、建物が線で描かれてから色がのり、木が育つ */
+    .ext-art{view-timeline:--ext block}
+    .ha-hills,.ha-rows path,.ha-line path,.ha-fill,.ha-frame,.ha-ramp,.ha-sign,.ha-tree,.ha-bench,.ha-sun{animation-timeline:--ext;animation-fill-mode:both;animation-timing-function:linear}
+    .ha-hills{animation-name:cl-up;animation-range:entry 0% cover 25%}
+    .ha-sun{animation-name:cl-fade;animation-range:entry 0% cover 22%}
+    .ha-rows path{stroke-dasharray:1;animation-name:cl-draw;animation-range:entry 10% cover 30%}
+    .ha-line path{stroke-dasharray:1;animation-name:cl-draw;animation-range:entry 20% cover 34%}
+    .ha-line path:nth-child(n+2){animation-range:cover 18% cover 36%}
+    .ha-fill,.ha-frame{animation-name:cl-fade;animation-range:cover 30% cover 42%}
+    .ha-tree{animation-name:cl-grow;animation-range:cover 26% cover 44%}
+    .ha-sign{animation-name:cl-up;animation-range:cover 34% cover 46%}
+    .ha-ramp,.ha-bench{animation-name:cl-fade;animation-range:cover 38% cover 48%}
   }}
 }
 
