@@ -1,0 +1,48 @@
+# editable/ が書き換わったら、samples/editable/ のページを作り直して載せます。
+# 作り直しに失敗したら（content.yml の書き間違いなど）何も載せず、今のページがそのまま残ります。
+name: お店のページを作り直す
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "editable/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-editable
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: PyYAML を入れる
+        run: pip install "pyyaml==6.0.2"
+
+      - name: ページを作る（書き間違いがあればここで止まる）
+        run: python editable/build.py
+
+      - name: 変わっていれば載せる
+        # 載せるのは samples/editable/ だけ。上の paths に入っていないので、ここから再び動き出すことはない。
+        run: |
+          if [ -z "$(git status --porcelain -- samples/editable)" ]; then
+            echo "ページに変わりはありません。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898899+github-actions[bot]@users.noreply.github.com"
+          git add -- samples/editable
+          git commit -m "お店のページを作り直す（editable/content.yml から自動）"
+          git pull --rebase origin main
+          git push origin HEAD:main

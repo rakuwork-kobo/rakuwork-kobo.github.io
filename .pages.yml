@@ -1,0 +1,85 @@
+# Pages CMS（https://pagescms.org）の設定です。
+# editable/content.yml を、入力欄（フォーム）で書き換えられるようにします。
+media:
+  input: editable/assets/img
+  output: img
+content:
+  - name: shop
+    label: お店のページ（書き換えの試し用）
+    type: file
+    path: editable/content.yml
+    format: yaml
+    fields:
+      - name: shop_name
+        label: 店名
+        type: string
+        required: true
+      - name: catch
+        label: 大きな見出し（キャッチ）
+        type: text
+        required: true
+        description: 改行したところは、ページでも改行されます。
+      - name: hours
+        label: 営業時間
+        type: object
+        list: true
+        description: 1行目がページ上部にも大きく出ます。
+        fields:
+          - name: label
+            label: 項目（例：営業時間、ラストオーダー）
+            type: string
+            required: true
+          - name: time
+            label: 時間（例：17:00〜23:00）
+            type: string
+            required: true
+      - name: holidays
+        label: 定休日
+        type: string
+        required: true
+      - name: notices
+        label: お知らせ
+        type: object
+        list: true
+        description: 新しい順に並べて表示します。
+        fields:
+          - name: date
+            label: 日付
+            type: date
+            required: true
+          - name: text
+            label: 内容
+            type: text
+            required: true
+      - name: menu
+        label: メニュー
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: 品名
+            type: string
+            required: true
+          - name: price
+            label: 値段（数字だけ。円は自動でつきます）
+            type: string
+            required: true
+      - name: photos
+        label: 写真
+        type: object
+        description: 写真のファイル名は英数字にしてください（例：yakitori2.jpg）。
+        fields:
+          - name: hero
+            label: いちばん上の大きな写真
+            type: image
+            required: true
+          - name: hero_alt
+            label: その写真の説明（目の不自由な方の読み上げ用）
+            type: string
+          - name: story
+            label: 焼き台の写真
+            type: image
+            required: true
+          - name: story_alt
+            label: その写真の説明
+            type: string
