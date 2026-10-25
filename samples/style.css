@@ -29,6 +29,8 @@ p{margin:0}
 .open{display:inline-flex;align-items:center;min-height:50px;margin-top:20px;padding:0 24px;background:transparent;color:var(--acc-d);border:1.5px solid var(--acc);text-decoration:none;font-weight:700;border-radius:8px}
 .open::after{content:"→";margin-left:10px}
 .open:hover{background:#e6eef6}
+.open+.open{margin-left:10px}
+.note-plus{margin:10px 0 0;font-size:14px;color:var(--muted,#555)}
 
 .band{background:#1f2a36;color:#e8edf3;padding:64px 0}
 .points{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
@@ -68,6 +70,7 @@ p{margin:0}
   .shots .sp{width:104px;border-width:4px;border-radius:14px}
   .sample-body h2{font-size:24px}
   .open{width:100%;justify-content:center}
+  .open+.open{margin-left:0;margin-top:10px}
   .points,.flow ol{grid-template-columns:1fr;gap:24px}
   .price th,.price td{display:block;width:auto;padding:12px 16px}
   .price th{border-bottom:0;padding-bottom:0}
