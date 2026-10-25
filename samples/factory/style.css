@@ -73,8 +73,8 @@ p{margin:0}
 
 /* できる加工 */
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.work{border:1px solid var(--line);border-radius:var(--radius);padding:14px 14px 24px;background:#fff;transition:border-color .15s,transform .15s}
-.work:hover{border-color:var(--steel);transform:translateY(-2px)}
+.work{border:1px solid var(--line);border-radius:var(--radius);padding:14px 14px 24px;background:#fff;transition:border-color .15s}
+.work:hover{border-color:var(--steel)}
 .work svg{width:100%;height:auto;border-radius:8px;margin-bottom:18px}
 .work h3{font-size:19px;margin:0 10px 6px}
 .work p{font-size:15px;color:var(--sub);margin:0 10px}
@@ -208,4 +208,46 @@ figcaption{font-size:12.5px;color:var(--sub);margin-top:8px}
   .actionbar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:60px;text-decoration:none;color:var(--navy);font-size:14.5px;font-weight:700}
   .actionbar .actionbar-main{background:var(--orange);color:#fff}
   .actionbar svg{width:22px;height:22px}
+}
+
+/* 動き（CSSだけ・きびきびと）
+   ・「動きを減らす」設定の人には何も動かさない。
+   ・スクロールに合わせた出方は、対応しているブラウザだけ。未対応なら最初から全部見える。
+   ・文字と札は位置と透明度だけ。図面の線だけは、線を引くように描く（最初の一回だけ）。
+   ・ロット・見積もり日数などの数字、電話、見積もりのフォーム、下の操作バーは動かさない。 */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes fc-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes fc-fade{from{opacity:0}to{opacity:1}}
+  @keyframes fc-draw{from{stroke-dasharray:1;stroke-dashoffset:1}to{stroke-dasharray:1;stroke-dashoffset:0}}
+
+  /* 最初の画面：文字は短く浮かぶ（0.7秒で出そろう） */
+  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions,.hero-sub{animation:fc-rise .5s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1{animation-delay:.05s}
+  .hero .lead{animation-delay:.12s}
+  .hero-actions{animation-delay:.18s}
+  .hero-sub{animation-delay:.24s}
+
+  /* 図面：外形と段の線を引き、寸法線と数字があとから入る */
+  .hero-drawing .ln{animation:fc-draw .7s cubic-bezier(.45,0,.2,1) .15s backwards}
+  .hero-drawing .ln-2{animation-delay:.35s}
+  .hero-drawing .dim{animation:fc-fade .4s ease-out .6s both}
+  .hero-drawing .dim-txt{animation:fc-fade .4s ease-out .7s both}
+
+  /* マウスのある画面だけ：加工の札とボタンが少し持ち上がる */
+  @media (hover:hover){
+    .work{transition:border-color .15s,translate .18s ease-out}
+    .work:hover{translate:0 -3px}
+    .btn,.header-cta{transition:background-color .15s,border-color .15s,translate .15s ease-out}
+    .btn:hover,.header-cta:hover{translate:0 -1px}
+  }
+
+  /* スクロールに合わせて出る（対応ブラウザだけ）。短い距離で、画面の下5分の1で出そろう */
+  @supports (animation-timeline:view()){
+    @keyframes fc-reveal{from{opacity:0;transform:translateY(16px)}60%{opacity:1}to{opacity:1;transform:none}}
+    .section .section-head,.work,.materials,.case,.equip,.flow li,.factory-art,.recruit{animation:fc-reveal cubic-bezier(.2,.8,.2,1) both;animation-timeline:view();animation-range:entry 0% cover 20%}
+    .work:nth-child(2),.case:nth-child(2),.flow li:nth-child(2){animation-range:entry 4% cover 22%}
+    .work:nth-child(3),.case:nth-child(3),.flow li:nth-child(3){animation-range:entry 8% cover 24%}
+    .flow li:nth-child(4){animation-range:entry 12% cover 26%}
+    .flow li:nth-child(5){animation-range:entry 16% cover 28%}
+  }
 }

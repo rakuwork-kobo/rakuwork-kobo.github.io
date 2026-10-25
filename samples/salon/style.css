@@ -151,7 +151,7 @@ figure{margin:0}
 .faq:first-of-type{border-top:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;padding:17px 40px 17px 2px;font-weight:700;position:relative;min-height:44px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";position:absolute;right:10px;top:50%;width:9px;height:9px;border-right:2px solid var(--green);border-bottom:2px solid var(--green);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq summary::after{content:"";position:absolute;right:10px;top:50%;width:9px;height:9px;border-right:2px solid var(--green);border-bottom:2px solid var(--green);transform:translateY(-70%) rotate(45deg)}
 .faq[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
 .faq p{padding:0 2px 18px;color:var(--sub);font-size:15px}
 
@@ -271,4 +271,42 @@ figure{margin:0}
   .actionbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;text-decoration:none;color:#eef1ee;font-size:12.5px;font-weight:700}
   .actionbar .actionbar-main{background:var(--rose2);color:#fff;flex-direction:row;gap:8px;font-size:15px;border-right:1px solid var(--green3)}
   .actionbar svg{width:22px;height:22px}
+}
+
+/* 動き（CSSだけ・やわらかく）
+   ・「動きを減らす」設定の人には何も動かさない。
+   ・スクロールに合わせた出方は、対応しているブラウザだけ。未対応なら最初から全部見える。
+   ・動かすのは位置と透明度だけ。営業時間の帯と表・料金表・空き状況・電話・下の操作バーは動かさない。 */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes sl-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes sl-visual{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+  @keyframes sl-open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* 最初の画面：文字がゆっくり順に浮かび、店内の絵がふわっと出る（0.8秒で出そろう） */
+  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions{animation:sl-rise .6s cubic-bezier(.25,.6,.3,1) both}
+  .hero h1{animation-delay:.06s}
+  .hero .lead{animation-delay:.14s}
+  .hero-actions{animation-delay:.2s}
+  .hero-visual svg{transform-origin:50% 100%;animation:sl-visual .8s ease .08s both}
+
+  /* よくある質問：開いたとき、答えがふわっと出る */
+  .faq[open] p{animation:sl-open .35s ease-out}
+  .faq summary::after{transition:transform .25s}
+
+  /* マウスのある画面だけ：スタイル例とボタンが少し持ち上がる */
+  @media (hover:hover){
+    .styles li{transition:translate .3s ease-out}
+    .styles li:hover{translate:0 -3px}
+    .btn{transition:background-color .2s,translate .2s ease-out}
+    .btn:hover{translate:0 -1px}
+  }
+
+  /* スクロールに合わせて出る（対応ブラウザだけ）。画面の下4分の1に入るころには出そろう */
+  @supports (animation-timeline:view()){
+    @keyframes sl-reveal{from{opacity:0;transform:translateY(18px)}70%{opacity:1}to{opacity:1;transform:none}}
+    .section-head,.story-plan,.story-text,.styles li,.steps li,.staff-photo,.staff-text,.reserve-text{animation:sl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+    .styles li:nth-child(2),.steps li:nth-child(2){animation-range:entry 6% cover 28%}
+    .styles li:nth-child(3),.steps li:nth-child(3){animation-range:entry 12% cover 31%}
+    .styles li:nth-child(4),.steps li:nth-child(4){animation-range:entry 18% cover 34%}
+  }
 }

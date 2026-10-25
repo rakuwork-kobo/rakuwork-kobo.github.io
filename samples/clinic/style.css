@@ -58,8 +58,8 @@ p{margin:0}
 
 /* 入口のボタン */
 .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px;margin-bottom:24px}
-.quick a{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;text-decoration:none;color:var(--ink);font-weight:700;transition:border-color .15s,transform .15s}
-.quick a:hover{border-color:var(--green);transform:translateY(-2px)}
+.quick a{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;text-decoration:none;color:var(--ink);font-weight:700;transition:border-color .15s}
+.quick a:hover{border-color:var(--green)}
 .quick svg{width:30px;height:30px;color:var(--green);flex-shrink:0}
 .quick small{display:block;font-weight:400;font-size:12.5px;color:var(--sub);line-height:1.5}
 
@@ -143,7 +143,7 @@ blockquote{margin:22px 0;font-size:20px;line-height:1.9;padding-left:22px;border
 .faq:first-of-type{border-top:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;padding:20px 48px 20px 4px;min-height:44px;font-weight:700;position:relative}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";position:absolute;right:12px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq summary::after{content:"";position:absolute;right:12px;top:50%;width:10px;height:10px;border-right:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:translateY(-70%) rotate(45deg)}
 .faq[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
 .faq p{padding:0 4px 20px;color:var(--sub);font-size:15px}
 
@@ -220,4 +220,42 @@ blockquote{margin:22px 0;font-size:20px;line-height:1.9;padding-left:22px;border
   .actionbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:62px;text-decoration:none;color:var(--green-d);font-size:12.5px;font-weight:700}
   .actionbar a:first-child{background:var(--green);color:#fff}
   .actionbar svg{width:22px;height:22px}
+}
+
+/* 動き（CSSだけ・いちばん控えめに）
+   ・「動きを減らす」設定の人には何も動かさない。
+   ・スクロールに合わせた出方は、対応しているブラウザだけ。未対応なら最初から全部見える。
+   ・動かすのは位置と透明度だけ（距離は小さく、はね返りなし）。
+   ・診療時間（右の札と表）・お知らせ・発熱の案内・電話・アクセス・下の操作バーは動かさず、最初からそのまま見せる。 */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes cl-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes cl-fade{from{opacity:0}to{opacity:1}}
+  @keyframes cl-open{from{opacity:0}to{opacity:1}}
+
+  /* 最初の画面：文字が静かに浮かぶ。絵はふわっと出るだけ（0.9秒で出そろう） */
+  .hero .eyebrow,.hero h1,.hero .lead,.hero-actions{animation:cl-rise .6s cubic-bezier(.25,.6,.3,1) both}
+  .hero h1{animation-delay:.06s}
+  .hero .lead{animation-delay:.14s}
+  .hero-actions{animation-delay:.16s}
+  .hero-art{animation:cl-fade .8s ease-out .1s both}
+
+  /* よくある質問：開いたとき、答えがやわらかく出る */
+  .faq[open] p{animation:cl-open .3s ease-out}
+  .faq summary::after{transition:transform .2s}
+
+  /* マウスのある画面だけ：入口のボタンが少し持ち上がる */
+  @media (hover:hover){
+    .quick a{transition:border-color .15s,translate .2s ease-out}
+    .quick a:hover{translate:0 -2px}
+  }
+
+  /* スクロールに合わせて出る（対応ブラウザだけ）。距離は12pxだけ、画面の下4分の1で出そろう */
+  @supports (animation-timeline:view()){
+    @keyframes cl-reveal{from{opacity:0;transform:translateY(12px)}70%{opacity:1}to{opacity:1;transform:none}}
+    #first .section-head,#medical .section-head,#doctor .doctor-photo,#doctor .doctor-text,#faq .section-head,
+    .steps li,.bring,.room,.card{animation:cl-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+    .steps li:nth-child(2),.card:nth-child(2),.card:nth-child(4){animation-range:entry 5% cover 27%}
+    .steps li:nth-child(3),.card:nth-child(5){animation-range:entry 10% cover 29%}
+    .steps li:nth-child(4){animation-range:entry 15% cover 31%}
+  }
 }

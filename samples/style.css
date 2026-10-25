@@ -85,3 +85,4 @@ p{margin:0}
 @media (max-width:820px){.other-card{grid-template-columns:1fr;gap:20px;padding:20px}.other h2{font-size:24px}.other-card h3{font-size:21px}}
 .other-card+.other-card{margin-top:24px}
 .other-shots-one{grid-template-columns:1fr}
+.lead-sub{font-size:14px;color:var(--sub);margin-top:12px}
