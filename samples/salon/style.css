@@ -6,6 +6,7 @@
   --ink:#2a2622; --sub:#5f5850; --line:#e0d6c9; --line2:#cfc3b3;
   --green:#3d4f45; --green2:#2c3a33; --green3:#4a5e53; --sage:#d3ddd7;
   --rose:#a26d62; --rose2:#8a5a50;
+  --ease-out:cubic-bezier(.22,1,.36,1);
   --mincho:"Yu Mincho","YuMincho","Hiragino Mincho ProN","BIZ UDPMincho","Noto Serif JP",serif;
   --gothic:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
 }
@@ -16,6 +17,12 @@ body{margin:0;background:var(--white);color:var(--ink);font-family:var(--gothic)
 img,svg{display:block;max-width:100%}
 a{color:var(--green)}
 a:focus-visible,summary:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+/* 濃い緑の面では、ばら色の枠が沈むので生成りにする */
+.section-dark a:focus-visible,.site-footer a:focus-visible{outline-color:#f3ece2}
+/* 本文へ飛ぶリンク（キーボードで最初に止まる所。ふだんは隠す） */
+.skip{position:absolute;left:12px;top:-80px;z-index:100;padding:10px 18px;background:var(--green);color:#fff;font-weight:700;text-decoration:none;border-radius:2px}
+.skip:focus{top:12px}
+main{scroll-margin-top:72px}
 h1,h2,h3{margin:0;line-height:1.45;font-weight:600}
 p{margin:0}
 figure{margin:0}
@@ -28,7 +35,7 @@ main{overflow-x:clip}
 
 /* ヘッダー */
 .site-header{position:sticky;top:0;z-index:20;background:rgba(255,253,249,.97);border-bottom:1px solid var(--line)}
-.header-in{display:flex;align-items:center;gap:22px;min-height:72px}
+.header-in{display:flex;align-items:center;gap:24px;min-height:72px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;flex-shrink:0}
 .brand-mark{width:36px;height:36px}
 .brand-name{font-weight:600;font-size:19px;line-height:1.25;letter-spacing:.1em}
@@ -46,12 +53,16 @@ main{overflow-x:clip}
 .eyebrow::before{content:"";width:36px;height:1px;background:var(--rose)}
 .hero h1{font-size:56px;line-height:1.42;letter-spacing:.08em;font-weight:500}
 .lead{font-size:17px;color:var(--sub);margin-top:30px;line-height:2.05}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:2px;font-weight:700;text-decoration:none;font-size:16px;letter-spacing:.06em}
 .btn-main{background:var(--green);color:#fff}
 .btn-main:hover{background:var(--green2)}
-.btn-line{color:var(--green);border:1px solid var(--green);background:transparent}
-.btn-line:hover{background:var(--paper)}
+/* 2つめの行き先は、枠のない控えめな文字のリンクにして、電話のボタンを主役にする */
+.btn-sub{min-height:48px;padding:0 8px;color:var(--green);text-decoration:underline;text-decoration-color:var(--rose);text-decoration-thickness:1px;text-underline-offset:7px}
+.btn-sub:hover{color:var(--green2);text-decoration-color:var(--green2)}
+/* 最初の画面の証拠：細いばら色の罫と、開店の年 */
+.hero-proof{margin-top:24px;padding-left:16px;border-left:1px solid var(--rose);font-size:14.5px;color:var(--sub);line-height:1.8}
+.hero-proof b{display:block;font-family:var(--mincho);font-weight:600;font-size:15px;color:var(--rose2);letter-spacing:.12em}
 /* 写真は鏡のようなアーチの枠に。窓辺の鉢植えは丸い小窓に。色は生成りの重ね色でそろえる */
 .hero-visual{position:relative;padding-left:40px}
 .hero-arch{position:relative;height:clamp(440px,64vh,600px);border-radius:999px 999px 4px 4px;overflow:hidden;border:8px solid var(--paper);box-shadow:0 0 0 1px #c9b49c,0 34px 60px -34px rgba(42,38,34,.45);background:#d9c6ad;isolation:isolate}
@@ -63,7 +74,7 @@ main{overflow-x:clip}
 .hero-visual figcaption{position:absolute;right:30px;bottom:22px;z-index:3;font-size:13.5px;color:#fbf6ee;text-align:right;letter-spacing:.1em;line-height:1.6;padding:3px 12px;background:rgba(32,28,24,.58);border-radius:2px}
 .hero-bar{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .hero-bar-in{display:grid;grid-template-columns:repeat(3,1fr)}
-.hero-bar p{padding:20px 0 20px 26px;border-left:1px solid var(--line);font-size:13px;color:var(--sub);line-height:1.5}
+.hero-bar p{padding:20px 0 20px 24px;border-left:1px solid var(--line);font-size:13px;color:var(--sub);line-height:1.5}
 .hero-bar p:first-child{border-left:0;padding-left:0}
 .hero-bar b{display:block;font-size:19px;color:var(--ink);letter-spacing:.05em;white-space:nowrap;margin-bottom:2px}
 
@@ -79,7 +90,7 @@ main{overflow-x:clip}
 
 /* 初めての方に多いご注文 */
 .picks{display:grid;grid-template-columns:1.3fr 1fr 1fr;border-top:1px solid var(--ink)}
-.pick{padding:36px 34px 32px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+.pick{padding:36px 32px 32px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
 .pick:last-child{border-right:0}
 .pick h3{font-size:24px;margin-bottom:12px;letter-spacing:.06em}
 .pick p{font-size:15px;color:var(--sub)}
@@ -91,7 +102,7 @@ main{overflow-x:clip}
 .pick-main .price{color:#fff;font-size:42px}
 .pick-main .price small{color:var(--sage)}
 .pick{position:relative}
-.pick-photo{margin:-36px -34px 24px;overflow:hidden;background:var(--base2)}
+.pick-photo{margin:-36px -32px 24px;overflow:hidden;background:var(--base2)}
 .pick-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;filter:saturate(.86) sepia(.08)}
 .pick-main .pick-photo img{object-position:50% 60%}
 .pick-photo .ph-finish{object-position:56% 40%}
@@ -133,7 +144,7 @@ main{overflow-x:clip}
 
 /* 初めての方へ */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.steps li{padding:0 26px 0 0;margin-right:26px;border-right:1px solid var(--line)}
+.steps li{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--line)}
 .steps li:last-child{border-right:0;margin-right:0}
 .step-no{display:block;font-size:40px;line-height:1;color:var(--rose);margin-bottom:16px}
 .steps h3{font-size:19px;margin-bottom:8px}
@@ -169,7 +180,7 @@ main{overflow-x:clip}
 .journal-head h2::before{content:"";display:block;width:32px;height:1px;background:var(--rose);margin-bottom:22px}
 .journal-head p{color:var(--sub);font-size:14.5px;margin-top:14px;max-width:16em}
 .notes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
-.note{padding:26px 26px 6px;border-left:1px solid var(--line)}
+.note{padding:24px 24px 8px;border-left:1px solid var(--line)}
 .note:first-child{border-left:0;padding-left:0}
 .note:last-child{padding-right:0}
 .note-date{font-size:13.5px;color:var(--rose2);letter-spacing:.14em}
@@ -206,8 +217,8 @@ main{overflow-x:clip}
 .reserve-text h2::before{content:"";display:block;width:32px;height:1px;background:var(--rose);margin-bottom:22px}
 .reserve-text p{color:var(--sub);max-width:22em}
 .reserve-ways{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
-.way{padding:28px 30px 4px 0;display:flex;flex-direction:column;align-items:flex-start}
-.way-net{padding-left:30px;padding-right:0;border-left:1px solid var(--line)}
+.way{padding:28px 32px 4px 0;display:flex;flex-direction:column;align-items:flex-start}
+.way-net{padding-left:32px;padding-right:0;border-left:1px solid var(--line)}
 .way h3{font-size:15px;color:var(--sub);font-weight:400;margin-bottom:6px}
 .tel-big{font-size:32px;font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:.04em;line-height:1.3;font-variant-numeric:tabular-nums}
 .way-note{font-size:13.5px;color:var(--sub);margin:10px 0 18px}
@@ -215,7 +226,7 @@ main{overflow-x:clip}
 .btn-off{flex-direction:column;display:flex;align-items:center;justify-content:center;min-height:54px;padding:0 22px;border:1px dashed #a59886;color:#6f665c;font-weight:700;font-size:15px;border-radius:2px;cursor:not-allowed;margin-top:6px;text-align:center;line-height:1.5}
 .btn-off small{font-size:13.5px;font-weight:400}
 .way-net .way-note{margin-top:12px}
-.vacancy{margin-top:36px;padding:22px 0 4px;border-top:1px solid var(--ink)}
+.vacancy{margin-top:36px;padding:24px 0 4px;border-top:1px solid var(--ink)}
 .vacancy h3{font-size:18px;margin-bottom:10px}
 .vacancy h3 small{font-family:var(--gothic);font-weight:400;font-size:13.5px;color:var(--sub);margin-left:8px}
 .vacancy ul{list-style:none;margin:0;padding:0}
@@ -267,8 +278,8 @@ main{overflow-x:clip}
   .staff-photo{margin:0 -24px}
   .staff-photo img{min-height:0;aspect-ratio:16/9}
   .staff-photo figcaption{left:24px}
-  .pick-main{display:grid;grid-template-columns:1.1fr 1fr;column-gap:34px;align-content:start}
-  .pick-main .pick-photo{grid-row:1 / 6;margin:-36px 0 -32px -34px}
+  .pick-main{display:grid;grid-template-columns:1.1fr 1fr;column-gap:32px;align-content:start}
+  .pick-main .pick-photo{grid-row:1 / 6;margin:-36px 0 -32px -32px}
   .pick-main .pick-photo img{height:100%;aspect-ratio:auto;min-height:300px}
   .pick-main .price{margin-top:0}
   .hero-arch{height:clamp(400px,56vh,520px)}
@@ -306,6 +317,8 @@ main{overflow-x:clip}
   .hero-bar b{display:inline;font-size:15px;min-width:7.4em;margin:0}
   .hero-bar p:first-child{flex-wrap:wrap;column-gap:12px;row-gap:0}
   .section{padding:72px 0;scroll-margin-top:60px}
+  main{scroll-margin-top:60px}
+  .hero-proof{font-size:14px;margin-top:20px}
   .section-head{margin-bottom:30px}
   .section-head h2,.reserve-text h2{font-size:26px}
   .section-head h2::before,.reserve-text h2::before,.journal-head h2::before{margin-bottom:16px}
@@ -355,6 +368,7 @@ main{overflow-x:clip}
   .actionbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;text-decoration:none;color:#eef1ee;font-size:13px;font-weight:700}
   .actionbar .actionbar-main{background:var(--rose2);color:#fff;flex-direction:row;gap:8px;font-size:15px;border-right:1px solid var(--green3)}
   .actionbar svg{width:22px;height:22px}
+  .actionbar a:focus-visible{outline-color:#fff;outline-offset:-6px}
 }
 
 /* 動き（CSSだけ・見本として分かる強さで、でも静かに）
@@ -382,7 +396,7 @@ main{overflow-x:clip}
   /* 文字：見出しは一文字ずつ。読む文は少し後から。予約のボタンは最初から出しておく */
   .hero .eyebrow{animation:sl-fade .9s ease .1s both}
   .eyebrow::before{transform-origin:left;animation:sl-line-x 1s cubic-bezier(.3,.6,.3,1) .1s both}
-  .h1-anim .c{display:inline-block;animation:sl-char .9s cubic-bezier(.2,.7,.3,1) both}
+  .h1-anim .c{display:inline-block;animation:sl-char .6s var(--ease-out) both}
   .l1 .c:nth-child(1){animation-delay:.30s}
   .l1 .c:nth-child(2){animation-delay:.39s}
   .l1 .c:nth-child(3){animation-delay:.48s}
@@ -398,7 +412,8 @@ main{overflow-x:clip}
   .l2 .c:nth-child(7){animation-delay:1.46s}
   .l2 .c:nth-child(8){animation-delay:1.55s}
   .l2 .c:nth-child(9){animation-delay:1.64s}
-  .hero .lead{animation:sl-rise 1s cubic-bezier(.25,.6,.3,1) 1.3s both}
+  .hero .lead,.hero .hero-proof{animation:sl-rise .6s var(--ease-out) 1.3s both}
+  .hero .hero-proof{animation-delay:1.45s}
   .hero-visual figcaption{animation:sl-fade 1.2s ease 2.4s both}
 
   /* 店の印：アーチが線で描かれる */
@@ -424,17 +439,17 @@ main{overflow-x:clip}
 
   /* 料金の写真：マウスを乗せると、少しだけ寄る（値段は動かさない） */
   @media (hover:hover){
-    .pick-photo img{transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+    .pick-photo img{transition:transform .8s var(--ease-out)}
     .pick:hover .pick-photo img{transform:scale(1.04)}
   }
 
   /* よくある質問：開いたとき、答えがふわっと出る */
-  .faq[open] p{animation:sl-open .35s ease-out}
-  .faq summary::after{transition:transform .25s}
+  .faq[open] p{animation:sl-open .35s var(--ease-out)}
+  .faq summary::after{transition:transform .35s var(--ease-out)}
 
   /* マウスのある画面だけ：ボタンが少し持ち上がる */
   @media (hover:hover){
-    .btn{transition:background-color .2s,transform .2s ease-out}
+    .btn{transition:background-color .3s,color .3s,text-decoration-color .3s,transform .45s var(--ease-out)}
     .btn:hover{transform:translateY(-2px)}
   }
 

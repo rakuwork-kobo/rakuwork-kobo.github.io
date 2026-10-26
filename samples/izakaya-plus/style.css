@@ -9,6 +9,7 @@
   --fire:#d2391b; --gold:#e2b45a; --kon:#1d2742;
   --wood:#e3c597; --wood-dark:#4a3020; --slate:#26352e;
   --chalk:#f1eee4; --chalk-y:#f3d681;
+  --ease-out:cubic-bezier(.22,1,.36,1);
   --mincho:"Yu Mincho","YuMincho","Hiragino Mincho ProN","BIZ UDPMincho","Noto Serif JP",serif;
   --gothic:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
   --hand:"UD Digi Kyokasho NK","UD Digi Kyokasho N","UD デジタル 教科書体 NK","UD Digi Kyokasho NK-R","UD デジタル 教科書体 NK-R","UD Digi Kyokasho N-R","UD デジタル 教科書体 N-R","Klee","YuKyokasho","Yu Mincho","Hiragino Mincho ProN",serif;
@@ -19,7 +20,12 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--white);color:var(--ink);font-family:var(--gothic);font-size:16px;line-height:1.85;letter-spacing:.02em}
 img,svg{display:block;max-width:100%}
 a{color:var(--fire)}
-a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* フォーカスの枠：内側に炭色、外側に金。明るい面でも暗い面でも見える */
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px;box-shadow:0 0 0 3px var(--char)}
+/* 本文へ飛ぶリンク（キーボードで最初に止まる所。ふだんは隠す） */
+.skip{position:absolute;left:12px;top:-80px;z-index:100;padding:10px 18px;background:var(--white);color:var(--ink);font-weight:700;text-decoration:none;border-radius:3px}
+.skip:focus{top:12px}
+main{scroll-margin-top:70px}
 h1,h2,h3{margin:0;line-height:1.35;font-weight:700}
 p{margin:0}
 .wrap{max-width:1160px;margin:0 auto;padding-left:24px;padding-right:24px}
@@ -28,7 +34,7 @@ p{margin:0}
 
 /* ヘッダー：ページごとに小さな提灯。今いるページの提灯だけ灯る */
 .site-header{position:sticky;top:0;z-index:20;background:rgba(23,18,15,.97);color:#fff;border-bottom:1px solid #2f251f}
-.header-in{display:flex;align-items:center;gap:22px;min-height:70px}
+.header-in{display:flex;align-items:center;gap:24px;min-height:70px}
 .brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;flex-shrink:0}
 .brand-mark{width:30px;height:44px;flex-shrink:0}
 .brand-name{font-weight:700;font-size:19px;line-height:1.25;letter-spacing:.06em}
@@ -78,12 +84,16 @@ p{margin:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:3px;font-weight:700;text-decoration:none;font-size:16px;text-align:center;line-height:1.4}
 .btn-fire{background:var(--fire);color:#fff}
 .btn-fire:hover{background:#b53014}
-.btn-ghost{color:#fff;border:1.5px solid rgba(255,255,255,.7);background:rgba(23,18,15,.45)}
-.btn-ghost:hover{border-color:#fff}
+/* 2つめの行き先は、枠のない控えめな文字のリンクにして、電話のボタンを主役にする */
+.btn-sub{min-height:48px;padding:0 8px;color:#f3eadc;text-decoration:underline;text-decoration-color:rgba(226,180,90,.85);text-decoration-thickness:1px;text-underline-offset:7px;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.btn-sub:hover{color:#fff;text-decoration-color:var(--gold)}
+/* 最初の画面の証拠：朱の札に、店の年数 */
+.hero-proof{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:16px;font-size:14px;color:#efe3d0;line-height:1.6;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero-proof b{flex-shrink:0;font-family:var(--mincho);font-size:15px;letter-spacing:.12em;color:#fbeee2;background:#c8321a;padding:1px 10px;border-radius:3px;text-shadow:none}
 .hero-note{grid-column:2;margin-top:12px;font-size:14px;color:#efe3d0;text-shadow:0 1px 10px rgba(0,0,0,.6)}
 .hero-bar{position:relative;z-index:1;background:rgba(23,18,15,.94);border-top:1px solid #3a2e26}
 .hero-bar-in{display:grid;grid-template-columns:repeat(3,1fr)}
-.hero-bar p{padding:18px 0 18px 22px;border-left:1px solid #3a2e26;font-size:13px;color:#cdbfae;line-height:1.5}
+.hero-bar p{padding:18px 0 18px 24px;border-left:1px solid #3a2e26;font-size:13px;color:#cdbfae;line-height:1.5}
 .hero-bar p:first-child{border-left:0;padding-left:0}
 .hero-bar b{display:block;font-size:20px;color:#fff;letter-spacing:.04em;white-space:nowrap}
 
@@ -137,10 +147,10 @@ p{margin:0}
 .gate:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
 /* おすすめ三品 */
-.dishes{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:22px;align-items:start}
+.dishes{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:24px;align-items:start}
 .dish{background:#fffdf8;border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
 .dish img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
-.dish-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.dish-body{padding:24px;display:flex;flex-direction:column;flex:1}
 .dish-tag{display:inline-block;align-self:flex-start;background:var(--fire);color:#fff;font-size:12.5px;font-weight:700;padding:2px 12px;margin-bottom:10px;letter-spacing:.12em;font-family:var(--mincho)}
 .dish h3{font-size:23px;margin-bottom:8px}
 .dish p{font-size:15px;color:var(--sub)}
@@ -183,7 +193,7 @@ p{margin:0}
 .tags a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 /* お品書き：木札の壁 */
-.fuda-board{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:stretch;padding:22px 26px 26px;background:var(--wood-dark);background-image:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 38px,rgba(0,0,0,.12) 38px 40px,rgba(255,255,255,.03) 40px 41px);border-top:8px solid #2e1d12}
+.fuda-board{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:stretch;padding:24px;background:var(--wood-dark);background-image:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 38px,rgba(0,0,0,.12) 38px 40px,rgba(255,255,255,.03) 40px 41px);border-top:8px solid #2e1d12}
 .fuda-title{writing-mode:vertical-rl;color:#fff;font-size:30px;letter-spacing:.2em;border-right:1px solid rgba(255,255,255,.18);padding:10px 18px 0 0;margin-right:4px}
 .fuda-title small{display:block;font-size:13px;letter-spacing:.1em;color:#e6d3b6;margin-right:8px;font-family:var(--gothic);font-weight:400}
 .fuda{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:14px 12px}
@@ -212,7 +222,7 @@ p{margin:0}
 .howto li b{display:block;color:var(--ink);font-size:16px}
 
 /* 黒板：手書きの本日のおすすめ */
-.kokuban{background:var(--slate);background-image:radial-gradient(ellipse at 25% 20%,rgba(255,255,255,.06),rgba(255,255,255,0) 55%),radial-gradient(ellipse at 80% 85%,rgba(255,255,255,.05),rgba(255,255,255,0) 50%);color:var(--chalk);border:12px solid #6a4528;outline:1px solid #3f2816;padding:26px 26px 22px;font-family:var(--hand)}
+.kokuban{background:var(--slate);background-image:radial-gradient(ellipse at 25% 20%,rgba(255,255,255,.06),rgba(255,255,255,0) 55%),radial-gradient(ellipse at 80% 85%,rgba(255,255,255,.05),rgba(255,255,255,0) 50%);color:var(--chalk);border:12px solid #6a4528;outline:1px solid #3f2816;padding:24px;font-family:var(--hand)}
 .kokuban-wide{margin-top:40px}
 .kokuban h3{transform:rotate(-1deg);transform-origin:0 50%;font-size:26px;font-weight:700;letter-spacing:.14em;color:#fff;padding-bottom:10px;margin-bottom:6px;border-bottom:2px dashed rgba(241,238,228,.45);font-family:var(--hand)}
 .kokuban ul{list-style:none;margin:0;padding:0}
@@ -325,10 +335,10 @@ p{margin:0}
 .story-photo{margin:0 0 0 calc(-24px - max(0px,(100vw - 1160px)/2));height:100%;position:relative;overflow:hidden}
 .story-photo img{width:100%;height:100%;min-height:520px;object-fit:cover}
 .story-text{padding:64px 0 64px 60px;display:flex;gap:40px;align-items:flex-start}
-.story-text h2{writing-mode:vertical-rl;font-size:34px;color:#fff;letter-spacing:.14em;line-height:1.5;white-space:nowrap;padding-left:22px;border-left:1px solid #4a3b31}
+.story-text h2{writing-mode:vertical-rl;font-size:34px;color:#fff;letter-spacing:.14em;line-height:1.5;white-space:nowrap;padding-left:24px;border-left:1px solid #4a3b31}
 .tate p{color:#ddd1c1;margin-top:14px;max-width:26em}
 .tate p:first-child{margin-top:0}
-.tate .sign{margin-top:22px;color:#fff;font-size:17px;letter-spacing:.3em;text-align:right}
+.tate .sign{margin-top:24px;color:#fff;font-size:17px;letter-spacing:.3em;text-align:right}
 
 .day-wrap{display:grid;grid-template-columns:1fr 1.7fr;gap:48px;align-items:start}
 .day{list-style:none;margin:0;padding:0;position:relative}
@@ -496,6 +506,8 @@ p{margin:0}
   .hero h1{grid-row:1;font-size:40px;letter-spacing:.06em}
   .hero-copy{grid-column:2;align-self:end}
   .eyebrow{font-size:12.5px;letter-spacing:.04em;margin-bottom:12px}
+  /* 右上の赤提灯に文字が隠れないよう、目印の一行は提灯の手前で折り返す */
+  .hero-copy .eyebrow{max-width:calc(100% - 44px);word-break:auto-phrase}
   .lead{font-size:14.5px;line-height:1.85}
   .lead br{display:none}
   .hero-actions{grid-column:1 / -1;margin-top:22px;gap:10px}
@@ -516,6 +528,9 @@ p{margin:0}
   .ph-badge p{font-size:18px}
   .ph-badge b{font-size:48px}
   .section{padding:60px 0;scroll-margin-top:0}
+  main{scroll-margin-top:0}
+  .hero-proof{font-size:13px;margin-top:12px}
+  .hero-proof b{font-size:14px}
   .section-head{margin-bottom:26px}
   .section-head h2{font-size:28px;gap:12px}
   .plain-h2{font-size:24px}
@@ -613,6 +628,7 @@ p{margin:0}
   .actionbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:60px;text-decoration:none;color:#efe6d6;font-size:12.5px;font-weight:700}
   .actionbar .actionbar-main{background:var(--fire);color:#fff;flex-direction:row;gap:8px;font-size:15px}
   .actionbar svg{width:22px;height:22px}
+  .actionbar a:focus-visible{outline-color:#fff;outline-offset:-6px;box-shadow:none}
 }
 
 /* 動き（CSSだけ）
@@ -683,7 +699,7 @@ p{margin:0}
   @keyframes iz-stamp2{0%{opacity:0;transform:scale(1.9) rotate(-14deg)}55%{opacity:1;transform:scale(.9) rotate(-2deg)}100%{opacity:1;transform:rotate(-3deg)}}
   .ph-photo::after{animation:iz-stamp2 .45s cubic-bezier(.3,.6,.4,1) 1.7s both}
 
-  .hero-copy,.hero-actions,.hero-note,.ph-copy{animation:iz-rise .8s cubic-bezier(.2,.7,.25,1) .7s both}
+  .hero-copy,.hero-actions,.hero-note,.ph-copy{animation:iz-rise .55s var(--ease-out) .7s both}
   .hero-actions,.hero-note{animation-delay:.9s}
   /* ページ見出しの写真：暗い店に明かりがつき、寄った位置から引く */
   .ph-photo{overflow:hidden}
@@ -748,19 +764,19 @@ p{margin:0}
   @keyframes iz-glow{0%,100%{opacity:.6;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
   .map-glow{animation:iz-glow 2.8s ease-in-out infinite}
 
-  .faq[open] p{animation:iz-open .3s ease-out}
-  .faq summary::after{transition:transform .2s}
+  .faq[open] p{animation:iz-open .35s var(--ease-out)}
+  .faq summary::after{transition:transform .35s var(--ease-out)}
 
   @media (hover:hover){
-    .dish,.gate,.pick-item{transition:translate .25s ease-out,box-shadow .25s ease-out}
-    .dish img{transition:transform .6s ease-out}
+    .dish,.gate,.pick-item{transition:translate .45s var(--ease-out),box-shadow .45s var(--ease-out)}
+    .dish img{transition:transform .6s var(--ease-out)}
     .dish:hover,.gate:hover,.pick-item:hover{translate:0 -3px;box-shadow:0 14px 28px rgba(35,26,20,.16)}
     .dish:hover img{transform:scale(1.05)}
     .gate-fuda{transition:rotate .5s cubic-bezier(.3,.7,.3,1.4)}
     .gate:hover .gate-fuda{rotate:-6deg}
     .tags a{transition:rotate .5s cubic-bezier(.3,.7,.3,1.4)}
     .tags a:hover{rotate:-7deg}
-    .btn{transition:background-color .2s,border-color .2s,translate .2s ease-out}
+    .btn{transition:background-color .3s,color .3s,text-decoration-color .3s,translate .45s var(--ease-out)}
     .btn:hover{translate:0 -2px}
   }
 
