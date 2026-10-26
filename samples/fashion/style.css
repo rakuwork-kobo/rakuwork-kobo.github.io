@@ -75,7 +75,7 @@ main section[id]{scroll-margin-top:72px}
 .hero-visual{position:relative;margin:0;overflow:hidden;display:flex;flex-direction:column}
 .hero-visual img{width:100%;flex:1;min-height:0;object-fit:cover;object-position:35% 25%}
 figcaption{font-size:14px;letter-spacing:.06em;color:var(--sub)}
-.hero-visual figcaption{display:flex;justify-content:space-between;gap:12px;padding:8px 16px;background:var(--paper);font-family:var(--mincho);font-weight:500;color:var(--navy)}
+.hero-visual figcaption{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;padding:8px 16px;background:var(--paper);font-family:var(--mincho);font-weight:500;color:var(--navy)}
 .hero-visual figcaption > span:last-child{font-family:var(--gothic);font-weight:400;color:var(--sub);font-size:13.5px}
 .lat{font-family:var(--latin);font-weight:500;font-size:1.1em;letter-spacing:.12em}
 
@@ -220,12 +220,9 @@ figcaption{font-size:14px;letter-spacing:.06em;color:var(--sub)}
 .info dt{font-family:var(--mincho);font-weight:600;color:var(--sub)}
 .info dd{margin:0}
 .dd-note{display:inline-block;margin-top:4px;font-size:14px;color:var(--sub)}
-.faq{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;padding:16px 0;font-family:var(--mincho);font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:16px;min-height:48px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"＋" / "";color:var(--sub)}
-.faq[open] summary::after{content:"－" / ""}
-.faq p{padding:0 0 18px;font-size:15px;color:var(--sub)}
+.qa{padding:14px 0;border-bottom:1px solid var(--line)}
+.qa .q{font-family:var(--mincho);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:4px}
+.qa .a{font-size:15px;color:var(--sub)}
 
 /* オンラインストア */
 .store{padding:80px 0;background:var(--navy);color:#f2efe9;text-align:center}
