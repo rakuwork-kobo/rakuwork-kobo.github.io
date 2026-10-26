@@ -366,7 +366,14 @@ figcaption{font-size:14px;letter-spacing:.06em;color:var(--sub)}
   @keyframes ink{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
   .hero-light{display:block;position:absolute;top:0;bottom:3em;left:0;width:45%;z-index:1;pointer-events:none;background:linear-gradient(105deg,rgba(255,252,244,0) 0%,rgba(255,252,244,.55) 50%,rgba(255,252,244,0) 100%);opacity:0;animation:sweep 1.6s ease-in-out 2.4s both}
   @keyframes sweep{0%{opacity:0;transform:translateX(-110%)}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateX(240%)}}
-  .season,.lead,.entry,.hero-actions{animation:fade .6s var(--ease-out) .8s both}
+  .season,.lead,.hero-actions{animation:fade .6s var(--ease-out) .8s both}
+  /* D 「新作・価格・サイズ」の上下の罫が左から引かれ、そのあと中の文字が出る */
+  .entry{position:relative;border-top-color:transparent;border-bottom-color:transparent}
+  .entry::before,.entry::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--line);transform-origin:left center;animation:draw .9s var(--ease-out) 1.1s both}
+  .entry::before{top:-1px}
+  .entry::after{bottom:-1px;animation-delay:1.3s}
+  @keyframes draw{from{transform:scaleX(0)}to{transform:none}}
+  .entry > div{animation:fade .6s var(--ease-out) 1.9s both}
   @keyframes settle{from{transform:scale(1.06);opacity:.6}to{transform:none;opacity:1}}
   @keyframes rise{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
   @keyframes fade{from{opacity:0}to{opacity:1}}
