@@ -42,7 +42,7 @@ p{margin:0}
 .gnav{display:flex;gap:2px;margin-left:auto}
 .gnav a{position:relative;display:flex;align-items:center;gap:8px;color:#efe6d6;text-decoration:none;font-size:14.5px;padding:10px 12px;min-height:44px;border-radius:2px;white-space:nowrap}
 .gnav a::before{content:"";width:8px;height:11px;border-radius:3px;background:#4a3b31;flex-shrink:0}
-.gnav a:hover{background:#2e241e;color:#fff}
+@media (hover:hover) and (pointer:fine){.gnav a:hover{background:#2e241e;color:#fff}}
 .gnav a[aria-current="page"]{color:#fff;font-weight:700;box-shadow:inset 0 -3px 0 var(--fire)}
 .gnav a[aria-current="page"]::before{background:var(--fire);box-shadow:0 0 8px 2px rgba(255,122,46,.75)}
 .header-tel{white-space:nowrap;color:#fff;text-decoration:none;font-weight:700;font-size:20px;line-height:1.2;text-align:right;letter-spacing:.04em}
@@ -83,10 +83,10 @@ p{margin:0}
 .hero-actions{grid-column:2;display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:3px;font-weight:700;text-decoration:none;font-size:16px;text-align:center;line-height:1.4}
 .btn-fire{background:var(--fire);color:#fff}
-.btn-fire:hover{background:#b53014}
+@media (hover:hover) and (pointer:fine){.btn-fire:hover{background:#b53014}}
 /* 2つめの行き先は、枠のない控えめな文字のリンクにして、電話のボタンを主役にする */
 .btn-sub{min-height:48px;padding:0 8px;color:#f3eadc;text-decoration:underline;text-decoration-color:rgba(226,180,90,.85);text-decoration-thickness:1px;text-underline-offset:7px;text-shadow:0 1px 10px rgba(0,0,0,.6)}
-.btn-sub:hover{color:#fff;text-decoration-color:var(--gold)}
+@media (hover:hover) and (pointer:fine){.btn-sub:hover{color:#fff;text-decoration-color:var(--gold)}}
 /* 最初の画面の証拠：朱の札に、店の年数 */
 .hero-proof{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:16px;font-size:14px;color:#efe3d0;line-height:1.6;text-shadow:0 1px 10px rgba(0,0,0,.6)}
 .hero-proof b{flex-shrink:0;font-family:var(--mincho);font-size:15px;letter-spacing:.12em;color:#fbeee2;background:#c8321a;padding:1px 10px;border-radius:3px;text-shadow:none}
@@ -143,7 +143,7 @@ p{margin:0}
 .gate-body>span{display:block;margin-top:8px;font-size:14px;color:#cdbfae;line-height:1.7}
 .gate-body .gate-go{margin-top:auto;padding-top:14px;color:var(--gold);font-weight:700;font-size:14px}
 .gate-go::after{content:" →"}
-.gate:hover .gate-go{text-decoration:underline;text-underline-offset:4px}
+@media (hover:hover) and (pointer:fine){.gate:hover .gate-go{text-decoration:underline;text-underline-offset:4px}}
 .gate:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
 /* おすすめ三品 */
@@ -189,7 +189,7 @@ p{margin:0}
 .tags a{display:flex;justify-content:center;width:76px;padding:22px 0 16px;min-height:120px;background:var(--wood);background-image:linear-gradient(90deg,rgba(120,80,40,.12),rgba(120,80,40,0) 30%,rgba(120,80,40,0) 70%,rgba(120,80,40,.14));color:#1f140c;text-decoration:none;clip-path:polygon(0 12px,50% 0,100% 12px,100% 100%,0 100%);border-bottom:3px solid #b68f5c;transform-origin:50% 0;position:relative}
 .tags a::before{content:"";position:absolute;top:10px;left:50%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:#3b281a}
 .tags span{writing-mode:vertical-rl;font-size:22px;font-weight:700;letter-spacing:.16em}
-.tags a:hover{background-color:#f0d6ac}
+@media (hover:hover) and (pointer:fine){.tags a:hover{background-color:#f0d6ac}}
 .tags a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 /* お品書き：木札の壁 */
@@ -421,7 +421,7 @@ p{margin:0}
 .pager-prev small::before{content:"← "}
 .pager-next{text-align:right;align-items:flex-end;border-right:4px solid var(--fire)}
 .pager-next small::after{content:" →"}
-.pager a:hover{border-color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.pager a:hover{border-color:var(--ink)}}
 
 /* フッター */
 .site-footer{background:#0f0b09;color:#cdbfae;padding:44px 0 40px;font-size:14px}
@@ -431,7 +431,7 @@ p{margin:0}
 .footer-tel{color:#efe6d6;white-space:nowrap}
 .footer-nav{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
 .footer-nav a{display:inline-flex;align-items:center;min-height:36px;color:#efe6d6;text-decoration:none}
-.footer-nav a:hover{text-decoration:underline}
+@media (hover:hover) and (pointer:fine){.footer-nav a:hover{text-decoration:underline}}
 .footer-nav a[aria-current="page"]{color:var(--gold)}
 .footer-note{font-size:12px;color:#a99887;line-height:1.8}
 .actionbar{display:none}
@@ -767,7 +767,7 @@ p{margin:0}
   .faq[open] p{animation:iz-open .35s var(--ease-out)}
   .faq summary::after{transition:transform .35s var(--ease-out)}
 
-  @media (hover:hover){
+  @media (hover:hover) and (pointer:fine){
     .dish,.gate,.pick-item{transition:translate .45s var(--ease-out),box-shadow .45s var(--ease-out)}
     .dish img{transition:transform .6s var(--ease-out)}
     .dish:hover,.gate:hover,.pick-item:hover{translate:0 -3px;box-shadow:0 14px 28px rgba(35,26,20,.16)}
@@ -816,3 +816,35 @@ p{margin:0}
     .story-photo img,.story-smoke{animation:iz-photo linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
   }}
 }
+
+/* ── スマホでの触り心地（点検表A 2026-10-29） ──
+   押した瞬間に反応させ、Webページらしい灰色の光は消す。ホバーの見た目はマウスのときだけ（上で @media に入れた）。 */
+html{-webkit-tap-highlight-color:transparent}
+a,button,summary,label,input,select,textarea{touch-action:manipulation}
+body{overflow-wrap:break-word;padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.btn,.btn-fire,.btn-sub,.footer-tel,.header-tel,.skewer-cta,.today-tel,.actionbar a,.gnav a{-webkit-user-select:none;user-select:none}
+@media (hover:none),(pointer:coarse){
+  a:active,button:active,summary:active,label:active{opacity:.72}
+}
+.actionbar{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+
+/* ── くずれ対策（点検表B 2026-10-29） ──
+   長い店名・住所・ボタンの文字・大きな文字の設定でも、横にはみ出さず、文字が重ならないように。ふだんの中身の見た目は変えない。 */
+.hero-in>*,.ph-grid>*,.ph-badge>*,.gates>*,.dishes>*,.news-grid>*,.news li>*,.today-list div>*,.fuda-board>*,.fuda>*,.kushi-lower>*,.pick>*,.kokuban-wide ul>*,.tanzaku>*,.agemono>*,.shime>*,.drinks>*,.courses>*,.seats>*,.skewer>*,.skewer-num>*,.kanji>*,.day-wrap>*,.day li>*,.three>*,.inside>*,.info div>*,.route>*,.steps li>*,.steps b>*,.hours>*,.week>*,.crowd-chart>*,.crowd-h>*,.faq-groups>*,.pager>*,.footer-in>*,.footer-nav>*,.gnav>*,.shime li>*,.skewer li>*,.three-item>*,.actionbar>*{min-width:0}
+.brand{flex-shrink:1;min-width:0}
+.brand-name{min-width:0;overflow-wrap:anywhere}
+.brand>svg,.brand-mark,.brand-seal{flex-shrink:0}
+.header-tel,.head-tel{flex-shrink:0;white-space:nowrap}
+.header-cta{white-space:normal;text-align:center}
+a[href^="mailto:"],a[href^="http"]{overflow-wrap:anywhere}
+.btn>svg,a>svg{flex-shrink:0}
+@media (max-width:680px){
+  .header-in,.head-in{flex-wrap:wrap;align-content:center}
+  .brand{flex:1 1 calc(4em + 54px)}
+}
+@media (max-width:360px){.tel-big{font-size:21px;letter-spacing:0}.tags{gap:4px}.tags a{width:52px}}
+@media (max-width:680px){.gnav a{white-space:normal}}
+@media (max-width:360px){.hero-bar b{white-space:normal}}
+.hero-bar,.fuda-board,.tanzaku{overflow-x:auto}
+.tel-big{white-space:normal}
+.hero-proof b{max-width:100%}
