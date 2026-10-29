@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fffdf9">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex,nofollow">
 <title>ヘアサロン 見本（架空）｜見本町の二席だけの美容室</title>
@@ -22,11 +22,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=20261029a">
+<link rel="stylesheet" href="style.css?v=20261029t">
+<script src="salon.js?v=20261029t" defer></script>
 </head>
 <body>
 <a class="skip" href="#top">本文へ移動</a>
-<p class="sample">ホームページの見本（1ページの作り）です。店名・住所・電話番号・値段はすべて架空です。</p>
+<p class="sample">ホームページの見本（1ページの作り・動きのある版）です。店名・住所・電話番号・値段はすべて架空です。</p>
 
 <header class="site-header">
   <div class="wrap header-in">
@@ -51,14 +52,16 @@
         <p class="hero-proof"><b>2019年に開店</b>いまは、ご来店の4人に3人が二回目以降のお客さまです。</p>
         <div class="hero-actions">
           <a class="btn btn-main" href="tel:0540000000">電話で予約する</a>
+          <a class="btn btn-line" href="#reserve">ネット予約（24時間）のご案内</a>
           <a class="btn btn-sub" href="#menu">メニューと料金を見る</a>
         </div>
       </div>
       <figure class="hero-visual">
         <div class="hero-arch">
-          <img class="hero-img" src="img/salon_hero.jpg" srcset="img/salon_hero_s.jpg 800w, img/salon_hero.jpg 1600w" sizes="(max-width:680px) 100vw, 50vw" width="1600" height="1067" alt="午後の光が差す白い壁ぎわに、木の天板の黒いワゴン。上にドライヤーとヘアアイロン、壁に丸い鏡" fetchpriority="high">
+          <img class="hero-img" src="img/hero_g_1200.jpg" srcset="img/hero_g_800.jpg 800w, img/hero_g_1200.jpg 1200w, img/hero_g_1600.jpg 1600w" sizes="(max-width:680px) 100vw, 900px" width="1600" height="1067" alt="午後の光が差す白い壁に、丸い鏡が二つ。鏡の前に木の天板のワゴンとドライヤー" fetchpriority="high">
+          <span class="arch-veil" aria-hidden="true"></span>
         </div>
-        <img class="hero-round" src="img/salon_plant_s.jpg" srcset="img/salon_plant_s.jpg 800w, img/salon_plant.jpg 1600w" sizes="(max-width:680px) 120px, 220px" width="800" height="534" alt="窓辺の木の台にのせた鉢植え">
+        <img class="hero-round" src="img/round_g_300.jpg" srcset="img/round_g_300.jpg 300w, img/round_g_600.jpg 600w" sizes="(max-width:680px) 104px, 190px" width="600" height="600" alt="丸い鏡に映る、窓ぎわの椅子" fetchpriority="low" decoding="async">
         <svg class="hero-flower" viewBox="190 90 52 112" aria-hidden="true" focusable="false">
           <path d="M214 90v40" stroke="#9a8571" stroke-width="1.5"/>
           <path d="M214 130c-8 18-12 40-10 62M214 130c0 22 0 44 2 66M214 130c8 18 12 38 12 58" fill="none" stroke="#8a7a66" stroke-width="2" stroke-linecap="round"/>
@@ -66,7 +69,7 @@
           <path d="M209 160c-6-2-10-6-10-12 6 1 10 6 10 12zM219 170c6-2 10-6 10-12-6 1-10 6-10 12z" fill="#8a9a88"/>
           <path d="M206 132h16" stroke="#a26d62" stroke-width="3" stroke-linecap="round"/>
         </svg>
-        <figcaption>午後は、鏡の前まで光が届きます。</figcaption>
+        <figcaption>午後は、<br class="sp-br">鏡の前まで光が届きます。</figcaption>
       </figure>
     </div>
     <div class="hero-bar">
@@ -83,23 +86,23 @@
 
   <section id="recommend" class="section">
     <div class="wrap">
-      <div class="section-head"><h2>初めての方に多いご注文</h2><p class="section-lead">迷ったら、この三つから。値段はすべて税込、写真はイメージです。</p></div>
+      <div class="section-head"><h2><span class="ib">初めての方に</span><span class="ib">よく選ばれるメニュー</span></h2><p class="section-lead">迷ったら、この三つから。値段はすべて税込、写真はイメージです。</p></div>
       <div class="picks">
         <article class="pick pick-main">
-          <figure class="pick-photo"><img src="img/salon_scissors_s.jpg" srcset="img/salon_scissors_s.jpg 800w, img/salon_scissors.jpg 1600w" sizes="(max-width:680px) 100vw, (max-width:1040px) 50vw, 460px" width="800" height="534" alt="木の台に置いた、はさみ二本とコーム" loading="lazy"></figure>
-          <p class="pick-tag">いちばん多いご注文</p>
+          <figure class="pick-photo"><img src="img/pick_cut_800.jpg" srcset="img/pick_cut_800.jpg 800w, img/pick_cut_1200.jpg 1200w" sizes="(max-width:680px) 100vw, (max-width:1040px) 50vw, 460px" width="800" height="600" alt="木の台に置いた、はさみ二本とコーム" loading="lazy" decoding="async"></figure>
+          <p class="pick-tag">いちばん多いご予約</p>
           <h3>カット</h3>
           <p>シャンプーとブローが付きます。乾かし方と、朝のまとめ方もお伝えします。</p>
           <p class="price">4,400<small>円</small></p>
         </article>
         <article class="pick">
-          <figure class="pick-photo"><img class="ph-finish" src="img/salon_finish_s.jpg" srcset="img/salon_finish_s.jpg 800w, img/salon_finish.jpg 1600w" sizes="(max-width:680px) 100vw, (max-width:1040px) 46vw, 360px" width="800" height="600" alt="髪を後ろでまとめ、リボンの髪留めを付けた後ろ姿（イメージ写真）" loading="lazy"></figure>
+          <figure class="pick-photo"><img class="ph-finish" src="img/pick_color_800.jpg" srcset="img/pick_color_800.jpg 800w, img/pick_color_1200.jpg 1200w" sizes="(max-width:680px) 100vw, (max-width:1040px) 46vw, 360px" width="800" height="600" alt="前髪を作った、やわらかい明るい色のミディアムヘアの横顔（イメージ写真）" loading="lazy" decoding="async"></figure>
           <h3>カット＋カラー</h3>
           <p>白髪をなじませたい、少し明るくしたい。色の相談からどうぞ。</p>
           <p class="price">9,900<small>円〜</small></p>
         </article>
         <article class="pick">
-          <figure class="pick-photo"><img class="ph-shampoo" src="img/salon_shampoo_s.jpg" srcset="img/salon_shampoo_s.jpg 800w, img/salon_shampoo.jpg 1600w" sizes="(max-width:680px) 100vw, (max-width:1040px) 46vw, 360px" width="800" height="534" alt="白い洗面ボウルと黒い椅子が並ぶシャンプー台" loading="lazy"></figure>
+          <figure class="pick-photo"><img class="ph-shampoo" src="img/pick_spa_800.jpg" width="800" height="600" alt="白いシャンプーボウル（イメージ写真）" loading="lazy" decoding="async"></figure>
           <h3>ヘッドスパ 20分</h3>
           <p>カットやカラーに足せます。頭をゆっくり洗う、ひと休みの時間です。</p>
           <p class="price">2,200<small>円</small></p>
@@ -188,32 +191,45 @@
 
   <section id="style" class="section section-tint">
     <div class="wrap">
-      <div class="section-head"><h2>スタイル例</h2><p class="section-lead">お店で仕上げた髪型と、スタイリストのひと言です。</p></div>
-      <ul class="styles">
-        <li>
-          <svg viewBox="0 0 160 200" role="img" aria-label="襟足をすっきりさせたショートヘアの後ろ姿のイラスト（写真を置く位置）"><rect width="160" height="200" fill="#eae1d5"/><path d="M0 0h160v70L0 150z" fill="#f6f0e7"/><path d="M20 200c4-40 28-60 60-60s56 20 60 60z" fill="#56695d"/><rect x="71" y="100" width="18" height="46" fill="#e2ccb6"/><ellipse cx="47" cy="86" rx="3" ry="8" fill="#e2ccb6"/><ellipse cx="113" cy="86" rx="3" ry="8" fill="#e2ccb6"/><path d="M47 84C43 50 58 34 80 34s37 16 33 50c-1 10-6 16-12 20-6 3-9 8-11 14H70c-2-6-5-11-11-14-6-4-11-10-12-20z" fill="#4b3e35"/><path d="M84 52c-12 6-20 20-24 40M86 54c6 12 10 28 12 44M82 50c-14-2-26 6-32 20M88 50c10 2 18 10 22 20M73 106l1 8M80 106v9M87 106l-1 8" fill="none" stroke="#6b5a4d" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <p class="style-name">ショート</p>
-          <p class="style-note">襟足は短く、上は少し長めに。乾かすだけで形になります。</p>
+      <div class="section-head"><h2>スタイル例</h2><p class="section-lead">仕上がりの形と、スタイリストのひと言です。指で横に送れます。</p></div>
+      <div class="styles-bar">
+        <p class="styles-count" id="styles-count" aria-hidden="true"><span id="styles-now">1</span> / 5</p>
+        <div class="styles-nav" id="styles-nav" hidden>
+          <button class="styles-btn" type="button" data-dir="-1" aria-controls="styles" aria-label="前のスタイルへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="styles-btn" type="button" data-dir="1" aria-controls="styles" aria-label="次のスタイルへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <ul class="styles" id="styles" tabindex="0" aria-label="スタイル例（横に送れます）">
+        <li class="style-card">
+          <figure class="style-photo"><img src="img/st_round_480.jpg" srcset="img/st_round_480.jpg 480w, img/st_round_800.jpg 800w" sizes="(max-width:680px) 72vw, 280px" width="480" height="600" alt="毛先が内側に丸くおさまった、黒髪のボブ（イメージ写真）" loading="lazy" decoding="async"></figure>
+          <p class="style-name"><span class="style-no" aria-hidden="true">01</span>丸みのあるボブ</p>
+          <p class="style-note">毛先が内に入る形です。くせが気になる方に。</p>
         </li>
-        <li>
-          <svg viewBox="0 0 160 200" role="img" aria-label="あごの高さで切りそろえたボブの後ろ姿のイラスト（写真を置く位置）"><rect width="160" height="200" fill="#eae1d5"/><path d="M0 0h160v70L0 150z" fill="#f6f0e7"/><path d="M20 200c4-40 28-60 60-60s56 20 60 60z" fill="#a26d62"/><rect x="71" y="112" width="18" height="34" fill="#e2ccb6"/><path d="M44 118C40 70 52 34 80 34s40 36 36 84c-10 7-22 10-36 10s-26-3-36-10z" fill="#4b3e35"/><path d="M80 38c-3 22-3 52-1 82M66 44c-10 14-16 36-16 60M94 44c10 14 16 36 16 60M72 50c-5 18-6 42-4 68M88 50c5 18 6 42 4 68" fill="none" stroke="#6b5a4d" stroke-width="1.8" stroke-linecap="round"/><path d="M48 116c10 6 20 8 32 8s22-2 32-8" fill="none" stroke="#3a2f28" stroke-width="2.2" stroke-linecap="round"/></svg>
-          <p class="style-name">ボブ</p>
-          <p class="style-note">あごの線でそろえて、内側を少し軽く。耳にかけても落ち着きます。</p>
+        <li class="style-card">
+          <figure class="style-photo"><img src="img/st_bob_480.jpg" srcset="img/st_bob_480.jpg 480w, img/st_bob_640.jpg 640w" sizes="(max-width:680px) 72vw, 280px" width="480" height="600" alt="美容室の椅子に座る、あごの高さで切りそろえた明るい色のボブの後ろ姿（イメージ写真）" loading="lazy" decoding="async"></figure>
+          <p class="style-name"><span class="style-no" aria-hidden="true">02</span>ボブ</p>
+          <p class="style-note">あごの線でそろえて、内側を少し軽く。きちんと見せたい方に。</p>
         </li>
-        <li>
-          <svg viewBox="0 0 160 200" role="img" aria-label="背中までのゆるいウェーブのロングヘアの後ろ姿のイラスト（写真を置く位置）"><rect width="160" height="200" fill="#eae1d5"/><path d="M0 0h160v70L0 150z" fill="#f6f0e7"/><path d="M20 200c4-40 28-60 60-60s56 20 60 60z" fill="#d9cfc1"/><path d="M47 70c0-24 14-36 33-36s33 12 33 36c2 30 8 60 12 90 2 16-1 28-7 38H42c-6-10-9-22-7-38 4-30 10-60 12-90z" fill="#4b3e35"/><path d="M78 38c-4 30-6 60-6 92 0 22 6 38 0 60M88 40c4 30 6 60 4 92-1 22-6 38 0 58M64 50c-8 20-10 50-14 80-3 22 6 40-2 60M96 50c8 20 10 50 14 80 3 22-6 40 2 60" fill="none" stroke="#6b5a4d" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <p class="style-name">ロング</p>
-          <p class="style-note">毛先にだけ、ゆるいパーマを。結んだときも跡がつきにくい長さです。</p>
+        <li class="style-card">
+          <figure class="style-photo"><img src="img/st_long_480.jpg" srcset="img/st_long_480.jpg 480w, img/st_long_800.jpg 800w" sizes="(max-width:680px) 72vw, 280px" width="480" height="600" alt="低い位置で結んだ、背中までのロングヘア（イメージ写真）" loading="lazy" decoding="async"></figure>
+          <p class="style-name"><span class="style-no" aria-hidden="true">03</span>ロング</p>
+          <p class="style-note">結んでも跡がつきにくい長さに整えます。伸ばしたい方に。</p>
         </li>
-        <li>
-          <svg viewBox="0 0 160 200" role="img" aria-label="白髪をなじませた明るめの色のミディアムヘアの後ろ姿のイラスト（写真を置く位置）"><rect width="160" height="200" fill="#eae1d5"/><path d="M0 0h160v70L0 150z" fill="#f6f0e7"/><path d="M20 200c4-40 28-60 60-60s56 20 60 60z" fill="#3d4f45"/><rect x="71" y="118" width="18" height="28" fill="#e2ccb6"/><path d="M42 126C36 76 52 34 80 34s44 42 38 92c-5 4-9 1-13 7-6-4-11 3-17-1-6 4-10-3-16 1-6-4-10 3-16-1-5 3-9-2-14-6z" fill="#8c7e70"/><path d="M66 44c-10 16-16 40-16 76M94 44c10 16 16 40 16 76M74 42c-5 24-6 54-3 84M88 46c4 24 5 52 2 80M58 60c-4 18-6 40-4 60" fill="none" stroke="#cbc0b3" stroke-width="2.2" stroke-linecap="round"/></svg>
-          <p class="style-name">白髪になじむカラー</p>
-          <p class="style-note">隠すより、なじませる色に。伸びてきた境目が目立ちにくくなります。</p>
+        <li class="style-card">
+          <figure class="style-photo"><img src="img/st_wave_480.jpg" srcset="img/st_wave_480.jpg 480w, img/st_wave_800.jpg 800w" sizes="(max-width:680px) 72vw, 280px" width="480" height="600" alt="背中までのゆるいウェーブのロングヘアの後ろ姿（イメージ写真）" loading="lazy" decoding="async"></figure>
+          <p class="style-name"><span class="style-no" aria-hidden="true">04</span>ゆるいウェーブ</p>
+          <p class="style-note">毛先にだけパーマを。まとまりを足したい方に。</p>
+        </li>
+        <li class="style-card">
+          <figure class="style-photo"><img src="img/st_short_480.jpg" srcset="img/st_short_480.jpg 480w, img/st_short_800.jpg 800w" sizes="(max-width:680px) 72vw, 280px" width="480" height="600" alt="襟足を短く刈り上げたショートヘアの後ろ姿（イメージ写真）" loading="lazy" decoding="async"></figure>
+          <p class="style-name"><span class="style-no" aria-hidden="true">05</span>ショート</p>
+          <p class="style-note">朝、乾かすだけで形になります。手間をかけたくない方に。</p>
         </li>
       </ul>
+      <div class="styles-progress" aria-hidden="true"><span></span></div>
       <div class="styles-foot">
         <p class="insta">ほかの髪型は、インスタグラムで<small>（見本のため押せません）</small></p>
-        <p class="sample-tip">見本の説明：イラストは写真の置き場所です。本番では、インスタグラムに載せている写真から選んで差し替えます。</p>
+        <p class="sample-tip">見本の説明：写真は Unsplash のイメージ写真です。本番では、お店で仕上げた写真（お客さまの了承を得たもの）に差し替えます。白髪をなじませたカラーの写真も、そこから選んで載せます。</p>
       </div>
     </div>
   </section>
@@ -221,7 +237,7 @@
   <section id="first" class="section">
     <div class="wrap">
       <div class="section-head"><h2>初めての方へ</h2><p class="section-lead">ご予約から帰るまでの、だいたいの流れです。</p></div>
-      <ol class="steps">
+      <ol class="steps" id="steps">
         <li><span class="step-no">1</span><h3>ご予約</h3><p>お電話かネット予約で、ご希望の日とメニューをお知らせください。</p></li>
         <li><span class="step-no">2</span><h3>鏡の前でご相談</h3><p>なりたい形と、ふだんの手入れの仕方を10分ほど伺います。</p></li>
         <li><span class="step-no">3</span><h3>シャンプー・施術</h3><p>途中で長さや色を確かめながら進めます。</p></li>
@@ -253,8 +269,8 @@
   <section id="staff" class="section section-tint">
     <div class="wrap staff">
       <figure class="staff-photo">
-        <img src="img/salon_window_s.jpg" srcset="img/salon_window_s.jpg 800w, img/salon_window.jpg 1600w" sizes="(max-width:1040px) 100vw, 50vw" width="800" height="534" alt="丸い鏡のふち越しに見える、窓ぎわの黒い椅子" loading="lazy">
-        <figcaption>鏡のふち越しに見る、窓ぎわの席<small class="cap-note">（写真はイメージです。本番では、店主の写真や手元の写真に差し替えます）</small></figcaption>
+        <img src="img/staff_g_800.jpg" sizes="(max-width:1040px) 100vw, 50vw" width="800" height="600" alt="窓ぎわに置いた、黒い革の椅子（イメージ写真）" loading="lazy" decoding="async">
+        <figcaption>窓ぎわの席。午後は光がよく入ります<small class="cap-note">（写真はイメージです。本番では、店主の写真や手元の写真に差し替えます）</small></figcaption>
       </figure>
       <div class="staff-text">
         <h2>スタイリストのこと</h2>
@@ -299,6 +315,7 @@
     <div class="wrap info-grid">
       <div>
         <div class="section-head"><h2>営業案内</h2></div>
+        <div class="hours-wrap">
         <table class="hours">
           <caption class="visually-hidden">曜日ごとの営業時間と最終受付</caption>
           <thead><tr><th scope="col">曜日</th><th scope="col">営業時間</th><th scope="col">最終受付</th></tr></thead>
@@ -308,14 +325,109 @@
             <tr class="closed"><th scope="row"><span class="nw">月曜・</span><span class="nw">第3火曜</span></th><td colspan="2">定休日（月曜が祝日の日も休みです）</td></tr>
           </tbody>
         </table>
-        <dl class="info">
+        </div>
+        <div class="cal" id="cal">
+          <div class="cal-head">
+            <h3 class="cal-h">お休みの日</h3>
+            <p class="cal-today" id="cal-today">毎週月曜と、第3火曜がお休みです。</p>
+          </div>
+          <div class="cal-tabs" role="radiogroup" aria-label="表示する月">
+            <input type="radio" name="cal-m" id="cal-m11" checked><label for="cal-m11">11月</label>
+            <input type="radio" name="cal-m" id="cal-m12"><label for="cal-m12">12月</label>
+            <span class="cal-pill" aria-hidden="true"></span>
+          </div>
+          <ol class="cal-week" aria-hidden="true"><li class="sun">日</li><li>月</li><li>火</li><li>水</li><li>木</li><li>金</li><li class="sat">土</li></ol>
+          <div class="cal-view">
+            <div class="cal-track">
+              <div class="cal-month" id="cal-11" aria-labelledby="cal-11-h">
+                <h4 class="cal-title" id="cal-11-h">2026年11月</h4>
+                <ol class="cal-grid">
+                  <li class="sun s1" data-date="2026-11-01"><span class="cal-d">1</span></li>
+                  <li class="off" data-date="2026-11-02"><span class="cal-d">2</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li class="hol" data-date="2026-11-03"><span class="cal-d">3</span><span class="visually-hidden">（文化の日・9:00〜18:00）</span></li>
+                  <li data-date="2026-11-04"><span class="cal-d">4</span></li>
+                  <li data-date="2026-11-05"><span class="cal-d">5</span></li>
+                  <li data-date="2026-11-06"><span class="cal-d">6</span></li>
+                  <li class="sat" data-date="2026-11-07"><span class="cal-d">7</span></li>
+                  <li class="sun" data-date="2026-11-08"><span class="cal-d">8</span></li>
+                  <li class="off" data-date="2026-11-09"><span class="cal-d">9</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li data-date="2026-11-10"><span class="cal-d">10</span></li>
+                  <li data-date="2026-11-11"><span class="cal-d">11</span></li>
+                  <li data-date="2026-11-12"><span class="cal-d">12</span></li>
+                  <li data-date="2026-11-13"><span class="cal-d">13</span></li>
+                  <li class="sat" data-date="2026-11-14"><span class="cal-d">14</span></li>
+                  <li class="sun" data-date="2026-11-15"><span class="cal-d">15</span></li>
+                  <li class="off" data-date="2026-11-16"><span class="cal-d">16</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li class="off" data-date="2026-11-17"><span class="cal-d">17</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（第3火曜の休み）</span></li>
+                  <li data-date="2026-11-18"><span class="cal-d">18</span></li>
+                  <li data-date="2026-11-19"><span class="cal-d">19</span></li>
+                  <li data-date="2026-11-20"><span class="cal-d">20</span></li>
+                  <li class="sat" data-date="2026-11-21"><span class="cal-d">21</span></li>
+                  <li class="sun" data-date="2026-11-22"><span class="cal-d">22</span></li>
+                  <li class="off hol" data-date="2026-11-23"><span class="cal-d">23</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み・勤労感謝の日）</span></li>
+                  <li data-date="2026-11-24"><span class="cal-d">24</span></li>
+                  <li data-date="2026-11-25"><span class="cal-d">25</span></li>
+                  <li data-date="2026-11-26"><span class="cal-d">26</span></li>
+                  <li data-date="2026-11-27"><span class="cal-d">27</span></li>
+                  <li class="sat" data-date="2026-11-28"><span class="cal-d">28</span></li>
+                  <li class="sun" data-date="2026-11-29"><span class="cal-d">29</span></li>
+                  <li class="off" data-date="2026-11-30"><span class="cal-d">30</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                </ol>
+              </div>
+              <div class="cal-month" id="cal-12" aria-labelledby="cal-12-h">
+                <h4 class="cal-title" id="cal-12-h">2026年12月</h4>
+                <ol class="cal-grid">
+                  <li class="s3" data-date="2026-12-01"><span class="cal-d">1</span></li>
+                  <li data-date="2026-12-02"><span class="cal-d">2</span></li>
+                  <li data-date="2026-12-03"><span class="cal-d">3</span></li>
+                  <li data-date="2026-12-04"><span class="cal-d">4</span></li>
+                  <li class="sat" data-date="2026-12-05"><span class="cal-d">5</span></li>
+                  <li class="sun" data-date="2026-12-06"><span class="cal-d">6</span></li>
+                  <li class="off" data-date="2026-12-07"><span class="cal-d">7</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li data-date="2026-12-08"><span class="cal-d">8</span></li>
+                  <li data-date="2026-12-09"><span class="cal-d">9</span></li>
+                  <li data-date="2026-12-10"><span class="cal-d">10</span></li>
+                  <li data-date="2026-12-11"><span class="cal-d">11</span></li>
+                  <li class="sat" data-date="2026-12-12"><span class="cal-d">12</span></li>
+                  <li class="sun" data-date="2026-12-13"><span class="cal-d">13</span></li>
+                  <li class="off" data-date="2026-12-14"><span class="cal-d">14</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li class="off" data-date="2026-12-15"><span class="cal-d">15</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（第3火曜の休み）</span></li>
+                  <li data-date="2026-12-16"><span class="cal-d">16</span></li>
+                  <li data-date="2026-12-17"><span class="cal-d">17</span></li>
+                  <li data-date="2026-12-18"><span class="cal-d">18</span></li>
+                  <li class="sat" data-date="2026-12-19"><span class="cal-d">19</span></li>
+                  <li class="sun" data-date="2026-12-20"><span class="cal-d">20</span></li>
+                  <li class="off" data-date="2026-12-21"><span class="cal-d">21</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li data-date="2026-12-22"><span class="cal-d">22</span></li>
+                  <li data-date="2026-12-23"><span class="cal-d">23</span></li>
+                  <li data-date="2026-12-24"><span class="cal-d">24</span></li>
+                  <li data-date="2026-12-25"><span class="cal-d">25</span></li>
+                  <li class="sat" data-date="2026-12-26"><span class="cal-d">26</span></li>
+                  <li class="sun" data-date="2026-12-27"><span class="cal-d">27</span></li>
+                  <li class="off" data-date="2026-12-28"><span class="cal-d">28</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（休み）</span></li>
+                  <li data-date="2026-12-29"><span class="cal-d">29</span></li>
+                  <li class="off" data-date="2026-12-30"><span class="cal-d">30</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（年末の休み）</span></li>
+                  <li class="off" data-date="2026-12-31"><span class="cal-d">31</span><span class="cal-mark" aria-hidden="true">休</span><span class="visually-hidden">（年末の休み）</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <ul class="cal-legend">
+            <li><span class="lg lg-off" aria-hidden="true">休</span>お休み（毎週月曜・第3火曜）</li>
+            <li><span class="lg lg-hol" aria-hidden="true"></span>祝日（9:00〜18:00）</li>
+            <li>年末年始は 12月30日〜1月4日</li>
+          </ul>
+          <p class="sample-tip">見本の説明：お休みの日は、毎月こちらで書き換えます。今日の日付には丸が付きます（この見本は2026年11月・12月）。</p>
+        </div>
+
+      </div>
+      <div class="faq-wrap">
+        <dl class="info info-top">
           <div><dt>お席</dt><dd>2席（スタイリスト1名）</dd></div>
           <div><dt>お支払い</dt><dd>現金・クレジットカード・交通系IC・QRコード決済</dd></div>
           <div><dt>駐車場</dt><dd>店の前に2台（「見本」の札の場所）。満車のときは、近くのコインパーキングをご利用ください</dd></div>
           <div><dt>たばこ</dt><dd>店内は禁煙です</dd></div>
         </dl>
-      </div>
-      <div class="faq-wrap">
         <h3 class="faq-title">よくあるご質問</h3>
         <details class="faq"><summary>子どもを連れて行ってもいいですか？</summary><p>どうぞ。待合に長いすがあるので、お子さまはそこで待っていただけます。小学生以下のカットは2,200円です。</p></details>
         <details class="faq"><summary>前髪だけ、短い時間でも行けますか？</summary><p>前髪カットは15分ほどです。予約の合間が空いていれば、その日のうちにご案内できることもあります。お電話でお尋ねください。</p></details>
@@ -331,11 +443,12 @@
       <div class="reserve-text">
         <h2>ご予約</h2>
         <p>お電話か、ネット予約で受け付けています。取り消しや日にちの変更は、前日までにお電話でお知らせください。</p>
+        <p class="first-note">初めての方は、鏡の前での相談の10分を含めてお時間をお取りします。担当は、はじめから終わりまで店主ひとりです。</p>
         <div class="vacancy">
-          <h3>今週の空き <small>10月25日 更新</small></h3>
+          <h3>今週の空き <small>毎朝 書き換えます</small></h3>
           <ul>
-            <li><b>10/29（木）</b>14:00〜　カットのみ</li>
-            <li><b>10/31（土）</b>15:30〜　カット・カラー</li>
+            <li><b>木曜</b>14:00〜　カットのみ</li>
+            <li><b>土曜</b>15:30〜　カット・カラー</li>
           </ul>
           <p class="sample-tip">見本の説明：この欄は、空き状況が変わるたびに書き換える場所です。お店の方が直しやすい作りにしています。</p>
         </div>
@@ -393,14 +506,14 @@
       <p><span class="nw">10:00〜19:00（土日祝 9:00〜18:00）</span>　<span class="nw">月曜・第3火曜休み</span></p>
     </div>
     <div class="footer-note">
-      <p>このページはラクワーク工房が作ったホームページの見本です。掲載している店・人物・連絡先・値段は実在しません。写真は Unsplash の写真です。イラストは、この見本のために描いたものです。</p>
+      <p>このページはラクワーク工房が作ったホームページの見本です。掲載している店・人物・連絡先・値段は実在しません。写真は Unsplash の写真です（撮影：Giorgio Trovato、dwi rina、Yuxin An、Mathilde Langevin、GN Group、Toa Heftiba、Suhyeon Choi、Enio Pereira da Silva、Alina Chernovolova、Nasim Keshmiri）。イラストは、この見本のために描いたものです。</p>
     </div>
   </div>
 </footer>
 
 <nav class="actionbar" aria-label="すぐに使う操作">
   <a href="tel:0540000000" class="actionbar-main"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5.5 5.5L16 13l5 2v3a3 3 0 0 1-3 3A15 15 0 0 1 3 6a3 3 0 0 1 3-3z" fill="currentColor"/></svg>電話で予約</a>
-  <a href="#menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11l3 3v15H5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4" stroke="currentColor" stroke-width="2.2"/></svg>料金</a>
+  <a href="#reserve"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="2.2"/></svg>ネット予約</a>
   <a href="#access"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>地図</a>
 </nav>
 </body>
