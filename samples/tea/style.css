@@ -85,6 +85,7 @@ main { position: relative; z-index: 2; }
 
 /* ---------- 場面と文字の帯 ---------- */
 .scene { position: relative; }
+.hero { overflow-x: clip; } /* 文字の後ろの霞（::before）を画面の外へはみ出させない。clip なので sticky はそのまま */
 .panel { position: relative; display: flex; align-items: flex-end; min-height: 100svh; padding: 76px 12px calc(14px + env(safe-area-inset-bottom, 0px)); }
 .copy {
   position: relative; width: 100%; max-width: 36rem;
