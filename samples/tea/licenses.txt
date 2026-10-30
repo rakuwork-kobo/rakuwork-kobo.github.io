@@ -1,31 +1,27 @@
 ﻿霧和茶園（架空）一番摘み「霞」 見本ページ（ラクワーク工房） ― 使った道具・写真とライセンス
 2026-10-31 確認（試作2版目）
 
-道具（すべてこのサイトから配っています。外のサーバーから読み込むのは文字の形（Google Fonts）だけです）
-1. GSAP 3.15.0（gsap） ― GSAP Standard "No Charge" License  https://gsap.com/standard-license
-   商用のサイトでも無料。Webflow の見た目で動きを作る道具と競う「ノーコードの道具」への組み込みは禁止。
-   著作権の表示（js/main-*.js の末尾）を消したり変えたりしないこと。
-2. three.js 0.187.0 ― MIT License（全文は下）  https://threejs.org/  茶筒の3D（js/can3d-*.js、あとから読み込む）
-3. 文字：Shippori Mincho（Google Fonts、ページで使う字だけを取り寄せ） ― SIL Open Font License 1.1
-   https://fonts.google.com/specimen/Shippori+Mincho
-霧と湯気は、自前の小さな WebGL のシェーダーです。
+ページの中の動き：外の道具を使わず、自前の小さなプログラム（js/main-*.js）と CSS だけで動かしています。
+  霧と湯気は自前の WebGL のシェーダーです。外のサーバーから読み込むのは見出しの文字の形（Google Fonts）だけです。
+  文字：Shippori Mincho（Google Fonts、見出しで使う字だけを取り寄せ） ― SIL Open Font License 1.1
+        https://fonts.google.com/specimen/Shippori+Mincho
+
+茶筒の絵：three.js 0.187.0（MIT License、全文は下）で形から作り、光を当てて撮った絵です（ページでは three.js を動かしていません）。
+  ラベルも自前で描きました。
 
 写真・動画（生成AIの画像・動画は使っていません。写っているのは霧和茶園ではありません）
   Unsplash License（無料・商用可・クレジットは任意） https://unsplash.com/license
    - 富士山と台地の茶畑   https://unsplash.com/photos/Oc5Fn2dS1tw  ben liau
    - 茶の新芽             https://unsplash.com/photos/wBdNDHE06bc  Se. Tsuchiya
-   - 深蒸し煎茶の茶葉     https://unsplash.com/photos/iIgnfQ-vERM  晨曦 Hey
-   - 横手の急須           https://unsplash.com/photos/owEe5bz3G24  Madeline Liu
-   - 防霜ファンの立つ畝   https://unsplash.com/photos/clWhSQg-v88  Karen Chew
+   - 新芽のそろった畝     https://unsplash.com/photos/clWhSQg-v88  Karen Chew
   Pexels License（無料・商用可・クレジットは任意） https://www.pexels.com/license/
+   - 急須の中の茶葉       https://www.pexels.com/photo/teapot-with-grounds-inside-6226209/  Eva Bronzini
+   - 朱色の急須と湯呑み   https://www.pexels.com/photo/traditional-japanese-teapot-with-green-tea-35042570/  Travel With Lenses
    - 湯呑みに緑茶を注ぐ動画 https://www.pexels.com/video/pouring-green-tea-in-japanese-ceramic-cup-31177597/  George Frewat
   切り抜き・縮小・WebP/MP4 への変換をして、撮影の情報（EXIF など）は消しています。
 
-茶筒：three.js で形から作った3D。ラベルは自前で描いた絵。光は自前で描いた matcap の絵。
-WebGL が使えない端末・動きを止めた版の茶筒の静止画は、この3Dを撮ったものです。
-
 ================================================================
-three.js ― MIT License
+three.js ― MIT License（茶筒の絵を作るのに使用）
 ================================================================
 The MIT License
 

@@ -7,4 +7,7 @@
   d.classList.add(still ? 'still' : 'motion');
   if (reduce) d.classList.add('reduced');
   if (q.get('nogl') === '1') d.classList.add('nogl');
+  // 明朝の文字の形は、最初の絵を止めないように後から（使う字だけを取り寄せ）
+  var f = d.getAttribute('data-font');
+  if (f) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = f; document.head.appendChild(l); }
 })();

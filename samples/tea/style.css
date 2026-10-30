@@ -12,7 +12,8 @@
   --gold: #b9a063;
   --band-l: rgba(246, 245, 239, 0.93);
   --band-d: rgba(13, 19, 15, 0.88);
-  --mincho: "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  --mincho: "Shippori Mincho", "Noto Serif JP", "Noto Serif CJK JP", "Source Han Serif JP", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  --serif: "Noto Serif JP", "Noto Serif CJK JP", "Source Han Serif JP", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
   --gothic: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", "Meiryo", sans-serif;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -46,25 +47,28 @@ img, video { display: block; max-width: 100%; }
 .skip:focus { top: 8px; }
 
 /* ---------- 実写の舞台（動く版だけ） ---------- */
-.stage, #fx, #can { display: none; }
+.stage, #fx { display: none; }
 .motion .stage { display: block; position: fixed; left: 0; top: 0; width: 100%; height: 100%; height: 100lvh; z-index: 0; overflow: hidden; background: #cfd6cc; }
-.layer { position: absolute; inset: 0; overflow: hidden; }
+.layer { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.layer.on { z-index: 2; animation: layer-in 0.3s linear; }
 .layer.off { visibility: hidden; }
-.layer:not(.off) img.kb { will-change: transform; }
+@keyframes layer-in { from { opacity: 0; } }
+.layer.on img.kb { will-change: transform; }
 .layer picture { display: block; width: 100%; height: 100%; }
 img.kb { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
 .layer-video { background: #2a2620; }
 .layer-video video { width: 100%; height: 100%; object-fit: cover; }
-.layer-can { background: #0d1511; }
-.canbg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.can-fallback { display: none; }
-.nogl .can-fallback { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.motion #fx, .motion #can { display: block; position: fixed; left: 0; top: 0; width: 100%; height: 100%; height: 100lvh; z-index: 1; pointer-events: none; opacity: 0; }
-.motion #fx { transition: opacity 0.6s var(--ease-out); }
-.motion #fx.on, .motion #can.on { opacity: 1; }
-.motion #can { visibility: hidden; }
-.motion #can.on { visibility: visible; }
-.nogl #fx, .nogl #can { display: none; }
+.layer-can { background: radial-gradient(ellipse 60% 70% at 68% 46%, #2c322b 0%, #121713 55%, #070a08 100%); }
+.canwrap { position: absolute; left: 50%; top: 8svh; height: 42svh; aspect-ratio: 684 / 1000; margin-left: calc(-42svh * 684 / 1000 / 2); transform-origin: 50% 90%; }
+.canwrap img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.can-lid { transform-origin: 30% 30%; }
+.can-shadow { position: absolute; left: 4%; right: 4%; bottom: -2%; height: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); }
+.can-shine { position: absolute; inset: 0; overflow: hidden; -webkit-mask: url(img/can_body_s.webp) center / 100% 100% no-repeat; mask: url(img/can_body_s.webp) center / 100% 100% no-repeat; }
+.can-shine i { position: absolute; top: 0; bottom: 0; left: 0; width: 40%; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)); transform: translate3d(-60%, 0, 0) skewX(-18deg); }
+@media (min-aspect-ratio: 1/1) { .canwrap { left: auto; right: 13vw; top: 16svh; height: 68svh; margin-left: 0; } }
+.motion #fx { display: block; position: fixed; left: 0; top: 0; width: 100%; height: 100%; height: 100lvh; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.6s var(--ease-out); }
+.motion #fx.on { opacity: 1; }
+.nogl #fx { display: none; }
 
 /* ---------- 上の名前 ---------- */
 .top {
@@ -83,23 +87,37 @@ main { position: relative; z-index: 2; }
 .panel { position: relative; display: flex; align-items: flex-end; min-height: 100svh; padding: 76px 12px calc(14px + env(safe-area-inset-bottom, 0px)); }
 .copy {
   position: relative; width: 100%; max-width: 36rem;
-  padding: 22px 20px 18px; border-radius: 3px;
+  padding: 22px 20px 18px; border-radius: 0;
   background: var(--band-l); color: var(--ink);
 }
 .tone-dark .copy { background: var(--band-d); color: var(--light-ink); }
 .copy.gone { visibility: hidden; }
-.num { font-family: var(--mincho); font-size: 1.15rem; color: var(--leaf); margin-bottom: 0.3em; letter-spacing: 0.3em; }
+.num { font-family: var(--mincho); font-weight: 700; font-size: 1.15rem; color: var(--leaf); margin-bottom: 0.3em; letter-spacing: 0.3em; }
 .tone-dark .num { color: var(--shoot); }
 .scene h2 { font-size: clamp(1.5rem, 1.1rem + 2.2vw, 2.7rem); margin-bottom: 0.55em; letter-spacing: 0.12em; }
 .note { font-size: 0.94em; color: var(--ink-soft); }
 .tone-dark .note { color: var(--light-soft); }
 .ch { display: inline-block; }
+.copy p { font-family: var(--serif); line-height: 2; }
+.copy p.eyebrow, .copy p.scroll-hint { font-family: var(--gothic); }
+/* 文字の出入り（動く版）：場面に入ると、見出しは一字ずつ、本文は少し遅れて */
+.motion .copy { opacity: 0; visibility: hidden; transition: opacity 0.35s ease-out, visibility 0s linear 0.35s; }
+.motion .copy.in { opacity: 1; visibility: visible; transition: opacity 0.45s ease-out, visibility 0s; }
+.motion .copy .ch { opacity: 0; transform: translate3d(0, 0.45em, 0); transition: opacity 0.4s ease-out, transform 0.55s var(--ease-out); }
+.motion .copy.in .ch { opacity: 1; transform: none; transition-delay: calc(var(--i) * 32ms); }
+.motion .copy .rise { opacity: 0; transform: translate3d(0, 12px, 0); transition: opacity 0.4s ease-out, transform 0.55s var(--ease-out); }
+.motion .copy.in .rise { opacity: 1; transform: none; transition-delay: 0.22s; }
+.motion .copy.in .rise + .rise { transition-delay: 0.3s; }
+.motion .copy.in .rise + .rise + .rise { transition-delay: 0.38s; }
+/* 最初の画面は箱にせず、写真の上に霞のような明るみを敷いて直接置く */
+.hero .copy { background: transparent; padding-left: 4px; padding-right: 4px; }
+.hero .panel { background: linear-gradient(to top, rgba(244, 244, 238, 0.92) 0%, rgba(244, 244, 238, 0.78) 34%, rgba(244, 244, 238, 0) 62%); }
 
 .eyebrow { font-size: 0.88rem; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 0.7em; }
 .hero h1 { font-size: clamp(3.2rem, 2.2rem + 6vw, 6rem); letter-spacing: 0.1em; line-height: 1.1; display: flex; align-items: baseline; gap: 0.25em; flex-wrap: wrap; margin-bottom: 0.25em; }
 .h1-sub { font-size: 0.26em; letter-spacing: 0.3em; font-weight: 500; order: -1; flex-basis: 100%; color: var(--leaf); }
 .h1-ruby { font-size: 0.2em; font-weight: 500; letter-spacing: 0.4em; color: var(--ink-soft); }
-.hero-copy { font-family: var(--mincho); font-weight: 500; font-size: clamp(1.3rem, 1rem + 1.4vw, 1.9rem); letter-spacing: 0.1em; line-height: 1.6; margin-bottom: 0.6em; }
+.hero-copy { font-family: var(--mincho); font-weight: 700; font-size: clamp(1.3rem, 1rem + 1.4vw, 1.9rem); letter-spacing: 0.1em; line-height: 1.6; margin-bottom: 0.6em; }
 .lead { color: var(--ink-soft); }
 .scroll-hint { font-size: 0.8rem; letter-spacing: 0.3em; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; margin: 0.4em 0 0; }
 .scroll-hint span { display: block; width: 1px; height: 30px; background: currentColor; transform-origin: top; }
@@ -111,13 +129,14 @@ main { position: relative; z-index: 2; }
 dl { margin: 0.8em 0 0; }
 .brew div, .spec div, .taste dl div { display: flex; flex-wrap: wrap; gap: 0 0.8em; padding: 0.45em 0; border-top: 1px solid rgba(160, 170, 150, 0.35); }
 .brew div:last-child, .spec div:last-child, .taste dl div:last-child { border-bottom: 1px solid rgba(160, 170, 150, 0.35); }
-dt { flex: 0 0 5.5em; font-family: var(--mincho); letter-spacing: 0.15em; color: var(--ink-soft); }
+dt { flex: 0 0 5.5em; font-family: var(--serif); letter-spacing: 0.15em; color: var(--ink-soft); }
 .tone-dark dt { color: var(--light-soft); }
 dd { flex: 1 1 10em; min-width: 0; margin: 0; font-variant-numeric: tabular-nums; }
 .taste { margin-top: 0.6em; }
-.taste-h { font-family: var(--mincho); margin: 0; }
+.taste-h { font-family: var(--serif); margin: 0; }
 .taste-h small { font-size: 0.8em; color: var(--light-soft); }
 .taste dl { margin-top: 0.3em; }
+@media (max-width: 899px) { .taste dl { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1em; } .taste dl div { border-bottom: 0 !important; padding: 0.2em 0; } .taste dl div:last-child { grid-column: 1 / -1; } .taste dt { flex-basis: 3em; } }
 .dots { color: var(--shoot); letter-spacing: 0.2em; }
 .swatch { display: inline-block; width: 1.1em; height: 1.1em; border-radius: 50%; vertical-align: -0.15em; margin-right: 0.5em; background: radial-gradient(circle at 40% 35%, #a9b94e, #5e7a22 70%); border: 1px solid rgba(255, 255, 255, 0.4); flex-shrink: 0; }
 
@@ -127,8 +146,8 @@ html.still .scene, .nojs .scene { min-height: 100svh; }
 html.still .still, .nojs .still { position: absolute; inset: 0; overflow: hidden; background: #2a2f2a; }
 html.still .still picture, .nojs .still picture { display: block; width: 100%; height: 100%; }
 html.still .still img, .nojs .still img { width: 100%; height: 100%; object-fit: cover; }
-.fade { opacity: 0; transition: opacity 0.7s ease-out; }
-.fade.in { opacity: 1; }
+html.still .fade { opacity: 0; transition: opacity 0.7s ease-out; }
+html.still .fade.in { opacity: 1; }
 
 /* ---------- 動く版 ---------- */
 .motion .still { display: none; }
@@ -136,13 +155,17 @@ html.still .still img, .nojs .still img { width: 100%; height: 100%; object-fit:
 .motion .scene { min-height: 180svh; }
 .motion .hero { min-height: 150svh; }
 .motion #s-cup { min-height: 220svh; }
+.motion #s-pot, .motion #s-can { min-height: 205svh; }
 .motion .panel { position: sticky; top: 0; height: 100svh; min-height: 0; pointer-events: none; }
 .motion .copy { pointer-events: auto; }
 
 @media (min-width: 900px) and (min-aspect-ratio: 1/1) {
   .panel { align-items: center; padding: 80px max(28px, 5vw) 40px; }
   .side-r .panel { justify-content: flex-end; }
-  .copy { max-width: min(40rem, 44vw); padding: 32px 32px 26px; }
+  .copy { max-width: min(31rem, 35vw); padding: 30px 30px 24px; }
+  .low .panel { align-items: flex-end; padding-bottom: 6svh; }
+  .hero .panel { background: linear-gradient(to right, rgba(244, 244, 238, 0.86) 0%, rgba(244, 244, 238, 0.62) 26%, rgba(244, 244, 238, 0) 46%); }
+  .hero .copy { max-width: min(30rem, 34vw); }
   /* 見出しは縦書きで、帯の中の右に */
   .scene:not(.hero) .copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1.8rem; align-items: start; }
   .scene:not(.hero) .copy > * { grid-column: 1; }
@@ -150,14 +173,20 @@ html.still .still img, .nojs .still img { width: 100%; height: 100%; object-fit:
   .scene:not(.hero) .copy > h2 { grid-column: 2; grid-row: 2 / span 4; writing-mode: vertical-rl; margin: 0; max-height: 64svh; }
 }
 
-/* ---------- この茶の表示 ---------- */
-.facts { position: relative; z-index: 2; background: var(--paper); padding: 64px 16px; }
-.facts > * { max-width: 52rem; margin-left: auto; margin-right: auto; }
+/* ---------- この茶について ---------- */
+.facts { position: relative; z-index: 2; background: var(--paper); padding: 56px 16px 64px; }
+.motion .facts::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 34svh; background: linear-gradient(to bottom, rgba(241, 239, 231, 0), var(--paper)); pointer-events: none; }
+.facts-in { max-width: 60rem; margin: 0 auto; }
 .facts h2 { font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem); letter-spacing: 0.14em; }
-.facts h2 small { font-size: 0.5em; letter-spacing: 0.05em; font-weight: 500; color: var(--ink-soft); margin-left: 0.6em; }
-.facts-list div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.7em 0; border-top: 1px solid #d6d3c6; }
-.facts-list div:last-child { border-bottom: 1px solid #d6d3c6; }
-.facts-list dt { flex-basis: 7em; }
+.facts-note { font-size: 0.86rem; color: var(--ink-soft); }
+.facts h3 { font-size: 1.1rem; letter-spacing: 0.2em; margin: 0 0 0.5em; }
+.facts-grid { display: grid; gap: 28px; margin-top: 18px; }
+.label-box { border: 1px solid #3d4a40; padding: 16px 18px 6px; background: #f8f6ef; }
+.facts-list { margin: 0; }
+.facts-list div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.55em 0; border-top: 1px solid #d6d3c6; }
+.label-box .facts-list div:first-child { border-top: 0; }
+.facts-list dt { flex-basis: 6.5em; }
+@media (min-width: 760px) { .facts-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; } }
 
 /* ---------- お求めの方法 ---------- */
 .buy { position: relative; z-index: 2; background: var(--deep); color: var(--light-ink); }
@@ -166,13 +195,17 @@ html.still .still img, .nojs .still img { width: 100%; height: 100%; object-fit:
 .buy-in { padding: 48px 16px 64px; }
 .buy-in > * { max-width: 52rem; margin-left: auto; margin-right: auto; }
 .buy h2 { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); letter-spacing: 0.16em; margin-bottom: 0.6em; }
-.buy-voice { font-family: var(--mincho); font-size: 1.2rem; letter-spacing: 0.08em; }
+.buy-voice { font-family: var(--serif); font-size: 1.2rem; letter-spacing: 0.08em; }
 .buy-voice span { display: block; font-family: var(--gothic); font-size: 0.78rem; color: var(--light-soft); margin-top: 0.3em; }
 .buy-lead { color: var(--light-soft); font-size: 0.94rem; }
+.buy-info { margin-top: 28px; font-size: 0.94rem; }
+.buy-info div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.5em 0; border-top: 1px dashed rgba(238, 240, 230, 0.2); }
+.buy-info dt { flex-basis: 7em; color: var(--gold); }
+.buy-info dd { color: var(--light-soft); }
 .buy-list { list-style: none; padding: 0; margin-top: 28px; }
 .buy-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; align-items: start; padding: 22px 0; border-top: 1px solid rgba(238, 240, 230, 0.18); }
 .buy-row:last-child { border-bottom: 1px solid rgba(238, 240, 230, 0.18); }
-.buy-n { font-family: var(--mincho); font-size: 1.9rem; line-height: 1.1; color: var(--gold); grid-row: span 2; }
+.buy-n { font-family: var(--mincho); font-weight: 700; font-size: 1.9rem; line-height: 1.1; color: var(--gold); grid-row: span 2; }
 .buy-row h3 { font-size: 1.25rem; letter-spacing: 0.12em; margin-bottom: 0.3em; }
 .buy-row p { color: var(--light-soft); margin: 0; }
 .btn { display: inline-block; justify-self: start; margin-top: 10px; min-width: min(12em, 100%); max-width: 100%; padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(238, 240, 230, 0.35); color: var(--light-soft); font-size: 0.9rem; user-select: none; -webkit-user-select: none; }
@@ -192,7 +225,7 @@ html.still .still img, .nojs .still img { width: 100%; height: 100%; object-fit:
 .foot a { color: var(--light-ink); text-underline-offset: 3px; }
 .foot a:active { opacity: 0.6; }
 @media (hover: hover) and (pointer: fine) { .foot a:hover { color: var(--shoot); } }
-.foot-sig { font-family: var(--mincho); margin-top: 1.6em; color: var(--light-ink); }
+.foot-sig { font-family: var(--serif); margin-top: 1.6em; color: var(--light-ink); }
 
 /* ---------- 計測の表示（?debug=1） ---------- */
 .dbg { position: fixed; z-index: 40; left: 8px; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 8px 10px; border-radius: 6px; max-width: calc(100vw - 16px); background: rgba(0, 0, 0, 0.72); color: #d9f3c0; font: 11px/1.45 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; letter-spacing: 0; white-space: pre-wrap; pointer-events: none; }
