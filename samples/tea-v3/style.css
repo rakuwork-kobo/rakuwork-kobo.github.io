@@ -7,7 +7,7 @@
 :root {
   --mist: #dce3dc;        /* 朝霧：地の基本 */
   --furrow: #1e3324;      /* 畝の影：文字・動画の帯・下の欄 */
-  --liquor: #3c520d;      /* 深蒸しの水色（深まったあと）：蒸すの段の色の面（白い字と 8.3:1） */
+  --liquor: #3c520d;      /* 深蒸しの水色（深まったあと）：蒸すの段の色の面（白い字と 7.7:1） */
   --bud: #b9cc5c;         /* 一番茶の芽：暗い地の上の小さな印 */
   --clay: #a9452b;        /* 朱泥：押せる物だけ（ボタン・動画の再生） */
   --mist-light: #e3e9e2;  /* 朝霧の薄め：情報の段の枠の中（地に近く） */
@@ -150,8 +150,8 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .sec { position: relative; }
 /* 画面の外の段は、近づくまで組まない。仮の高さは幅ごとの実測（360 / 412 / 768 / 1440 / 1920px、±3% 以内） */
 .sec, .facts, .buy, .foot { content-visibility: auto; contain-intrinsic-size: auto 800px; }
-@media (max-width: 379px) { .sec-pick { contain-intrinsic-size: auto 830px; } .sec-steam { contain-intrinsic-size: auto 654px; } .sec-brew { contain-intrinsic-size: auto 1348px; } .sec-pour { contain-intrinsic-size: auto 1754px; } .sec-can { contain-intrinsic-size: auto 976px; } .sec-farm { contain-intrinsic-size: auto 695px; } .facts { contain-intrinsic-size: auto 1519px; } .buy { contain-intrinsic-size: auto 2501px; } .foot { contain-intrinsic-size: auto 646px; } }
-@media (min-width: 380px) and (max-width: 599px) { .sec-pick { contain-intrinsic-size: auto 864px; } .sec-steam { contain-intrinsic-size: auto 616px; } .sec-brew { contain-intrinsic-size: auto 1253px; } .sec-pour { contain-intrinsic-size: auto 1860px; } .sec-can { contain-intrinsic-size: auto 1005px; } .sec-farm { contain-intrinsic-size: auto 685px; } .facts { contain-intrinsic-size: auto 1204px; } .buy { contain-intrinsic-size: auto 2353px; } .foot { contain-intrinsic-size: auto 546px; } }
+@media (max-width: 379px) { .sec-pick { contain-intrinsic-size: auto 830px; } .sec-steam { contain-intrinsic-size: auto 654px; } .sec-brew { contain-intrinsic-size: auto 1348px; } .sec-pour { contain-intrinsic-size: auto 1754px; } .sec-can { contain-intrinsic-size: auto 976px; } .sec-farm { contain-intrinsic-size: auto 695px; } .facts { contain-intrinsic-size: auto 1519px; } .buy { contain-intrinsic-size: auto 2470px; } .foot { contain-intrinsic-size: auto 646px; } }
+@media (min-width: 380px) and (max-width: 599px) { .sec-pick { contain-intrinsic-size: auto 864px; } .sec-steam { contain-intrinsic-size: auto 616px; } .sec-brew { contain-intrinsic-size: auto 1253px; } .sec-pour { contain-intrinsic-size: auto 1860px; } .sec-can { contain-intrinsic-size: auto 1005px; } .sec-farm { contain-intrinsic-size: auto 685px; } .facts { contain-intrinsic-size: auto 1204px; } .buy { contain-intrinsic-size: auto 2321px; } .foot { contain-intrinsic-size: auto 546px; } }
 @media (min-width: 600px) and (max-width: 899px) { .sec-pick { contain-intrinsic-size: auto 1248px; } .sec-steam { contain-intrinsic-size: auto 544px; } .sec-brew { contain-intrinsic-size: auto 1067px; } .sec-pour { contain-intrinsic-size: auto 2574px; } .sec-can { contain-intrinsic-size: auto 866px; } .sec-farm { contain-intrinsic-size: auto 712px; } .facts { contain-intrinsic-size: auto 987px; } .buy { contain-intrinsic-size: auto 1721px; } .foot { contain-intrinsic-size: auto 407px; } }
 @media (min-width: 900px) and (max-width: 1679px) { .sec-pick { contain-intrinsic-size: auto 637px; } .sec-steam { contain-intrinsic-size: auto 513px; } .sec-brew { contain-intrinsic-size: auto 855px; } .sec-pour { contain-intrinsic-size: auto 1723px; } .sec-can { contain-intrinsic-size: auto 589px; } .sec-farm { contain-intrinsic-size: auto 723px; } .facts { contain-intrinsic-size: auto 616px; } .buy { contain-intrinsic-size: auto 1472px; } .foot { contain-intrinsic-size: auto 363px; } }
 @media (min-width: 1680px) { .sec-pick { contain-intrinsic-size: auto 804px; } .sec-steam { contain-intrinsic-size: auto 513px; } .sec-brew { contain-intrinsic-size: auto 856px; } .sec-pour { contain-intrinsic-size: auto 1815px; } .sec-can { contain-intrinsic-size: auto 589px; } .sec-farm { contain-intrinsic-size: auto 723px; } .facts { contain-intrinsic-size: auto 616px; } .buy { contain-intrinsic-size: auto 1473px; } .foot { contain-intrinsic-size: auto 363px; } }
@@ -161,7 +161,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .sec .txt > :last-child { margin-bottom: 0; }
 
 /* 蒸す：深蒸しの水色の色面（本文の幅の内側に収め、「霞」の見せ場と張り合わない）。
-   一度だけ深まる：背景色は変えず、深い色の面（::before）を重ねて不透明度だけを 900ms で上げる（合成だけ）。白い字との差は、薄い方 4.8:1・深い方 8.3:1、途中もその間 */
+   一度だけ深まる：背景色は変えず、深い色の面（::before）を重ねて不透明度だけを 900ms で上げる（合成だけ）。白い字との差は、薄い方 4.8:1・深い方 7.7:1、途中もその間 */
 .sec-steam { padding: 0 var(--gut); }
 .face { position: relative; isolation: isolate; background: var(--liquor-light); color: var(--mist-ink); padding: 48px 24px; display: grid; gap: 28px; margin: 0 auto; max-width: 1100px; }
 .face::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--liquor); opacity: 0; transition: opacity 0.9s cubic-bezier(0.77, 0, 0.175, 1); }
