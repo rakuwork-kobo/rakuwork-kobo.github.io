@@ -1,0 +1,160 @@
+/* 霧和茶園（架空）一番摘み「霞」 試作3版目
+   色はお茶から：朝霧・畝の影・深蒸しの水色・一番茶の芽・朱泥。大胆なのは最初の画面の「霞」の一字だけ。 */
+:root {
+  --mist: #dce3dc;      /* 朝霧：地の基本 */
+  --furrow: #1e3324;    /* 畝の影：文字・暗い段 */
+  --liquor: #5b7223;    /* 深蒸しの水色：色面は蒸しの段だけ */
+  --bud: #b9cc5c;       /* 一番茶の芽：暗い地の上の印・選んでいる所 */
+  --clay: #a9452b;      /* 朱泥：押せる物だけ */
+  --furrow-soft: #3f5546;
+  --mist-ink: #eef2ec;
+  --hand: "Klee One", "Noto Serif JP", "Yu Mincho", serif;
+  --sans: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", "Meiryo", sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; background: var(--mist); }
+body { margin: 0; color: var(--furrow); background: var(--mist); font-family: var(--sans); font-size: 1.0625rem; line-height: 1.9; letter-spacing: 0.03em; overflow-wrap: anywhere; }
+h1, h2, h3 { font-family: var(--hand); font-weight: 600; margin: 0; line-height: 1.4; letter-spacing: 0.06em; }
+h2 { font-size: clamp(1.75rem, 1.35rem + 1.6vw, 2.5rem); margin-bottom: 0.7em; }
+h3 { font-size: 1.3rem; }
+p { margin: 0 0 1em; max-width: 38em; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 3px; }
+a, button { touch-action: manipulation; }
+:focus-visible { outline: 3px solid var(--bud); outline-offset: 3px; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 50; background: var(--furrow); color: var(--mist-ink); padding: 8px 14px; border-radius: 6px; }
+.skip:focus { top: 8px; }
+
+/* 上の名前 */
+.top { position: absolute; z-index: 20; left: 0; right: 0; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px; }
+.mark { margin: 0; font-family: var(--hand); font-size: 1.15rem; color: var(--furrow); }
+.mark span { font-size: 0.75em; }
+.sample-tag { margin: 0; font-size: 0.8rem; padding: 3px 10px; border-radius: 4px; background: var(--furrow); color: var(--mist-ink); line-height: 1.5; }
+
+/* ---------- 最初の画面：霧の中の「霞」が晴れて、畝が現れる ---------- */
+.hero { position: relative; overflow-x: clip; }
+.hero-stick { position: relative; height: 100svh; min-height: 520px; overflow: hidden; background: var(--mist); }
+.hero-photo, .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-photo img { object-fit: cover; }
+#fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: none; }
+.hero-glyph { position: absolute; z-index: 1; left: 50%; top: 46%; margin: 0; font-family: var(--hand); font-weight: 600; font-size: min(68svh, 92vw); line-height: 1; color: var(--furrow); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; max-width: none; }
+.hero-name { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); }
+.hero-name h1 { font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem); color: var(--furrow); margin-bottom: 0.3em; }
+.hero-name p { font-size: 1.05rem; color: var(--furrow); max-width: 26em; }
+.hero-name::before { content: ""; position: absolute; z-index: -1; left: -16px; right: -16px; top: -60px; bottom: -40px; background: linear-gradient(to top, rgba(220, 227, 220, 0.94), rgba(220, 227, 220, 0.75) 60%, rgba(220, 227, 220, 0)); }
+.hero-hint { display: none; }
+
+/* 動く版：最初の画面だけが舞台。スクロールの間、画面に止まる */
+.motion .hero { height: 230svh; }
+.motion .hero-stick { position: sticky; top: 0; }
+.motion #fx { display: block; }
+.motion .hero-glyph { opacity: 1; will-change: transform, opacity; }
+.motion .hero-photo img { will-change: transform; }
+.motion .hero-name { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease-out, transform 0.8s var(--ease-out); }
+.motion .hero-name.in { opacity: 1; transform: none; }
+.motion .hero-hint { display: block; position: absolute; left: 0; right: 0; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); margin: 0 auto; text-align: center; font-size: 0.9rem; color: var(--furrow); transition: opacity 0.4s ease-out; max-width: none; }
+.motion .hero-hint.gone { opacity: 0; }
+.nogl #fx { display: none; }
+
+/* ---------- 静かな読み物：写真と文を左右に ---------- */
+.sec { display: grid; gap: 0; }
+.sec .ph { margin: 0; }
+.sec .ph img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.sec .txt { padding: 40px 16px 48px; }
+.sec-steam { background: var(--liquor); color: var(--mist-ink); }
+.sec-pour { background: var(--furrow); color: var(--mist-ink); }
+.sec-can { background: var(--mist); }
+
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); column-gap: 0.6rem; padding: 0.4em 0 0.6em; }
+.steps li::before { content: counter(s); grid-row: span 2; font-family: var(--hand); font-size: 1.9rem; line-height: 1.2; color: var(--liquor); }
+.steps h3 { font-size: 1.2rem; margin-bottom: 0.15em; }
+.steps p { margin: 0; }
+
+.pour-media { position: relative; background: var(--furrow); }
+.pour-media video { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; }
+.play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.taste { margin: 1em 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6em 1.2em; }
+.taste div { display: flex; flex-wrap: wrap; gap: 0 0.6em; }
+.taste dt { color: var(--bud); }
+.taste dd { margin: 0; }
+.taste div:last-child { grid-column: 1 / -1; }
+.swatch { display: inline-block; width: 1.1em; height: 1.1em; border-radius: 50%; vertical-align: -0.15em; margin-right: 0.45em; background: radial-gradient(circle at 40% 35%, #8fa23c, var(--liquor) 70%); }
+
+.sec-can .txt { padding-bottom: 8px; }
+.can { position: relative; margin: 0 auto 48px; width: min(64vw, 300px); aspect-ratio: 684 / 1000; }
+.can img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.can::after { content: ""; position: absolute; left: 4%; right: 4%; bottom: -3%; height: 7%; border-radius: 50%; background: radial-gradient(closest-side, rgba(30, 51, 36, 0.45), rgba(30, 51, 36, 0)); z-index: -1; }
+.can-lid { transform: translate(1%, -9%) rotate(4deg); transform-origin: 30% 30%; }
+.price { font-size: 0.95rem; color: var(--furrow-soft); }
+
+/* ボタン：押せる物だけ朱泥。押すと、下に何が起きたかを出す */
+button { font: inherit; }
+.act, .play { appearance: none; border: 0; border-radius: 999px; background: var(--clay); color: #fff; padding: 12px 22px; min-height: 48px; cursor: pointer; letter-spacing: 0.04em; transition: transform 0.12s ease-out, background-color 0.15s ease-out; user-select: none; -webkit-user-select: none; }
+.act:active, .play:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .act:hover, .play:hover { background: #923a23; } }
+
+/* ---------- この茶について ---------- */
+.facts { padding: 64px 16px; background: var(--mist); }
+.facts h2 { margin-bottom: 0.2em; }
+.facts-note { font-size: 0.92rem; color: var(--furrow-soft); }
+.facts-grid { display: grid; gap: 32px; margin-top: 20px; }
+.facts h3 { font-size: 1.2rem; margin-bottom: 0.4em; }
+.facts dl { margin: 0; }
+.facts dl div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.45em 0; }
+.facts dt { flex: 0 0 6.5em; color: var(--furrow-soft); }
+.facts dd { flex: 1 1 12em; min-width: 0; margin: 0; }
+/* 一括表示は本物の袋の裏と同じく枠で囲む（ここだけの枠） */
+.label-box { border: 1.5px solid var(--furrow); padding: 14px 18px 10px; background: #e8ede7; }
+.traits dl div + div { border-top: 1px solid rgba(30, 51, 36, 0.15); }
+
+/* ---------- お求めの方法 ---------- */
+.buy { background: var(--furrow); color: var(--mist-ink); padding: 72px 16px 72px; }
+.voice { font-family: var(--hand); font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.3rem); line-height: 1.6; margin-bottom: 0.3em; color: var(--mist-ink); }
+.voice-by { font-size: 0.9rem; color: #b8c5bb; margin-bottom: 3em; }
+.buy h2 { color: var(--mist-ink); }
+.buy-lead { color: #b8c5bb; font-size: 0.95rem; }
+.ways { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 28px; }
+.ways h3 { color: var(--bud); margin-bottom: 0.2em; }
+.ways p { margin-bottom: 0.7em; }
+.act-msg { min-height: 1.9em; margin: 16px 0 0; color: var(--bud); }
+.info { margin: 40px 0 0; font-size: 0.95rem; }
+.info div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.4em 0; }
+.info dt { flex: 0 0 7em; color: var(--bud); }
+.info dd { flex: 1 1 12em; margin: 0; color: #d3dcd4; }
+
+/* ---------- 下の欄 ---------- */
+.foot { background: #15251a; color: #b8c5bb; padding: 40px 16px calc(40px + env(safe-area-inset-bottom, 0px)); font-size: 0.9rem; }
+.foot a { color: var(--mist-ink); }
+.foot a:active { opacity: 0.6; }
+@media (hover: hover) and (pointer: fine) { .foot a:hover { color: var(--bud); } }
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.foot-sig { font-family: var(--hand); color: var(--mist-ink); margin-top: 1.4em; }
+
+/* ---------- 広い画面：写真と文を左右に（交互） ---------- */
+@media (min-width: 900px) {
+  .sec { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; }
+  .sec .ph img { aspect-ratio: auto; height: min(88svh, 760px); }
+  .sec .txt { padding: 56px max(32px, 5vw); }
+  .sec-steam { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .sec-brew { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .sec-brew .ph { order: 2; }
+  .sec-pour { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+  .pour-media video { aspect-ratio: 16 / 9; height: auto; }
+  .sec-can { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); padding: 40px 0; }
+  .sec-can .txt { padding-bottom: 56px; }
+  .can { width: min(26vw, 360px); margin: 40px auto; }
+  .facts, .buy { padding-left: max(32px, 8vw); padding-right: max(32px, 8vw); }
+  .facts-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; max-width: 64rem; }
+  .ways { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 72rem; }
+  .info { max-width: 52rem; }
+  .hero-name { left: max(32px, 6vw); right: auto; bottom: 8svh; max-width: 40rem; }
+  .hero-name::before { left: -6vw; right: -10vw; top: -80px; bottom: -8svh; background: radial-gradient(ellipse 70% 80% at 30% 70%, rgba(220, 227, 220, 0.95), rgba(220, 227, 220, 0.7) 55%, rgba(220, 227, 220, 0)); }
+  .foot > * { max-width: 60rem; }
+}
+
+/* ---------- 計測の表示（?debug=1） ---------- */
+.dbg { position: fixed; z-index: 40; left: 8px; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 8px 10px; border-radius: 6px; max-width: calc(100vw - 16px); background: rgba(10, 20, 14, 0.8); color: #d9f3c0; font: 11px/1.45 ui-monospace, Consolas, monospace; letter-spacing: 0; white-space: pre-wrap; pointer-events: none; }
+.dbg-links { position: fixed; z-index: 40; left: 8px; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); margin: 0; display: flex; gap: 6px; }
+.dbg-links a { font: 12px/1 ui-monospace, Consolas, monospace; color: #fff; background: rgba(10, 20, 14, 0.8); padding: 7px 9px; border-radius: 6px; text-decoration: none; }
