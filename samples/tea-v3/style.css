@@ -1,4 +1,4 @@
-/* 霧和茶園（架空）一番摘み「霞」 試作3版目（2026-10-31 直し2）
+/* 霧和茶園（架空）一番摘み「霞」 試作3版目（2026-11-01 直し4：Blender の絵）
    色はお茶から：朝霧・畝の影・深蒸しの水色・一番茶の芽・朱泥（と、その薄め・濃いめだけ）。
    大胆なのは最初の画面の「霞」の一字（筆の字）だけ。字の段は 48 / 28 / 17 / 15 の4つ。見出しは明朝 600、本文は Noto Sans JP 400。 */
 :root {
@@ -6,7 +6,7 @@
   --furrow: #1e3324;      /* 畝の影：文字・動画の帯・下の欄 */
   --liquor: #47600f;      /* 深蒸しの水色（深まったあと）：蒸すの段の色の面 */
   --bud: #b9cc5c;         /* 一番茶の芽：暗い地の上の小さな印 */
-  --clay: #a9452b;        /* 朱泥：押せる物だけ */
+  --clay: #a9452b;        /* 朱泥：押せる物だけ（ボタン・動画の再生） */
   --mist-light: #e3e9e2;  /* 朝霧の薄め：情報の段の枠の中（地に近く） */
   --mist-ink: #eef2ec;    /* 朝霧のいちばん薄め：暗い地の上の字 */
   --mist-deep: #c3cec5;   /* 朝霧の濃いめ：暗い地の上の注記・枠の線 */
@@ -14,7 +14,7 @@
   --furrow-mist: #8d9a7a; /* 畝の影をうんと薄めた色：写真が届くまでの面 */
   --furrow-deep: #15251a; /* 畝の影の濃いめ：動画の箱の奥 */
   --liquor-light: #587219;/* 水色の薄め：蒸すの段の、深まる前の色（白い字と 4.8:1） */
-  --clay-deep: #8f3721;   /* 朱泥の濃いめ：縁取りのボタンの字 */
+  --clay-deep: #8f3721;   /* 朱泥の濃いめ：縁取りのボタンの字（押せる物だけ） */
   --yamabuki: #c9b445;    /* ふつうの煎茶の山吹色（水色の札だけ） */
   --kasumi-cup: #4f6a1c;  /* 霞の水色（写真の器の中から取った色。水色の札だけ） */
   --sans: "Noto Sans JP", sans-serif;
@@ -89,7 +89,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .hero-lead { margin: 0.5em 0 0; max-width: 27em; }
 .hero-links { margin: 0.1em 0 0; display: flex; flex-wrap: wrap; justify-content: center; column-gap: 28px; }
 .hero-links a { display: inline-flex; align-items: center; min-height: 44px; }
-/* 「下へ進む」：ボタンの形。線は一度だけ動いて止まる */
+/* 「下へ進む」：ボタンの形。線は動かない */
 .hero-hint { position: absolute; z-index: 5; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 20px; border: 1.5px solid var(--furrow); border-radius: 999px; background: rgba(238, 242, 236, 0.86); color: var(--furrow); font: inherit; cursor: pointer; transition: opacity 0.2s var(--ease-out), visibility 0s linear 0.2s; }
 .hero-hint::after { content: ""; width: 1px; height: 16px; background: currentColor; }
 .hero-hint.gone { opacity: 0; visibility: hidden; }
@@ -101,8 +101,6 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .motion .hero-name { top: calc(var(--gc, 36svh) + var(--gh) * 0.86); }
 .motion .hero-glyph { top: var(--gc, 36svh); }
 .motion .hero-hint { bottom: calc(14px + 100lvh - 100svh + env(safe-area-inset-bottom, 0px)); }
-.motion .hero-hint::after { animation: hint 1.2s var(--ease-out) 0.8s 1 both; }
-@keyframes hint { from { transform: translateY(-4px); opacity: 0.4; } to { transform: none; opacity: 1; } }
 .motion #fx, .motion #gx { display: block; }
 .motion .hero-stick.live .hero-photo img { will-change: transform; }
 /* 霧（シェーダー）が描けたら、板と字の絵を 500ms で溶かして外す */
@@ -127,7 +125,6 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
   .hero-name, .motion .hero-name { position: relative; left: auto; right: auto; top: auto; transform: none; width: auto; align-items: flex-start; text-align: left; max-width: 30em; }
   .hero-links { justify-content: flex-start; }
   .hero-hint, .motion .hero-hint { bottom: 12px; }
-  .motion .hero-hint::after { animation: none; }
 }
 
 /* 大きな文字の設定などで、字と名乗りが一画面に収まらないとき：止めた版の扱いで、縦に並べる */
@@ -138,30 +135,25 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .hero-stick.tall .hero-glyph { position: relative; left: auto; top: auto; transform: none; height: 30svh; opacity: 1 !important; }
 .hero-stick.tall .hero-name { position: relative; left: auto; right: auto; top: auto; transform: none; width: auto; max-width: none; align-self: stretch; }
 .hero-stick.tall .hero-hint { position: relative; left: auto; bottom: auto; transform: none; }
-.hero-stick.tall .hero-hint::after { animation: none; }
 
 /* ---------- 読み物 ---------- */
 .sec { position: relative; }
 /* 画面の外の段は、近づくまで組まない（高さの見込みは、幅ごとの実測：412 / 768 / 1440px） */
 .sec, .facts, .buy, .foot { content-visibility: auto; contain-intrinsic-size: auto 800px; }
-.sec-pick { contain-intrinsic-size: auto 794px; }
-.sec-steam { contain-intrinsic-size: auto 685px; }
-.sec-brew { contain-intrinsic-size: auto 1221px; }
-.sec-pour { contain-intrinsic-size: auto 1747px; }
-.sec-can { contain-intrinsic-size: auto 734px; }
+.sec-pick { contain-intrinsic-size: auto 857px; }
+.sec-steam { contain-intrinsic-size: auto 676px; }
+.sec-brew { contain-intrinsic-size: auto 1225px; }
+.sec-pour { contain-intrinsic-size: auto 1814px; }
+.sec-can { contain-intrinsic-size: auto 765px; }
 .sec-farm { contain-intrinsic-size: auto 814px; }
-.facts { contain-intrinsic-size: auto 1135px; }
-.buy { contain-intrinsic-size: auto 1791px; }
-.foot { contain-intrinsic-size: auto 562px; }
+.facts { contain-intrinsic-size: auto 1166px; }
+.buy { contain-intrinsic-size: auto 2099px; }
+.foot { contain-intrinsic-size: auto 518px; }
 @media (min-width: 600px) and (max-width: 899px) {
-  .sec-pick { contain-intrinsic-size: auto 1211px; } .sec-steam { contain-intrinsic-size: auto 642px; } .sec-brew { contain-intrinsic-size: auto 1005px; }
-  .sec-pour { contain-intrinsic-size: auto 2493px; } .sec-can { contain-intrinsic-size: auto 759px; } .sec-farm { contain-intrinsic-size: auto 743px; }
-  .facts { contain-intrinsic-size: auto 981px; } .buy { contain-intrinsic-size: auto 1390px; } .foot { contain-intrinsic-size: auto 407px; }
+  .sec-pick { contain-intrinsic-size: auto 1243px; } .sec-steam { contain-intrinsic-size: auto 662px; } .sec-brew { contain-intrinsic-size: auto 1040px; } .sec-pour { contain-intrinsic-size: auto 2528px; } .sec-can { contain-intrinsic-size: auto 860px; } .sec-farm { contain-intrinsic-size: auto 743px; } .facts { contain-intrinsic-size: auto 981px; } .buy { contain-intrinsic-size: auto 1928px; } .foot { contain-intrinsic-size: auto 407px; }
 }
 @media (min-width: 900px) {
-  .sec-pick { contain-intrinsic-size: auto 637px; } .sec-steam { contain-intrinsic-size: auto 608px; } .sec-brew { contain-intrinsic-size: auto 837px; }
-  .sec-pour { contain-intrinsic-size: auto 1694px; } .sec-can { contain-intrinsic-size: auto 583px; } .sec-farm { contain-intrinsic-size: auto 880px; }
-  .facts { contain-intrinsic-size: auto 613px; } .buy { contain-intrinsic-size: auto 1201px; } .foot { contain-intrinsic-size: auto 407px; }
+  .sec-pick { contain-intrinsic-size: auto 637px; } .sec-steam { contain-intrinsic-size: auto 588px; } .sec-brew { contain-intrinsic-size: auto 841px; } .sec-pour { contain-intrinsic-size: auto 1698px; } .sec-can { contain-intrinsic-size: auto 585px; } .sec-farm { contain-intrinsic-size: auto 880px; } .facts { contain-intrinsic-size: auto 613px; } .buy { contain-intrinsic-size: auto 1391px; } .foot { contain-intrinsic-size: auto 363px; }
 }
 .ph { margin: 0; background: var(--furrow-mist); }
 .ph img { width: 100%; height: auto; }
@@ -174,8 +166,9 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .face.deep { background-color: var(--liquor); }
 .face p { margin: 0; }
 .face :focus-visible { outline-color: var(--mist-ink); box-shadow: 0 0 0 6px var(--furrow); }
-.leaf { margin: 0; width: min(64%, 260px); }
-.leaf img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+/* 茶葉の絵（3D）：拡大して見せない。スマホは幅の80%まで、PC は 320〜420px（元の絵は 960px なので 1倍を超えない） */
+.leaf { margin: 0; width: min(80%, 420px); }
+.leaf img { width: 100%; height: auto; aspect-ratio: 3 / 2; }
 .leaf figcaption { margin-top: 8px; color: var(--mist-ink); }
 
 /* 淹れる：湯の温度と時間の目盛りの図 */
@@ -194,16 +187,18 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .t0 { left: 0; transform: translateX(-14px); } .t1 { left: 25%; } .t2 { left: 50%; } .t3 { left: 75%; } .t4 { left: 100%; transform: translateX(calc(-100% + 14px)); }
 /* 温度：60〜100℃。一煎目は 70〜80℃（25〜50%）、二煎目は 90℃（75%） */
 .g-temp .b-1st { left: 25%; width: 25%; }
-.g-temp .m-90 { left: calc(75% - 1px); background: var(--clay-deep); }
+.g-temp .m-90 { left: calc(75% - 1px); background: var(--furrow); }
 /* 時間：0〜60秒。霞は 40秒（0〜66.7%）、ふつうの煎茶は 60秒、二煎目は 10秒 */
 .g-time .b-40 { left: 0; width: 66.67%; }
 .g-time .m-60 { left: calc(100% - 2px); background: var(--furrow-soft); }
-.g-time .m-10 { left: calc(16.67% - 1px); background: var(--clay-deep); height: 40px; }
+.g-time .m-60::before { background: var(--mist); border: 3px solid var(--furrow-soft); }
+.g-time .m-10 { left: calc(16.67% - 1px); background: var(--furrow); height: 40px; }
 @media (max-width: 599px) { .g-tick.t1, .g-tick.t3 { visibility: hidden; } }
 .g-keys { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .g-keys li { position: relative; padding-left: 26px; }
 .g-keys li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 16px; height: 10px; background: var(--liquor-light); }
-.g-keys .k-2nd::before { height: 3px; top: 0.75em; background: var(--clay-deep); }
+.g-keys .k-2nd::before { left: 4px; width: 3px; height: 16px; top: 0.4em; background: var(--furrow); }
+.g-keys .k-std::before { left: 0; width: 13px; height: 13px; top: 0.45em; border-radius: 50%; background: var(--mist); border: 3px solid var(--furrow-soft); }
 .steps { list-style: none; padding: 0; margin: 0; counter-reset: s; display: grid; gap: 16px; }
 .steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); column-gap: 0.4rem; }
 .steps li::before { content: counter(s); grid-row: span 2; font-family: var(--serif); font-size: var(--t28); font-weight: 600; line-height: 1.1; color: var(--liquor-light); }
@@ -243,17 +238,18 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .d2 i:nth-child(-n+2), .d4 i:nth-child(-n+4) { background: var(--liquor-light); }
 .who { margin: 0; }
 
-/* 茶筒：朝霧の地に、同じ作りの詰め替え用の袋と並べて置く（明るい地用の影） */
+/* 茶筒：朝霧の地に、詰め替え用の袋・茶筒・試し用の小袋を、実物の比（同じ px/mm）で並べた1枚（Blender）。
+   茶筒のふた（.can-lid）は同じ絵の同じ位置に重ね、一度だけ 6px 上がる */
 .sec-can { overflow-x: clip; }
-.can-set { position: relative; margin: var(--sp) auto 0; width: 84%; max-width: 440px; aspect-ratio: 1 / 0.86; }
-.can, .bag { position: absolute; bottom: 4%; isolation: isolate; }
-.can { right: 4%; width: 46%; aspect-ratio: 684 / 1000; }
-.bag { left: 2%; width: 40%; aspect-ratio: 440 / 721; }
-.can img, .bag img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.can-lid { transition: transform 0.25s var(--ease-out); }
+.can-set { margin: var(--sp) auto 0; width: 96%; max-width: 640px; }
+.set-art { position: relative; aspect-ratio: 1438 / 889; }
+.set-art img { position: absolute; max-width: none; }
+.set-img { inset: 0; width: 100%; height: 100%; }
+.can-lid { left: 43.95%; top: 40.38%; width: 22.53%; height: auto; transition: transform 0.25s var(--ease-out); }
 .can.open .can-lid { transform: translateY(-6px); }
-.can::after, .bag::after { content: ""; position: absolute; z-index: -1; left: 2%; right: 2%; bottom: -3.5%; height: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(30, 51, 36, 0.42), rgba(30, 51, 36, 0)); }
-.bag::after { left: 6%; right: 0; bottom: -2.5%; }
+.set-cap { position: relative; height: 3.4em; margin-top: 2px; font-size: var(--t15); line-height: 1.5; color: var(--furrow-soft); }
+.set-cap span { position: absolute; top: 0; transform: translateX(-50%); text-align: center; white-space: nowrap; }
+.c-refill { left: 25.1%; } .c-can { left: 55.22%; } .c-sachet { left: 80.91%; }
 .sec-can h2 { font-size: var(--t48); margin-bottom: 0.15em; }
 .can-sub { font-family: var(--serif); font-weight: 600; font-size: var(--t17); color: var(--furrow-soft); }
 
@@ -290,10 +286,14 @@ button { font: inherit; }
 .buy { padding: 0 var(--gut) var(--sp); }
 .now { font-size: var(--t17); margin-bottom: 0.4em; }
 .now-sub { color: var(--furrow-soft); }
-.buy-main { margin-top: 24px; padding: 24px 20px; background: var(--mist-light); border-top: 3px solid var(--clay); max-width: 44rem; }
+.buy-main { margin-top: 24px; padding: 24px 20px; background: var(--mist-light); border-top: 3px solid var(--furrow); max-width: 44rem; }
+.group { margin: 0 0 12px; }
+.group img { width: 100%; height: auto; }
 .buy-main h3 { font-size: var(--t28); margin-bottom: 0.4em; }
-.items { list-style: none; margin: 0 0 1em; padding: 0; }
-.items li { display: flex; justify-content: space-between; gap: 1em; padding: 0.45em 0; border-bottom: 1px solid rgba(30, 51, 36, 0.14); }
+.items { list-style: none; margin: 0 0 0.8em; padding: 0; }
+.items li { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; padding: 0.45em 0; border-bottom: 1px solid rgba(30, 51, 36, 0.14); }
+.items small { display: block; font-size: var(--t15); color: var(--furrow-soft); }
+.ship { margin-bottom: 0.6em; }
 .items .pr { font-family: var(--serif); font-weight: 600; white-space: nowrap; }
 .buy-note { margin-bottom: 1.2em; }
 .act-row { display: flex; flex-direction: column; align-items: flex-start; }
@@ -325,9 +325,9 @@ button { font: inherit; }
   .sec-pick .txt, .sec-can .txt { padding: 0 0 0 56px; }
   .sec-pick .ph { align-self: stretch; }
   .sec-pick .ph img { height: 100%; object-fit: cover; }
-  .face { grid-template-columns: minmax(0, 36em) 300px; justify-content: start; align-items: center; column-gap: 88px; padding: var(--sp) var(--gut); margin-top: var(--sp); }
+  .face { grid-template-columns: minmax(0, 36em) 320px; justify-content: start; align-items: center; column-gap: 56px; padding: var(--sp) var(--gut); margin-top: var(--sp); }
   .face-txt { max-width: 40em; }
-  .leaf { width: 300px; }
+  .leaf { width: 320px; }
   .sec-brew .txt, .gauges, .steps { max-width: 1100px; }
   .gauges { grid-template-columns: 1fr 1fr; column-gap: 64px; }
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 28px; }
@@ -337,19 +337,34 @@ button { font: inherit; }
   .liq-side { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
   .chips { gap: 24px; }
   .chip .sw { aspect-ratio: 1 / 0.7; }
-  .sec-can { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); }
-  .can-set { width: 100%; max-width: 520px; margin: 0; }
+  .sec-can { grid-template-columns: minmax(0, 52fr) minmax(0, 48fr); }
+  .can-set { width: 100%; max-width: 640px; margin: 0; }
   .sec-farm { padding-top: var(--sp); }
   .banner { margin: 0 var(--gut); }
   .sec-farm .txt { padding: 48px var(--gut) var(--sp); }
   .farm-cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; max-width: 1100px; }
   .facts { padding-top: 0; }
   .facts-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; column-gap: 56px; }
-    .buy-more { grid-template-columns: 1fr 1fr; column-gap: 56px; max-width: 1100px; }
-  .info { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 24px; }
-  .info div { flex-direction: column; }
-  .info dt, .info dd { flex: none; }
+  /* 通販の箱：左に品と決まり、右に3つがそろった絵 */
+  .buy-main { max-width: 1100px; padding: 32px 36px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; align-content: start; }
+  .buy-main > * { grid-column: 1; }
+  .buy-main > .group { grid-column: 2; grid-row: 1 / span 6; align-self: center; margin: 0; }
+  .buy-more { grid-template-columns: 1fr 1fr; column-gap: 56px; max-width: 1100px; }
+  .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; max-width: 1100px; }
 }
+
+@media (min-width: 1200px) {
+  .face { grid-template-columns: minmax(0, 36em) 420px; column-gap: 88px; }
+  .leaf { width: 420px; }
+}
+
+/* 動きを減らす設定：知らせ・押したときの縮み・ふたも、移動と拡大はなし（不透明度だけ） */
+@media (prefers-reduced-motion: reduce) {
+  .act:active, .play:active { transform: none; }
+  .act-msg.show { animation-name: msg-fade; }
+  .can-lid, .can.open .can-lid { transform: none; transition: none; }
+}
+@keyframes msg-fade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---------- 計測の表示（?debug=1） ---------- */
 .dbg { position: fixed; z-index: 40; left: 8px; bottom: calc(52px + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 8px 10px; border-radius: 6px; max-width: calc(100vw - 16px); background: rgba(10, 20, 14, 0.8); color: #d9f3c0; font: 11px/1.45 ui-monospace, Consolas, monospace; letter-spacing: 0; white-space: pre-wrap; pointer-events: none; }
