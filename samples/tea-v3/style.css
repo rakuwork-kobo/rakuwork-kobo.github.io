@@ -168,7 +168,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .face.deep::before { opacity: 1; }
 .face p { margin: 0; }
 .face :focus-visible { outline-color: var(--mist-ink); box-shadow: 0 0 0 6px var(--furrow); }
-/* 茶葉の絵（3D、背景は透明で影だけを色面に落とす）：拡大して見せない。スマホは幅の80%まで、PC は 340〜440px（元の絵は 1100px なので 1倍を超えない） */
+/* 茶葉の絵（3D、背景は透明で影だけを色面に落とす）：拡大して見せない。スマホは幅の80%まで、PC は 340〜440px（元の絵は 900px。DPR2 で 1倍を超えない） */
 .leaf { margin: 0; width: min(100%, 440px); justify-self: center; }
 .leaf img { width: 100%; height: auto; aspect-ratio: 1100 / 520; }
 
