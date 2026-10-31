@@ -14,9 +14,9 @@
 <link rel="preload" as="image" href="img/field_l.webp" media="(min-aspect-ratio: 1/1)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="style.css?v=202610311240">
-<script src="boot.js?v=202610311240"></script>
-<script type="module" src="js/main-HXZOXN4W.js"></script>
+<link rel="stylesheet" href="style.css?v=202610311251">
+<script src="boot.js?v=202610311251"></script>
+<script type="module" src="js/main-4TXRMZC2.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
@@ -33,6 +33,7 @@
     <picture class="hero-photo"><source media="(max-aspect-ratio: 1/1)" srcset="img/field_p.webp"><img src="img/field_l.webp" width="1600" height="1000" alt="平らな台地に、新芽のそろった茶畑の畝が続き、防霜ファンの柱が立つ" fetchpriority="high"></picture>
     <canvas id="fx" aria-hidden="true"></canvas>
     <p class="hero-glyph" aria-hidden="true">霞</p>
+    <p class="hero-glyph hero-glyph-mist" aria-hidden="true">霞</p>
     <div class="hero-name">
       <h1 id="h-hero">一番摘み「霞」</h1>
       <p>日当たりのよい牧之原の台地で、朝の霧が晴れ、露が切れてから摘んだ、一番茶の深蒸し煎茶です。</p>
@@ -42,10 +43,10 @@
 </section>
 
 <section class="sec sec-pick" aria-labelledby="h-pick">
-  <figure class="ph"><picture><source media="(max-aspect-ratio: 1/1)" srcset="img/shoot_p.webp"><img src="img/shoot_l.webp" srcset="img/shoot_m.webp 1100w, img/shoot_l.webp 1920w" sizes="100vw" width="1920" height="1200" alt="朝の光を受ける、そろった茶の新芽" loading="lazy" decoding="async"></picture></figure>
+  <figure class="ph"><picture><source media="(max-aspect-ratio: 1/1)" srcset="img/shoot_p.webp"><img src="img/shoot_l.webp" srcset="img/shoot_m.webp 1100w, img/shoot_l.webp 1920w" sizes="100vw" width="1920" height="1200" alt="朝の光を受ける、茶の新芽の芯と若い葉" loading="lazy" decoding="async"></picture></figure>
   <div class="txt">
     <h2 id="h-pick">芽のそろうころに</h2>
-    <p>牧之原の深蒸しは、乗用の摘採機で、芽の伸びがそろったころに一気に摘み取ります。やわらかい芯と若い葉には、うま味のもとになる成分が多いといわれます。摘むのは、朝の霧が晴れて、葉の露が切れてから。</p>
+    <p>芽の伸びがそろったころ、朝の霧が晴れて葉の露が切れるのを待って、乗用の摘採機を入れます。やわらかい芯と若い葉には、うま味のもとになる成分が多いといわれます。</p>
     <p>畝の間には、まわりの草地で刈った草を敷きます。土を守り、茶を育てる、静岡に伝わる茶草場（ちゃぐさば）農法です。</p>
   </div>
 </section>
@@ -60,7 +61,6 @@
       <figcaption id="liquor-cap">湯呑みの中の色（水色）のちがい。細かい葉が溶け出すぶん、深蒸しは濃く出ます。</figcaption>
     </figure>
   </div>
-  <figure class="ph"><picture><source media="(max-aspect-ratio: 1/1)" srcset="img/leaf_p.webp"><img src="img/leaf_l.webp" srcset="img/leaf_m.webp 1100w, img/leaf_l.webp 1920w" sizes="(min-width: 900px) 55vw, 100vw" width="1920" height="1200" alt="急須の中の、細かく濃い緑の茶葉" loading="lazy" decoding="async"></picture></figure>
 </section>
 
 <section class="sec sec-brew" aria-labelledby="h-brew">
@@ -88,7 +88,7 @@
       <div><dt>甘み</dt><dd>強め</dd></div>
       <div><dt>渋み</dt><dd>おだやか</dd></div>
       <div><dt>こく</dt><dd>しっかり</dd></div>
-      <div><dt>向く人</dt><dd>濃いめが好きな方、冷めても渋くなりにくい茶を探している方</dd></div>
+      <div><dt>向く人</dt><dd>濃いめが好きな方、渋みが苦手な方</dd></div>
     </dl>
   </div>
 </section>
@@ -121,7 +121,7 @@
     </div>
     <div class="traits">
       <p>品種はやぶきた。4月中旬から5月上旬に摘んだ一番茶を、深く蒸し、火入れは中くらいに仕上げています。</p>
-      <p>化学肥料を控え、畝の間に草を敷いて育てています（見本の文）。</p>
+      <p>畝の間に草を敷いて育てています。</p>
     </div>
   </div>
 </section>
@@ -129,17 +129,23 @@
 <section class="buy" id="buy" aria-labelledby="h-buy">
   <p class="voice">「露が切れるのを、毎朝畑で待っています。」</p>
   <p class="voice-by">三代目の園主が、家族で四町歩の畑を守っています（架空の茶園の文の見本）。</p>
+  <div class="buy-grid">
+  <div class="buy-main">
   <h2 id="h-buy">お求めの方法</h2>
   <p class="buy-lead">見本のページのため、実際の販売・受付はしていません。ボタンを押しても、ほかのページは開きません。</p>
   <div class="shop">
     <h3>茶園の売店で、試飲してから</h3>
     <p>台地の茶園の小さな売店です。土日は新茶を試飲できます。車は5台まで止められます。</p>
-    <button type="button" class="act act-sub">売店の場所と営業日を見る</button>
+    <button type="button" class="act act-main">売店の場所と営業日を見る</button>
   </div>
+  </div>
+  <div class="buy-side">
   <ul class="ways">
-    <li><h3>オンラインの店で</h3><p>茶筒入りのほか、詰め替え用の100g袋もあります。</p><button type="button" class="act act-main">オンラインの店で買う</button></li>
-    <li><h3>季節の定期便（年3回）</h3><p>5月・7月・10月に、一番茶・二番茶・秋の番茶を1袋ずつお届けします。いつでも休めます。</p><button type="button" class="act act-sub">季節の定期便を申し込む</button></li>
+    <li><h3>オンラインの店で</h3><p>茶筒入りのほか、詰め替え用の100g袋もあります。</p><button type="button" class="act act-sub">オンラインの店で買う</button></li>
+    <li><h3>季節の定期便（年3回）</h3><p>5月・7月・10月下旬に、一番茶・二番茶・秋の番茶を1袋ずつお届けします。いつでも休めます。</p><button type="button" class="act act-sub">季節の定期便を申し込む</button></li>
   </ul>
+  </div>
+  </div>
   <p class="act-msg" role="status" aria-live="polite"></p>
   <dl class="info">
     <div><dt>新茶のお届け</dt><dd>5月上旬から。ご予約は4月から受け付けます。</dd></div>

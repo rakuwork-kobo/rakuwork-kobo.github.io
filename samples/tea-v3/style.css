@@ -20,6 +20,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highl
 body { margin: 0; color: var(--furrow); background: var(--mist); font-family: var(--sans); font-size: var(--s17); line-height: 1.9; letter-spacing: 0.01em; overflow-wrap: anywhere; }
 h1, h2, h3 { font-family: var(--hand); font-weight: 600; margin: 0; line-height: 1.4; letter-spacing: 0.02em; }
 h2 { font-size: var(--s28); margin-bottom: 0.6em; }
+.sec h2::before, .facts h2::before, .buy h2::before { content: ""; display: inline-block; width: 0.75em; height: 0.55em; margin-right: 0.35em; vertical-align: 0.1em; background: linear-gradient(115deg, transparent 0 22%, var(--bud) 22% 38%, transparent 38% 60%, var(--bud) 60% 76%, transparent 76%); }
+.facts h2::before, .sec-brew h2::before, .sec-pick h2::before { background: linear-gradient(115deg, transparent 0 22%, var(--liquor) 22% 38%, transparent 38% 60%, var(--liquor) 60% 76%, transparent 76%); }
 h3 { font-size: var(--s21); }
 p { margin: 0 0 1em; max-width: 38em; }
 img, video { display: block; max-width: 100%; }
@@ -44,8 +46,10 @@ a, button { touch-action: manipulation; }
 .hero-photo img { object-fit: cover; }
 #fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: none; }
 .hero-glyph { position: absolute; z-index: 1; left: 50%; top: 46%; margin: 0; font-family: var(--hand); font-weight: 600; font-size: min(66svh, 90vw); line-height: 1; color: var(--furrow); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; max-width: none; }
-.hero-name { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); color: var(--mist-ink); }
-.hero-name::before { content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -34svh; bottom: -60px; background: linear-gradient(to top, rgba(30, 51, 36, 0.86), rgba(30, 51, 36, 0.55) 45%, rgba(30, 51, 36, 0)); }
+.hero-glyph-mist { color: #eef2ec; }
+/* 晴れきったら、畑の下に霧の帯だけが残り、その上に名前（「霧が晴れる」の終わり方） */
+.hero-name { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); color: var(--furrow); }
+.hero-name::before { content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -30svh; bottom: -60px; background: linear-gradient(to top, rgba(220, 227, 220, 0.96), rgba(220, 227, 220, 0.82) 50%, rgba(220, 227, 220, 0)); }
 .hero-name h1 { font-size: var(--s40); margin-bottom: 0.25em; }
 .hero-name p { font-size: var(--s17); max-width: 26em; margin: 0; }
 .hero-hint { display: none; }
@@ -57,6 +61,7 @@ a, button { touch-action: manipulation; }
 .motion .hero-stick.fog-on::after { opacity: 0; }
 .motion #fx { display: block; }
 .motion .hero-glyph { will-change: transform, opacity; }
+.motion .hero-glyph-mist { opacity: 0; }
 .motion .hero-photo img { will-change: transform; }
 .motion .hero-name { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease-out, transform 0.8s var(--ease-out); }
 .motion .hero-name.in { opacity: 1; transform: none; }
@@ -72,16 +77,17 @@ a, button { touch-action: manipulation; }
 
 /* 摘む：写真を幅いっぱい、文はその下 */
 .sec-pick .ph img { aspect-ratio: 4 / 3; }
+.sec-brew { padding-top: 48px; }
 
 /* 蒸す：水色の色面と、水色のちがいの図 */
 .sec-steam { background: var(--liquor); color: var(--mist-ink); }
-.liquor { margin: 1.6em 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; max-width: 30rem; }
+.liquor { margin: 1.6em 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; max-width: 34rem; padding: 20px; background: var(--mist); color: var(--furrow); border-radius: 6px; }
 .liquor > div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: center; }
 .liquor p { margin: 0; font-size: var(--s15); line-height: 1.6; }
-.cup { width: 56px; height: 56px; border-radius: 50%; border: 5px solid #f2f4ef; }
+.cup { width: 64px; height: 64px; border-radius: 50%; border: 7px solid #fbfcfa; box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(30, 51, 36, 0.3); }
 .cup-light { background: radial-gradient(circle at 45% 40%, #e2e48f, #c4c85a 70%); }
 .cup-deep { background: radial-gradient(circle at 45% 40%, #7c932c, #4a5f17 75%); }
-.liquor figcaption { grid-column: 1 / -1; font-size: var(--s15); color: #dfe7d2; }
+.liquor figcaption { grid-column: 1 / -1; font-size: var(--s15); color: var(--furrow-soft); }
 
 /* 淹れる：写真を広く、その下に手順（本当に順番なので番号） */
 .steps { list-style: none; padding: 0; margin: 0; counter-reset: s; display: grid; gap: 4px 28px; }
@@ -168,10 +174,12 @@ button { font: inherit; }
   .sec-pick .txt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; align-items: start; }
   .sec-pick .txt h2 { grid-column: 1 / -1; }
   /* 蒸す：色面（左 5）と写真（右 6） */
-  .sec-steam { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: stretch; }
-  .sec-steam .ph img { height: 100%; aspect-ratio: auto; min-height: 640px; }
+  .sec-steam .txt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 56px; align-items: center; }
+  .sec-steam .txt h2 { grid-column: 1 / -1; }
+  .liquor { margin-top: 0; }
   /* 淹れる：写真を広く、手順を4つ横に */
-  .sec-brew .ph img { aspect-ratio: 16 / 7; max-height: 70svh; }
+  .sec-brew { padding-top: 64px; }
+  .sec-brew .ph img { aspect-ratio: 16 / 9; max-height: 72svh; }
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .steps li { grid-template-columns: 1fr; }
   .steps li::before { grid-row: auto; }
@@ -185,9 +193,11 @@ button { font: inherit; }
   .can { width: min(22vw, 320px); margin: 40px auto; }
   .sec-can .txt { padding-left: 0; }
   .facts, .buy { padding-left: max(32px, 8vw); padding-right: max(32px, 8vw); }
-  .facts-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; max-width: 64rem; }
-  .ways { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 46rem; }
-  .info { max-width: 52rem; }
+  .facts-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; column-gap: 56px; }
+  .buy-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 56px; align-items: end; }
+  .ways { grid-template-columns: 1fr; margin-top: 0; }
+  .traits p { font-size: var(--s21); line-height: 1.8; }
+  .info { max-width: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
   .foot { padding-left: max(32px, 8vw); padding-right: max(32px, 8vw); }
 }
 
