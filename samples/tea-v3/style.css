@@ -43,8 +43,7 @@ a, button { touch-action: manipulation; }
 .hero-photo, .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-photo img { object-fit: cover; }
 #fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: none; }
-.hero-glyph { position: absolute; z-index: 1; left: 50%; top: 46%; margin: 0; font-family: var(--hand); font-weight: 600; font-size: min(66svh, 90vw); line-height: 1; color: var(--furrow); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; max-width: none; }
-.hero-glyph-mist { color: #eef2ec; }
+.hero-glyph { position: absolute; z-index: 1; left: 50%; top: 46%; height: min(62svh, 82vw); width: auto; max-width: none; transform: translate(-50%, -50%); opacity: 0; pointer-events: none; } /* 「霞」は Klee One から書き出した絵（字形の差し替えも、大きな字の描き直しも起きない） */
 /* 晴れきったら、畑の下に霧の帯だけが残り、その上に名前（「霧が晴れる」の終わり方） */
 .hero-name { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); color: var(--furrow); }
 .hero-name::before { content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -30svh; bottom: -60px; background: linear-gradient(to top, rgba(220, 227, 220, 0.96), rgba(220, 227, 220, 0.82) 50%, rgba(220, 227, 220, 0)); }
