@@ -1,24 +1,28 @@
-﻿霧和茶園（架空）一番摘み「霞」 見本ページ（ラクワーク工房） ― 使った道具・写真とライセンス
-2026-10-31 確認（試作3版目）
+霧和茶園（架空）一番摘み「霞」 見本ページ（ラクワーク工房） ― 使った道具・写真とライセンス
+2026-10-31 確認（試作3版目・直し）
 
 ページの中の動き：外の道具を使わず、自前の小さなプログラム（js/main-*.js）と CSS だけで動かしています。
-  霧と湯気は自前の WebGL のシェーダーです。外のサーバーから読み込むのは見出しの文字の形（Google Fonts）だけです。
-  文字：Klee One（Google Fonts、見出しで使う字だけを取り寄せ） ― SIL Open Font License 1.1
+  霧と「霞」の一字は、自前の WebGL のシェーダーで描いています。外のサーバーから読み込むのは文字の形（Google Fonts）だけです。
+  文字：Noto Sans JP（Google Fonts、このページで使う字だけを取り寄せ） ― SIL Open Font License 1.1
+        https://fonts.google.com/noto/specimen/Noto+Sans+JP
+  最初の画面の「霞」と茶筒のラベルの「霞」：Klee One（SIL Open Font License 1.1）の字形を絵に書き出して使用
         https://fonts.google.com/specimen/Klee+One
 
-茶筒の絵：three.js 0.187.0（MIT License、全文は下）で形から作り、光を当てて撮った絵です（ページでは three.js を動かしていません）。
-  ラベルも自前で描きました。
+茶筒の絵：three.js 0.187.0（MIT License、全文は下）で形から作り、光を当てて撮った絵に、和紙のきめ・映り込みを自前で描き足しました（ページでは three.js を動かしていません）。
 
 写真・動画（生成AIの画像・動画は使っていません。写っているのは霧和茶園ではありません）
   Unsplash License（無料・商用可・クレジットは任意） https://unsplash.com/license
-   - 茶の新芽             https://unsplash.com/photos/wBdNDHE06bc  Se. Tsuchiya
-   - 新芽のそろった畝（最初の画面）https://unsplash.com/photos/clWhSQg-v88  Karen Chew
+   - 新芽のそろった畝（最初の画面。畝の間の細い道を消す修整あり） https://unsplash.com/photos/clWhSQg-v88  Karen Chew
+   - 茶の新芽                         https://unsplash.com/photos/wBdNDHE06bc  Se. Tsuchiya
   Pexels License（無料・商用可・クレジットは任意） https://www.pexels.com/license/
-   - 急須の中の茶葉       https://www.pexels.com/photo/teapot-with-grounds-inside-6226209/  Eva Bronzini
-   - 朱色の急須と湯呑み   https://www.pexels.com/photo/traditional-japanese-teapot-with-green-tea-35042570/  Travel With Lenses
-   - 湯呑みに緑茶を注ぐ動画 https://www.pexels.com/video/pouring-green-tea-in-japanese-ceramic-cup-31177597/  George Frewat
-  切り抜き・縮小・WebP/MP4 への変換をして、撮影の情報（EXIF など）は消しています。
-
+   - 仕上げた茶葉の寄り・火入れの機械と茶箱（同じ写真から別の所を切り抜き。文字の入った所は外した）
+                                      https://www.pexels.com/photo/traditional-japanese-tea-preparation-in-kurashiki-31367602/  Arnie Papp
+   - 朱色の急須と湯呑み               https://www.pexels.com/photo/traditional-japanese-teapot-with-green-tea-35042570/  Travel With Lenses
+   - 真上から見た湯呑みの煎茶         https://www.pexels.com/photo/aesthetic-overhead-shot-of-green-tea-in-berlin-31986686/  Travel With Lenses
+   - 器に入れた乾いた茶葉（茶筒の段） https://www.pexels.com/photo/dry-tea-leaves-in-a-clay-pot-8952044/  Ivan S.
+   - 湯呑みに緑茶を注ぐ動画（上と右を切り抜き。待ち絵と深蒸しの水色の写真もこの動画のコマ）
+                                      https://www.pexels.com/video/pouring-green-tea-in-japanese-ceramic-cup-31177597/  George Frewat
+  切り抜き・縮小・色の調子のそろえ・WebP/MP4 への変換をして、撮影の情報（EXIF など）は消しています。
 ================================================================
 three.js ― MIT License（茶筒の絵を作るのに使用）
 ================================================================
