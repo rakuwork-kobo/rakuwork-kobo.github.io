@@ -247,9 +247,10 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .set-img { inset: 0; width: 100%; height: 100%; }
 .can-lid { left: 43.95%; top: 40.38%; width: 22.53%; height: auto; transition: transform 0.25s var(--ease-out); }
 .can.open .can-lid { transform: translateY(-6px); }
-.set-cap { position: relative; height: 3.4em; margin-top: 2px; font-size: var(--t15); line-height: 1.5; color: var(--furrow-soft); }
-.set-cap span { position: absolute; top: 0; transform: translateX(-50%); text-align: center; white-space: nowrap; }
-.c-refill { left: 25.1%; } .c-can { left: 55.22%; } .c-sachet { left: 80.91%; }
+/* 名前は各物の幅の列に置く（物の左右の端と同じ割合）。文字を大きくしても重ならず、列の中で折り返す */
+.set-cap { display: grid; grid-template-columns: 8.2% 33.8% 2.5% 21.4% 2.5% 25% minmax(0, 1fr); margin-top: 2px; font-size: var(--t15); line-height: 1.5; color: var(--furrow-soft); }
+.set-cap span { text-align: center; min-width: 0; word-break: keep-all; overflow-wrap: anywhere; }
+.c-refill { grid-column: 2; } .c-can { grid-column: 4; } .c-sachet { grid-column: 6; }
 .sec-can h2 { font-size: var(--t48); margin-bottom: 0.15em; }
 .can-sub { font-family: var(--serif); font-weight: 600; font-size: var(--t17); color: var(--furrow-soft); }
 
