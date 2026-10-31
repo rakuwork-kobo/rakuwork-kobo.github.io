@@ -21,7 +21,7 @@ body { margin: 0; color: var(--furrow); background: var(--mist); font-family: va
 h1, h2, h3 { font-family: var(--hand); font-weight: 600; margin: 0; line-height: 1.4; letter-spacing: 0.02em; text-wrap: balance; }
 h2 { font-size: var(--s28); margin-bottom: 0.6em; }
 h3 { font-size: var(--s21); }
-p { margin: 0 0 1em; max-width: 38em; }
+p { margin: 0 0 1em; max-width: 38em; text-wrap: pretty; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-underline-offset: 3px; }
 a, button { touch-action: manipulation; }
@@ -39,13 +39,13 @@ a, button { touch-action: manipulation; }
 
 /* ---------- 最初の画面：霧の中の「霞」が晴れて、畝が現れる ---------- */
 .hero { position: relative; overflow-x: clip; }
-.hero-stick { position: relative; height: 100svh; min-height: 520px; overflow: hidden; background: var(--mist); }
+.hero-stick { position: relative; height: 100svh; height: 100lvh; min-height: 520px; overflow: hidden; background: var(--mist); }
 .hero-photo, .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-photo img { object-fit: cover; }
 #fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: none; }
 .hero-glyph { position: absolute; z-index: 1; left: 50%; top: 46%; height: min(62svh, 82vw); width: auto; max-width: none; transform: translate(-50%, -50%); opacity: 0; pointer-events: none; } /* 「霞」は Klee One から書き出した絵（字形の差し替えも、大きな字の描き直しも起きない） */
 /* 晴れきったら、畑の下に霧の帯だけが残り、その上に名前（「霧が晴れる」の終わり方） */
-.hero-name { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); color: var(--furrow); }
+.hero-name { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: calc(24px + 100lvh - 100svh + env(safe-area-inset-bottom, 0px)); color: var(--furrow); }
 .hero-name::before { content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -30svh; bottom: -60px; background: linear-gradient(to top, rgba(220, 227, 220, 0.96), rgba(220, 227, 220, 0.82) 50%, rgba(220, 227, 220, 0)); }
 .hero-name h1 { font-size: var(--s40); margin-bottom: 0.25em; }
 .hero-name p { font-size: var(--s17); max-width: 26em; margin: 0; }
@@ -54,7 +54,7 @@ a, button { touch-action: manipulation; }
 /* 動く版：最初の画面だけが舞台。スクロールの間、画面に止まる */
 .motion .hero { height: 230svh; }
 .motion .hero-stick { position: sticky; top: 0; }
-.motion .hero-stick::after { content: ""; position: absolute; inset: 0; z-index: 0; background: rgba(214, 222, 214, 0.9); transition: opacity 0.9s ease-out; pointer-events: none; } /* 霧が描けるまでの霧の板（最初の絵から霧がある） */
+.motion .hero-stick::after { content: ""; position: absolute; inset: 0; z-index: 0; background: rgba(214, 222, 214, 0.9); opacity: var(--plate, 1); transition: opacity 0.3s ease-out; pointer-events: none; } /* 霧が描けるまでの霧の板（最初の絵から霧がある） */
 .motion .hero-stick.fog-on::after { opacity: 0; }
 .motion #fx { display: block; }
 .motion .hero-glyph { will-change: transform, opacity; }
@@ -98,7 +98,7 @@ a, button { touch-action: manipulation; }
 .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .taste { margin: 1em 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, auto)); gap: 0.4em 1.6em; justify-content: start; max-width: 38em; }
 .taste div { display: flex; flex-wrap: wrap; gap: 0 0.6em; }
-.taste dt { color: var(--liquor); font-weight: 600; }
+.taste dt { color: var(--furrow-soft); font-weight: 600; }
 .taste dd { margin: 0; }
 .taste div:last-child { grid-column: 1 / -1; }
 
@@ -106,9 +106,8 @@ a, button { touch-action: manipulation; }
 .sec-can { background: var(--furrow); color: var(--mist-ink); overflow-x: clip; }
 .can { position: relative; margin: 48px auto 8px; width: min(58vw, 280px); aspect-ratio: 684 / 1000; isolation: isolate; }
 .can img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.can::before { content: ""; position: absolute; z-index: -1; left: -40%; right: -40%; top: -10%; bottom: 10%; background: radial-gradient(closest-side, rgba(185, 204, 92, 0.16), rgba(185, 204, 92, 0)); }
 .can::after { content: ""; position: absolute; z-index: -1; left: -2%; right: -2%; bottom: -4%; height: 9%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)); }
-.can-lid { transform: translate(1%, -9%) rotate(4deg); transform-origin: 30% 30%; }
+.can-lid { transform: none; } /* ふたは閉めて置く（文の「ふたをしっかり閉め」と合わせる） */
 .price { color: var(--mist-soft); }
 .to-buy { color: var(--mist-ink); }
 @media (hover: hover) and (pointer: fine) { .to-buy:hover { color: var(--bud); } }
@@ -116,7 +115,7 @@ a, button { touch-action: manipulation; }
 /* ボタン：押せる物だけ朱泥。主な物は塗り、ほかは縁取り。押すと、近くに何が起きたかを出す */
 button { font: inherit; }
 .act, .play { appearance: none; border: 2px solid var(--clay); border-radius: 999px; background: var(--clay); color: #fff; padding: 10px 22px; min-height: 48px; cursor: pointer; letter-spacing: 0.02em; transition: transform 0.12s ease-out, background-color 0.15s ease-out; user-select: none; -webkit-user-select: none; }
-.act-sub { background: transparent; color: var(--clay); border-color: var(--clay); }
+.act-sub { background: transparent; color: #8f3721; border-color: #8f3721; }
 .act:active, .play:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) { .act-main:hover, .play:hover { background: #923a23; border-color: #923a23; } .act-sub:hover { background: rgba(169, 69, 43, 0.08); } }
 .act-msg { min-height: 1.6em; margin: 10px 0 0; color: var(--furrow-soft); font-size: var(--s15); }
@@ -177,7 +176,7 @@ button { font: inherit; }
   /* 淹れる：写真（左）と、順番どおりの手順（右）。写真は元の大きさを超えて引き伸ばさない */
   .sec-brew { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; }
   .sec-brew .ph img { aspect-ratio: 4 / 3; height: auto; max-height: none; }
-  /* 注ぐ：動画は暗い帯の中に、画面の高さの7割で（見せ場にしすぎない）。文は下 */
+  /* 注ぐ：動画は押して再生。暗い帯の中に、画面の高さの7割で。文は下 */
   .pour-media video { width: auto; aspect-ratio: 16 / 9; max-height: 70svh; max-width: 100%; }
   .sec-pour .txt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; }
   .sec-pour .txt h2 { grid-column: 1 / -1; }
