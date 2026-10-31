@@ -163,7 +163,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 /* 蒸す：深蒸しの水色の色面（本文の幅の内側に収め、「霞」の見せ場と張り合わない）。
    一度だけ深まる：背景色は変えず、深い色の面（::before）を重ねて不透明度だけを 900ms で上げる（合成だけ）。白い字との差は、薄い方 4.8:1・深い方 7.7:1、途中もその間 */
 .sec-steam { padding: 0 var(--gut); }
-.face { position: relative; isolation: isolate; background: var(--liquor-light); color: var(--mist-ink); padding: 48px 24px; display: grid; gap: 28px; margin: 0 auto; max-width: 1100px; }
+.face { position: relative; isolation: isolate; background: var(--liquor-light); color: var(--mist-ink); padding: 48px 24px; display: grid; gap: 28px; margin: 0; max-width: 1100px; }
 .face::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--liquor); opacity: 0; transition: opacity 0.9s cubic-bezier(0.77, 0, 0.175, 1); }
 .face.deep::before { opacity: 1; }
 .face p { margin: 0; }
