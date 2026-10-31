@@ -18,20 +18,18 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; background: var(--mist); }
 body { margin: 0; color: var(--furrow); background: var(--mist); font-family: var(--sans); font-size: var(--s17); line-height: 1.9; letter-spacing: 0.01em; overflow-wrap: anywhere; }
-h1, h2, h3 { font-family: var(--hand); font-weight: 600; margin: 0; line-height: 1.4; letter-spacing: 0.02em; }
+h1, h2, h3 { font-family: var(--hand); font-weight: 600; margin: 0; line-height: 1.4; letter-spacing: 0.02em; text-wrap: balance; }
 h2 { font-size: var(--s28); margin-bottom: 0.6em; }
-.sec h2::before, .facts h2::before, .buy h2::before { content: ""; display: inline-block; width: 0.75em; height: 0.55em; margin-right: 0.35em; vertical-align: 0.1em; background: linear-gradient(115deg, transparent 0 22%, var(--bud) 22% 38%, transparent 38% 60%, var(--bud) 60% 76%, transparent 76%); }
-.facts h2::before, .sec-brew h2::before, .sec-pick h2::before { background: linear-gradient(115deg, transparent 0 22%, var(--liquor) 22% 38%, transparent 38% 60%, var(--liquor) 60% 76%, transparent 76%); }
 h3 { font-size: var(--s21); }
 p { margin: 0 0 1em; max-width: 38em; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-underline-offset: 3px; }
 a, button { touch-action: manipulation; }
 :focus-visible { outline: 3px solid var(--furrow); outline-offset: 3px; }
-.sec-steam :focus-visible, .sec-pour :focus-visible, .sec-can :focus-visible, .buy :focus-visible, .foot :focus-visible { outline-color: var(--bud); }
+.sec-steam :focus-visible, .pour-media :focus-visible, .sec-can :focus-visible, .foot :focus-visible { outline-color: var(--bud); }
 .skip { position: absolute; left: 8px; top: -60px; z-index: 50; background: var(--furrow); color: var(--mist-ink); padding: 8px 14px; border-radius: 6px; }
 .skip:focus { top: 8px; }
-.small, .facts-note, .price, .voice-by, .buy-lead, .foot { font-size: var(--s15); }
+.small, .facts-note, .price, .buy-lead, .label-note, .foot { font-size: var(--s15); }
 
 /* 上の名前 */
 .top { position: absolute; z-index: 20; left: 0; right: 0; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px; }
@@ -70,14 +68,13 @@ a, button { touch-action: manipulation; }
 .still .hero-glyph, .nojs .hero-glyph { display: none; }
 .nogl #fx { display: none; }
 
-/* ---------- 静かな読み物：段ごとに形を変える ---------- */
+/* ---------- 静かな読み物：段ごとに形を変える（写真の段・色面の段・写真と手順の段・動画の帯・茶筒の段） */
 .sec .ph { margin: 0; background: #8d9a7a; }
 .sec .ph img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 .sec .txt { padding: 40px 16px 48px; }
 
-/* 摘む：写真を幅いっぱい、文はその下 */
+/* 摘む：機械でそろえた芽の面の写真を幅いっぱい、文はその下 */
 .sec-pick .ph img { aspect-ratio: 4 / 3; }
-.sec-brew { padding-top: 48px; }
 
 /* 蒸す：水色の色面と、水色のちがいの図 */
 .sec-steam { background: var(--liquor); color: var(--mist-ink); }
@@ -97,13 +94,12 @@ a, button { touch-action: manipulation; }
 .steps p { margin: 0; }
 
 /* 注ぐ：動画を幅いっぱい（2つ目の山） */
-.sec-pour { background: var(--furrow); color: var(--mist-ink); }
-.pour-media { position: relative; background: var(--furrow); }
-.pour-media video { width: 100%; height: auto; aspect-ratio: 9 / 16; max-height: 86svh; object-fit: cover; }
+.pour-media { position: relative; background: var(--furrow); display: flex; justify-content: center; }
+.pour-media video { width: 100%; height: auto; aspect-ratio: 9 / 16; max-height: 78svh; object-fit: cover; }
 .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .taste { margin: 1em 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, auto)); gap: 0.4em 1.6em; justify-content: start; max-width: 38em; }
 .taste div { display: flex; flex-wrap: wrap; gap: 0 0.6em; }
-.taste dt { color: var(--bud); }
+.taste dt { color: var(--liquor); font-weight: 600; }
 .taste dd { margin: 0; }
 .taste div:last-child { grid-column: 1 / -1; }
 
@@ -115,14 +111,16 @@ a, button { touch-action: manipulation; }
 .can::after { content: ""; position: absolute; z-index: -1; left: -2%; right: -2%; bottom: -4%; height: 9%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)); }
 .can-lid { transform: translate(1%, -9%) rotate(4deg); transform-origin: 30% 30%; }
 .price { color: var(--mist-soft); }
+.to-buy { color: var(--mist-ink); }
+@media (hover: hover) and (pointer: fine) { .to-buy:hover { color: var(--bud); } }
 
 /* ボタン：押せる物だけ朱泥。主な物は塗り、ほかは縁取り。押すと、近くに何が起きたかを出す */
 button { font: inherit; }
 .act, .play { appearance: none; border: 2px solid var(--clay); border-radius: 999px; background: var(--clay); color: #fff; padding: 10px 22px; min-height: 48px; cursor: pointer; letter-spacing: 0.02em; transition: transform 0.12s ease-out, background-color 0.15s ease-out; user-select: none; -webkit-user-select: none; }
-.act-sub { background: transparent; color: inherit; border-color: currentColor; }
+.act-sub { background: transparent; color: var(--clay); border-color: var(--clay); }
 .act:active, .play:active { transform: scale(0.97); }
-@media (hover: hover) and (pointer: fine) { .act-main:hover, .play:hover { background: #923a23; border-color: #923a23; } .act-sub:hover { background: rgba(185, 204, 92, 0.14); } }
-.act-msg { min-height: 1.9em; margin: 14px 0 0; color: var(--bud); font-size: var(--s15); }
+@media (hover: hover) and (pointer: fine) { .act-main:hover, .play:hover { background: #923a23; border-color: #923a23; } .act-sub:hover { background: rgba(169, 69, 43, 0.08); } }
+.act-msg { min-height: 1.6em; margin: 10px 0 0; color: var(--furrow-soft); font-size: var(--s15); }
 
 /* ---------- この茶について ---------- */
 .facts { padding: 64px 16px; background: var(--mist); }
@@ -133,26 +131,26 @@ button { font: inherit; }
 .facts dl div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.4em 0; }
 .facts dt { flex: 0 0 6.5em; color: var(--furrow-soft); }
 .facts dd { flex: 1 1 12em; min-width: 0; margin: 0; }
-/* 一括表示は本物の袋の裏と同じく枠で囲む（このページでただ一つの枠） */
+/* 一括表示は本物の袋の裏と同じく枠で囲む */
 .label-box { border: 1.5px solid var(--furrow); padding: 12px 18px 10px; background: #e8ede7; max-width: 34rem; }
 .label-cap { font-size: var(--s15); margin: 0 0 0.3em; color: var(--furrow-soft); }
+.label-note { color: var(--furrow-soft); margin-top: 0.6em; }
+.traits div + div { border-top: 1px solid rgba(30, 51, 36, 0.14); }
 
-/* ---------- お求めの方法 ---------- */
-.buy { background: var(--furrow); color: var(--mist-ink); padding: 72px 16px; }
-.voice { font-family: var(--hand); font-size: var(--s28); line-height: 1.6; margin-bottom: 0.3em; }
-.voice-by { color: var(--mist-soft); margin-bottom: 3em; }
-.buy-lead { color: var(--mist-soft); }
-.shop { margin: 28px 0 0; padding: 24px 20px; background: #2a4331; border-radius: 6px; max-width: 46rem; }
-.shop h3 { color: var(--bud); font-size: var(--s28); margin-bottom: 0.3em; }
-.ways { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 28px; }
-.ways li { display: flex; flex-direction: column; align-items: flex-start; }
-.ways h3 { color: var(--bud); margin-bottom: 0.2em; }
-.ways p { margin-bottom: 0.8em; }
-.ways .act { margin-top: auto; }
+/* ---------- お求めの方法（朝霧の地。主な買い方だけ色の面に乗せる） ---------- */
+.buy { background: var(--mist); color: var(--furrow); padding: 24px 16px 72px; }
+.farm { font-family: var(--hand); font-size: var(--s21); line-height: 1.8; max-width: 30em; margin-bottom: 2em; }
+.buy-lead { color: var(--furrow-soft); }
+.buy-grid { display: grid; gap: 24px; margin-top: 24px; }
+.way { display: flex; flex-direction: column; align-items: flex-start; }
+.way h3 { margin-bottom: 0.2em; }
+.way p { margin-bottom: 0.8em; }
+.way .act { margin-top: auto; }
+.way-main { background: #e8ede7; border-radius: 6px; padding: 20px; }
 .info { margin: 40px 0 0; }
 .info div { display: flex; flex-wrap: wrap; gap: 0 1em; padding: 0.35em 0; }
-.info dt { flex: 0 0 7em; color: var(--bud); }
-.info dd { flex: 1 1 12em; margin: 0; color: #d3dcd4; }
+.info dt { flex: 0 0 7em; color: var(--furrow-soft); }
+.info dd { flex: 1 1 12em; margin: 0; }
 
 /* ---------- 下の欄 ---------- */
 .foot { background: #15251a; color: var(--mist-soft); padding: 40px 16px calc(40px + env(safe-area-inset-bottom, 0px)); }
@@ -177,14 +175,11 @@ button { font: inherit; }
   .sec-steam .txt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 56px; align-items: center; }
   .sec-steam .txt h2 { grid-column: 1 / -1; }
   .liquor { margin-top: 0; }
-  /* 淹れる：写真を広く、手順を4つ横に */
-  .sec-brew { padding-top: 64px; }
-  .sec-brew .ph img { aspect-ratio: 16 / 9; max-height: 72svh; }
-  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .steps li { grid-template-columns: 1fr; }
-  .steps li::before { grid-row: auto; }
-  /* 注ぐ：動画を幅いっぱい、文は下 */
-  .pour-media video { aspect-ratio: 16 / 9; max-height: 92svh; }
+  /* 淹れる：写真（左）と、順番どおりの手順（右）。写真は元の大きさを超えて引き伸ばさない */
+  .sec-brew { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; }
+  .sec-brew .ph img { aspect-ratio: 4 / 3; height: auto; max-height: none; }
+  /* 注ぐ：動画は暗い帯の中に、画面の高さの7割で（見せ場にしすぎない）。文は下 */
+  .pour-media video { width: auto; aspect-ratio: 16 / 9; max-height: 70svh; max-width: 100%; }
   .sec-pour .txt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; }
   .sec-pour .txt h2 { grid-column: 1 / -1; }
   .taste { align-self: start; }
@@ -194,10 +189,10 @@ button { font: inherit; }
   .sec-can .txt { padding-left: 0; }
   .facts, .buy { padding-left: max(32px, 8vw); padding-right: max(32px, 8vw); }
   .facts-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; column-gap: 56px; }
-  .buy-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 56px; align-items: end; }
-  .ways { grid-template-columns: 1fr; margin-top: 0; }
-  .traits p { font-size: var(--s21); line-height: 1.8; }
-  .info { max-width: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
+  .buy-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: 32px; }
+  .info { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
+  .info div { flex-direction: column; }
+  .info dt, .info dd { flex: none; }
   .foot { padding-left: max(32px, 8vw); padding-right: max(32px, 8vw); }
 }
 

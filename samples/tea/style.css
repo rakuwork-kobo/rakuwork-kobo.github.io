@@ -234,3 +234,4 @@ html.still .fade.in { opacity: 1; }
 .dbg { position: fixed; z-index: 40; left: 8px; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 8px 10px; border-radius: 6px; max-width: calc(100vw - 16px); background: rgba(0, 0, 0, 0.72); color: #d9f3c0; font: 11px/1.45 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; letter-spacing: 0; white-space: pre-wrap; pointer-events: none; }
 .dbg-links { position: fixed; z-index: 40; left: 8px; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); margin: 0; display: flex; gap: 6px; }
 .dbg-links a { font: 12px/1 ui-monospace, Consolas, monospace; color: #fff; background: rgba(0, 0, 0, 0.72); padding: 7px 9px; border-radius: 6px; text-decoration: none; }
+.label-note { margin: 0.4em 0 0.6em; }
