@@ -117,7 +117,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 }
 
 /* 大きな文字の設定などで、字と名乗りが一画面に収まらないとき：止めた版の扱いで、縦に並べる */
-.hero-stick.tall, .motion .hero-stick.tall { position: relative; height: auto; min-height: 90svh; padding: 64px var(--gut) 24px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.hero-stick.tall, .motion .hero-stick.tall { position: relative; height: auto; min-height: 90svh; padding: max(64px, 7.5rem) var(--gut) 24px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .motion .hero:has(.tall) { height: auto; }
 .hero-stick.tall #fx, .hero-stick.tall #gx { display: none !important; }
 .hero-stick.tall::after { opacity: 1 !important; }

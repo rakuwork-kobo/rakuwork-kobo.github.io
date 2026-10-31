@@ -27,7 +27,7 @@ void main(){
   float layer=fbm(q*vec2(1.1,3.0));
   // \u3059\u304D\u9593\u306E\u3042\u308B\u6A2A\u306E\u5E2F\uFF08\u5168\u4F53\u3092\u8986\u3046\u819C\u306B\u3057\u306A\u3044\uFF09\u3068\u3001\u624B\u524D\u306E\u755D\u306B\u6CBF\u3046\u7B4B
   float bands=smoothstep(0.36,0.74,vs(q*vec2(2.6,5.5),uO1.zw))*(0.55+0.45*vs(q*vec2(4.0,1.5)+vec2(2.2,8.8),uO0.xy));
-  float str=smoothstep(0.35,0.8,vs(q*vec2(2.5,16.0),uO1.xy))*smoothstep(0.25,0.7,vs(q*vec2(3.0,5.0)+vec2(3.1,7.7),uO0.zw));
+  float str=smoothstep(0.35,0.8,vs(q*vec2(6.0,16.0),uO1.xy))*smoothstep(0.25,0.7,vs(q*vec2(5.0,5.0)+vec2(3.1,7.7),uO0.zw));
   float near=smoothstep(0.92,0.12,v.y);
   float far=smoothstep(0.35,0.95,v.y);
   float d=layer*0.75+bands*0.5+str*0.45*near+far*0.25;
