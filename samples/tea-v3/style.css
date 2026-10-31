@@ -59,17 +59,31 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .hero-stick { position: relative; height: 90svh; min-height: 520px; overflow: hidden; background: var(--mist); }
 .hero-photo, .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-photo img { object-fit: cover; object-position: 50% 40%; }
-#fx, #gx { position: absolute; z-index: 1; pointer-events: none; display: none; opacity: 0; transition: opacity 0.5s var(--ease-out); }
+/* スマホの縦の画面だけ：手の空いた時にほどいた高い解像度の写真（.hero-hi）を重ね、元の img は隠す。横向きになったら元へ */
+.hero-hi { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; pointer-events: none; }
+@media (max-aspect-ratio: 1/1) { .hero-stick.hi .hero-photo img { visibility: hidden; } }
+@media (min-aspect-ratio: 1/1) { .hero-hi { display: none; } }
+.motion .hero-stick.live .hero-hi { will-change: transform; }
+#fx, #gx { position: absolute; z-index: 1; pointer-events: none; display: none; opacity: 0; }
 #fx { inset: 0; width: 100%; height: 100%; }
 #gx { z-index: 3; }
 /* 霧の板（霧が描けるまで・描けない端末・止めた版）：すき間のある横の筋で、霧の p=0 と同じ濃さ */
-.hero-stick::after { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; opacity: var(--plate, 1); transition: opacity 0.5s var(--ease-out);
+.hero-stick::after { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; opacity: var(--plate, 1);
   background:
     linear-gradient(to bottom, rgba(220, 227, 220, 0.78) 0%, rgba(220, 227, 220, 0.62) 38%, rgba(220, 227, 220, 0.34) 62%, rgba(220, 227, 220, 0.5) 80%, rgba(220, 227, 220, 0.88) 100%),
     repeating-linear-gradient(176deg, rgba(220, 227, 220, 0) 0 34px, rgba(220, 227, 220, 0.32) 52px, rgba(220, 227, 220, 0) 78px); }
-.hero-glyph { position: absolute; z-index: 2; left: 50%; top: var(--gc, 36%); height: var(--gh); width: auto; max-width: none; transform: translate(-50%, calc(-50% - var(--gy, 0px))); opacity: var(--gop, 1); pointer-events: none; transition: opacity 0.5s var(--ease-out); }
+.hero-glyph { position: absolute; z-index: 2; left: 50%; top: var(--gc, 36%); height: var(--gh); width: auto; max-width: none; transform: translate(-50%, calc(-50% - var(--gy, 0px))); opacity: var(--gop, 1); pointer-events: none; }
+/* 板・字の絵と霧のキャンバスを溶かすのは、切り替えのとき（.fading の 500ms）だけ。ふだんは移り変わりなしで、スクロールに遅れない */
+.hero-stick.fading::after, .hero-stick.fading .hero-glyph, .hero-stick.fading #fx, .hero-stick.fading #gx { transition: opacity 0.5s var(--ease-out); }
 /* 名乗り：字のすぐ下（字の高さの 0.36 倍の間）に、字と一つの組で置く */
-.hero-name { position: absolute; z-index: 4; left: var(--gut); right: var(--gut); top: calc(var(--gc, 36%) + var(--gh) * 0.86); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero-name { position: absolute; z-index: 4; left: 50%; width: max-content; max-width: calc(100% - 2 * var(--gut)); transform: translateX(-50%); top: calc(var(--gc, 36%) + var(--gh) * 0.86); display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* 名乗りの後ろにだけ、朝霧の色の、縁をぼかした下地を最後まで残す（霧が晴れても・止めた版でも・霧を失っても、字と後ろの差 4.5:1 以上）。
+   字のある所は、縁を 60〜84px かけてぼかした芯で必ず覆い、その外へ大きさと高さの違う楕円を3つ足して、上下の縁が霧の塊のように波打つ形にする（箱・帯・線に見せない） */
+.hero-name::before { content: ""; position: absolute; z-index: -1; inset: -60px -84px; pointer-events: none; background: rgba(222, 228, 221, 0.87);
+  -webkit-mask-image: radial-gradient(ellipse 30% 46% at 20% 47%, #000 30%, transparent 100%), radial-gradient(ellipse 28% 44% at 52% 54%, #000 30%, transparent 100%), radial-gradient(ellipse 30% 47% at 81% 45%, #000 30%, transparent 100%), linear-gradient(to right, transparent, #000 84px, #000 calc(100% - 84px), transparent), linear-gradient(to bottom, transparent, #000 60px, #000 calc(100% - 60px), transparent);
+  -webkit-mask-composite: source-over, source-over, source-over, source-in;
+  mask-image: radial-gradient(ellipse 30% 46% at 20% 47%, #000 30%, transparent 100%), radial-gradient(ellipse 28% 44% at 52% 54%, #000 30%, transparent 100%), radial-gradient(ellipse 30% 47% at 81% 45%, #000 30%, transparent 100%), linear-gradient(to right, transparent, #000 84px, #000 calc(100% - 84px), transparent), linear-gradient(to bottom, transparent, #000 60px, #000 calc(100% - 60px), transparent);
+  mask-composite: add, add, add, intersect; }
 .hero-name h1 { font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem); letter-spacing: 0.06em; line-height: 1.55; }
 .nb { display: inline-block; }
 .hero-lead { margin: 0.5em 0 0; max-width: 27em; }
@@ -110,7 +124,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
   .motion #fx, .motion #gx { display: none !important; }
   .motion .hero-stick::after { opacity: 1 !important; }
   .hero-glyph, .motion .hero-glyph { position: relative; left: auto; top: auto; transform: none; height: 46svh; opacity: 1 !important; }
-  .hero-name, .motion .hero-name { position: relative; left: auto; right: auto; top: auto; align-items: flex-start; text-align: left; max-width: 30em; }
+  .hero-name, .motion .hero-name { position: relative; left: auto; right: auto; top: auto; transform: none; width: auto; align-items: flex-start; text-align: left; max-width: 30em; }
   .hero-links { justify-content: flex-start; }
   .hero-hint, .motion .hero-hint { bottom: 12px; }
   .motion .hero-hint::after { animation: none; }
@@ -122,7 +136,7 @@ figcaption, .label-cap, .foot { font-size: var(--t15); }
 .hero-stick.tall #fx, .hero-stick.tall #gx { display: none !important; }
 .hero-stick.tall::after { opacity: 1 !important; }
 .hero-stick.tall .hero-glyph { position: relative; left: auto; top: auto; transform: none; height: 30svh; opacity: 1 !important; }
-.hero-stick.tall .hero-name { position: relative; left: auto; right: auto; top: auto; align-self: stretch; }
+.hero-stick.tall .hero-name { position: relative; left: auto; right: auto; top: auto; transform: none; width: auto; max-width: none; align-self: stretch; }
 .hero-stick.tall .hero-hint { position: relative; left: auto; bottom: auto; transform: none; }
 .hero-stick.tall .hero-hint::after { animation: none; }
 
