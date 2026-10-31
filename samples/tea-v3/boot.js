@@ -5,9 +5,9 @@
   var still = q.get('static') === '1' || (reduce && q.get('motion') !== '1');
   d.classList.remove('nojs');
   d.classList.add(still ? 'still' : 'motion');
-  if (reduce) d.classList.add('reduced');
+  if (reduce && q.get('motion') !== '1') d.classList.add('reduced');
   if (q.get('nogl') === '1') d.classList.add('nogl');
-  // 文字の形（Noto Sans JP、このページで使う字だけ）は、最初の絵を止めないように後から
+  // 文字の形（本文 Noto Sans JP・見出し Shippori Mincho、このページで使う字だけ）は、最初の絵を止めないように後から
   ['data-font', 'data-font-b'].forEach(function (k) {
     var f = d.getAttribute(k);
     if (f) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = f; document.head.appendChild(l); }

@@ -1,28 +1,28 @@
 霧和茶園（架空）一番摘み「霞」 見本ページ（ラクワーク工房） ― 使った道具・写真とライセンス
-2026-10-31 確認（試作3版目・直し）
+2026-10-31 確認（試作3版目・直し2）
 
 ページの中の動き：外の道具を使わず、自前の小さなプログラム（js/main-*.js）と CSS だけで動かしています。
   霧と「霞」の一字は、自前の WebGL のシェーダーで描いています。外のサーバーから読み込むのは文字の形（Google Fonts）だけです。
-  文字：Noto Sans JP（Google Fonts、このページで使う字だけを取り寄せ） ― SIL Open Font License 1.1
-        https://fonts.google.com/noto/specimen/Noto+Sans+JP
-  最初の画面の「霞」と茶筒のラベルの「霞」：Klee One（SIL Open Font License 1.1）の字形を絵に書き出して使用
-        https://fonts.google.com/specimen/Klee+One
+  文字（Google Fonts、このページで使う字だけを取り寄せ）
+    本文：Noto Sans JP 400 ― SIL Open Font License 1.1  https://fonts.google.com/noto/specimen/Noto+Sans+JP
+    見出し・品名：Shippori Mincho 600 ― SIL Open Font License 1.1  https://fonts.google.com/specimen/Shippori+Mincho
+  最初の画面の「霞」、茶筒と詰め替え用の袋のラベルの字：Yuji Syuku（Copyright 2021 The Yuji Project Authors、SIL Open Font License 1.1）の字形を絵に書き出して使用
+    https://fonts.google.com/specimen/Yuji+Syuku  ／ ライセンスの全文 https://openfontlicense.org/
 
-茶筒の絵：three.js 0.187.0（MIT License、全文は下）で形から作り、光を当てて撮った絵に、和紙のきめ・映り込みを自前で描き足しました（ページでは three.js を動かしていません）。
+茶筒と詰め替え用の袋の絵：three.js 0.187.0（MIT License、全文は下）で形から作り、光を当てて撮った絵に、和紙のきめ・映り込み・ラベルの字を自前で描き足しました（ページでは three.js を動かしていません）。
 
 写真・動画（生成AIの画像・動画は使っていません。写っているのは霧和茶園ではありません）
   Unsplash License（無料・商用可・クレジットは任意） https://unsplash.com/license
-   - 新芽のそろった畝（最初の画面。畝の間の細い道を消す修整あり） https://unsplash.com/photos/clWhSQg-v88  Karen Chew
-   - 茶の新芽                         https://unsplash.com/photos/wBdNDHE06bc  Se. Tsuchiya
+   - 新芽のそろった畝（最初の画面。畝の間の細い道と、防霜ファンの柱・遠くの街灯・電線を消す修整あり）
+                                      https://unsplash.com/photos/clWhSQg-v88  Karen Chew
   Pexels License（無料・商用可・クレジットは任意） https://www.pexels.com/license/
-   - 仕上げた茶葉の寄り・火入れの機械と茶箱（同じ写真から別の所を切り抜き。文字の入った所は外した）
-                                      https://www.pexels.com/photo/traditional-japanese-tea-preparation-in-kurashiki-31367602/  Arnie Papp
-   - 朱色の急須と湯呑み               https://www.pexels.com/photo/traditional-japanese-teapot-with-green-tea-35042570/  Travel With Lenses
-   - 真上から見た湯呑みの煎茶         https://www.pexels.com/photo/aesthetic-overhead-shot-of-green-tea-in-berlin-31986686/  Travel With Lenses
-   - 器に入れた乾いた茶葉（茶筒の段） https://www.pexels.com/photo/dry-tea-leaves-in-a-clay-pot-8952044/  Ivan S.
-   - 湯呑みに緑茶を注ぐ動画（上と右を切り抜き。待ち絵と深蒸しの水色の写真もこの動画のコマ）
+   - 刈りそろえた畝の面の新芽         https://www.pexels.com/photo/close-up-photography-of-plants-977443/  minan1398
+   - 仕上げた茶葉の寄り               https://www.pexels.com/photo/dry-tea-leaves-in-a-clay-pot-8952044/  Ivan S.（器の縁を入れず、葉だけを切り抜き）
+   - 白い器の煎茶を真上から           https://www.pexels.com/photo/a-mug-with-black-liquid-beside-a-wooden-spoon-8473948/  cup-of-couple（液の所の色を少し緑へ寄せた）
+   - ススキの野                       https://www.pexels.com/photo/close-up-photo-of-pampas-grass-14100041/  suki-lee
+   - 湯呑みに緑茶を注ぐ動画（上と右を切り抜き。待ち絵もこの動画のコマ）
                                       https://www.pexels.com/video/pouring-green-tea-in-japanese-ceramic-cup-31177597/  George Frewat
-  切り抜き・縮小・色の調子のそろえ・WebP/MP4 への変換をして、撮影の情報（EXIF など）は消しています。
+  切り抜き・縮小・白の基準を少し暖かくそろえる調子の直し・WebP/MP4 への変換をして、撮影の情報（EXIF など）は消しています。
 ================================================================
 three.js ― MIT License（茶筒の絵を作るのに使用）
 ================================================================
