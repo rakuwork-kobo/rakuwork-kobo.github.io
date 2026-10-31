@@ -1,15 +1,15 @@
 霧和茶園（架空）一番摘み「霞」 見本ページ（ラクワーク工房） ― 使った道具・写真とライセンス
-2026-11-01 確認（試作3版目・直し4）
+2026-11-01 確認（試作3版目・直し5）
 
 ページの中の動き：外の道具を使わず、自前の小さなプログラム（js/main-*.js）と CSS だけで動かしています。
-  霧と「霞」の一字は、自前の WebGL のシェーダーで描いています。外のサーバーから読み込むのは文字の形（Google Fonts）だけです。
+  霧と「霞」の一字は、自前の WebGL のシェーダーで描いています（字の溶け方は、前もって用意したぼかしの強さ違いの字の絵の重ね。最初の絵は霧のシェーダーの静止画）。外のサーバーから読み込むのは文字の形（Google Fonts）だけです。
   文字（Google Fonts、このページで使う字だけを取り寄せ）
     本文：Noto Sans JP 400 ― SIL Open Font License 1.1  https://fonts.google.com/noto/specimen/Noto+Sans+JP
     見出し・品名：Shippori Mincho 600 ― SIL Open Font License 1.1  https://fonts.google.com/specimen/Shippori+Mincho
   最初の画面の「霞」、茶筒・袋のラベルの字：Yuji Syuku（Copyright 2021 The Yuji Project Authors、SIL Open Font License 1.1）の字形を絵に書き出して使用
     https://fonts.google.com/specimen/Yuji+Syuku  ／ ライセンスの全文 https://openfontlicense.org/
 
-茶筒・詰め替え用の袋・試し用の小袋・茶葉の絵（3Dで描いた物。写真ではありません）
+茶筒・詰め替え用の袋・お試し用の袋・茶葉の絵と、最初の画面の遠くの防霜ファン（3Dで描いた物。写真ではありません。ファンは畑の写真に合成）
   Blender 5.2.3（Cycles）で、形・材質・和紙やクラフト紙のきめ・しわ・茶葉の粒を、自作の Python から作って描きました。
   生成AIの画像・写真素材は使っていません。Blender で描いた絵は作った人のもので、Blender のライセンス（GPL）は絵にはかかりません。
   光の環境（HDRI）：Studio Small 08（Sergej Majboroda）― Poly Haven、CC0 1.0（パブリックドメイン相当）
@@ -19,12 +19,12 @@
 
 写真・動画（生成AIの画像・動画は使っていません。写っているのは霧和茶園ではありません）
   Unsplash License（無料・商用可・クレジットは任意） https://unsplash.com/license
-   - 新芽のそろった畝（最初の画面。畝の間の細い道と、防霜ファンの柱・遠くの街灯・電線を消す修整あり。スマホの縦の画面は、上の端の木を朝もやへ溶かし、空を足して縦長にした）
+   - 新芽のそろった畝（最初の画面。畝の間の細い道と、上の切れた防霜ファンの柱・遠くの街灯・電線を消す修整あり。遠くに Blender で描いた防霜ファンを2本合成。スマホの縦の画面は、上の端の木を朝もやへ溶かし、空を少し足して縦長にした）
                                       https://unsplash.com/photos/clWhSQg-v88  Karen Chew
   Pexels License（無料・商用可・クレジットは任意） https://www.pexels.com/license/
-   - 刈りそろえた畝の面の新芽         https://www.pexels.com/photo/close-up-photography-of-plants-977443/  minan1398
-   - 白い器の煎茶を真上から           https://www.pexels.com/photo/a-mug-with-black-liquid-beside-a-wooden-spoon-8473948/  cup-of-couple（液の所の色を少し緑へ寄せた）
+   - 淡い黄緑の若い茶の芽（上の半分だけを切り抜き）  https://www.pexels.com/photo/35141996/  Rizvana
+   - 白い器の煎茶を真上から           https://www.pexels.com/photo/a-mug-with-black-liquid-beside-a-wooden-spoon-8473948/  cup-of-couple（液の所を、濃い緑で少しにごり、縁が明るく、器の底がうっすら見える色に直した）
    - ススキの野                       https://www.pexels.com/photo/close-up-photo-of-pampas-grass-14100041/  suki-lee
    - 湯呑みに緑茶を注ぐ動画（上と右を切り抜き。待ち絵もこの動画のコマ）
-                                      https://www.pexels.com/video/pouring-green-tea-in-japanese-ceramic-cup-31177597/  George Frewat
+                                      https://www.pexels.com/video/pouring-green-tea-in-japanese-ceramic-cup-31177597/  George Frewat（待ち絵の液を、真上の写真と同じ明るさへ少し直した）
   切り抜き・縮小・白の基準を少し暖かくそろえる調子の直し・WebP/MP4 への変換をして、撮影の情報（EXIF など）は消しています。
