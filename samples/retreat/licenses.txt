@@ -1,0 +1,15 @@
+夜半（架空の宿）見本で使っている素材
+
+写真（Pexels License：無料・商用可・クレジット任意。EXIF なしの WebP に保存し直し、切り抜きと色合わせ。hero は人工衛星の線を周りの星空で消した）
+- hero_l / hero_m / hero_p : https://www.pexels.com/photo/photo-of-starry-sky-2688664/  撮影 Kelly
+- room_l / room_s         : https://www.pexels.com/photo/wooden-table-near-windows-13129824/  撮影 Colin Fearing
+- dusk_s                  : https://www.pexels.com/photo/clear-sky-over-forest-at-dusk-18142895/  撮影 Andreas Ebner
+- stars_l / stars_s / stars_w : https://www.pexels.com/photo/a-silhouette-of-people-standing-under-the-starry-sky-12635422/  撮影 Lucía Garó
+- morning_l / morning_s / morning_w : https://www.pexels.com/photo/mountain-ranges-in-a-foggy-morning-9467294/  撮影 Juliano Ferreira
+生成AIの画像は使っていません。
+
+書体
+- fonts/yowa-400.woff2・yowa-600.woff2 : Noto Serif JP（© 2017-2023 Adobe）を、ページで使う字だけに絞ったもの。
+  SIL Open Font License 1.1（https://openfontlicense.org/）。
+
+favicon.svg は自作。
