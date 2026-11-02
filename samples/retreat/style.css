@@ -72,7 +72,8 @@ small { font-size: 13px; letter-spacing: .08em; line-height: 1.9; }
   .top { padding-top: 32px; }
   .logo-name { font-size: 26px; }
   /* パソコンの予約の入口は右上の1つだけ。読み進めても同じ場所に残す */
-  .top-book { display: inline-flex; align-items: center; position: fixed; z-index: 20; top: 28px; right: var(--gutter); min-height: 46px; padding: 0 24px; font-size: 14px; letter-spacing: .18em; text-decoration: none; color: var(--paper); background: rgba(10,19,34,.72); border: 1px solid rgba(212,178,124,.7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  /* 縦：ロゴの「夜半」の行（上 32px・高さ 36.4px）の真ん中に、ボタン（46px）の真ん中を合わせる。横：左のロゴと同じ --edge */
+  .top-book { display: inline-flex; align-items: center; position: fixed; z-index: 20; top: 27px; right: var(--edge); min-height: 46px; padding: 0 24px; font-size: 14px; letter-spacing: .18em; text-decoration: none; color: var(--paper); background: rgba(10,19,34,.72); border: 1px solid rgba(212,178,124,.7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 }
 
 /* 最初の画面：写真が主役。文字は見出しと一行だけ */
@@ -93,11 +94,12 @@ small { font-size: 13px; letter-spacing: .08em; line-height: 1.9; }
 @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
 
 /* 一棟まるごと：写真を端まで、文はその下に */
-.stay { padding: 0 0 var(--sec); }
+.stay { padding: 72px 0 var(--sec); }
 .stay-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; }
 .stay-text { padding: 72px var(--edge) 0; }
 .stay-body { max-width: var(--measure); }
 @media (min-width: 900px) {
+  .stay { padding-top: 120px; }
   .stay-photo img { aspect-ratio: 21 / 9; max-height: 760px; }
   .stay-text { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); padding-top: 120px; }
   .stay-text .h2 { margin: 0; }
@@ -118,7 +120,7 @@ small { font-size: 13px; letter-spacing: .08em; line-height: 1.9; }
   .scene-dusk .scene-photo img { max-width: none; }
 }
 
-.scene-night { background: var(--ai-deep); padding: 0 0 104px; }
+.scene-night { background: var(--ai-deep); padding: 0 0 72px; }
 .scene-night .scene-photo img { width: 100%; aspect-ratio: 8 / 9; object-fit: cover; }
 .scene-night .scene-text { padding-top: 56px; }
 @media (min-width: 900px) {
@@ -130,58 +132,53 @@ small { font-size: 13px; letter-spacing: .08em; line-height: 1.9; }
 }
 
 /* 朝の霧：明るい板にせず、夜から少し明けた藍で続ける */
-.scene-morning { background: linear-gradient(180deg, var(--ai-deep) 0, var(--dawn) 160px); padding: 112px 0 0; }
+.scene-morning { background: linear-gradient(180deg, var(--ai-deep) 0, var(--dawn) 160px); padding: 72px 0 0; }
 .scene-morning .scene-text { margin-bottom: 56px; }
 .scene-morning .scene-photo img { width: 100%; aspect-ratio: 700 / 848; object-fit: cover; }
 @media (min-width: 900px) {
-  .scene-morning { padding-top: 168px; }
+  .scene-morning { padding-top: 120px; }
   .scene-morning .scene-text { margin-bottom: 88px; }
   .scene-morning .scene-photo img { aspect-ratio: 16 / 7; object-position: 50% 40%; }
+}
+
+/* タブレット（600〜899px）：縦に長くしすぎない。横の写真（_w）を 3:2 で */
+@media (min-width: 600px) and (max-width: 899px) {
+  .stay-photo img { aspect-ratio: 16 / 9; }
+  .scene-night .scene-photo img { aspect-ratio: 3 / 2; object-position: 50% 60%; }
+  .scene-morning .scene-photo img { aspect-ratio: 3 / 2; object-position: 50% 40%; }
 }
 
 /* 月の暦（このページの印） */
 .koyomi { padding: var(--sec) var(--edge); background: linear-gradient(180deg, var(--dawn) 0, var(--night) 220px); }
 .koyomi-lead { max-width: var(--measure); }
-.phases { list-style: none; margin: 48px 0 56px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.ph { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 28px 0 22px; color: var(--paper-2); }
-.ph-moon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(147,165,192,.6); }
-.ph-date { font-size: 15px; letter-spacing: .06em; font-variant-numeric: tabular-nums; line-height: 1.4; }
-.ph-name { font-size: 12px; letter-spacing: .2em; color: var(--ai-mist); line-height: 1.4; }
-.ph-key { color: var(--paper); }
+/* 満ち欠けの一覧（暦はこれ1つ）。スマホは縦に5行、パソコンは横に5列 */
+.phases { list-style: none; margin: 48px 0 40px; padding: 0; border-top: 1px solid var(--line); }
+.ph { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); color: var(--paper-2); }
+.ph-moon { grid-row: 1 / 3; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(147,165,192,.6); }
+.ph-when { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 14px; }
+.ph-date { font-size: 16px; letter-spacing: .08em; font-variant-numeric: tabular-nums; line-height: 1.6; color: var(--paper); }
+.ph-name { font-size: 13px; letter-spacing: .2em; color: var(--ai-mist); line-height: 1.6; }
+.ph-say { font-size: 15px; line-height: 1.9; letter-spacing: .06em; }
 .ph-key .ph-name { color: var(--lamp); }
+.ph-key .ph-say { color: var(--paper); }
 .ph-new { border-color: var(--lamp); background: var(--night); }
 .ph-full { border-color: var(--lamp); background: var(--lamp); }
 .ph-first { background: linear-gradient(90deg, var(--night) 50%, #c9ced6 50%); }
 .ph-last { background: linear-gradient(90deg, #c9ced6 50%, var(--night) 50%); }
-.moons { margin: 0 0 2em; padding: 0; }
-.moon-row { padding: 18px 0; border-top: 1px solid var(--line); }
-.moon-row:last-child { border-bottom: 1px solid var(--line); }
-.moons dt { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 14px; font-size: 17px; letter-spacing: .16em; line-height: 1.9; }
-.moon-date { font-size: 14px; color: var(--paper-2); letter-spacing: .1em; font-variant-numeric: tabular-nums; }
-.moons dd { margin: 6px 0 0; color: var(--paper-2); }
-.note { font-size: 14px; color: var(--ai-mist); line-height: 2; letter-spacing: .08em; max-width: var(--measure); }
-.cal { margin-top: 56px; max-width: 420px; border: 1px solid rgba(147,165,192,.28); padding: 24px 20px 22px; }
-.cal-t { width: 100%; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; letter-spacing: 0; }
-.cal-t caption { font-size: 15px; letter-spacing: .24em; padding-bottom: 14px; }
-.cal-t th { font-weight: 400; font-size: 12px; color: var(--ai-mist); padding: 0 0 8px; }
-.cal-t td { text-align: center; font-size: 15px; line-height: 1; height: 44px; color: var(--paper-2); position: relative; }
-.cal-t .moon { position: absolute; left: 50%; top: 2px; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; }
-.cal-t .moon-new { border: 1px solid var(--lamp); }
-.cal-t .moon-full { background: var(--lamp); }
-.cal-t .is-new, .cal-t .is-full { color: var(--paper); }
-.cal-note { margin: 16px 0 0; font-size: 13px; line-height: 1.9; letter-spacing: .04em; color: var(--ai-mist); text-align: center; }
+.br-pc { display: none; }
+.note { font-size: 13px; color: var(--ai-mist); line-height: 1.9; letter-spacing: .06em; max-width: var(--measure); }
 @media (min-width: 900px) {
-  .koyomi { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 96px; align-items: start; }
+  .koyomi { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 64px; align-items: start; }
   .koyomi-h { writing-mode: vertical-rl; margin: 0; font-size: 34px; letter-spacing: .3em; line-height: 2; }
-  .koyomi-body { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 0 72px; align-items: start; }
-  .koyomi-lead, .phases { grid-column: 1 / -1; }
-  .phases { margin: 40px 0 64px; }
-  .ph { padding: 40px 0 30px; gap: 12px; }
-  .ph-moon { width: 64px; height: 64px; }
+  .phases { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 40px 0 36px; border-bottom: 1px solid var(--line); }
+  .ph { grid-template-columns: 1fr; justify-items: center; align-content: start; gap: 14px; padding: 40px 14px 34px; border-bottom: 0; text-align: center; }
+  .ph + .ph { border-left: 1px solid var(--line); }
+  .ph-moon { grid-row: auto; width: 64px; height: 64px; }
+  .ph-when { flex-direction: column; align-items: center; gap: 2px; }
   .ph-date { font-size: 17px; }
-  .ph-name { font-size: 13px; }
-  .cal { margin-top: 0; }
-  .cal-t td { height: 50px; font-size: 16px; }
+  .ph-say { font-size: 14px; }
+  .br-pc { display: inline; }
+  .ph-key { box-shadow: inset 0 1px 0 var(--lamp); }
 }
 
 /* ご予約の前に：要点はボタンのすぐ上に、短く */

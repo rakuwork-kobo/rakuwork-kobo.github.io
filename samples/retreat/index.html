@@ -12,7 +12,7 @@
 <meta name="description" content="一日にひと組だけを迎える、星を見るための一棟貸しの宿（架空）のページの見本です。実在の宿ではありません。">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" href="fonts/yowa-400.woff2" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=20261103b">
+<link rel="stylesheet" href="style.css?v=20261103c">
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
@@ -66,14 +66,14 @@
   <article class="scene scene-night">
     <figure class="scene-photo">
       <picture>
-        <source media="(min-width: 900px)" srcset="img/stars_w.webp" width="1920" height="1280">
-        <img src="img/stars_s.webp" srcset="img/stars_s.webp 800w, img/stars_l.webp 1600w" sizes="100vw" width="800" height="900" alt="天の川の下で、空を見上げるふたりの影" loading="lazy" decoding="async">
+        <source media="(min-width: 600px)" srcset="img/stars_w.webp" width="1920" height="1280">
+        <img src="img/stars_s.webp" srcset="img/stars_s.webp 800w, img/stars_l.webp 1600w" sizes="100vw" width="800" height="900" alt="天の川の下、なだらかな丘の上に立つふたりの影" loading="lazy" decoding="async">
       </picture>
     </figure>
     <div class="scene-text">
       <h3 class="h3">星の時間</h3>
-      <p>夕食のあと、庭の灯りをすべて落とします。目が暗さに慣れるまでの十五分ほどで、見える星の数が少しずつ増えていきます。</p>
-      <p>庭には寝ころべる長椅子と厚手の毛布を、湯殿には星の見える露天の湯船を用意しています。</p>
+      <p>夕食のあと、庭の灯りをすべて落とします。母屋の裏から草の道を五分ほど上ると、木のない丘の上に出ます。</p>
+      <p>目が暗さに慣れるまでの十五分ほどで、星が少しずつ増えていきます。足もとの灯りと厚手の上着は、玄関に用意しています。</p>
     </div>
   </article>
 
@@ -84,7 +84,7 @@
     </div>
     <figure class="scene-photo">
       <picture>
-        <source media="(min-width: 900px)" srcset="img/morning_w.webp" width="1920" height="1280">
+        <source media="(min-width: 600px)" srcset="img/morning_w.webp" width="1920" height="1280">
         <img src="img/morning_s.webp" srcset="img/morning_s.webp 700w, img/morning_l.webp 1200w" sizes="100vw" width="700" height="848" alt="青い霧の中に重なる、朝の山並み" loading="lazy" decoding="async">
       </picture>
     </figure>
@@ -96,59 +96,28 @@
   <div class="koyomi-body">
     <p class="koyomi-lead">同じ空でも、月の形で夜の顔が変わります。2026年12月を例にしました。</p>
 
-    <ol class="phases" aria-label="2026年12月の月の満ち欠け">
-      <li class="ph"><span class="ph-moon ph-last" aria-hidden="true"></span><span class="ph-date">1日</span><span class="ph-name">下弦</span></li>
-      <li class="ph ph-key"><span class="ph-moon ph-new" aria-hidden="true"></span><span class="ph-date">9日</span><span class="ph-name">新月</span></li>
-      <li class="ph"><span class="ph-moon ph-first" aria-hidden="true"></span><span class="ph-date">17日</span><span class="ph-name">上弦</span></li>
-      <li class="ph ph-key"><span class="ph-moon ph-full" aria-hidden="true"></span><span class="ph-date">24日</span><span class="ph-name">満月</span></li>
-      <li class="ph"><span class="ph-moon ph-last" aria-hidden="true"></span><span class="ph-date">31日</span><span class="ph-name">下弦</span></li>
+    <ol class="phases" aria-label="2026年12月の月の満ち欠けと、その夜の空">
+      <li class="ph"><span class="ph-moon ph-last" aria-hidden="true"></span><span class="ph-when"><span class="ph-date">12月1日</span><span class="ph-name">下弦</span></span><span class="ph-say">宵のうちは、<br class="br-pc">月のない空。</span></li>
+      <li class="ph ph-key"><span class="ph-moon ph-new" aria-hidden="true"></span><span class="ph-when"><span class="ph-date">12月9日</span><span class="ph-name">新月</span></span><span class="ph-say">月明かりがなく、<br class="br-pc">天の川まで。</span></li>
+      <li class="ph"><span class="ph-moon ph-first" aria-hidden="true"></span><span class="ph-when"><span class="ph-date">12月17日</span><span class="ph-name">上弦</span></span><span class="ph-say">夜半に月が沈み、<br class="br-pc">星の時間へ。</span></li>
+      <li class="ph ph-key"><span class="ph-moon ph-full" aria-hidden="true"></span><span class="ph-when"><span class="ph-date">12月24日</span><span class="ph-name">満月</span></span><span class="ph-say">月の光で、庭が<br class="br-pc">青く浮かぶ夜。</span></li>
+      <li class="ph"><span class="ph-moon ph-last" aria-hidden="true"></span><span class="ph-when"><span class="ph-date">12月31日</span><span class="ph-name">下弦</span></span><span class="ph-say">宵は月がなく、<br class="br-pc">年越しの星を。</span></li>
     </ol>
-
-    <div class="moons-wrap">
-    <dl class="moons">
-      <div class="moon-row">
-        <dt>新月のころ<span class="sr-only">、</span><span class="moon-date">12月9日の前後</span></dt>
-        <dd>月明かりがなく、天の川や淡い星まで見えやすい夜。</dd>
-      </div>
-      <div class="moon-row">
-        <dt>満月のころ<span class="sr-only">、</span><span class="moon-date">12月24日の前後</span></dt>
-        <dd>星は少し控えめに。月の光で、庭が青く浮かんで見える夜。</dd>
-      </div>
-      <div class="moon-row">
-        <dt>そのあいだの夜</dt>
-        <dd>宵か夜更けのどちらかに、月のない時間があります。</dd>
-      </div>
-    </dl>
-    <p class="note">空の具合は日によります。そのまま泊まる夜は、灯りを落とした部屋で、星の本と温かいお茶をどうぞ。</p>
-    </div>
-
-    <div class="cal">
-      <table class="cal-t">
-        <caption>2026年12月</caption>
-        <thead><tr><th scope="col">日</th><th scope="col">月</th><th scope="col">火</th><th scope="col">水</th><th scope="col">木</th><th scope="col">金</th><th scope="col">土</th></tr></thead>
-        <tbody>
-          <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
-          <tr><td>6</td><td>7</td><td>8</td><td class="is-new"><span class="moon moon-new" role="img" aria-label="新月"></span>9</td><td>10</td><td>11</td><td>12</td></tr>
-          <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
-          <tr><td>20</td><td>21</td><td>22</td><td>23</td><td class="is-full"><span class="moon moon-full" role="img" aria-label="満月"></span>24</td><td>25</td><td>26</td></tr>
-          <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
-        </tbody>
-      </table>
-      <p class="cal-note">月の日付は、国立天文台の暦（日本時間）によります。<br>空いている日は、予約ページでご覧いただけます。</p>
-    </div>
+    <p class="note">月の日付は、国立天文台の暦（日本時間）によります。空いている日は、予約ページでご覧いただけます。</p>
   </div>
 </section>
 
 <section class="reserve" id="reserve" aria-labelledby="reserve-title">
   <h2 id="reserve-title" class="h2">ご予約の前に</h2>
   <dl class="facts">
-    <div><dt>料金</dt><dd>2名さまご利用時　1泊2食付き <span class="num">88,000</span>円〜<small>税込。3名さまからは、1名あたり22,000円（小学生も同額）</small></dd></div>
-    <div><dt>人数</dt><dd>2〜4名さま<small>小学生以上の方。一日一組だけをお迎えします</small></dd></div>
-    <div><dt>お部屋</dt><dd>母屋をまるごと（寝室2間・ベッド2台・布団2組）<small>檜の内湯と、星の見える露天の湯船（山の湧き水を沸かしたお湯です）</small></dd></div>
-    <div><dt>お食事</dt><dd>夕食は山の食材の和食を母屋で<small>係は20時に、敷地の端の離れへ下がります。そのあとは内線でお呼びいただけます。朝食はお部屋へ。食物アレルギーはご予約のときにお知らせください</small></dd></div>
-    <div><dt>時間</dt><dd>チェックイン 15:00〜18:00<br>チェックアウト 11:00</dd></div>
-    <div><dt>取り消し</dt><dd>7日前までは無料<small>6〜2日前はご宿泊代金の50%、前日・当日は100%。曇り・雨の予報の夜は、前日17時までのご連絡で、一度だけ無料で日を移せます</small></dd></div>
-    <div><dt>場所</dt><dd>中部地方の山あい（標高およそ1,300m）<small>東京・名古屋から車で約3時間。最寄り駅から送迎あり（予約制）。12〜3月は冬用タイヤでお越しください。くわしい道順は、ご予約の方にだけお知らせします</small></dd></div>
+    <div><dt>料金</dt><dd>2名さま1棟　1泊2食付き <span class="num">88,000</span>円〜<small>2名さまの合計・税込。土曜・祝前日は +16,000円、年末年始（12/29〜1/3）は +30,000円（重なる日は年末年始の額だけ）。3名さまからは、1名ごとに 22,000円を足します（小学生も同額）</small></dd></div>
+    <div><dt>人数</dt><dd>2〜4名さま（小学生以上）<small>一日一組だけをお迎えします</small></dd></div>
+    <div><dt>お部屋</dt><dd>母屋をまるごと（寝室2間）<small>檜の内湯と、星の見える露天の湯船</small></dd></div>
+    <div><dt>お食事</dt><dd>夕食 18:30から<br>朝食 8:00〜9:30<small>夕食は山の食材の和食を母屋で、朝食はお部屋へ。食物アレルギーは、ご予約のときにお知らせください</small></dd></div>
+    <div><dt>時間</dt><dd>チェックイン 15:00〜18:00<br>チェックアウト 11:00<small>冬は日の入りが早いため、16時ごろまでのご到着をおすすめします</small></dd></div>
+    <div><dt>取り消し</dt><dd>7日前までは無料<small>6〜2日前は50%、前日・当日は100%。曇り・雨の予報の夜は、前日17時までのご連絡で一度だけ無料で日を移せます</small></dd></div>
+    <div><dt>場所</dt><dd>中部地方の山あい<small>標高およそ1,300m。東京・名古屋から車で約3時間。道順は、ご予約の方にお知らせします</small></dd></div>
+    <div><dt>連絡先</dt><dd>お電話 <span class="num">000-0000-0000</span><small>10:00〜17:00（火・水曜は休み）。見本のための架空の番号です</small></dd></div>
   </dl>
   <p class="book-wrap">
     <a class="book" href="#yoyaku-page">空いている日を見る</a>
@@ -159,8 +128,10 @@
     <h3 class="h3 faq-h">よくあるご質問</h3>
     <details><summary>記念日のお祝いを頼めますか</summary><p>ケーキ（5,500円）と季節の花（3,300円）をご用意できます。3日前までに、予約ページのご要望の欄にお書きください。</p></details>
     <details><summary>予約は、どんな流れですか</summary><p>予約ページで空いている日と人数を選び、お名前と連絡先、カードの情報を入れると、3分ほどで終わります。確認のメールのあと、2日以内に道順と、送迎の時刻をうかがうご連絡をお送りします。</p></details>
-    <details><summary>車がなくても行けますか</summary><p>最寄り駅から送迎いたします（片道およそ30分、無料・予約制）。駐車場は2台分あります。</p></details>
-    <details><summary>星が見えなかったら、どうなりますか</summary><p>前日17時までのご連絡で、一度だけ無料で日を移せます（「取り消し」の行のとおりです）。当日に曇った夜も、夜半ごろに晴れ間の出ることがあります。起こしてほしい時刻を、お知らせください。</p></details>
+    <details><summary>車がなくても行けますか</summary><p>最寄り駅から送迎いたします（片道およそ30分、無料・予約制）。お車の方へ：駐車場は2台分です。12〜3月は、冬用タイヤでお越しください。</p></details>
+    <details><summary>夜は、宿の方もいらっしゃるのですか</summary><p>係は20時に、敷地の端の離れへ下がります。そのあとは、内線でいつでもお呼びいただけます。</p></details>
+    <details><summary>寝具とお湯のことを教えてください</summary><p>寝室2間に、ベッド2台と布団2組。湯は山の湧き水を沸かしたもので、檜の内湯と露天の湯船は、いつでもお使いいただけます。</p></details>
+    <details><summary>星が見えなかったら、どうなりますか</summary><p>前日17時までのご連絡で、一度だけ無料で日を移せます。当日に曇った夜も、夜半ごろに晴れ間の出ることがあります。起こしてほしい時刻をお知らせください。灯りを落とした部屋に、星の本と温かいお茶もご用意しています。</p></details>
   </div>
 </section>
 
