@@ -2,7 +2,7 @@
    - 外へは何も送らず、何も読み込まない（CSP script-src 'self'）。HTML の文字列は使わない。
    - このファイルが動かなくても、中身はすべて読める。隠すのは html に rv-on を付けたあと、
      まだ画面に入っていない物だけ（最初から見えている物は隠さない）。
-   - 見本の確かめ用に ?d=2026-11-17 で「今日」を変えて見られる。 */
+   - 見本の確かめ用に ?d=2026-11-17 で「今日」を変えて見られる（カレンダーはその日の月と次の月）。 */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -84,47 +84,123 @@
     sync();
   }
 
-  /* お休みのカレンダー：今日に丸を付け、今日が営業日かを一行で */
+  /* お休みのカレンダー：今日（日本時間）の月と次の月の表を作り、今日に丸を付け、今日が営業日かを一行で。
+     HTML に書いてある表は JS が動かないときの控え。動いたら中身を差し替える（文字は textContent だけ）。
+     休みの決まり：毎週月曜・第3火曜・年末年始 12/30〜1/4。祝日（振替休日を含む）は下の一覧（2026〜2028年）。 */
+  var HOL = {
+    2026: { '0101': '元日', '0112': '成人の日', '0211': '建国記念の日', '0223': '天皇誕生日', '0320': '春分の日', '0429': '昭和の日',
+      '0503': '憲法記念日', '0504': 'みどりの日', '0505': 'こどもの日', '0506': '振替休日', '0720': '海の日', '0811': '山の日',
+      '0921': '敬老の日', '0922': '国民の休日', '0923': '秋分の日', '1012': 'スポーツの日', '1103': '文化の日', '1123': '勤労感謝の日' },
+    2027: { '0101': '元日', '0111': '成人の日', '0211': '建国記念の日', '0223': '天皇誕生日', '0321': '春分の日', '0322': '振替休日',
+      '0429': '昭和の日', '0503': '憲法記念日', '0504': 'みどりの日', '0505': 'こどもの日', '0719': '海の日', '0811': '山の日',
+      '0920': '敬老の日', '0923': '秋分の日', '1011': 'スポーツの日', '1103': '文化の日', '1123': '勤労感謝の日' },
+    2028: { '0101': '元日', '0110': '成人の日', '0211': '建国記念の日', '0223': '天皇誕生日', '0320': '春分の日', '0429': '昭和の日',
+      '0503': '憲法記念日', '0504': 'みどりの日', '0505': 'こどもの日', '0717': '海の日', '0811': '山の日', '0918': '敬老の日',
+      '0922': '秋分の日', '1009': 'スポーツの日', '1103': '文化の日', '1123': '勤労感謝の日' }
+  };
+  var W = ['日', '月', '火', '水', '木', '金', '土'];
+  function pad(v) { return (v < 10 ? '0' : '') + v; }
+
+  /* その日の決まり：off=休み、why=休みの理由、hol=祝日の名前 */
+  function dayInfo(y, m, d) {
+    var wd = new Date(y, m - 1, d).getDay();
+    var hol = (HOL[y] || {})[pad(m) + pad(d)] || '';
+    var why = '';
+    if (m === 12 && d >= 30) why = '年末の休み';
+    else if (m === 1 && d <= 4) why = '年始の休み';
+    else if (wd === 2 && d >= 15 && d <= 21) why = '第3火曜の休み';
+    else if (wd === 1) why = '休み';
+    return { wd: wd, off: !!why, why: why, hol: hol };
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function monthCells(y, m, todayIso) {
+    var frag = document.createDocumentFragment();
+    var last = new Date(y, m, 0).getDate();
+    for (var d = 1; d <= last; d++) {
+      var k = dayInfo(y, m, d);
+      var cls = [];
+      if (k.wd === 0) cls.push('sun'); else if (k.wd === 6) cls.push('sat');
+      if (d === 1) cls.push('s' + (k.wd + 1));
+      if (k.off) cls.push('off');
+      if (k.hol) cls.push('hol');
+      var iso = y + '-' + pad(m) + '-' + pad(d);
+      if (iso === todayIso) cls.push('is-today');
+      var li = el('li', cls.join(' '));
+      li.setAttribute('data-date', iso);
+      li.appendChild(el('span', 'cal-d', String(d)));
+      var say = '';
+      if (k.off) {
+        var mk = el('span', 'cal-mark', '休');
+        mk.setAttribute('aria-hidden', 'true');
+        li.appendChild(mk);
+        say = k.why + (k.hol ? '・' + k.hol : '');
+      } else if (k.hol) {
+        say = k.hol + '・9:00〜18:00';
+      }
+      if (say) li.appendChild(el('span', 'visually-hidden', '（' + say + '）'));
+      frag.appendChild(li);
+    }
+    return frag;
+  }
+
   function calendar() {
     var cal = document.getElementById('cal');
     var line = document.getElementById('cal-today');
     if (!cal || !line) return;
+    /* 今日：?d=YYYY-MM-DD があればその日（見本の確かめ用）、なければ日本時間の今日 */
+    var t = null;
     var q = new URLSearchParams(location.search).get('d');
-    var t;
-    if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) { var p = q.split('-'); t = new Date(+p[0], +p[1] - 1, +p[2]); }
-    else {
+    if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) {
+      var p = q.split('-');
+      var c = new Date(+p[0], +p[1] - 1, +p[2]);
+      if (c.getFullYear() === +p[0] && c.getMonth() === +p[1] - 1 && c.getDate() === +p[2]) t = c;
+    }
+    if (!t) {
       try {
         var f = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()).split('-');
         t = new Date(+f[0], +f[1] - 1, +f[2]);
       } catch (e) { t = new Date(); }
     }
-    var pad = function (v) { return (v < 10 ? '0' : '') + v; };
-    var iso = t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate());
-    var W = ['日', '月', '火', '水', '木', '金', '土'];
-    var cell = cal.querySelector('[data-date="' + iso + '"]');
-    var wd = t.getDay(), m = t.getMonth() + 1, d = t.getDate();
-    var off, hol = false;
-    if (cell) {
-      cell.classList.add('is-today');
-      off = cell.classList.contains('off'); hol = cell.classList.contains('hol');
-      /* 今日のある月を、動かさずに開いておく */
-      if (iso.slice(5, 7) === '12') {
-        var r = document.getElementById('cal-m12');
-        if (r) {
-          cal.classList.add('no-tr'); r.checked = true;
-          requestAnimationFrame(function () { requestAnimationFrame(function () { cal.classList.remove('no-tr'); }); });
-        }
-      }
-    } else {
-      /* 表の外の日は、決まりから出す（毎週月曜・第3火曜・年末年始 12/30〜1/4 が休み） */
-      off = wd === 1 || (wd === 2 && d >= 15 && d <= 21) || (m === 12 && d >= 30) || (m === 1 && d <= 4);
+    var y = t.getFullYear(), m = t.getMonth() + 1, d = t.getDate();
+    var todayIso = y + '-' + pad(m) + '-' + pad(d);
+
+    /* 2か月分の表を作って差し替える（今月が1つ目のタブ） */
+    var months = [[y, m], m === 12 ? [y + 1, 1] : [y, m + 1]];
+    for (var i = 0; i < 2; i++) {
+      var n = i + 1;
+      var radio = document.getElementById('cal-m' + n);
+      var label = cal.querySelector('label[for="cal-m' + n + '"]');
+      var title = document.getElementById('cal-p' + n + '-h');
+      var grid = document.querySelector('#cal-p' + n + ' .cal-grid');
+      if (!radio || !label || !title || !grid) return;
+      var my = months[i][0], mm = months[i][1];
+      label.textContent = mm + '月';
+      title.textContent = my + '年' + mm + '月';
+      var cells = monthCells(my, mm, todayIso);
+      while (grid.firstChild) grid.removeChild(grid.firstChild);
+      grid.appendChild(cells);
     }
+    /* 今月を、動かさずに開いておく（戻るでフォームの状態が残っていても今月から） */
+    var r1 = document.getElementById('cal-m1');
+    if (!r1.checked) {
+      cal.classList.add('no-tr'); r1.checked = true;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { cal.classList.remove('no-tr'); }); });
+    }
+
+    var k = dayInfo(y, m, d);
     var b = document.createElement('b');
     var rest;
-    if (off) { b.textContent = 'お休み'; rest = 'です。'; line.classList.add('is-off'); }
-    else { b.textContent = '営業日'; rest = !cell ? 'です。' : (wd === 0 || wd === 6 || hol) ? '　9:00〜18:00' : '　10:00〜19:00'; line.classList.add('is-open'); }
+    if (k.off) { b.textContent = 'お休み'; rest = 'です。'; line.classList.add('is-off'); }
+    else { b.textContent = '営業日'; rest = (k.wd === 0 || k.wd === 6 || k.hol) ? '　9:00〜18:00' : '　10:00〜19:00'; line.classList.add('is-open'); }
     while (line.firstChild) line.removeChild(line.firstChild);
-    line.appendChild(document.createTextNode('今日 ' + m + '月' + d + '日（' + W[wd] + '）は '));
+    line.appendChild(document.createTextNode('今日 ' + m + '月' + d + '日（' + W[k.wd] + '）は '));
     line.appendChild(b);
     line.appendChild(document.createTextNode(rest));
   }
