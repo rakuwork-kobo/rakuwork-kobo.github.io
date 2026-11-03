@@ -1,0 +1,18 @@
+あさまど珈琲（架空の喫茶店）見本で使っている素材
+
+写真（Unsplash License：無料・商用可・クレジット任意。2026-11-04 に images.unsplash.com から取得し、切り抜いて彩度を少し下げ、EXIF なしの WebP に保存し直した）
+- hero_l / hero_s   : https://unsplash.com/photos/u1QfqxhsrXQ  撮影 Aimee Giles
+- drip_l / drip_s   : https://unsplash.com/photos/rwwMB7kTNes  撮影 Devin Avery（色を少し暖かく）
+- roast_l / roast_s : https://unsplash.com/photos/Lk4UzBF6vss  撮影 Khanh Do（焙煎機の銘板が入らないよう切り抜き）
+- pour_l / pour_s   : https://unsplash.com/photos/KGR2u2rG6c4  撮影 Beau Carpenter
+- room_l / room_s   : https://unsplash.com/photos/vwrH85uxYZM  撮影 Dhiyah Aqila
+- cup_l / cup_s     : https://unsplash.com/photos/Olb_JAKGKIs  撮影 Beau Carpenter
+- bag_l / bag_s     : https://unsplash.com/photos/wizWrRZJXSg  撮影 With Mahdy（白い壁を切り、色を少し暖かく。袋の上の英字の印字は、ページでは札で隠している）
+生成AIの画像は使っていません。
+（2026-11-04 に取り込んだ10枚のうち、使っていないのは3枚：トーストの写真2枚（1枚は敷物に英字、もう1枚はマグにほかのコーヒー店の店名が写っていたため）と、灰色のコンクリートの上のマグの写真1枚（店の色に合わないため、cup に差し替え））写真の場所は、この店とは関係ありません。
+
+書体
+- fonts/asamado-300.woff2・asamado-700.woff2 : Noto Sans JP（© 2014-2021 Adobe）を、ページで使う字だけに絞ったもの。
+  SIL Open Font License 1.1（https://openfontlicense.org/）。
+
+favicon.svg・apple-touch-icon.png・略図・アイコンは自作。

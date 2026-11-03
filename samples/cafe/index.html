@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#eef1ee">
+<meta name="color-scheme" content="light">
+<title>あさまど珈琲（架空）｜見本町の、窓ぎわ14席の自家焙煎の喫茶店</title>
+<meta name="description" content="小さな自家焙煎の喫茶店（架空）のホームページ見本です。実在の店ではありません。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="ラクワーク工房 ホームページの見本">
+<meta property="og:title" content="あさまど珈琲（架空）｜見本町の、窓ぎわ14席の自家焙煎の喫茶店">
+<meta property="og:description" content="小さな自家焙煎の喫茶店（架空）のホームページ見本です。実在の店ではありません。">
+<meta property="og:url" content="https://rakuwork-kobo.github.io/samples/cafe/">
+<meta property="og:image" content="https://rakuwork-kobo.github.io/samples/cafe/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="あさまど珈琲（架空の店）のホームページ見本。窓の格子ごしに、朝の光の差すテーブルのカップと店名">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" as="font" href="fonts/asamado-300.woff2" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css?v=20261104d">
+<script src="cafe.js?v=20261104d" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<p class="sample">ホームページの見本（1ページの作り）です。店名・住所・電話番号・値段はすべて架空です。</p>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#main" aria-label="あさまど珈琲 このページの先頭へ">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M19 3v26M3 13h26" stroke="currentColor" stroke-width="2.4"/><path d="M22 10l4-4M22 7l1-1" stroke="currentColor" stroke-width="1.4"/></svg>
+      <span class="logo-name">あさまど珈琲<small>見本町・自家焙煎の喫茶店</small></span>
+    </a>
+    <nav class="nav" aria-label="ページの中の案内">
+      <a href="#first">はじめての方へ</a>
+      <a href="#menu">お品書き</a>
+      <a href="#beans">豆の持ち帰り</a>
+      <a href="#hours">営業日</a>
+      <a href="#access">場所と駐車場</a>
+    </nav>
+    <a class="top-tel" href="tel:0540000000"><small>お電話</small>054-000-0000</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-in">
+    <figure class="window">
+      <picture>
+        <source media="(min-width: 900px)" srcset="img/hero_l.webp" width="1200" height="1499">
+        <img class="window-img" src="img/hero_s.webp" width="720" height="900" alt="朝の光が差しこむ窓ぎわの木のテーブルに、湯気の立つ白いカップ。テーブルに長い影がのびている" fetchpriority="high">
+      </picture>
+      <span class="window-light" aria-hidden="true"></span>
+      <span class="window-bars" aria-hidden="true"></span>
+    </figure>
+    <div class="hero-text">
+      <h1 id="hero-title" class="hero-title">朝の光の入る窓ぎわで、<br>店で焼いた豆を一杯ずつ。</h1>
+      <p class="hero-lead">見本町の、14席の小さな喫茶店です。豆は、店の奥の小さな焙煎機で焼いています。</p>
+
+      <div class="today" id="today" aria-live="polite">
+        <p class="today-date" id="today-date">営業時間</p>
+        <p class="today-state"><span class="dot" aria-hidden="true"></span><span id="today-main">8:00〜18:00</span></p>
+        <p class="today-sub" id="today-sub">ご注文は17:30まで。月曜と、第3火曜はお休みです。</p>
+        <p class="today-notice" id="today-notice" hidden></p>
+      </div>
+
+      <p class="hero-btns">
+        <a class="btn btn-main" href="#access">場所と駐車場</a>
+        <a class="btn" href="#menu">お品書き</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="first" id="first" aria-labelledby="first-title">
+  <div class="wrap">
+    <h2 id="first-title" class="h2">はじめての方へ</h2>
+    <p class="lead">来る前に気になることを、先にまとめました。</p>
+    <dl class="panes">
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h14M7 11v9M17 11v9M4 7h16" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>席</dt>
+        <dd><b>14席</b><span>窓ぎわのカウンター5席と、テーブル9席。全席禁煙</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>電源・Wi-Fi</dt>
+        <dd><b>どちらもあります</b><span>電源は窓ぎわに5口。土日祝の10〜13時は、作業は1時間ほどで</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>駐車場</dt>
+        <dd><b>店の裏に3台</b><span>満車のときは、向かいのコインパーキングへ</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.5 14h-9zM5 7h14M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>持ち帰り</dt>
+        <dd><b>飲み物は全部できます</b><span>店内と同じ値段です。焼き菓子と豆も</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="19" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="19" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 5h3l2 9h10l2-7H7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>お子さま連れ</dt>
+        <dd><b>どうぞ、ごいっしょに</b><span>段差なし・ベビーカーのまま入れます。子ども椅子1脚、おむつ替えのできる化粧室</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="9" r="1.8" fill="currentColor"/><circle cx="12" cy="6.5" r="1.8" fill="currentColor"/><circle cx="17" cy="9" r="1.8" fill="currentColor"/><path d="M8 17c0-3 2-5 4-5s4 2 4 5-8 3-8 0z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>ペット</dt>
+        <dd><b>店先のベンチなら</b><span>2席。お水の器をお出しします。店内は補助犬のみ</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="1.8"/></svg>予約</dt>
+        <dd><b>いりません</b><span>6名さまからは、前の日までにお電話をください</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16l-3-2-2 2-2-2-2 2-2-2-3 2z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8"/></svg>ご注文</dt>
+        <dd><b>レジで先にお会計</b><span>席までお運びします。<span class="nw">Wi-Fi の合言葉</span>も、そのときに</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>お支払い</dt>
+        <dd><b>現金・カード・<span class="nw">電子マネー</span></b><span>交通系IC、PayPay などのQRコード決済も</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM17 9h2a2 2 0 0 1 0 4h-2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>おかわり</dt>
+        <dd><b>二杯目は200円引き</b><span>同じ豆でも、ちがう豆でも</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>混む時間</dt>
+        <dd><b>土日祝の10時〜13時</b><span>平日の朝は、窓ぎわの席がたいてい空いています</span></dd>
+      </div>
+      <div class="pane">
+        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>目印</dt>
+        <dd><b>白い壁に、木の窓</b><span>東向きの大きな窓と、入口の木の札が目印です</span></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="menu" id="menu" aria-labelledby="menu-title">
+  <div class="wrap">
+    <h2 id="menu-title" class="h2">お品書き</h2>
+    <p class="lead">値段はすべて税込みです。お持ち帰りも同じ値段です。</p>
+
+    <div class="beans-week">
+      <div class="beans-head">
+        <h3 class="h3">今週の豆と、焼きの色</h3>
+        <p class="note">一杯ずつ、ハンドドリップでいれます。シングルの3種は週ごとに入れかえ、ブレンドはいつも同じです。</p>
+      </div>
+      <figure class="roast-scale">
+        <ol class="scale" aria-hidden="true">
+          <li class="r1"><span class="mark">エチオピア</span><span class="band-c"></span>浅煎り</li>
+          <li class="r2"><span class="mark mark-none">なし</span><span class="band-c"></span>中浅煎り</li>
+          <li class="r3"><span class="mark">グアテマラ</span><span class="band-c"></span>中煎り</li>
+          <li class="r4"><span class="mark">ブレンド</span><span class="band-c"></span>中深煎り</li>
+          <li class="r5"><span class="mark">マンデリン</span><span class="band-c"></span>深煎り</li>
+        </ol>
+        <figcaption class="scale-cap">左ほど明るく、果物のような酸味。右ほど濃く、苦みと甘みが深くなります。中浅煎りは、今週はお休みです。</figcaption>
+      </figure>
+      <ul class="beans">
+        <li class="bean r1">
+          <span class="bean-chip" aria-hidden="true"></span>
+          <p class="bean-level">浅煎り・今週の豆</p>
+          <p class="bean-name">エチオピア イルガチェフェ</p>
+          <p class="bean-taste">花のような香り。冷めてくると、紅茶のような甘さが出ます</p>
+          <p class="bean-price"><span>一杯 <b>600</b>円</span><span>豆100g <b>950</b>円</span></p>
+        </li>
+        <li class="bean r3">
+          <span class="bean-chip" aria-hidden="true"></span>
+          <p class="bean-level">中煎り・今週の豆</p>
+          <p class="bean-name">グアテマラ アンティグア</p>
+          <p class="bean-taste">ナッツとミルクチョコレート。はじめての方には、まずこれを</p>
+          <p class="bean-price"><span>一杯 <b>550</b>円</span><span>豆100g <b>850</b>円</span></p>
+        </li>
+        <li class="bean r4 bean-house">
+          <span class="bean-chip" aria-hidden="true"></span>
+          <p class="bean-level">中深煎り・いつもの豆</p>
+          <p class="bean-name">あさまどブレンド</p>
+          <p class="bean-taste">ブラジルとコロンビア。苦みはおだやかで、カフェオレにも合います</p>
+          <p class="bean-price"><span>一杯 <b>500</b>円</span><span>豆100g <b>750</b>円</span></p>
+        </li>
+        <li class="bean r5">
+          <span class="bean-chip" aria-hidden="true"></span>
+          <p class="bean-level">深煎り・今週の豆</p>
+          <p class="bean-name">インドネシア マンデリン</p>
+          <p class="bean-taste">黒糖のような甘みと、深い苦み。かためのプリンといっしょに</p>
+          <p class="bean-price"><span>一杯 <b>550</b>円</span><span>豆100g <b>850</b>円</span></p>
+        </li>
+      </ul>
+      <figure class="menu-photo menu-photo-drip">
+        <img src="img/drip_s.webp" srcset="img/drip_s.webp 600w, img/drip_l.webp 1000w" sizes="(min-width: 900px) 340px, 100vw" width="600" height="600" alt="真上から見たドリッパー。ひだのある紙の中で、ひいた豆がふくらんで泡が立っている" loading="lazy" decoding="async">
+      </figure>
+      <p class="sample-tip beans-tip">見本の説明：今週の豆と値段は、この欄の数行を書きかえるだけで入れかわります。お店の方が直すのがむずかしければ、メールなどで送っていただければ、こちらで直します。</p>
+    </div>
+
+    <div class="menu-cols">
+      <div class="menu-col">
+        <h3 class="h3">ほかの飲み物</h3>
+        <dl class="price-list">
+          <div><dt>カフェオレ<small>ブレンドと牛乳を半分ずつ</small></dt><dd>600円</dd></div>
+          <div><dt>アイスコーヒー<small>深煎りを一杯ずつ、氷で冷やして</small></dt><dd>550円</dd></div>
+          <div><dt>カフェインを抜いたコーヒー</dt><dd>550円</dd></div>
+          <div><dt>ほうじ茶ラテ<small>見本町の「みほん茶園」のほうじ茶で</small></dt><dd>600円</dd></div>
+          <div><dt>和紅茶<small>同じ茶園の紅茶。ポットで</small></dt><dd>550円</dd></div>
+          <div><dt>りんごジュース<small>お子さまにも</small></dt><dd>400円</dd></div>
+        </dl>
+      </div>
+      <div class="menu-col menu-col-morning">
+        <h3 class="h3">朝の時間</h3>
+        <div class="morning">
+          <p class="morning-time">8:00〜10:30</p>
+          <p class="morning-name">トーストのセット<span>飲み物＋250円</span></p>
+          <ul class="morning-set">
+            <li>厚切りのトースト</li>
+            <li>バターか、季節の果物のジャム</li>
+            <li>ゆで卵</li>
+          </ul>
+          <p class="morning-ex">たとえば、ブレンドと合わせて750円。</p>
+          <p class="morning-note">この時間、窓ぎわの席がいちばん明るくなります。</p>
+        </div>
+      </div>
+      <div class="menu-col">
+        <h3 class="h3">甘いもの</h3>
+        <dl class="price-list">
+          <div><dt>かためのプリン<small>苦めのカラメル</small></dt><dd>450円</dd></div>
+          <div><dt>チーズケーキ<small>表面をこんがり焼いた物</small></dt><dd>500円</dd></div>
+          <div><dt>焼き菓子<small>その日の物を、レジの横に</small></dt><dd>200円〜</dd></div>
+        </dl>
+        <p class="note">飲み物といっしょにご注文で、<span class="nw">甘いもの</span>は50円引きです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="roast" aria-labelledby="roast-title">
+  <div class="wrap roast-in">
+    <figure class="roast-photo">
+      <img src="img/roast_s.webp" srcset="img/roast_s.webp 720w, img/roast_l.webp 1200w" sizes="(min-width: 900px) 50vw, 100vw" width="720" height="577" alt="焙煎機の冷ます皿の上で、かき混ぜられる焼きたての豆" loading="lazy" decoding="async">
+    </figure>
+    <div class="roast-text">
+      <h2 id="roast-title" class="h2">開ける前の朝に、<br>1キロの釜で焼きます</h2>
+      <p>朝の6時半、店の奥の小さな焙煎機に火を入れます。一度に焼けるのは1キロまで。二、三日あとに足りなくなりそうな豆を、色と、<span class="nw">はぜる音</span>を見ながら、開ける前に一回か二回焼きます。</p>
+      <p>焼いた豆は、二日ほど休ませてからお出ししています。少し落ち着かせたほうが、香りがまるくなるからです。お品書きの焼きの色の帯は、焼き上がりの豆の色に近づけて塗っています。</p>
+      <p class="sign">店主・焙煎　<b>見本 まどか</b><small>（架空）</small></p>
+    </div>
+    <figure class="pour-photo">
+      <img src="img/pour_s.webp" srcset="img/pour_s.webp 640w, img/pour_l.webp 1000w" sizes="(min-width: 900px) 24vw, 100vw" width="640" height="800" alt="細い口のやかんから、ドリッパーへお湯を細く注いでいるところ" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<section class="seats" aria-labelledby="seats-title">
+  <div class="wrap seats-in">
+    <div class="seats-text">
+      <h2 id="seats-title" class="h2">窓ぎわの5席は、<br>午前中がいちばん明るい</h2>
+      <p>窓は東を向いています。朝の8時から11時ごろまでは、テーブルの奥まで光が届きます。ひとりで本を読む方、パソコンを開く方は、こちらの席が落ち着くと思います。</p>
+      <p>カップは、近くの窯で焼いてもらった物です。形も色も少しずつちがうので、お好きな物を選んでください。</p>
+    </div>
+    <figure class="seats-photo seats-room">
+      <img src="img/room_s.webp" srcset="img/room_s.webp 640w, img/room_l.webp 1000w" sizes="(min-width: 900px) 30vw, 50vw" width="640" height="800" alt="木の枠の大きな窓と、窓に向いたカウンターの席。窓辺に鉢植えの緑" loading="lazy" decoding="async">
+    </figure>
+    <figure class="seats-photo seats-cup">
+      <img src="img/cup_s.webp" srcset="img/cup_s.webp 720w, img/cup_l.webp 1200w" sizes="(min-width: 900px) 30vw, 50vw" width="720" height="563" alt="窓から差す光の筋が落ちる木のテーブルに、手で形を作った黄色と白の焼き物のカップ" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<section class="takeout" id="beans" aria-labelledby="beans-title">
+  <div class="wrap takeout-in">
+    <figure class="takeout-photo">
+      <img src="img/bag_s.webp" srcset="img/bag_s.webp 600w, img/bag_l.webp 900w" sizes="(min-width: 900px) 360px, (min-width: 600px) 40vw, 100vw" width="600" height="800" alt="無地のクラフト紙のコーヒー豆の袋" loading="lazy" decoding="async">
+      <span class="bag-tag" aria-hidden="true"><span class="bag-tag-name">グアテマラ</span><span class="bag-tag-row"><span class="bag-chip"></span>中煎り</span><span class="bag-tag-date">焼いた日 11/3</span></span>
+    </figure>
+    <div class="takeout-text">
+      <h2 id="beans-title" class="h2">豆の持ち帰り</h2>
+      <p>今週の豆とブレンドは、どれも100gから量り売りしています。袋には、焼いた日と焼きの色を書いた札を貼ります。焼いてから二週間ほどのうちに、飲みきるのがおすすめです。</p>
+      <dl class="facts">
+        <div><dt>量</dt><dd>100g・200g（200g は100円引き）</dd></div>
+        <div><dt>ひき方</dt><dd>豆のまま／ペーパーのドリップ用／フレンチプレス用</dd></div>
+        <div><dt>選ぶとき</dt><dd>迷ったら、<span class="nw">ひと口</span>ずつ味見ができます</dd></div>
+        <div><dt>贈り物</dt><dd>紙の箱に入れて、包みます（無料）</dd></div>
+        <div><dt>取り置き</dt><dd>前の日までにお電話をいただければ、ご用意しておきます</dd></div>
+        <div><dt>送ること</dt><dd>今は、店頭だけでお分けしています</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="hours" id="hours" aria-labelledby="hours-title">
+  <div class="wrap hours-in">
+    <div class="hours-head">
+      <h2 id="hours-title" class="h2">営業日と時間</h2>
+      <p class="lead">朝8時から、夕方6時まで。ご注文は5時半までです。祝日も、曜日のとおりに開けます（月曜の祝日はお休み）。</p>
+      <figure class="day">
+        <div class="day-bar" aria-hidden="true"><span class="day-morning"></span><span class="day-last"></span></div>
+        <figcaption class="day-cap"><span class="day-t day-t1">8:00 開店</span><span class="day-t day-t2">10:30 朝の時間まで</span><span class="day-t day-t3">17:30 ご注文まで</span><span class="day-t day-t4">18:00 閉店</span></figcaption>
+      </figure>
+      <div class="notice">
+        <h3 class="notice-h">臨時のお休み</h3>
+        <ul class="off-days" id="off-days">
+          <li data-from="2026-11-26">11月26日（木）　焙煎機の点検のため</li>
+          <li data-from="2026-12-30" data-to="2027-01-03">12月30日（水）〜1月3日（日）　年末年始</li>
+        </ul>
+        <p class="sample-tip">見本の説明：臨時のお休みは、この一覧に日付と理由を決まった形で1行足すだけです。その日の2週間前から最初の画面の「今日」の欄にお知らせが出て、当日は「今日はお休み」と出ます。過ぎた日の行は、自動で見えなくなります。曜日と時刻は、日本の時刻で見ています。</p>
+      </div>
+    </div>
+    <table class="week" id="week">
+      <caption class="vh">曜日ごとの営業時間</caption>
+      <tbody>
+        <tr data-day="1" class="off"><th scope="row">月</th><td>お休み</td></tr>
+        <tr data-day="2"><th scope="row">火</th><td>8:00〜18:00<small>第3火曜はお休み</small></td></tr>
+        <tr data-day="3"><th scope="row">水</th><td>8:00〜18:00</td></tr>
+        <tr data-day="4"><th scope="row">木</th><td>8:00〜18:00</td></tr>
+        <tr data-day="5"><th scope="row">金</th><td>8:00〜18:00</td></tr>
+        <tr data-day="6"><th scope="row">土</th><td>8:00〜18:00</td></tr>
+        <tr data-day="0"><th scope="row">日</th><td>8:00〜18:00</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="access" id="access" aria-labelledby="access-title">
+  <div class="wrap access-in">
+    <div class="access-text">
+      <h2 id="access-title" class="h2">場所と駐車場</h2>
+      <dl class="facts facts-dark">
+        <div><dt>住所</dt><dd>〒000-0000<br>見本県見本市見本町2-3-4（架空）</dd></div>
+        <div><dt>車で</dt><dd>大通りの「見本町二丁目」の信号を北へ。すぐ左の、店の横の細い道を奥へ進むと、裏の駐車場です</dd></div>
+        <div><dt>駐車場</dt><dd>店の裏に3台（「あさまど 1〜3」の札）<small>満車のときは、向かいのコインパーキング（30分100円）をお使いください</small></dd></div>
+        <div><dt>電車</dt><dd>見本駅の東口から、歩いて8分</dd></div>
+        <div><dt>バス</dt><dd>「見本町二丁目」で降りて、すぐ前</dd></div>
+        <div><dt>お電話</dt><dd><a class="tel-link" href="tel:0540000000">054-000-0000</a><small>8:00〜18:00。混んでいて出られないときは、こちらから折り返します。見本のため架空の番号です</small></dd></div>
+      </dl>
+    </div>
+    <figure class="map">
+      <svg viewBox="0 0 480 360" role="img" aria-labelledby="map-t">
+        <title id="map-t">店までの略図。見本駅の東口から大通りを東へ歩き、「見本町二丁目」の信号を北へ曲がると、左手に店。車は信号を北へ曲がってすぐ左の細い道に入り、店の裏の駐車場へ。通りの向かいにコインパーキング</title>
+        <rect width="480" height="360" fill="#e3e8e4"/>
+        <path d="M0 262h480" stroke="#fff" stroke-width="30"/>
+        <path d="M300 0v360" stroke="#fff" stroke-width="24"/>
+        <path d="M288 224H196V80" fill="none" stroke="#fff" stroke-width="12"/>
+        <rect x="206" y="78" width="78" height="50" fill="none" stroke="#5f3a22" stroke-width="2" stroke-dasharray="5 4"/>
+        <text x="245" y="108" text-anchor="middle" font-size="12" fill="#3b2b22">駐車場 3台</text>
+        <text x="242" y="247" text-anchor="middle" font-size="16" fill="#3b2b22">細い道</text>
+        <path d="M284 186l8-6v12z" fill="#2a1c15"/>
+                <rect x="212" y="140" width="72" height="66" fill="#8a5634"/>
+        <path d="M258 140v66M212 162h72" stroke="#3b2b22" stroke-width="3"/>
+        <text x="116" y="178" text-anchor="middle" font-size="14" fill="#2a1c15" font-weight="700">あさまど珈琲</text>
+        <path d="M166 174h44" stroke="#2a1c15" stroke-width="1.5"/>
+        <rect x="332" y="150" width="72" height="56" fill="#fff" stroke="#5f3a22" stroke-width="1.5"/>
+        <text x="368" y="175" text-anchor="middle" font-size="16" fill="#3b2b22" font-weight="700">P</text>
+        <text x="368" y="196" text-anchor="middle" font-size="13" fill="#3b2b22">コインP</text>
+        <text x="295" y="191" font-size="16" font-weight="700" fill="#2a1c15">入口</text>
+        <rect x="18" y="290" width="112" height="44" fill="#3b2b22"/>
+        <text x="74" y="318" text-anchor="middle" font-size="15" fill="#eef1ee">見本駅 東口</text>
+        <circle cx="300" cy="262" r="7" fill="#5f3a22"/>
+        <text x="312" y="298" font-size="12" fill="#3b2b22">信号「見本町二丁目」</text>
+        <rect x="316" y="226" width="44" height="14" fill="#3b2b22"/>
+        <text x="338" y="237" text-anchor="middle" font-size="10" fill="#eef1ee">バス停</text>
+        <path d="M130 270H294V186" fill="none" stroke="#c08a55" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>
+        <path d="M470 254H306V224H196V132" fill="none" stroke="#5f3a22" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M190 138l6-12 6 12z" fill="#5f3a22"/>
+        <text x="206" y="302" text-anchor="middle" font-size="12" fill="#3b2b22">歩いて8分（点線）</text>
+        <text x="470" y="244" text-anchor="end" font-size="12" fill="#3b2b22">車（線）</text>
+      </svg>
+      <figcaption>略図です。<span class="maplink">地図アプリで開く（見本のため押せません。本番では、ここと下の帯から地図アプリが開き、そのまま道案内を始められます）</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-in">
+    <h2 id="faq-title" class="h2">よくあるご質問</h2>
+    <div class="faq-list">
+      <details><summary>ひとりでも入りやすいですか</summary><p>お客さまの半分くらいは、おひとりです。窓ぎわのカウンターが、ひとりで座りやすい席です。</p></details>
+      <details><summary>電源のある席は、どこですか</summary><p>窓ぎわのカウンター5席の、机の下にあります。平日は時間の決まりはありません。窓ぎわが埋まっているときは、空いたらお声をかけます。</p></details>
+      <details><summary>子ども用の椅子は、取り置きできますか</summary><p>1脚だけなので、来る前にお電話をいただければ、空けておきます。</p></details>
+      <details><summary>豆だけ買いに寄ってもいいですか</summary><p>はい。レジで豆をお選びください。ひくのに3分ほどかかります。前の日までにお電話をいただければ、ご用意しておきます。</p></details>
+      <details><summary>コーヒーが苦手でも楽しめますか</summary><p>ほうじ茶ラテと和紅茶は、町の茶園のお茶でいれています。カフェインを抜いたコーヒーもあります。</p></details>
+      <details><summary>食べ物のアレルギーが気になります</summary><p>トースト・焼き菓子・プリン・チーズケーキには、小麦・卵・乳を使っています。くわしくは、ご注文のときにお聞きください。</p></details>
+      <details><summary>貸し切りはできますか</summary><p>平日の18時からなら、10名さままでお受けしています。ひと月前までに、お電話でご相談ください。</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-shop">
+      <p class="foot-name"><svg class="foot-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M19 3v26M3 13h26" stroke="currentColor" stroke-width="2.4"/></svg>あさまど珈琲<small>（架空）</small></p>
+      <p><span class="ln">見本県見本市見本町2-3-4</span><span class="ln">TEL 054-000-0000</span><span class="ln">8:00〜18:00（ご注文は17:30まで）</span><span class="ln">月曜・第3火曜休み</span></p>
+    </div>
+    <div class="foot-note">
+      <p>このページはラクワーク工房が作ったホームページの見本です。掲載している店・人物・連絡先・値段は実在しません。写真は Unsplash の写真です（撮影：Aimee Giles、Devin Avery、Khanh Do、Beau Carpenter、Dhiyah Aqila、With Mahdy）。写真の場所は、この店とは関係ありません。本番では、お店で撮った写真に差し替えます。略図とアイコンは、この見本のために描いたものです。</p>
+    </div>
+  </div>
+</footer>
+
+<nav class="band" aria-label="すぐに使う操作">
+  <a class="band-main" href="tel:0540000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5.5 5.5L16 13l5 2v3a3 3 0 0 1-3 3A15 15 0 0 1 3 6a3 3 0 0 1 3-3z" fill="currentColor"/></svg>電話する</a>
+  <a href="#access"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>地図・駐車場</a>
+</nav>
+</body>
+</html>
