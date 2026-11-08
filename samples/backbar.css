@@ -5,3 +5,5 @@
 .rk-backbar a:focus-visible{outline:2px solid #9fc3ff;outline-offset:2px}
 .rk-backbar span{color:#aab1b8;font-size:12px}
 @media print{.rk-backbar{display:none}}
+/* ページの終わりの帯 */
+.rk-backbar--end{justify-content:center;padding:14px 16px}
