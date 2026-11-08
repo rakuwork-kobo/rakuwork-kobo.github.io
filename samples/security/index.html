@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex,nofollow">
-<title>このホームページの安全の作り｜ラクワーク工房</title>
-<meta name="description" content="ラクワーク工房のホームページの見本を、どう守っているかの説明です。">
-<link rel="stylesheet" href="style.css?v=20261025b">
+<title>ホームページと会社の安全の作り｜ラクワーク工房</title>
+<meta name="description" content="ラクワーク工房のホームページの守り方と、会社のメール・パソコン・アカウントの守りのお手伝いの説明です。">
+<link rel="stylesheet" href="style.css?v=20261108">
   <link rel="stylesheet" href="/samples/backbar.css">
 </head>
 <body>
@@ -16,8 +16,13 @@
 <header class="top">
   <div class="wrap">
     <p class="brand">ラクワーク工房</p>
-    <h1>このホームページの<br class="br-sp">安全の作り</h1>
-    <p class="lead">見本のホームページを、どう守っているかを書いておきます。少し長いのですが、ホームページを頼んだあとで「先に聞いておけばよかった」となりやすい所なので、お時間のあるときに読んでいただけたらうれしいです。</p>
+    <h1>ホームページと会社の<br class="br-sp">安全の作り</h1>
+    <p class="lead">狙われやすい入口をはじめから置かない作りで、ホームページをお作りしています。あわせて、会社のメール・パソコン・アカウントの守りも、画面を見ながらご一緒します。はじめの30分（ホームページの https と、偽メールの設定の点検）は無料です。ご相談は、お届けした手紙への返信に「30分の点検を」とだけ書いていただければ大丈夫です。</p>
+    <nav class="jump" aria-label="このページの中">
+      <a href="#pairs-h">ホームページの作り</a>
+      <a href="#inside-h">会社の中の守り</a>
+      <a href="#contact-h">ご相談の仕方</a>
+    </nav>
   </div>
 </header>
 
@@ -33,6 +38,21 @@
     <div class="wrap">
       <h2 id="pairs-h">よくある狙われ方と、見本の作り</h2>
       <p class="pairs-lead">見本は、文字と絵だけでできたページです。開くたびにサーバーの上で何かを動かす仕組みを持たないので、入口になりやすい所を、はじめから置いていません。よくある狙われ方と並べると、こうなります。</p>
+      <div class="gates">
+        <h3>入口の数で比べると</h3>
+        <table>
+          <thead><tr><th scope="col">狙われる入口</th><th scope="col">WordPressなどのブログ型</th><th scope="col">この見本（静的なページ）</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">ログイン画面・管理画面</th><td>あり</td><td>なし</td></tr>
+            <tr><th scope="row">サーバーの上で動くプログラム（PHPなど）</th><td>あり</td><td>なし</td></tr>
+            <tr><th scope="row">情報をためる場所（データベース）</th><td>あり</td><td>なし</td></tr>
+            <tr><th scope="row">追加の部品（プラグイン）</th><td>入れた数だけ</td><td>なし</td></tr>
+            <tr><th scope="row">置き場所・ドメインのアカウント</th><td>あり</td><td>あり（持ち主の名義で持ち、二段階認証を付けていただきます）</td></tr>
+            <tr><th scope="row">更新を続ける手間</th><td>本体とプラグインを、ずっと</td><td>中身を変えるときだけ</td></tr>
+          </tbody>
+        </table>
+        <p>WordPressの列の「あり」は、穴が見つかるたびに直し続ける所です。この見本では、そこがはじめからありません。残るのはアカウントだけなので、そこを二段階認証で守ります。ご自分で記事を書き足したいなど、WordPressにする理由があるときはWordPressでもお作りします。そのときは、更新とバックアップの見守りまで引き受けます。</p>
+      </div>
       <div class="pairs">
         <div class="pair">
           <div class="risk"><p class="tag">よくある狙われ方</p><h3>古いWordPressや、プラグインの穴</h3><p>ブログ型の仕組み（WordPressなど）は便利ですが、本体や追加の部品（プラグイン）の更新が遅れると、知られた穴から入られます。穴が知れ渡ると、それを探して回る動きがすぐに始まります。</p></div>
@@ -76,31 +96,88 @@
     <p>すでにお使いの予約サービスやネットショップがあれば、そこへ進むボタンを置きます。お客さんが入れた情報は、このページを通らずに、そのサービスへ直接届きます。</p>
   </section>
 
+  <section class="inside" aria-labelledby="inside-h">
+    <div class="wrap">
+      <p class="eyebrow">ホームページの外の守り</p>
+      <h2 id="inside-h">会社の中の守りも、<br class="br-pc">画面共有でお手伝いします</h2>
+      <p class="inside-free">ホームページのほかに、メール・パソコン・社員の方の備えも見ています。</p>
+      <p class="inside-lead">ページを堅くしても、会社のメールやパソコン、アカウントが入口になることがあります。IPAの「情報セキュリティ10大脅威 2026」の組織向けの1位は、データを人質に取る「ランサム攻撃による被害」でした。入口になりやすいのは、偽のメールや、更新していない機器、使い回したパスワードです。ホームページと同じ考え方で、入口を一つずつ減らすお手伝いをしています。</p>
+      <div class="svc">
+        <div class="svc-item">
+          <p class="svc-no">1</p>
+          <h3>偽メール対策の点検と設定（SPF・DKIM・DMARC）</h3>
+          <p>会社のメールアドレス（@より後ろ）をかたった偽メールを、受け取る側で見分けて止めてもらうための設定です。SPFとDMARCが入っているかどうかは、誰でも見られる公開の記録（DNS）から確かめられます（DKIMは、届いたメールを一緒に見て確かめます）。今の設定を一緒に見て、会社から送っているサービス（会社のメール、請求書や予約の送信など）を洗い出し、DKIMを付け、DMARCを「報告を見るだけ」から段階を追って「止める」へ進めます。似た綴りの別のアドレスや、表示名だけを偽ったメールはこの設定では止められないため、勉強会で見分け方をお伝えします。</p>
+        </div>
+        <div class="svc-item">
+          <p class="svc-no">2</p>
+          <h3>SECURITY ACTION の宣言と、自社診断の付き添い</h3>
+          <p>IPAの「SECURITY ACTION」は、中小企業が情報セキュリティに取り組むことを自ら宣言する制度で、デジタル化・AI導入補助金（旧IT導入補助金）の申請の要件にもなっています。2026年4月から、申し込みはGビズID（プライムかメンバーのアカウント）でログインする新しい仕組みに変わりました。IPAの「5分でできる！情報セキュリティ自社診断」を一緒に答え、直す順番を1枚にまとめ、宣言の手続きは、画面共有で横についてお手伝いします。補助金の申請そのものの代行はしません。</p>
+        </div>
+        <div class="svc-item">
+          <p class="svc-no">3</p>
+          <h3>パソコンとアカウントの点検</h3>
+          <p>更新が止まっているパソコンはないか、辞めた方のアカウントが残っていないか、共有フォルダが誰にでも見えていないか。こうした所をチェック表で一緒に見て、直す順番を1枚にしてお渡しします。学校などのパソコンの保守や開発に5年ほど携わってきたので、つまずきやすい所の見当はつきます。</p>
+        </div>
+        <div class="svc-item">
+          <p class="svc-no">4</p>
+          <h3>社員の方向けの短い勉強会</h3>
+          <p>オンラインで30〜45分。偽メール、偽の請求書、画面に警告を出して電話をかけさせる「サポート詐欺」、ランサム攻撃の入口になりやすい場面を、実際の画面の例で見ていきます。最後に「怪しいと思ったら誰に言うか」を決めて終わります。</p>
+        </div>
+      </div>
+      <div class="svc-rule">
+        <p>進め方はオンラインの画面共有で、操作はご担当の方にお願いします。パスワードやGビズIDは預かりません。はじめの30分（ホームページの https と、偽メールの設定の点検）は無料で、そのあとはお見積もりのうえで進めます。ご相談は、手紙やメールへの返信でどうぞ。</p>
+      </div>
+    </div>
+  </section>
+
   <section class="wrap check" aria-labelledby="check-h">
     <h2 id="check-h">確かめていること</h2>
     <p>見本を直すたびに、ブラウザの開発者用の画面で、決まりに反した読み込みが1件も出ていないことを確かめています。お渡しするときは、公開したあとに外の点検サービスでも、設定がきちんと届いているかを見ます。</p>
     <details class="pro">
       <summary>専門の方へ（設定の中身）</summary>
       <dl>
+        <dt>考え方</dt>
+        <dd>サーバーの上で動く仕組み（PHP・データベース・ログイン画面・管理画面・プラグイン）を置かず、ブラウザの中でもスクリプトを動かしません。CSPとヘッダーは、それでも何か紛れ込んだときに止める、念のためのもう一枚です。</dd>
         <dt>ページの中（meta）のCSP</dt>
         <dd><code>default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests</code></dd>
-        <dt>お渡しのとき、置き場所で付けるヘッダー</dt>
-        <dd>上のCSPに <code>frame-ancestors 'none'</code> を加えたもの、<code>Strict-Transport-Security</code>、<code>X-Content-Type-Options: nosniff</code>、<code>X-Frame-Options: DENY</code>、<code>Referrer-Policy</code>、<code>Permissions-Policy</code>（カメラ・マイク・位置情報などを止める）、<code>Cross-Origin-Opener-Policy</code>、<code>Cross-Origin-Resource-Policy</code>。HSTSの <code>includeSubDomains</code> は、そのドメインの下で動いているほかのサービスを確かめてから足します。</dd>
+        <dd><code>default-src 'none'</code> を土台にして、許す物だけを足しています。<code>script-src</code>・<code>object-src</code>・<code>connect-src</code>・<code>frame-src</code> などは書いていなくても <code>'none'</code> として扱われるため、スクリプト、<code>&lt;object&gt;</code>・<code>&lt;iframe&gt;</code> での埋め込み、スクリプトからの通信（fetch など）は止まります（リンクを押して移る先は CSP の対象外です）。<code>base-uri 'none'</code> で <code>&lt;base&gt;</code> の書き換えを、<code>form-action 'none'</code> で送信先のすり替えを止めます。<code>upgrade-insecure-requests</code> は、ページの中の http の読み込みを https に直すものです（http で開かれたページ自体を https に移すのは、置き場所のリダイレクトとHSTSの役目です）。</dd>
+        <dt>meta とヘッダーは、両方使います</dt>
+        <dd>同じCSPを、meta と置き場所のヘッダーの両方に書きます。<code>frame-ancestors</code> は meta では効かないため、ヘッダーの側にだけ足します。片方を緩めても、もう片方が止めます。変えるときは2か所を同時に直します。</dd>
+        <dt>お渡しのとき、置き場所（Cloudflare Pages・Netlify）の <code>_headers</code> で付けるもの</dt>
+        <dd><code>Content-Security-Policy</code>（上のCSP ＋ <code>frame-ancestors 'none'</code>）／<code>Strict-Transport-Security: max-age=31536000</code>／<code>X-Content-Type-Options: nosniff</code>／<code>X-Frame-Options: DENY</code>／<code>Referrer-Policy: strict-origin-when-cross-origin</code>／<code>Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()</code>／<code>Cross-Origin-Opener-Policy: same-origin</code>／<code>Cross-Origin-Resource-Policy: same-origin</code></dd>
+        <dd>HSTSの <code>includeSubDomains</code> は、そのドメインの下で動いているほかのサービス（メール・予約システム・社内の機器など）が http のまま動いていないかを確かめてから足します。</dd>
+        <dt>いまの見本の置き場所（GitHub Pages）でできないこと</dt>
+        <dd>ヘッダーを自分で付けられないため、見本では meta のCSPだけで守っています。そのため、よそのページへの埋め込みを止める決まり（<code>frame-ancestors</code>・<code>X-Frame-Options</code>）は見本では効いていません。見本の入力欄は送れない作り（<code>form-action 'none'</code>）なので、害は小さくしてあります。</dd>
+        <dt>フォームや地図を足すとき</dt>
+        <dd>フォームは、迷惑送信を防ぐ仕組み（Cloudflare Turnstile など）を持つ送信サービスを使い、<code>form-action</code> にその送り先だけを足します。Turnstile を使うときは <code>script-src</code> と <code>frame-src</code> に <code>https://challenges.cloudflare.com</code> だけを足します（そのページだけ「スクリプトなし」ではなくなります）。地図は「地図を開く」リンクを基本にし、埋め込むときは <code>frame-src</code> に <code>https://www.google.com</code> だけを足します。</dd>
+        <dt>ドメイン・DNS・メール</dt>
+        <dd>ドメインは御社の名義で取り、登録先のアカウントに二段階認証、移管ロック、自動更新を付けます。置き場所を変えたりやめたりしたときは、古い向き先のレコードを残さず消します（残すと、そのサブドメインを他人に乗っ取られる元になります）。メールはSPF・DKIMを整えたうえで、DMARCを <code>p=none</code>（報告を受けて送り元を洗い出す）→ <code>p=quarantine</code> → <code>p=reject</code> と段階を追って進め、報告の受け先（<code>rua</code>）を付けます。</dd>
         <dt>そのほか</dt>
-        <dd>JavaScriptなし。<code>style</code> 属性やインラインのスクリプトもないため、<code>unsafe-inline</code> を許していません。写真は同じサイトに置いた画像ファイルだけで、外のサーバーからは読み込みません。載せる前に撮影場所などの情報（Exif）を消します。</dd>
+        <dd>JavaScriptなし。<code>style</code> 属性やインラインのスクリプト・<code>onclick</code> などもないため、<code>unsafe-inline</code> を許していません。外のサーバーからは何も読み込みません（フォント・解析タグ・CDNもなし）。写真は同じサイトに置いた画像ファイルだけで、載せる前に撮影場所などの情報（Exif）を消し、顔・名札・図面が写っていないかを確かめます。</dd>
+        <dt>確かめ方</dt>
+        <dd>直すたびに、ブラウザの開発者ツールのコンソールで、CSPの違反が出ていないことを確かめます。お渡しのあとは、外の点検サービス（securityheaders.com など）で、ヘッダーが届いているかを見ます。お渡ししたときのファイルは手元に残し、書き換えに気づいたらすぐ元に戻せるようにしています。</dd>
+        <dt>していないこと</dt>
+        <dd>侵入テスト（ペネトレーションテスト）や、ネットワーク機器の設定の診断は行っていません。ここに書いたのは、作りと設定で入口を減らす範囲の話です。</dd>
       </dl>
     </details>
+  </section>
+
+  <section class="wrap contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">ご相談の仕方</h2>
+    <p>お届けした手紙やメール、この見本をご案内した窓口への返信で大丈夫です。「30分の点検を」とだけ書いていただければ、日にちの候補をお送りします。ホームページのことでも、メールやパソコンのことでも構いません。</p>
+    <p>30分の点検で分かること：外から見える範囲での、ホームページの https と安全のためのヘッダーの有無、偽メール対策（SPF・DMARC）の設定の有無、直す順番。中の設定は外からは分からないので、そこは画面を一緒に見て確かめます。</p>
+    <p class="contact-who">ラクワーク工房　相楽</p>
   </section>
 
   <section class="see" aria-labelledby="see-h">
     <div class="wrap">
       <h2 id="see-h">見本を開いてみてください</h2>
-      <p>どの見本も、ここに書いた作りでできています。</p>
+      <p>ここに並べた見本は、どれもここに書いた作りでできています（見本の一覧には、動きを付けた版もあります。そちらは、同じサイトに置いたスクリプトだけを許す設定です）。</p>
       <ul class="see-list">
-        <li><a href="../izakaya/">炭火やきとりの店</a></li>
-        <li><a href="../salon/">美容室</a></li>
+        <li><a href="../factory/">町工場（会社のホームページの例）</a></li>
         <li><a href="../clinic/">内科クリニック</a></li>
-        <li><a href="../factory/">町工場</a></li>
+        <li><a href="../static/salon/">美容室</a></li>
+        <li><a href="../izakaya/">炭火やきとりの店</a></li>
       </ul>
     </div>
   </section>
@@ -109,7 +186,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>出典：IPA（独立行政法人 情報処理推進機構）「情報セキュリティ10大脅威 2026」（2026年1月29日公表）。IPAが選んだ候補を、研究者や企業の実務担当者など約250名の選考会が審議と投票で順位づけした一覧です。</p>
-    <p>2026年10月の時点の内容です。見本に出てくる店・医院・会社・人物・連絡先は、すべて架空です。</p>
+    <p>2026年11月の時点の内容です。見本に出てくる店・医院・会社・人物・連絡先は、すべて架空です。</p>
     <p>© ラクワーク工房</p>
   </div>
 </footer>
