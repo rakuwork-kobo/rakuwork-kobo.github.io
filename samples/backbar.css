@@ -7,3 +7,5 @@
 @media print{.rk-backbar{display:none}}
 /* ページの終わりの帯 */
 .rk-backbar--end{justify-content:center;padding:14px 16px}
+/* 下に固定のボタン帯があるページ（スマホ幅）は、その分あけて隠れないようにする */
+@media (max-width:899px){.rk-backbar--clear{margin-bottom:calc(68px + env(safe-area-inset-bottom,0px))}}
