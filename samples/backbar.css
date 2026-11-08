@@ -1,0 +1,7 @@
+/* 見本ページの上の帯：直リンクで来た人も見本の一覧へ戻れるように */
+.rk-backbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;margin:0;padding:7px 16px;background:#22262a;color:#d9dde1;font:13px/1.5 system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif;letter-spacing:.02em;position:relative;z-index:40}
+.rk-backbar a{color:#fff;text-decoration:none;font-weight:600;padding:4px 0}
+.rk-backbar a:hover,.rk-backbar a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.rk-backbar a:focus-visible{outline:2px solid #9fc3ff;outline-offset:2px}
+.rk-backbar span{color:#aab1b8;font-size:12px}
+@media print{.rk-backbar{display:none}}
