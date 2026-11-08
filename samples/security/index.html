@@ -85,7 +85,7 @@
         <dt>お渡しのとき、置き場所で付けるヘッダー</dt>
         <dd>上のCSPに <code>frame-ancestors 'none'</code> を加えたもの、<code>Strict-Transport-Security</code>、<code>X-Content-Type-Options: nosniff</code>、<code>X-Frame-Options: DENY</code>、<code>Referrer-Policy</code>、<code>Permissions-Policy</code>（カメラ・マイク・位置情報などを止める）、<code>Cross-Origin-Opener-Policy</code>、<code>Cross-Origin-Resource-Policy</code>。HSTSの <code>includeSubDomains</code> は、お店のドメインの下で動いているほかのサービスを確かめてから足します。</dd>
         <dt>そのほか</dt>
-        <dd>JavaScriptなし。<code>style</code> 属性やインラインのスクリプトもないため、<code>unsafe-inline</code> を許していません。絵はページの中に書いたSVGで、写真は載せる前に撮影場所の情報（Exif）を消します。</dd>
+        <dd>JavaScriptなし。<code>style</code> 属性やインラインのスクリプトもないため、<code>unsafe-inline</code> を許していません。写真は同じサイトに置いた画像ファイルだけで、外のサーバーからは読み込みません。載せる前に撮影場所などの情報（Exif）を消します。</dd>
       </dl>
     </details>
   </section>
